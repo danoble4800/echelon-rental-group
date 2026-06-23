@@ -400,6 +400,8 @@ ul { list-style: none; }
   padding: 24px;
   backdrop-filter: blur(10px);
   max-width: 600px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 .widget-tabs {
   display: flex;
@@ -428,7 +430,7 @@ ul { list-style: none; }
   align-items: flex-end;
   flex-wrap: wrap;
 }
-.widget-field { flex: 1; min-width: 130px; }
+.widget-field { flex: 1; min-width: 0; overflow: hidden; }
 .widget-field label {
   display: block;
   font-size: 0.7rem;
@@ -441,15 +443,18 @@ ul { list-style: none; }
 .widget-field input,
 .widget-field select {
   width: 100%;
+  max-width: 100%;
   box-sizing: border-box;
   padding: 10px 12px;
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: var(--radius-sm);
   color: var(--white);
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   outline: none;
   transition: border-color 0.2s;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .widget-field input:focus,
 .widget-field select:focus { border-color: var(--gold); }
