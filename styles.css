@@ -441,6 +441,7 @@ ul { list-style: none; }
 .widget-field input,
 .widget-field select {
   width: 100%;
+  box-sizing: border-box;
   padding: 10px 12px;
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.1);
@@ -1197,9 +1198,12 @@ ul { list-style: none; }
   .hero-inner { grid-template-columns: 1fr; }
   .hero-visual { display: none; }
   .hero-title { font-size: 2.8rem; }
-  .widget-fields { flex-direction: column; }
+  .widget-fields { flex-direction: column; align-items: stretch; gap: 10px; }
   .widget-divider { display: none; }
-  .btn-search { width: 100%; }
+  .widget-field { width: 100%; min-width: 0; flex: none; }
+  .widget-field input,
+  .widget-field select { width: 100%; box-sizing: border-box; font-size: 1rem; padding: 12px 14px; }
+  .btn-search { width: 100%; align-self: stretch; margin-top: 4px; padding: 14px; font-size: 1rem; }
   .stats-inner { gap: 20px; }
   .stat-divider { display: none; }
   .car-grid { grid-template-columns: 1fr; }
@@ -1215,7 +1219,9 @@ ul { list-style: none; }
 }
 @media (max-width: 480px) {
   .hero-title { font-size: 2.2rem; }
-  .booking-widget { padding: 18px; }
+  .booking-widget { padding: 16px; width: 100%; max-width: 100%; box-sizing: border-box; }
+  .widget-tabs { gap: 2px; }
+  .wtab { font-size: 0.78rem; padding: 8px 4px; }
   .modal { padding: 24px; }
   .toast { bottom: 16px; right: 16px; left: 16px; }
   .logo-main { font-size: 0.9rem; }
