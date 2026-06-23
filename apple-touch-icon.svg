@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+
+    <!-- Background: deep charcoal with subtle top-left radial lift -->
+    <radialGradient id="bgGrad" cx="38%" cy="32%" r="72%" gradientUnits="userSpaceOnUse"
+                    fx="195" fy="164" x1="0" y1="0" x2="512" y2="512">
+      <stop offset="0%"   stop-color="#2e2e2e"/>
+      <stop offset="55%"  stop-color="#1d1d1d"/>
+      <stop offset="100%" stop-color="#101010"/>
+    </radialGradient>
+
+    <!-- Subtle inner edge highlight — gives the "physical button" depth -->
+    <linearGradient id="edgeHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.06"/>
+      <stop offset="50%"  stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.18"/>
+    </linearGradient>
+
+    <!-- Gold horizontal: dark edges → bright center-left peak -->
+    <linearGradient id="goldH" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#5C3608"/>
+      <stop offset="10%"  stop-color="#9C6E14"/>
+      <stop offset="22%"  stop-color="#D4980A"/>
+      <stop offset="36%"  stop-color="#F7CC38"/>
+      <stop offset="48%"  stop-color="#F2B820"/>
+      <stop offset="65%"  stop-color="#CF8E10"/>
+      <stop offset="82%"  stop-color="#9C6E14"/>
+      <stop offset="100%" stop-color="#5C3608"/>
+    </linearGradient>
+
+    <!-- Vertical sheen: bright top highlight + dark bottom shadow on each bar -->
+    <linearGradient id="sheen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.50"/>
+      <stop offset="14%"  stop-color="#ffffff" stop-opacity="0.22"/>
+      <stop offset="42%"  stop-color="#ffffff" stop-opacity="0.00"/>
+      <stop offset="72%"  stop-color="#000000" stop-opacity="0.00"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.48"/>
+    </linearGradient>
+
+    <!-- Per-bar drop shadow so each bar lifts off the background -->
+    <filter id="barShadow" x="-8%" y="-25%" width="116%" height="160%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#000000" flood-opacity="0.55"/>
+    </filter>
+
+  </defs>
+
+  <!-- ── Background rounded square ── -->
+  <rect width="512" height="512" rx="114" ry="114" fill="url(#bgGrad)"/>
+  <!-- subtle top→bottom edge shading for depth -->
+  <rect width="512" height="512" rx="114" ry="114" fill="url(#edgeHighlight)"/>
+
+  <!-- ── Gold bars (with drop shadow) ── -->
+  <g filter="url(#barShadow)">
+    <polygon points="130,164 418,164 401,212 113,212" fill="url(#goldH)"/>
+    <polygon points="116,232 404,232 387,280 99,280"  fill="url(#goldH)"/>
+    <polygon points="102,300 390,300 373,348 85,348"  fill="url(#goldH)"/>
+  </g>
+
+  <!-- ── Vertical sheen overlaid on top (no shadow) ── -->
+  <polygon points="130,164 418,164 401,212 113,212" fill="url(#sheen)"/>
+  <polygon points="116,232 404,232 387,280 99,280"  fill="url(#sheen)"/>
+  <polygon points="102,300 390,300 373,348 85,348"  fill="url(#sheen)"/>
+
+</svg>
