@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Echelon Rental Group | Economic Car Rentals for Gig Workers</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ───────────── NAVIGATION ───────────── -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-main">ECHELON</span>
+        <span class="logo-sub">ECONOMIC RENTALS</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#fleet">Fleet</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#gig-workers">Who We Serve</a></li>
+        <li><a href="#compare">Why Echelon</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="tel:+15084442276" class="nav-phone">📞 508-444-2276</a>
+        <div class="lang-switcher" id="langSwitcher">
+          <button class="lang-btn" id="langBtn" aria-label="Select language">
+            <span class="lang-globe">🌐</span>
+            <span id="langLabel">EN</span>
+            <span class="lang-caret">▾</span>
+          </button>
+          <div class="lang-dropdown" id="langDropdown">
+            <button class="lang-option active" data-lang="en">🇺🇸 English</button>
+            <button class="lang-option" data-lang="es">🇪🇸 Español</button>
+            <button class="lang-option" data-lang="pt">🇧🇷 Português</button>
+          </div>
+        </div>
+        <a href="#fleet" class="btn btn-primary" id="navBookBtn">Book Now</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#fleet" id="mobileFleet">Fleet</a>
+      <a href="#pricing" id="mobilePricing">Pricing</a>
+      <a href="#gig-workers" id="mobileServe">Who We Serve</a>
+      <a href="#compare" id="mobileHow">Why Echelon</a>
+      <a href="#fleet" class="btn btn-primary" id="mobileBookBtn">Book Now</a>
+      <div class="mobile-lang">
+        <button class="lang-option" data-lang="en">🇺🇸 English</button>
+        <button class="lang-option" data-lang="es">🇪🇸 Español</button>
+        <button class="lang-option" data-lang="pt">🇧🇷 Português</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ───────────── HERO ───────────── -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <div class="hero-gradient"></div>
+      <div class="hero-grid"></div>
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Flexible Rentals · For Any Driver, Any Need
+        </div>
+        <h1 class="hero-title">
+          Drive More,<br /><span class="accent">Earn More.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Echelon Rental Group offers <strong>affordable, flexible car rentals</strong>
+          for gig drivers, daily commuters, families, and anyone in between.
+          Compact cars, sedans, and SUVs — available daily, weekly, or monthly.
+        </p>
+        <div class="hero-platforms">
+          <span class="platform-tag doordash">DoorDash</span>
+          <span class="platform-tag grubhub">GrubHub</span>
+          <span class="platform-tag ubereats">Uber Eats</span>
+          <span class="platform-tag amazon">Amazon Flex</span>
+          <span class="platform-tag everyday">Everyday Use</span>
+        </div>
+
+        <!-- BOOKING WIDGET -->
+        <div class="booking-widget">
+          <div class="widget-tabs">
+            <button class="wtab active" data-plan="daily">Daily</button>
+            <button class="wtab" data-plan="weekly">Weekly</button>
+            <button class="wtab" data-plan="monthly">Monthly</button>
+          </div>
+          <div class="widget-fields">
+            <div class="widget-field">
+              <label>Pick-Up Date</label>
+              <input type="date" id="pickupDate" />
+            </div>
+            <div class="widget-divider">→</div>
+            <div class="widget-field">
+              <label>Return Date</label>
+              <input type="date" id="returnDate" />
+            </div>
+            <div class="widget-field">
+              <label>Vehicle Type</label>
+              <select id="vehicleType">
+                <option value="">Any Vehicle</option>
+                <option value="economy">Economy</option>
+                <option value="sedan">Sedan</option>
+                <option value="compact">Compact</option>
+              </select>
+            </div>
+            <button class="btn btn-primary btn-search" onclick="scrollToFleet()">
+              Check Availability
+            </button>
+          </div>
+          <p class="widget-note">No hidden fees · Free cancellation up to 24hrs</p>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-car-wrap">
+          <div class="car-glow"></div>
+          <svg class="hero-car-svg" viewBox="0 0 520 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="262" cy="200" rx="200" ry="14" fill="rgba(0,0,0,0.5)"/>
+            <path d="M60 155 L60 130 Q62 120 80 112 L170 80 Q200 62 240 58 L310 55 Q360 55 390 68 L440 90 Q465 105 470 120 L472 155 Z" fill="#1A1A1A" stroke="#282828" stroke-width="2"/>
+            <path d="M155 112 L195 72 Q215 58 245 55 L310 53 Q352 53 375 68 L418 90 L430 112 Z" fill="#1E1E1E" stroke="#2A2A2A" stroke-width="1.5"/>
+            <path d="M200 108 L225 75 Q237 63 252 60 L310 57 L355 60 Q372 65 385 78 L408 108 Z" fill="#C8A020" fill-opacity="0.12" stroke="#C8A020" stroke-width="1.5" stroke-opacity="0.5"/>
+            <path d="M155 110 L183 80 L195 72 L210 110 Z" fill="#C8A020" fill-opacity="0.07" stroke="#C8A020" stroke-width="1" stroke-opacity="0.35"/>
+            <line x1="240" y1="95" x2="243" y2="155" stroke="#2A2A2A" stroke-width="1.5"/>
+            <line x1="330" y1="90" x2="333" y2="155" stroke="#2A2A2A" stroke-width="1.5"/>
+            <rect x="456" y="118" width="18" height="10" rx="3" fill="#C8A020" fill-opacity="0.85"/>
+            <rect x="456" y="131" width="14" height="6" rx="2" fill="#E0BA40" fill-opacity="0.65"/>
+            <rect x="58"  y="118" width="18" height="10" rx="3" fill="#FF3B30" fill-opacity="0.75"/>
+            <rect x="60"  y="131" width="14" height="6" rx="2" fill="#FF3B30" fill-opacity="0.45"/>
+            <path d="M435 112 L448 112 L448 120 L435 122 Z" fill="#1A1A1A" stroke="#282828" stroke-width="1"/>
+            <path d="M370 155 Q370 115 410 115 Q450 115 450 155" fill="#111111" stroke="#282828" stroke-width="2"/>
+            <path d="M90 155 Q90 115 130 115 Q170 115 170 155" fill="#111111" stroke="#282828" stroke-width="2"/>
+            <circle cx="410" cy="163" r="26" fill="#0D0D0D" stroke="#242424" stroke-width="3"/>
+            <circle cx="410" cy="163" r="18" fill="#141414" stroke="#C8A020" stroke-width="1.5" stroke-opacity="0.3"/>
+            <circle cx="410" cy="163" r="6"  fill="#C8A020" fill-opacity="0.22"/>
+            <line x1="410" y1="145" x2="410" y2="181" stroke="#2A2A2A" stroke-width="1.5"/>
+            <line x1="392" y1="163" x2="428" y2="163" stroke="#2A2A2A" stroke-width="1.5"/>
+            <line x1="397" y1="150" x2="423" y2="176" stroke="#2A2A2A" stroke-width="1.2"/>
+            <line x1="423" y1="150" x2="397" y2="176" stroke="#2A2A2A" stroke-width="1.2"/>
+            <circle cx="130" cy="163" r="26" fill="#0D0D0D" stroke="#242424" stroke-width="3"/>
+            <circle cx="130" cy="163" r="18" fill="#141414" stroke="#C8A020" stroke-width="1.5" stroke-opacity="0.3"/>
+            <circle cx="130" cy="163" r="6"  fill="#C8A020" fill-opacity="0.22"/>
+            <line x1="130" y1="145" x2="130" y2="181" stroke="#2A2A2A" stroke-width="1.5"/>
+            <line x1="112" y1="163" x2="148" y2="163" stroke="#2A2A2A" stroke-width="1.5"/>
+            <line x1="117" y1="150" x2="143" y2="176" stroke="#2A2A2A" stroke-width="1.2"/>
+            <line x1="143" y1="150" x2="117" y2="176" stroke="#2A2A2A" stroke-width="1.2"/>
+            <path d="M80 155 L70 158 L472 158 L470 155 Z" fill="#0D0D0D"/>
+            <rect x="255" y="128" width="22" height="4" rx="2" fill="#2A2A2A"/>
+            <rect x="345" y="125" width="22" height="4" rx="2" fill="#2A2A2A"/>
+            <path d="M80 115 L470 115" stroke="#C8A020" stroke-width="1.5" stroke-opacity="0.28" stroke-dasharray="6 4"/>
+          </svg>
+
+          <div class="hero-price-badge">
+            <span class="from">from</span>
+            <span class="price">$80</span>
+            <span class="per">/day</span>
+          </div>
+
+          <div class="hero-stat stat-1">
+            <span class="stat-num">50+</span>
+            <span class="stat-label">Cars Available</span>
+          </div>
+          <div class="hero-stat stat-2">
+            <span class="stat-num">∞</span>
+            <span class="stat-label">Miles Included</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── STATS BAR ───────────── -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <strong>50+</strong>
+        <span>Vehicles in Fleet</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <strong>$80</strong>
+        <span>Starting Per Day</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <strong>24/7</strong>
+        <span>Customer Support</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <strong>0</strong>
+        <span>Hidden Fees</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ───────────── FLEET ───────────── -->
+  <section class="fleet" id="fleet">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-tag">Economic Fleet</div>
+        <h2>Available Right Now</h2>
+        <p>Compact economy cars, full-size sedans, and SUVs — our entire fleet is well-maintained, affordable, and ready for any reason you need wheels.</p>
+      </div>
+
+      <div class="fleet-filters">
+        <button class="filter-btn active" data-filter="all">All Vehicles</button>
+        <button class="filter-btn" data-filter="compact">Compact</button>
+        <button class="filter-btn" data-filter="sedan">Sedan</button>
+        <button class="filter-btn" data-filter="suv">SUV</button>
+      </div>
+
+      <div class="car-grid" id="carGrid">
+
+        <!-- Honda Civic — Compact -->
+        <div class="car-card" data-type="compact">
+          <div class="car-card-img" style="background: linear-gradient(135deg, #0F1A3A 0%, #1A2D6B 50%, #0D1540 100%)">
+            <div class="car-available">Available</div>
+            <svg class="card-car-svg" viewBox="0 0 300 120" fill="none">
+              <ellipse cx="150" cy="112" rx="120" ry="8" fill="rgba(0,0,0,0.3)"/>
+              <path d="M30 82 L30 65 Q32 55 50 48 L100 30 Q118 22 138 20 L180 19 Q210 19 228 30 L260 48 Q272 58 274 68 L275 82 Z" fill="#152550"/>
+              <path d="M88 48 L108 26 Q120 20 137 19 L180 18 Q205 18 220 30 L245 48 Z" fill="#1E3570" stroke="#2A4DA0" stroke-width="1"/>
+              <path d="M100 46 L118 25 Q128 19 140 18 L180 17 L208 20 Q222 25 232 35 L250 46 Z" fill="#4F8EF7" fill-opacity="0.22" stroke="#4F8EF7" stroke-width="1.2" stroke-opacity="0.7"/>
+              <circle cx="230" cy="90" r="18" fill="#0D1424" stroke="#2A4DA0" stroke-width="2"/>
+              <circle cx="230" cy="90" r="11" fill="#141D35" stroke="#4F8EF7" stroke-width="1" stroke-opacity="0.6"/>
+              <circle cx="70" cy="90" r="18" fill="#0D1424" stroke="#2A4DA0" stroke-width="2"/>
+              <circle cx="70" cy="90" r="11" fill="#141D35" stroke="#4F8EF7" stroke-width="1" stroke-opacity="0.6"/>
+              <rect x="263" y="62" width="12" height="8" rx="2" fill="#FF6B35" fill-opacity="0.9"/>
+              <rect x="28" y="62" width="12" height="8" rx="2" fill="#FF3B30" fill-opacity="0.9"/>
+            </svg>
+          </div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge compact">Compact</span>
+                <h3 class="car-name">Honda Civic</h3>
+                <p class="car-year">Automatic</p>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$80</span>
+                <span class="car-price-unit">/day</span>
+              </div>
+            </div>
+            <div class="car-specs">
+              <span>🪑 5 Seats</span>
+              <span>⛽ 36 MPG</span>
+              <span>🔄 Auto</span>
+              <span>❄️ A/C</span>
+            </div>
+            <div class="car-alt-prices">
+              <span>$400<small>/wk</small></span>
+              <span>$1,200<small>/mo</small></span>
+            </div>
+            <button class="btn btn-primary btn-book" onclick="openModal('Honda Civic','80','400','1200')">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Toyota Corolla — Compact -->
+        <div class="car-card" data-type="compact">
+          <div class="car-card-img" style="background: linear-gradient(135deg, #0A2A1A 0%, #0F3D28 50%, #0A2A1A 100%)">
+            <div class="car-available">Available</div>
+            <svg class="card-car-svg" viewBox="0 0 300 120" fill="none">
+              <ellipse cx="150" cy="112" rx="120" ry="8" fill="rgba(0,0,0,0.3)"/>
+              <path d="M32 82 L32 66 Q34 56 52 48 L105 30 Q122 22 140 20 L178 19 Q208 19 230 32 L260 50 Q272 60 273 70 L274 82 Z" fill="#0F3020"/>
+              <path d="M90 47 L112 25 Q126 18 142 17 L178 16 Q206 16 226 29 L248 47 Z" fill="#144030" stroke="#1E6040" stroke-width="1"/>
+              <path d="M103 45 L122 24 Q133 17 145 16 L178 15 L210 18 Q226 24 238 36 L254 45 Z" fill="#22C55E" fill-opacity="0.2" stroke="#22C55E" stroke-width="1.2" stroke-opacity="0.6"/>
+              <circle cx="230" cy="90" r="18" fill="#0D1424" stroke="#1E6040" stroke-width="2"/>
+              <circle cx="230" cy="90" r="11" fill="#0A2A1A" stroke="#22C55E" stroke-width="1" stroke-opacity="0.5"/>
+              <circle cx="70" cy="90" r="18" fill="#0D1424" stroke="#1E6040" stroke-width="2"/>
+              <circle cx="70" cy="90" r="11" fill="#0A2A1A" stroke="#22C55E" stroke-width="1" stroke-opacity="0.5"/>
+              <rect x="261" y="62" width="13" height="8" rx="2" fill="#FF6B35"/>
+              <rect x="29" y="62" width="13" height="8" rx="2" fill="#FF3B30"/>
+            </svg>
+          </div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge compact">Compact</span>
+                <h3 class="car-name">Toyota Corolla</h3>
+                <p class="car-year">Automatic</p>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$80</span>
+                <span class="car-price-unit">/day</span>
+              </div>
+            </div>
+            <div class="car-specs">
+              <span>🪑 5 Seats</span>
+              <span>⛽ 32 MPG</span>
+              <span>🔄 Auto</span>
+              <span>❄️ A/C</span>
+            </div>
+            <div class="car-alt-prices">
+              <span>$400<small>/wk</small></span>
+              <span>$1,200<small>/mo</small></span>
+            </div>
+            <button class="btn btn-primary btn-book" onclick="openModal('Toyota Corolla','80','400','1200')">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Ford Escape — Compact -->
+        <div class="car-card" data-type="compact">
+          <div class="car-card-img" style="background: linear-gradient(135deg, #2A1A0A 0%, #3D2810 50%, #2A1A0A 100%)">
+            <div class="car-available">Available</div>
+            <svg class="card-car-svg" viewBox="0 0 300 120" fill="none">
+              <ellipse cx="150" cy="112" rx="118" ry="8" fill="rgba(0,0,0,0.3)"/>
+              <path d="M35 82 L35 67 Q37 57 55 49 L108 31 Q124 23 142 21 L176 20 Q205 20 226 33 L254 51 Q266 61 267 71 L268 82 Z" fill="#3D2208"/>
+              <path d="M93 48 L114 26 Q127 19 144 18 L176 17 Q203 17 222 30 L244 48 Z" fill="#4D2C10" stroke="#7A4520" stroke-width="1"/>
+              <path d="M106 46 L124 25 Q135 18 147 17 L176 16 L206 19 Q221 25 232 37 L248 46 Z" fill="#F97316" fill-opacity="0.2" stroke="#F97316" stroke-width="1.2" stroke-opacity="0.6"/>
+              <circle cx="228" cy="90" r="18" fill="#0D1424" stroke="#7A4520" stroke-width="2"/>
+              <circle cx="228" cy="90" r="11" fill="#2A1A0A" stroke="#F97316" stroke-width="1" stroke-opacity="0.5"/>
+              <circle cx="72" cy="90" r="18" fill="#0D1424" stroke="#7A4520" stroke-width="2"/>
+              <circle cx="72" cy="90" r="11" fill="#2A1A0A" stroke="#F97316" stroke-width="1" stroke-opacity="0.5"/>
+              <rect x="256" y="62" width="12" height="8" rx="2" fill="#FF6B35"/>
+              <rect x="34" y="62" width="12" height="8" rx="2" fill="#FF3B30"/>
+            </svg>
+          </div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge compact">Compact</span>
+                <h3 class="car-name">Ford Escape</h3>
+                <p class="car-year">Automatic</p>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$80</span>
+                <span class="car-price-unit">/day</span>
+              </div>
+            </div>
+            <div class="car-specs">
+              <span>🪑 5 Seats</span>
+              <span>⛽ 30 MPG</span>
+              <span>🔄 Auto</span>
+              <span>❄️ A/C</span>
+            </div>
+            <div class="car-alt-prices">
+              <span>$400<small>/wk</small></span>
+              <span>$1,200<small>/mo</small></span>
+            </div>
+            <button class="btn btn-primary btn-book" onclick="openModal('Ford Escape','80','400','1200')">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Toyota Camry — Sedan (Featured) -->
+        <div class="car-card featured" data-type="sedan">
+          <div class="car-card-img" style="background: linear-gradient(135deg, #1A0F3A 0%, #2D1B69 50%, #1A0F3A 100%)">
+            <div class="car-available">Available</div>
+            <div class="car-popular-badge">Most Popular</div>
+            <svg class="card-car-svg" viewBox="0 0 300 120" fill="none">
+              <ellipse cx="150" cy="112" rx="120" ry="8" fill="rgba(0,0,0,0.3)"/>
+              <path d="M28 82 L28 64 Q30 54 48 46 L110 28 Q128 20 148 18 L185 17 Q216 17 238 30 L265 50 Q275 60 276 70 L277 82 Z" fill="#2D1B55"/>
+              <path d="M95 46 L120 24 Q133 17 150 16 L185 15 Q212 15 230 28 L252 46 Z" fill="#3A2470" stroke="#5B3BA0" stroke-width="1"/>
+              <path d="M108 44 L128 23 Q140 16 152 15 L185 14 L215 17 Q230 23 242 35 L258 44 Z" fill="#C8A020" fill-opacity="0.22" stroke="#C8A020" stroke-width="1.2" stroke-opacity="0.7"/>
+              <circle cx="232" cy="90" r="18" fill="#0D1424" stroke="#5B3BA0" stroke-width="2"/>
+              <circle cx="232" cy="90" r="11" fill="#1A0F3A" stroke="#C8A020" stroke-width="1" stroke-opacity="0.6"/>
+              <circle cx="68" cy="90" r="18" fill="#0D1424" stroke="#5B3BA0" stroke-width="2"/>
+              <circle cx="68" cy="90" r="11" fill="#1A0F3A" stroke="#C8A020" stroke-width="1" stroke-opacity="0.6"/>
+              <rect x="264" y="61" width="13" height="8" rx="2" fill="#FF6B35"/>
+              <rect x="26" y="61" width="13" height="8" rx="2" fill="#FF3B30"/>
+            </svg>
+          </div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge sedan">Sedan</span>
+                <h3 class="car-name">Toyota Camry</h3>
+                <p class="car-year">Automatic</p>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$80</span>
+                <span class="car-price-unit">/day</span>
+              </div>
+            </div>
+            <div class="car-specs">
+              <span>🪑 5 Seats</span>
+              <span>⛽ 32 MPG</span>
+              <span>🔄 Auto</span>
+              <span>❄️ A/C</span>
+            </div>
+            <div class="car-alt-prices">
+              <span>$400<small>/wk</small></span>
+              <span>$1,200<small>/mo</small></span>
+            </div>
+            <button class="btn btn-primary btn-book" onclick="openModal('Toyota Camry','80','400','1200')">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Honda Accord — Sedan -->
+        <div class="car-card" data-type="sedan">
+          <div class="car-card-img" style="background: linear-gradient(135deg, #0A1A2A 0%, #102840 50%, #0A1A2A 100%)">
+            <div class="car-available">Available</div>
+            <svg class="card-car-svg" viewBox="0 0 300 120" fill="none">
+              <ellipse cx="150" cy="112" rx="118" ry="8" fill="rgba(0,0,0,0.3)"/>
+              <path d="M31 82 L31 65 Q33 54 52 46 L108 28 Q126 20 145 18 L182 17 Q212 17 234 30 L262 50 Q274 60 275 70 L276 82 Z" fill="#0D2035"/>
+              <path d="M94 46 L116 24 Q129 17 146 16 L182 15 Q210 15 231 28 L254 46 Z" fill="#112840" stroke="#1A3F60" stroke-width="1"/>
+              <path d="M107 44 L126 23 Q137 16 149 15 L182 14 L213 17 Q229 23 241 35 L256 44 Z" fill="#38BDF8" fill-opacity="0.2" stroke="#38BDF8" stroke-width="1.2" stroke-opacity="0.6"/>
+              <circle cx="233" cy="90" r="18" fill="#0D1424" stroke="#1A3F60" stroke-width="2"/>
+              <circle cx="233" cy="90" r="11" fill="#0A1A2A" stroke="#38BDF8" stroke-width="1" stroke-opacity="0.5"/>
+              <circle cx="67" cy="90" r="18" fill="#0D1424" stroke="#1A3F60" stroke-width="2"/>
+              <circle cx="67" cy="90" r="11" fill="#0A1A2A" stroke="#38BDF8" stroke-width="1" stroke-opacity="0.5"/>
+              <rect x="263" y="62" width="13" height="8" rx="2" fill="#FF6B35"/>
+              <rect x="29" y="62" width="13" height="8" rx="2" fill="#FF3B30"/>
+            </svg>
+          </div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge sedan">Sedan</span>
+                <h3 class="car-name">Honda Accord</h3>
+                <p class="car-year">Automatic</p>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$80</span>
+                <span class="car-price-unit">/day</span>
+              </div>
+            </div>
+            <div class="car-specs">
+              <span>🪑 5 Seats</span>
+              <span>⛽ 30 MPG</span>
+              <span>🔄 Auto</span>
+              <span>❄️ A/C</span>
+            </div>
+            <div class="car-alt-prices">
+              <span>$400<small>/wk</small></span>
+              <span>$1,200<small>/mo</small></span>
+            </div>
+            <button class="btn btn-primary btn-book" onclick="openModal('Honda Accord','80','400','1200')">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Ford Fusion — Sedan -->
+        <div class="car-card" data-type="sedan">
+          <div class="car-card-img" style="background: linear-gradient(135deg, #1A1A2E 0%, #242444 50%, #1A1A2E 100%)">
+            <div class="car-available">Available</div>
+            <svg class="card-car-svg" viewBox="0 0 300 120" fill="none">
+              <ellipse cx="150" cy="112" rx="118" ry="8" fill="rgba(0,0,0,0.3)"/>
+              <path d="M33 82 L33 65 Q35 55 53 47 L106 29 Q123 21 142 19 L178 18 Q208 18 229 31 L258 50 Q269 60 270 70 L271 82 Z" fill="#1C1C3A"/>
+              <path d="M91 46 L113 24 Q126 17 143 16 L178 15 Q206 15 226 28 L248 46 Z" fill="#242450" stroke="#3A3A6A" stroke-width="1"/>
+              <path d="M104 44 L123 23 Q134 16 146 15 L178 14 L208 17 Q224 23 235 35 L250 44 Z" fill="#818CF8" fill-opacity="0.2" stroke="#818CF8" stroke-width="1.2" stroke-opacity="0.6"/>
+              <circle cx="230" cy="90" r="18" fill="#0D1424" stroke="#3A3A6A" stroke-width="2"/>
+              <circle cx="230" cy="90" r="11" fill="#1A1A2E" stroke="#818CF8" stroke-width="1" stroke-opacity="0.5"/>
+              <circle cx="70" cy="90" r="18" fill="#0D1424" stroke="#3A3A6A" stroke-width="2"/>
+              <circle cx="70" cy="90" r="11" fill="#1A1A2E" stroke="#818CF8" stroke-width="1" stroke-opacity="0.5"/>
+              <rect x="259" y="62" width="12" height="8" rx="2" fill="#FF6B35"/>
+              <rect x="31" y="62" width="12" height="8" rx="2" fill="#FF3B30"/>
+            </svg>
+          </div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge sedan">Sedan</span>
+                <h3 class="car-name">Ford Fusion</h3>
+                <p class="car-year">Automatic</p>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$80</span>
+                <span class="car-price-unit">/day</span>
+              </div>
+            </div>
+            <div class="car-specs">
+              <span>🪑 5 Seats</span>
+              <span>⛽ 28 MPG</span>
+              <span>🔄 Auto</span>
+              <span>❄️ A/C</span>
+            </div>
+            <div class="car-alt-prices">
+              <span>$400<small>/wk</small></span>
+              <span>$1,200<small>/mo</small></span>
+            </div>
+            <button class="btn btn-primary btn-book" onclick="openModal('Ford Fusion','80','400','1200')">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Toyota RAV4 — SUV -->
+        <div class="car-card" data-type="suv">
+          <div class="car-card-img" style="background: linear-gradient(135deg, #0D1E2A 0%, #112838 50%, #0D1E2A 100%)">
+            <div class="car-available">Available</div>
+            <svg class="card-car-svg" viewBox="0 0 300 125" fill="none">
+              <ellipse cx="150" cy="115" rx="120" ry="8" fill="rgba(0,0,0,0.3)"/>
+              <path d="M27 88 L27 46 Q29 34 48 26 L96 10 Q114 4 138 3 L180 3 Q210 3 230 16 L260 38 Q272 50 274 62 L275 88 Z" fill="#0E2538"/>
+              <path d="M67 26 L88 6 Q102 2 135 2 L180 2 Q210 2 230 14 L252 26 Z" fill="#122D45" stroke="#1A3D5A" stroke-width="1"/>
+              <path d="M80 24 L100 6 Q112 2 134 2 L180 1 L208 4 Q222 10 232 20 L248 24 Z" fill="#38BDF8" fill-opacity="0.15" stroke="#38BDF8" stroke-width="1.2" stroke-opacity="0.5"/>
+              <path d="M67 24 L86 8 L97 4 L110 24 Z" fill="#38BDF8" fill-opacity="0.1" stroke="#38BDF8" stroke-width="1" stroke-opacity="0.4"/>
+              <line x1="110" y1="2" x2="210" y2="2" stroke="#1A3D5A" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="145" y1="26" x2="148" y2="88" stroke="#1A3D5A" stroke-width="1.5"/>
+              <line x1="218" y1="24" x2="220" y2="88" stroke="#1A3D5A" stroke-width="1.5"/>
+              <circle cx="228" cy="94" r="20" fill="#0A1520" stroke="#1A3050" stroke-width="2"/>
+              <circle cx="228" cy="94" r="13" fill="#0E1A2A" stroke="#38BDF8" stroke-width="1" stroke-opacity="0.4"/>
+              <circle cx="72" cy="94" r="20" fill="#0A1520" stroke="#1A3050" stroke-width="2"/>
+              <circle cx="72" cy="94" r="13" fill="#0E1A2A" stroke="#38BDF8" stroke-width="1" stroke-opacity="0.4"/>
+              <rect x="261" y="50" width="13" height="9" rx="2" fill="#FF6B35" fill-opacity="0.9"/>
+              <rect x="28" y="50" width="13" height="9" rx="2" fill="#FF3B30" fill-opacity="0.85"/>
+            </svg>
+          </div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge suv">SUV</span>
+                <h3 class="car-name">Toyota RAV4</h3>
+                <p class="car-year">Automatic</p>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$500</span>
+                <span class="car-price-unit">/wk</span>
+              </div>
+            </div>
+            <div class="car-specs">
+              <span>🪑 5 Seats</span>
+              <span>⛽ 28 MPG</span>
+              <span>🔄 Auto</span>
+              <span>❄️ A/C</span>
+            </div>
+            <div class="car-alt-prices">
+              <span>$500<small>/wk</small></span>
+              <span>$1,800<small>/mo</small></span>
+            </div>
+            <button class="btn btn-primary btn-book" onclick="openModal('Toyota RAV4','100','500','1800')">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Honda CR-V — SUV -->
+        <div class="car-card" data-type="suv">
+          <div class="car-card-img" style="background: linear-gradient(135deg, #1C1018 0%, #2A1824 50%, #1C1018 100%)">
+            <div class="car-available">Available</div>
+            <svg class="card-car-svg" viewBox="0 0 300 125" fill="none">
+              <ellipse cx="150" cy="115" rx="120" ry="8" fill="rgba(0,0,0,0.3)"/>
+              <path d="M25 88 L25 46 Q27 34 46 26 L95 10 Q113 4 137 3 L181 3 Q212 3 232 16 L262 38 Q274 50 275 62 L276 88 Z" fill="#221018"/>
+              <path d="M65 26 L87 6 Q101 2 134 2 L181 2 Q212 2 232 14 L253 26 Z" fill="#2A1422" stroke="#3A1E32" stroke-width="1"/>
+              <path d="M78 24 L99 6 Q111 2 133 2 L181 1 L209 4 Q224 10 234 20 L250 24 Z" fill="#C084FC" fill-opacity="0.12" stroke="#C084FC" stroke-width="1.2" stroke-opacity="0.4"/>
+              <path d="M65 24 L85 8 L96 4 L109 24 Z" fill="#C084FC" fill-opacity="0.08" stroke="#C084FC" stroke-width="1" stroke-opacity="0.35"/>
+              <line x1="108" y1="2" x2="212" y2="2" stroke="#3A1E32" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="144" y1="26" x2="147" y2="88" stroke="#3A1E32" stroke-width="1.5"/>
+              <line x1="217" y1="24" x2="219" y2="88" stroke="#3A1E32" stroke-width="1.5"/>
+              <circle cx="230" cy="94" r="20" fill="#130810" stroke="#3A1E32" stroke-width="2"/>
+              <circle cx="230" cy="94" r="13" fill="#1C1018" stroke="#C084FC" stroke-width="1" stroke-opacity="0.4"/>
+              <circle cx="70" cy="94" r="20" fill="#130810" stroke="#3A1E32" stroke-width="2"/>
+              <circle cx="70" cy="94" r="13" fill="#1C1018" stroke="#C084FC" stroke-width="1" stroke-opacity="0.4"/>
+              <rect x="263" y="50" width="13" height="9" rx="2" fill="#FF6B35" fill-opacity="0.9"/>
+              <rect x="26" y="50" width="13" height="9" rx="2" fill="#FF3B30" fill-opacity="0.85"/>
+            </svg>
+          </div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge suv">SUV</span>
+                <h3 class="car-name">Honda CR-V</h3>
+                <p class="car-year">Automatic</p>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$500</span>
+                <span class="car-price-unit">/wk</span>
+              </div>
+            </div>
+            <div class="car-specs">
+              <span>🪑 5 Seats</span>
+              <span>⛽ 30 MPG</span>
+              <span>🔄 Auto</span>
+              <span>❄️ A/C</span>
+            </div>
+            <div class="car-alt-prices">
+              <span>$500<small>/wk</small></span>
+              <span>$1,800<small>/mo</small></span>
+            </div>
+            <button class="btn btn-primary btn-book" onclick="openModal('Honda CR-V','100','500','1800')">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Dodge Durango — SUV -->
+        <div class="car-card" data-type="suv">
+          <div class="car-card-img" style="background: linear-gradient(135deg, #1A0A0A 0%, #2E1010 50%, #1A0A0A 100%)">
+            <div class="car-available">Available</div>
+            <svg class="card-car-svg" viewBox="0 0 300 125" fill="none">
+              <ellipse cx="150" cy="115" rx="120" ry="8" fill="rgba(0,0,0,0.3)"/>
+              <path d="M25 88 L25 44 Q27 32 47 24 L98 8 Q116 2 140 2 L182 2 Q214 2 234 16 L264 38 Q276 50 277 64 L278 88 Z" fill="#250808"/>
+              <path d="M65 24 L88 4 Q102 0 137 0 L182 0 Q214 0 234 14 L256 24 Z" fill="#300E0E" stroke="#4A1A1A" stroke-width="1"/>
+              <path d="M78 22 L100 4 Q113 0 136 0 L182 0 L211 2 Q226 8 237 18 L252 22 Z" fill="#EF4444" fill-opacity="0.12" stroke="#EF4444" stroke-width="1.2" stroke-opacity="0.4"/>
+              <path d="M65 22 L86 6 L98 2 L112 22 Z" fill="#EF4444" fill-opacity="0.08" stroke="#EF4444" stroke-width="1" stroke-opacity="0.3"/>
+              <line x1="110" y1="0" x2="215" y2="0" stroke="#4A1A1A" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="146" y1="24" x2="149" y2="88" stroke="#4A1A1A" stroke-width="1.5"/>
+              <line x1="220" y1="22" x2="222" y2="88" stroke="#4A1A1A" stroke-width="1.5"/>
+              <circle cx="232" cy="94" r="21" fill="#100404" stroke="#4A1A1A" stroke-width="2"/>
+              <circle cx="232" cy="94" r="13" fill="#1A0A0A" stroke="#EF4444" stroke-width="1" stroke-opacity="0.35"/>
+              <circle cx="68" cy="94" r="21" fill="#100404" stroke="#4A1A1A" stroke-width="2"/>
+              <circle cx="68" cy="94" r="13" fill="#1A0A0A" stroke="#EF4444" stroke-width="1" stroke-opacity="0.35"/>
+              <rect x="264" y="50" width="14" height="9" rx="2" fill="#FF6B35" fill-opacity="0.9"/>
+              <rect x="24" y="50" width="14" height="9" rx="2" fill="#FF3B30" fill-opacity="0.85"/>
+            </svg>
+          </div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge suv">SUV</span>
+                <h3 class="car-name">Dodge Durango</h3>
+                <p class="car-year">Automatic</p>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$500</span>
+                <span class="car-price-unit">/wk</span>
+              </div>
+            </div>
+            <div class="car-specs">
+              <span>🪑 7 Seats</span>
+              <span>⛽ 18 MPG</span>
+              <span>🔄 Auto</span>
+              <span>❄️ A/C</span>
+            </div>
+            <div class="car-alt-prices">
+              <span>$500<small>/wk</small></span>
+              <span>$1,800<small>/mo</small></span>
+            </div>
+            <button class="btn btn-primary btn-book" onclick="openModal('Dodge Durango','100','500','1800')">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Ford Explorer — SUV -->
+        <div class="car-card" data-type="suv">
+          <div class="car-card-img" style="background: linear-gradient(135deg, #0A1A0E 0%, #102A16 50%, #0A1A0E 100%)">
+            <div class="car-available">Available</div>
+            <svg class="card-car-svg" viewBox="0 0 300 125" fill="none">
+              <ellipse cx="150" cy="115" rx="120" ry="8" fill="rgba(0,0,0,0.3)"/>
+              <path d="M26 88 L26 44 Q28 32 48 24 L97 8 Q115 2 139 2 L181 2 Q213 2 233 16 L263 38 Q275 50 276 64 L277 88 Z" fill="#0C2010"/>
+              <path d="M66 24 L87 4 Q101 0 136 0 L181 0 Q213 0 233 14 L255 24 Z" fill="#102A14" stroke="#1A4020" stroke-width="1"/>
+              <path d="M79 22 L99 4 Q112 0 135 0 L181 0 L210 2 Q225 8 236 18 L251 22 Z" fill="#22C55E" fill-opacity="0.12" stroke="#22C55E" stroke-width="1.2" stroke-opacity="0.4"/>
+              <path d="M66 22 L85 6 L97 2 L111 22 Z" fill="#22C55E" fill-opacity="0.08" stroke="#22C55E" stroke-width="1" stroke-opacity="0.3"/>
+              <line x1="109" y1="0" x2="214" y2="0" stroke="#1A4020" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="145" y1="24" x2="148" y2="88" stroke="#1A4020" stroke-width="1.5"/>
+              <line x1="219" y1="22" x2="221" y2="88" stroke="#1A4020" stroke-width="1.5"/>
+              <circle cx="231" cy="94" r="21" fill="#060E08" stroke="#1A4020" stroke-width="2"/>
+              <circle cx="231" cy="94" r="13" fill="#0A1A0E" stroke="#22C55E" stroke-width="1" stroke-opacity="0.35"/>
+              <circle cx="69" cy="94" r="21" fill="#060E08" stroke="#1A4020" stroke-width="2"/>
+              <circle cx="69" cy="94" r="13" fill="#0A1A0E" stroke="#22C55E" stroke-width="1" stroke-opacity="0.35"/>
+              <rect x="263" y="50" width="14" height="9" rx="2" fill="#FF6B35" fill-opacity="0.9"/>
+              <rect x="25" y="50" width="14" height="9" rx="2" fill="#FF3B30" fill-opacity="0.85"/>
+            </svg>
+          </div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge suv">SUV</span>
+                <h3 class="car-name">Ford Explorer</h3>
+                <p class="car-year">Automatic</p>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$500</span>
+                <span class="car-price-unit">/wk</span>
+              </div>
+            </div>
+            <div class="car-specs">
+              <span>🪑 7 Seats</span>
+              <span>⛽ 22 MPG</span>
+              <span>🔄 Auto</span>
+              <span>❄️ A/C</span>
+            </div>
+            <div class="car-alt-prices">
+              <span>$500<small>/wk</small></span>
+              <span>$1,800<small>/mo</small></span>
+            </div>
+            <button class="btn btn-primary btn-book" onclick="openModal('Ford Explorer','100','500','1800')">Book Now</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── GIG WORKER SECTION ───────────── -->
+  <section class="gig-section" id="gig-workers">
+    <div class="section-inner">
+      <div class="gig-inner">
+        <div class="gig-content">
+          <div class="section-tag">Who We Serve</div>
+          <h2>Rentals for Everyone.</h2>
+          <p class="gig-desc">
+            Whether you're a gig driver clocking miles for DoorDash or Amazon Flex,
+            a commuter who needs a car while yours is in the shop, a family planning
+            a road trip, or simply someone who wants a vehicle without the commitment
+            — Echelon has you covered with <strong>flexible, affordable rentals</strong>
+            and a fleet to match every need.
+          </p>
+
+          <div class="platform-logos">
+            <div class="platform-logo-card">
+              <span class="plogo-icon" style="color:#FF3008">●</span>
+              <span>DoorDash</span>
+            </div>
+            <div class="platform-logo-card">
+              <span class="plogo-icon" style="color:#F63440">●</span>
+              <span>GrubHub</span>
+            </div>
+            <div class="platform-logo-card">
+              <span class="plogo-icon" style="color:#06C167">●</span>
+              <span>Uber Eats</span>
+            </div>
+            <div class="platform-logo-card">
+              <span class="plogo-icon" style="color:#FF9900">●</span>
+              <span>Amazon Flex</span>
+            </div>
+            <div class="platform-logo-card">
+              <span class="plogo-icon" style="color:#C8A020">●</span>
+              <span>Everyday Drivers</span>
+            </div>
+          </div>
+
+          <div class="gig-benefits">
+            <div class="benefit-item">
+              <span class="benefit-icon">✓</span>
+              <div>
+                <strong>No long-term commitments</strong>
+                <p>Rent daily, extend weekly, or lock in a monthly rate — your call.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <span class="benefit-icon">✓</span>
+              <div>
+                <strong>Unlimited mileage included</strong>
+                <p>Drive as many miles as your deliveries require. No mileage caps.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <span class="benefit-icon">✓</span>
+              <div>
+                <strong>Maintenance handled</strong>
+                <p>Oil changes, tire checks — we keep the car running so you stay earning.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <span class="benefit-icon">✓</span>
+              <div>
+                <strong>Compact cars, sedans &amp; SUVs</strong>
+                <p>Choose the right size for your trip — from fuel-efficient compacts to spacious SUVs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="gig-visual">
+          <div class="gig-earnings-card">
+            <div class="earnings-header">
+              <span>Weekly Earnings Estimate</span>
+              <span class="earnings-badge">DoorDash Driver</span>
+            </div>
+            <div class="earnings-row">
+              <span>Avg. weekly earnings</span>
+              <strong>$900</strong>
+            </div>
+            <div class="earnings-row">
+              <span>Echelon weekly rental</span>
+              <strong class="cost">− $400</strong>
+            </div>
+            <div class="earnings-row">
+              <span>Est. fuel (300mi @ 33MPG)</span>
+              <strong class="cost">− $40</strong>
+            </div>
+            <div class="earnings-divider"></div>
+            <div class="earnings-row total">
+              <span>Your take-home</span>
+              <strong class="profit">$460 / week</strong>
+            </div>
+            <p class="earnings-disclaimer">* Estimates based on average gig earnings. Individual results vary.</p>
+          </div>
+
+          <div class="gig-cta-card">
+            <h3>Ready to start earning?</h3>
+            <p>Get your rental today — whether it's for deliveries, commuting, a trip, or just everyday life.</p>
+            <a href="#fleet" class="btn btn-primary">View Available Cars</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── PRICING ───────────── -->
+  <section class="pricing" id="pricing">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-tag">Economic Pricing</div>
+        <h2>Pick Your Plan</h2>
+        <p>All plans include unlimited miles, insurance options, and 24/7 roadside support — no hidden fees, no matter why you're renting.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-card-header">
+            <h3>Daily</h3>
+            <p>Perfect for short-term needs</p>
+          </div>
+          <div class="pricing-amount">
+            <span class="p-from">from</span>
+            <span class="p-price">$80</span>
+            <span class="p-unit">/day</span>
+          </div>
+          <ul class="pricing-features">
+            <li>✓ Unlimited mileage</li>
+            <li>✓ Choose any available car</li>
+            <li>✓ 24/7 roadside assistance</li>
+            <li>✓ Free cancellation (24hr notice)</li>
+            <li>✓ Insurance add-on available</li>
+          </ul>
+          <a href="#fleet" class="btn btn-outline">Get Started</a>
+        </div>
+
+        <div class="pricing-card featured">
+          <div class="pricing-popular-tag">Most Popular</div>
+          <div class="pricing-card-header">
+            <h3>Weekly</h3>
+            <p>Best for consistent gig work</p>
+          </div>
+          <div class="pricing-amount">
+            <span class="p-from">from</span>
+            <span class="p-price">$400</span>
+            <span class="p-unit">/week</span>
+          </div>
+          <ul class="pricing-features">
+            <li>✓ Everything in Daily</li>
+            <li>✓ Save vs. daily rate</li>
+            <li>✓ Priority car selection</li>
+            <li>✓ Swap car once per week</li>
+            <li>✓ Dedicated support line</li>
+          </ul>
+          <a href="#fleet" class="btn btn-primary">Get Started</a>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-card-header">
+            <h3>Monthly</h3>
+            <p>Maximum savings, maximum flex</p>
+          </div>
+          <div class="pricing-amount">
+            <span class="p-from">from</span>
+            <span class="p-price">$1,200</span>
+            <span class="p-unit">/month</span>
+          </div>
+          <ul class="pricing-features">
+            <li>✓ Everything in Weekly</li>
+            <li>✓ Best overall rate</li>
+            <li>✓ Maintenance fully covered</li>
+            <li>✓ Same car reserved for you</li>
+            <li>✓ Loyalty rewards on renewals</li>
+          </ul>
+          <a href="#fleet" class="btn btn-outline">Get Started</a>
+        </div>
+      </div>
+
+      <p class="pricing-note">All prices shown are starting rates. Final price depends on vehicle selected. No security deposit required for qualified renters.</p>
+    </div>
+  </section>
+
+  <!-- ───────────── HOW IT WORKS ───────────── -->
+  <!-- ───────────── COMPARE ───────────── -->
+  <section class="compare-section" id="compare">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-tag" id="compareTag">Why Choose Echelon</div>
+        <h2 id="compareH2">Why Drivers Choose Echelon</h2>
+        <p class="compare-subtitle" id="compareSubtitle"><em>Same roads. A smarter way to rent.</em></p>
+      </div>
+
+      <div class="compare-wrapper">
+        <!-- Feature labels -->
+        <div class="compare-features">
+          <div class="ch-head"></div>
+          <div class="ch-row compare-feat" id="cFeat1">No Hidden Fees</div>
+          <div class="ch-row compare-feat" id="cFeat2">Flat, Transparent Rates</div>
+          <div class="ch-row compare-feat" id="cFeat3">$0 Security Deposit</div>
+          <div class="ch-row compare-feat" id="cFeat4">Unlimited Miles</div>
+          <div class="ch-row compare-feat" id="cFeat5">Free Rental Extensions</div>
+          <div class="ch-row compare-feat" id="cFeat6">Free Local Delivery*</div>
+          <div class="ch-row compare-feat" id="cFeat7">Daily / Weekly / Monthly</div>
+          <div class="ch-row compare-feat" id="cFeat8">Built for Gig Drivers</div>
+        </div>
+
+        <!-- Competition column -->
+        <div class="compare-comp">
+          <div class="ch-head" id="compareCompHead">THE COMPETITION</div>
+          <div class="ch-row"><span class="icon-no">✕</span></div>
+          <div class="ch-row"><span class="icon-no">✕</span></div>
+          <div class="ch-row"><span class="icon-no">✕</span></div>
+          <div class="ch-row"><span class="icon-no">✕</span></div>
+          <div class="ch-row"><span class="icon-no">✕</span></div>
+          <div class="ch-row"><span class="icon-no">✕</span></div>
+          <div class="ch-row"><span class="icon-no">✕</span></div>
+          <div class="ch-row"><span class="icon-no">✕</span></div>
+        </div>
+
+        <!-- Echelon column (highlighted) -->
+        <div class="compare-ech">
+          <div class="ch-head" id="compareEchHead">ECHELON</div>
+          <div class="ch-row"><span class="icon-yes">✓</span></div>
+          <div class="ch-row"><span class="icon-yes">✓</span></div>
+          <div class="ch-row"><span class="icon-yes">✓</span></div>
+          <div class="ch-row"><span class="icon-yes">✓</span></div>
+          <div class="ch-row"><span class="icon-yes">✓</span></div>
+          <div class="ch-row"><span class="icon-yes">✓</span></div>
+          <div class="ch-row"><span class="icon-yes">✓</span></div>
+          <div class="ch-row"><span class="icon-yes">✓</span></div>
+        </div>
+      </div>
+
+      <div class="compare-banner">
+        <strong id="compareBannerTitle">GIG DRIVERS WELCOME</strong>
+        <span id="compareBannerSub">UBER EATS · DOORDASH · GRUBHUB</span>
+      </div>
+
+      <p class="compare-disclaimer" id="compareDisclaimer">*Free local delivery · longer distances priced by distance</p>
+
+      <div class="compare-tagline">
+        <span class="tagline-main" id="compareTaglineMain">EXCELLENCE IN MOTION</span>
+        <span class="tagline-sub" id="compareTaglineSub">NEW ENGLAND · @echelonrentalgroup</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── TESTIMONIALS ───────────── -->
+  <section class="testimonials">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-tag">Real Drivers</div>
+        <h2>What Our Renters Say</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"I've been doing DoorDash full-time for 8 months. Echelon's weekly rate keeps more of my earnings in my pocket. The Corolla is super fuel efficient — exactly what I needed."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">MR</div>
+            <div>
+              <strong>Marcus R.</strong>
+              <span>DoorDash Driver · 8 months</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"My car broke down and I needed something same day. Echelon had me in a Civic within 2 hours. The process was so easy — just showed my license and I was out the door."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">JL</div>
+            <div>
+              <strong>Jessica L.</strong>
+              <span>Uber Eats Driver · 5 months</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"No other rental company offers unlimited miles at this price point. I drive 400+ miles a week for GrubHub and the monthly plan is by far the most economic option out there."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">DK</div>
+            <div>
+              <strong>Devon K.</strong>
+              <span>GrubHub Driver · 1 year</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── CTA BANNER ───────────── -->
+  <section class="cta-banner">
+    <div class="cta-inner">
+      <div class="cta-text">
+        <h2>Ready to hit the road?</h2>
+        <p>Join hundreds of drivers — gig workers, commuters, and everyday renters — already rolling with Echelon.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="#fleet" class="btn btn-primary btn-lg">View Available Cars</a>
+        <a href="tel:+15084442276" class="btn btn-ghost btn-lg">Call Us: 508-444-2276</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── FOOTER ───────────── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="logo footer-logo">
+          <span class="logo-main">ECHELON</span>
+          <span class="logo-sub">ECONOMIC RENTALS</span>
+        </a>
+        <p>Affordable, flexible rentals for gig drivers, commuters, families, and anyone who needs a great car without the commitment.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/echelonrentalgroup" target="_blank" rel="noopener" class="social-link social-instagram">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display:inline;vertical-align:middle;margin-right:5px"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            @EchelonRentalGroup
+          </a>
+          <a href="#" class="social-link">Facebook</a>
+          <a href="#" class="social-link">TikTok</a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h4>Fleet</h4>
+        <a href="#fleet">Economy Cars</a>
+        <a href="#fleet">Sedans</a>
+        <a href="#fleet">Compact Cars</a>
+        <a href="#pricing">View Pricing</a>
+      </div>
+
+      <div class="footer-links">
+        <h4>Company</h4>
+        <a href="#compare">Why Echelon</a>
+        <a href="#gig-workers">Gig Worker Program</a>
+        <a href="#">FAQ</a>
+        <a href="#">Contact Us</a>
+      </div>
+
+      <div class="footer-links">
+        <h4>Contact</h4>
+        <a href="tel:+15084442276">508-444-2276</a>
+        <a href="mailto:info@echelonrentalgroup.com">info@echelonrentalgroup.com</a>
+        <a href="https://www.instagram.com/echelonrentalgroup" target="_blank" rel="noopener">@EchelonRentalGroup</a>
+        <p class="footer-hours">Mon–Sun: 7am – 9pm</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Echelon Rental Group. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ───────────── BOOKING MODAL ───────────── -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-header">
+        <h3 id="modalCarName">Book Your Car</h3>
+        <p>Complete your reservation below</p>
+      </div>
+
+      <div class="modal-plan-tabs">
+        <button class="modal-tab active" data-modal-plan="daily">Daily</button>
+        <button class="modal-tab" data-modal-plan="weekly">Weekly</button>
+        <button class="modal-tab" data-modal-plan="monthly">Monthly</button>
+      </div>
+
+      <div class="modal-price-display">
+        <span class="modal-from">from</span>
+        <span class="modal-price-val" id="modalPrice">$88</span>
+        <span class="modal-unit" id="modalUnit">/day</span>
+      </div>
+
+      <form class="modal-form" id="bookingForm" onsubmit="submitBooking(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="John" required />
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Smith" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="(555) 000-0000" required />
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="you@example.com" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Pick-Up Date</label>
+            <input type="date" id="modalPickup" required />
+          </div>
+          <div class="form-group">
+            <label>Return Date</label>
+            <input type="date" id="modalReturn" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>How Will You Use This Car?</label>
+          <select>
+            <option>DoorDash</option>
+            <option>GrubHub</option>
+            <option>Uber Eats</option>
+            <option>Personal Use</option>
+            <option>Other Delivery</option>
+          </select>
+        </div>
+        <div class="form-group checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" required />
+            I confirm I have a valid driver's license and agree to the rental terms.
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">Request Reservation</button>
+        <p class="modal-note">We'll call you within 1 hour to confirm and collect payment.</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- SUCCESS TOAST -->
+  <div class="toast" id="toast">
+    <span class="toast-icon">✓</span>
+    <div>
+      <strong>Reservation Requested!</strong>
+      <p>We'll call you within 1 hour to confirm.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
