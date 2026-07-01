@@ -1021,10 +1021,29 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 /* ──────────────────────────────────────────
    BOOKING FORM SUBMIT
 ────────────────────────────────────────── */
+const RESERVATION_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwGxR_0jnB79jV918XK2q088lHf8b6J8el0IqKURr6XQ0yLd1yeWdH1VkkSofSSF4ehQA/exec';
+
 function submitBooking(e) {
   e.preventDefault();
-  closeModal();
-  showToast();
+  const form = e.target;
+  const payload = {
+    firstName:  form.firstName.value,
+    lastName:   form.lastName.value,
+    phone:      form.phone.value,
+    email:      form.email.value,
+    pickupDate: form.pickupDate.value,
+    returnDate: form.returnDate.value,
+    useCase:    form.useCase.value,
+    car:        document.getElementById('modalCarName').textContent
+  };
+
+  fetch(RESERVATION_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload)
+  })
+    .then(() => { closeModal(); showToast(); form.reset(); })
+    .catch(() => { closeModal(); showToast(); form.reset(); });
 }
 
 function showToast() {
