@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Echelon Jet Charters | Private Aviation</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="1024x1024" href="/app-icon-1024.png" />
+  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png" />
+
+  <meta property="og:type"        content="website" />
+  <meta property="og:site_name"   content="Echelon Rental Group" />
+  <meta property="og:title"       content="Echelon Jet Charters" />
+  <meta property="og:description" content="On-demand private jet charters — light jets to super-midsize cabins, wheels-up in hours, not days." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body class="theme-jets">
+
+  <!-- ───────────── NAVIGATION ───────────── -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="jets.html" class="logo">
+        <span class="logo-main">ECHELON</span>
+        <span class="logo-sub">JET CHARTERS</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#inventory">Aircraft</a></li>
+        <li><a href="#schedule">Charter</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="tel:+15084442276" class="nav-phone">📞 508-444-2276</a>
+        <div class="brand-switcher" id="brandSwitcher">
+          <button class="brand-btn" id="brandBtn" aria-label="Switch Echelon brand">
+            <span class="brand-current" id="brandLabel">Jet Charters</span>
+            <span class="brand-caret">▾</span>
+          </button>
+          <div class="brand-dropdown" id="brandDropdown">
+            <a class="brand-option" href="index.html">
+              <span class="brand-option-name">Economic Rentals</span>
+              <span class="brand-option-desc">Affordable car rentals</span>
+            </a>
+            <a class="brand-option" href="exotics.html">
+              <span class="brand-option-name">Exotics</span>
+              <span class="brand-option-desc">Luxury &amp; exotic cars</span>
+            </a>
+            <a class="brand-option" href="boats.html">
+              <span class="brand-option-name">Boat Charters</span>
+              <span class="brand-option-desc">Yacht &amp; boat charters</span>
+            </a>
+            <a class="brand-option active" href="jets.html">
+              <span class="brand-option-name">Jet Charters</span>
+              <span class="brand-option-desc">Private aviation</span>
+            </a>
+            <a class="brand-option" href="experiences.html">
+              <span class="brand-option-name">Experiences</span>
+              <span class="brand-option-desc">Curated adventures</span>
+            </a>
+          </div>
+        </div>
+        <a href="#schedule" class="btn btn-primary">Request Flight</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#inventory">Aircraft</a>
+      <a href="#schedule">Charter</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#schedule" class="btn btn-primary">Request Flight</a>
+      <div class="mobile-brand">
+        <span class="mobile-brand-label">Echelon Brands</span>
+        <a class="mobile-brand-option" href="index.html">Economic Rentals</a>
+        <a class="mobile-brand-option" href="exotics.html">Exotics</a>
+        <a class="mobile-brand-option" href="boats.html">Boat Charters</a>
+        <a class="mobile-brand-option active" href="jets.html">Jet Charters</a>
+        <a class="mobile-brand-option" href="experiences.html">Experiences</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ───────────── HERO ───────────── -->
+  <section class="hero dark-section">
+    <div class="hero-bg"><div class="hero-gradient"></div></div>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          On-Demand Private Aviation · Nationwide Network
+        </div>
+        <h1 class="hero-title">
+          Skip the Terminal,<br /><span class="accent">Fly on Your Time.</span>
+        </h1>
+        <p class="hero-subtitle">
+          <strong>Echelon Jet Charters</strong> arranges private flights for business, family travel,
+          and special occasions — light jets to midsize cabins, wheels-up in hours, not days.
+        </p>
+        <div class="hero-platforms">
+          <span class="platform-tag everyday">4-Hour Notice</span>
+          <span class="platform-tag everyday">Nationwide Coverage</span>
+          <span class="platform-tag everyday">Dedicated Flight Coordinator</span>
+        </div>
+        <div class="cta-actions">
+          <a href="#inventory" class="btn btn-primary btn-lg">View Aircraft</a>
+          <a href="#schedule" class="btn btn-outline-light btn-lg">Request a Flight</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── INVENTORY ───────────── -->
+  <section class="fleet" id="inventory">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-tag">Aircraft Network</div>
+        <h2>Available Right Now</h2>
+        <p>Access to a vetted, nationwide network of operators — every aircraft meets strict safety and maintenance standards.</p>
+      </div>
+
+      <div class="car-grid inventory-grid">
+        <div class="car-card inventory-card">
+          <div class="car-card-img" style="background: linear-gradient(135deg, #14171c 0%, #1f2530 50%, #0b0d10 100%); justify-content:center;">
+            <div class="car-available">Available</div>
+            <span class="inv-icon">🛩️</span>
+          </div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge">Light Jet</span>
+                <h3 class="car-name">Cessna Citation CJ3</h3>
+                <p class="car-year">Up to 6 Passengers · ~2,000mi Range</p>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$4,200</span>
+                <span class="car-price-unit">/flight hr</span>
+              </div>
+            </div>
+            <div class="car-specs">
+              <span>🧳 Light Baggage</span>
+              <span>⏱️ 4hr Notice</span>
+            </div>
+            <button class="btn btn-book" onclick="selectForSchedule('Cessna Citation CJ3')">Request This Aircraft</button>
+          </div>
+        </div>
+
+        <div class="car-card inventory-card">
+          <div class="car-card-img" style="background: linear-gradient(135deg, #12161c 0%, #1c2530 50%, #0b0d10 100%); justify-content:center;">
+            <div class="car-available">Available</div>
+            <span class="inv-icon">✈️</span>
+          </div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge">Light Jet</span>
+                <h3 class="car-name">Embraer Phenom 300</h3>
+                <p class="car-year">Up to 8 Passengers · ~1,970mi Range</p>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$4,600</span>
+                <span class="car-price-unit">/flight hr</span>
+              </div>
+            </div>
+            <div class="car-specs">
+              <span>🧳 Extra Baggage</span>
+              <span>⏱️ 4hr Notice</span>
+            </div>
+            <button class="btn btn-book" onclick="selectForSchedule('Embraer Phenom 300')">Request This Aircraft</button>
+          </div>
+        </div>
+
+        <div class="car-card inventory-card featured">
+          <div class="car-card-img" style="background: linear-gradient(135deg, #10141a 0%, #1a222e 50%, #0b0d10 100%); justify-content:center;">
+            <div class="car-popular-badge">Most Requested</div>
+            <span class="inv-icon">🛫</span>
+          </div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge">Midsize Jet</span>
+                <h3 class="car-name">Hawker 800XP</h3>
+                <p class="car-year">Up to 9 Passengers · ~2,900mi Range</p>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$5,800</span>
+                <span class="car-price-unit">/flight hr</span>
+              </div>
+            </div>
+            <div class="car-specs">
+              <span>🛋️ Stand-Up Cabin</span>
+              <span>⏱️ 4hr Notice</span>
+            </div>
+            <button class="btn btn-book" onclick="selectForSchedule('Hawker 800XP')">Request This Aircraft</button>
+          </div>
+        </div>
+
+        <div class="car-card inventory-card">
+          <div class="car-card-img" style="background: linear-gradient(135deg, #0e1116 0%, #171e28 50%, #0b0d10 100%); justify-content:center;">
+            <div class="car-available limited">Limited</div>
+            <span class="inv-icon">🛬</span>
+          </div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge">Super-Midsize</span>
+                <h3 class="car-name">Gulfstream G200</h3>
+                <p class="car-year">Up to 10 Passengers · ~3,600mi Range</p>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$7,200</span>
+                <span class="car-price-unit">/flight hr</span>
+              </div>
+            </div>
+            <div class="car-specs">
+              <span>🌍 Coast-to-Coast</span>
+              <span>⏱️ 4hr Notice</span>
+            </div>
+            <button class="btn btn-book" onclick="selectForSchedule('Gulfstream G200')">Request This Aircraft</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── SCHEDULING ───────────── -->
+  <section class="gig-section dark-section" id="schedule">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-tag">Charter</div>
+        <h2>Request Your Flight</h2>
+        <p>Tell us your route and passenger count — a flight coordinator will confirm aircraft and pricing within the hour.</p>
+      </div>
+
+      <form class="modal-form" style="max-width:560px;margin:0 auto;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:var(--radius-lg);padding:32px;" onsubmit="submitInquiry(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" name="firstName" placeholder="John" required />
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" name="lastName" placeholder="Smith" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" name="phone" placeholder="(555) 000-0000" required />
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" name="email" placeholder="you@example.com" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Departure City / Airport</label>
+            <input type="text" name="departureCity" placeholder="e.g. Boston (BOS)" required />
+          </div>
+          <div class="form-group">
+            <label>Destination City / Airport</label>
+            <input type="text" name="destinationCity" placeholder="e.g. Miami (MIA)" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Flight Date</label>
+            <input type="date" name="flightDate" required />
+          </div>
+          <div class="form-group">
+            <label>Passengers</label>
+            <input type="number" name="passengers" min="1" max="14" placeholder="e.g. 4" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Aircraft of Interest</label>
+          <select id="interestField" name="aircraftInterest">
+            <option>Cessna Citation CJ3</option>
+            <option>Embraer Phenom 300</option>
+            <option>Hawker 800XP</option>
+            <option>Gulfstream G200</option>
+            <option>Not Sure Yet</option>
+          </select>
+        </div>
+        <div class="form-group checkbox-group">
+          <label class="checkbox-label" style="color:var(--dark-text-2);">
+            <input type="checkbox" required />
+            I understand final pricing depends on aircraft availability and routing.
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">Request Flight</button>
+        <p class="modal-note" style="color:var(--dark-text-3);">A flight coordinator will call within 1 hour to confirm.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ───────────── PRICING ───────────── -->
+  <section class="pricing" id="pricing">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-tag">Charter Pricing</div>
+        <h2>Pick Your Plan</h2>
+        <p>On-demand booking or a prepaid Jet Card — pricing scales with how often you fly.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-card-header">
+            <h3>On-Demand</h3>
+            <p>Pay-per-trip booking</p>
+          </div>
+          <div class="pricing-amount">
+            <span class="p-from">from</span>
+            <span class="p-price">$4,200</span>
+            <span class="p-unit">/flight hr</span>
+          </div>
+          <ul class="pricing-features">
+            <li>✓ 4-hour minimum notice</li>
+            <li>✓ No membership required</li>
+            <li>✓ Nationwide network access</li>
+            <li>✓ Dedicated flight coordinator</li>
+          </ul>
+          <a href="#schedule" class="btn btn-outline">Get Started</a>
+        </div>
+
+        <div class="pricing-card featured">
+          <div class="pricing-popular-tag">Most Popular</div>
+          <div class="pricing-card-header">
+            <h3>Jet Card (25 Hours)</h3>
+            <p>Prepaid block, locked rate</p>
+          </div>
+          <div class="pricing-amount">
+            <span class="p-from">from</span>
+            <span class="p-price">$95,000</span>
+            <span class="p-unit">/block</span>
+          </div>
+          <ul class="pricing-features">
+            <li>✓ Locked hourly rate</li>
+            <li>✓ Priority scheduling</li>
+            <li>✓ No blackout dates</li>
+            <li>✓ 25 flight hours included</li>
+          </ul>
+          <a href="#schedule" class="btn btn-primary">Get Started</a>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-card-header">
+            <h3>Corporate / Fleet</h3>
+            <p>For teams &amp; frequent travel</p>
+          </div>
+          <div class="pricing-amount">
+            <span class="p-from">custom</span>
+            <span class="p-price">Pricing</span>
+          </div>
+          <ul class="pricing-features">
+            <li>✓ Dedicated account manager</li>
+            <li>✓ Monthly invoicing</li>
+            <li>✓ Multi-aircraft access</li>
+            <li>✓ Volume-based rates</li>
+          </ul>
+          <a href="#schedule" class="btn btn-outline">Get Started</a>
+        </div>
+      </div>
+      <p class="pricing-note">All prices shown are starting rates. Final price depends on aircraft, routing, and availability.</p>
+    </div>
+  </section>
+
+  <!-- ───────────── REVIEWS ───────────── -->
+  <section class="testimonials" id="reviews">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-tag">Our Clients</div>
+        <h2>What Flyers Say</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"Needed to get to a closing 900 miles away same-day — Echelon had a Phenom wheels-up in under 3 hours."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">DK</div>
+            <div>
+              <strong>Daniel K.</strong>
+              <span>Business Client</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"The Jet Card has completely changed how our leadership team travels — no more layovers, no more wasted days."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">SL</div>
+            <div>
+              <strong>Sandra L.</strong>
+              <span>COO</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"Flew the family down for a long weekend on the Citation — smoother and honestly less stressful than driving to the airport."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">MR</div>
+            <div>
+              <strong>Michael R.</strong>
+              <span>Family Travel</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── FOOTER ───────────── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="jets.html" class="logo footer-logo">
+          <span class="logo-main">ECHELON</span>
+          <span class="logo-sub">JET CHARTERS</span>
+        </a>
+        <p>On-demand private aviation for business and leisure, part of the Echelon Rental Group family.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/echelonrentalgroup" target="_blank" rel="noopener" class="social-link social-instagram">@EchelonRentalGroup</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Aircraft</h4>
+        <a href="#inventory">Light Jets</a>
+        <a href="#inventory">Midsize Jets</a>
+        <a href="#pricing">View Pricing</a>
+      </div>
+      <div class="footer-links">
+        <h4>Echelon Brands</h4>
+        <a href="index.html">Economic Rentals</a>
+        <a href="exotics.html">Exotics</a>
+        <a href="boats.html">Boat Charters</a>
+        <a href="experiences.html">Experiences</a>
+      </div>
+      <div class="footer-links">
+        <h4>Contact</h4>
+        <a href="tel:+15084442276">508-444-2276</a>
+        <a href="mailto:info@echelonrentalgroup.com">info@echelonrentalgroup.com</a>
+        <p class="footer-hours">Mon–Sun: 7am – 9pm</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Echelon Rental Group. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- SUCCESS TOAST -->
+  <div class="toast" id="toast">
+    <span class="toast-icon">✓</span>
+    <div>
+      <strong>Flight Requested!</strong>
+      <p>A flight coordinator will call within 1 hour.</p>
+    </div>
+  </div>
+
+  <script src="brand-pages.js"></script>
+</body>
+</html>

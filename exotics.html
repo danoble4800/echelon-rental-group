@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Echelon Exotics | Luxury &amp; Exotic Car Rentals</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="1024x1024" href="/app-icon-1024.png" />
+  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png" />
+
+  <meta property="og:type"        content="website" />
+  <meta property="og:site_name"   content="Echelon Rental Group" />
+  <meta property="og:title"       content="Echelon Exotics" />
+  <meta property="og:description" content="Lamborghini, Ferrari, Rolls-Royce, and Porsche — by the day, weekend, or week. White-glove delivery available." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body class="theme-exotics">
+
+  <!-- ───────────── NAVIGATION ───────────── -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="exotics.html" class="logo">
+        <span class="logo-main">ECHELON</span>
+        <span class="logo-sub">EXOTIC RENTALS</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#inventory">Fleet</a></li>
+        <li><a href="#schedule">Reserve</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="tel:+15084442276" class="nav-phone">📞 508-444-2276</a>
+        <div class="brand-switcher" id="brandSwitcher">
+          <button class="brand-btn" id="brandBtn" aria-label="Switch Echelon brand">
+            <span class="brand-current" id="brandLabel">Exotics</span>
+            <span class="brand-caret">▾</span>
+          </button>
+          <div class="brand-dropdown" id="brandDropdown">
+            <a class="brand-option" href="index.html">
+              <span class="brand-option-name">Economic Rentals</span>
+              <span class="brand-option-desc">Affordable car rentals</span>
+            </a>
+            <a class="brand-option active" href="exotics.html">
+              <span class="brand-option-name">Exotics</span>
+              <span class="brand-option-desc">Luxury &amp; exotic cars</span>
+            </a>
+            <a class="brand-option" href="boats.html">
+              <span class="brand-option-name">Boat Charters</span>
+              <span class="brand-option-desc">Yacht &amp; boat charters</span>
+            </a>
+            <a class="brand-option" href="jets.html">
+              <span class="brand-option-name">Jet Charters</span>
+              <span class="brand-option-desc">Private aviation</span>
+            </a>
+            <a class="brand-option" href="experiences.html">
+              <span class="brand-option-name">Experiences</span>
+              <span class="brand-option-desc">Curated adventures</span>
+            </a>
+          </div>
+        </div>
+        <a href="#schedule" class="btn btn-primary">Reserve Now</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#inventory">Fleet</a>
+      <a href="#schedule">Reserve</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#schedule" class="btn btn-primary">Reserve Now</a>
+      <div class="mobile-brand">
+        <span class="mobile-brand-label">Echelon Brands</span>
+        <a class="mobile-brand-option" href="index.html">Economic Rentals</a>
+        <a class="mobile-brand-option active" href="exotics.html">Exotics</a>
+        <a class="mobile-brand-option" href="boats.html">Boat Charters</a>
+        <a class="mobile-brand-option" href="jets.html">Jet Charters</a>
+        <a class="mobile-brand-option" href="experiences.html">Experiences</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ───────────── HERO ───────────── -->
+  <section class="hero dark-section">
+    <div class="hero-bg"><div class="hero-gradient"></div></div>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Exotic &amp; Luxury Fleet · By Appointment or Instant Book
+        </div>
+        <h1 class="hero-title">
+          Extraordinary Cars,<br /><span class="accent">Unforgettable Drives.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Echelon Exotics puts <strong>Lamborghini, Ferrari, Porsche, and Rolls-Royce</strong>
+          within reach — hourly, daily, or for the weekend. White-glove delivery available
+          anywhere in the region.
+        </p>
+        <div class="hero-platforms">
+          <span class="platform-tag everyday">Same-Day Delivery</span>
+          <span class="platform-tag everyday">Chauffeur Available</span>
+          <span class="platform-tag everyday">$0 Hidden Fees</span>
+        </div>
+        <div class="cta-actions">
+          <a href="#inventory" class="btn btn-primary btn-lg">View the Fleet</a>
+          <a href="#schedule" class="btn btn-outline-light btn-lg">Reserve a Car</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── INVENTORY ───────────── -->
+  <section class="fleet" id="inventory">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-tag">Exotic Fleet</div>
+        <h2>Available Right Now</h2>
+        <p>Every car is detailed, inspected, and delivered exactly as pictured — no surprises, no substitutions without your approval.</p>
+      </div>
+
+      <div class="car-grid inventory-grid">
+        <div class="car-card inventory-card">
+          <div class="car-card-img" style="background: linear-gradient(135deg, #1a1a1a 0%, #2b2308 50%, #0a0a0a 100%); justify-content:center;">
+            <div class="car-available">Available</div>
+            <span class="inv-icon">🏎️</span>
+          </div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge">Supercar</span>
+                <h3 class="car-name">Lamborghini Huracán EVO</h3>
+                <p class="car-year">630 hp · 0–60 in 2.9s · 2 Seats</p>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$1,450</span>
+                <span class="car-price-unit">/day</span>
+              </div>
+            </div>
+            <div class="car-specs">
+              <span>🛞 AWD</span>
+              <span>🔊 V10</span>
+              <span>🚚 Delivery</span>
+            </div>
+            <button class="btn btn-book" onclick="selectForSchedule('Lamborghini Huracán EVO')">Reserve This Car</button>
+          </div>
+        </div>
+
+        <div class="car-card inventory-card featured">
+          <div class="car-card-img" style="background: linear-gradient(135deg, #1a0a0a 0%, #2b1008 50%, #0a0a0a 100%); justify-content:center;">
+            <div class="car-popular-badge">Most Requested</div>
+            <span class="inv-icon">🏁</span>
+          </div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge">Supercar</span>
+                <h3 class="car-name">Ferrari 488 GTB</h3>
+                <p class="car-year">661 hp · 0–60 in 3.0s · 2 Seats</p>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$1,600</span>
+                <span class="car-price-unit">/day</span>
+              </div>
+            </div>
+            <div class="car-specs">
+              <span>🔊 Twin-Turbo V8</span>
+              <span>🚚 Delivery</span>
+            </div>
+            <button class="btn btn-book" onclick="selectForSchedule('Ferrari 488 GTB')">Reserve This Car</button>
+          </div>
+        </div>
+
+        <div class="car-card inventory-card">
+          <div class="car-card-img" style="background: linear-gradient(135deg, #14140f 0%, #221f10 50%, #0a0a0a 100%); justify-content:center;">
+            <div class="car-available">Available</div>
+            <span class="inv-icon">🚘</span>
+          </div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge">Ultra-Luxury Sedan</span>
+                <h3 class="car-name">Rolls-Royce Ghost</h3>
+                <p class="car-year">563 hp · 5 Seats · Chauffeur Available</p>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$1,100</span>
+                <span class="car-price-unit">/day</span>
+              </div>
+            </div>
+            <div class="car-specs">
+              <span>🎩 Chauffeur Option</span>
+              <span>🚚 Delivery</span>
+            </div>
+            <button class="btn btn-book" onclick="selectForSchedule('Rolls-Royce Ghost')">Reserve This Car</button>
+          </div>
+        </div>
+
+        <div class="car-card inventory-card">
+          <div class="car-card-img" style="background: linear-gradient(135deg, #101010 0%, #1c1c1c 50%, #0a0a0a 100%); justify-content:center;">
+            <div class="car-available limited">Limited</div>
+            <span class="inv-icon">🚗</span>
+          </div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge">Sports Car</span>
+                <h3 class="car-name">Porsche 911 Turbo S</h3>
+                <p class="car-year">640 hp · 0–60 in 2.6s · 4 Seats</p>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$950</span>
+                <span class="car-price-unit">/day</span>
+              </div>
+            </div>
+            <div class="car-specs">
+              <span>🛞 AWD</span>
+              <span>🚚 Delivery</span>
+            </div>
+            <button class="btn btn-book" onclick="selectForSchedule('Porsche 911 Turbo S')">Reserve This Car</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── SCHEDULING ───────────── -->
+  <section class="gig-section dark-section" id="schedule">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-tag">Reserve</div>
+        <h2>Schedule Your Drive</h2>
+        <p>Tell us what you'd like to drive and when — we'll confirm availability and delivery details within the hour.</p>
+      </div>
+
+      <form class="modal-form" style="max-width:560px;margin:0 auto;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:var(--radius-lg);padding:32px;" onsubmit="submitInquiry(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" name="firstName" placeholder="John" required />
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" name="lastName" placeholder="Smith" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" name="phone" placeholder="(555) 000-0000" required />
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" name="email" placeholder="you@example.com" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Pick-Up Date</label>
+            <input type="date" name="pickupDate" required />
+          </div>
+          <div class="form-group">
+            <label>Return Date</label>
+            <input type="date" name="returnDate" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Vehicle of Interest</label>
+          <select id="interestField" name="vehicleInterest">
+            <option>Lamborghini Huracán EVO</option>
+            <option>Ferrari 488 GTB</option>
+            <option>Rolls-Royce Ghost</option>
+            <option>Porsche 911 Turbo S</option>
+            <option>Not Sure Yet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Delivery Location <span style="font-weight:400;color:var(--dark-text-3);">(optional — concierge delivery)</span></label>
+          <input type="text" name="deliveryLocation" placeholder="Address, hotel, or venue" />
+        </div>
+        <div class="form-group checkbox-group">
+          <label class="checkbox-label" style="color:var(--dark-text-2);">
+            <input type="checkbox" required />
+            I confirm I have a valid driver's license and agree to the rental terms.
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">Request Reservation</button>
+        <p class="modal-note" style="color:var(--dark-text-3);">We'll call you within 1 hour to confirm and arrange delivery.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ───────────── PRICING ───────────── -->
+  <section class="pricing" id="pricing">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-tag">Exotic Pricing</div>
+        <h2>Pick Your Plan</h2>
+        <p>Transparent, all-in pricing — insurance, mileage, and concierge terms clearly laid out before you book.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-card-header">
+            <h3>Daily</h3>
+            <p>Perfect for a single unforgettable day</p>
+          </div>
+          <div class="pricing-amount">
+            <span class="p-from">from</span>
+            <span class="p-price">$950</span>
+            <span class="p-unit">/day</span>
+          </div>
+          <ul class="pricing-features">
+            <li>✓ 125 miles/day included</li>
+            <li>✓ Full insurance required at booking</li>
+            <li>✓ Single-day minimum</li>
+            <li>✓ Pickup or delivery available</li>
+          </ul>
+          <a href="#schedule" class="btn btn-outline">Get Started</a>
+        </div>
+
+        <div class="pricing-card featured">
+          <div class="pricing-popular-tag">Most Popular</div>
+          <div class="pricing-card-header">
+            <h3>Weekend</h3>
+            <p>Friday through Sunday</p>
+          </div>
+          <div class="pricing-amount">
+            <span class="p-from">from</span>
+            <span class="p-price">$2,600</span>
+            <span class="p-unit">/weekend</span>
+          </div>
+          <ul class="pricing-features">
+            <li>✓ 300 miles included</li>
+            <li>✓ Complimentary delivery within 20mi</li>
+            <li>✓ Priority vehicle selection</li>
+            <li>✓ Dedicated concierge line</li>
+          </ul>
+          <a href="#schedule" class="btn btn-primary">Get Started</a>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-card-header">
+            <h3>Weekly</h3>
+            <p>Maximum time behind the wheel</p>
+          </div>
+          <div class="pricing-amount">
+            <span class="p-from">from</span>
+            <span class="p-price">$6,800</span>
+            <span class="p-unit">/week</span>
+          </div>
+          <ul class="pricing-features">
+            <li>✓ Unlimited local mileage</li>
+            <li>✓ One complimentary vehicle swap</li>
+            <li>✓ Dedicated concierge</li>
+            <li>✓ Chauffeur add-on available</li>
+          </ul>
+          <a href="#schedule" class="btn btn-outline">Get Started</a>
+        </div>
+      </div>
+      <p class="pricing-note">All prices shown are starting rates. Final price depends on vehicle selected. Refundable security deposit required.</p>
+    </div>
+  </section>
+
+  <!-- ───────────── REVIEWS ───────────── -->
+  <section class="testimonials" id="reviews">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-tag">Our Clients</div>
+        <h2>What Drivers Say</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"Rented the Huracán for my fortieth birthday — the delivery-to-my-door service made it feel like a five-star experience from the first minute."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AV</div>
+            <div>
+              <strong>Anthony V.</strong>
+              <span>Weekend Rental</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"Ghost was flawless for our wedding weekend. Echelon Exotics made the whole thing painless, including a driver for the reception."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">PS</div>
+            <div>
+              <strong>Priya S.</strong>
+              <span>Wedding Client</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"I've rented supercars from three different companies in New England — Echelon's condition and turnaround are the best by far."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">MD</div>
+            <div>
+              <strong>Marco D.</strong>
+              <span>Repeat Client</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── FOOTER ───────────── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="exotics.html" class="logo footer-logo">
+          <span class="logo-main">ECHELON</span>
+          <span class="logo-sub">EXOTIC RENTALS</span>
+        </a>
+        <p>Luxury and exotic car rentals with white-glove delivery, part of the Echelon Rental Group family.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/echelonrentalgroup" target="_blank" rel="noopener" class="social-link social-instagram">@EchelonRentalGroup</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Fleet</h4>
+        <a href="#inventory">Supercars</a>
+        <a href="#inventory">Ultra-Luxury Sedans</a>
+        <a href="#pricing">View Pricing</a>
+      </div>
+      <div class="footer-links">
+        <h4>Echelon Brands</h4>
+        <a href="index.html">Economic Rentals</a>
+        <a href="boats.html">Boat Charters</a>
+        <a href="jets.html">Jet Charters</a>
+        <a href="experiences.html">Experiences</a>
+      </div>
+      <div class="footer-links">
+        <h4>Contact</h4>
+        <a href="tel:+15084442276">508-444-2276</a>
+        <a href="mailto:info@echelonrentalgroup.com">info@echelonrentalgroup.com</a>
+        <p class="footer-hours">Mon–Sun: 7am – 9pm</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Echelon Rental Group. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- SUCCESS TOAST -->
+  <div class="toast" id="toast">
+    <span class="toast-icon">✓</span>
+    <div>
+      <strong>Reservation Requested!</strong>
+      <p>We'll call you within 1 hour to confirm.</p>
+    </div>
+  </div>
+
+  <script src="brand-pages.js"></script>
+</body>
+</html>

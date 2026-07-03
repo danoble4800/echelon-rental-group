@@ -872,6 +872,24 @@ document.querySelectorAll('.lang-option').forEach(btn => {
   });
 });
 
+/* ──────────────────────────────────────────
+   BRAND SWITCHER TOGGLE
+────────────────────────────────────────── */
+const brandSwitcher = document.getElementById('brandSwitcher');
+const brandBtn      = document.getElementById('brandBtn');
+const brandDropdown = document.getElementById('brandDropdown');
+
+brandBtn && brandBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  brandSwitcher.classList.toggle('open');
+  brandDropdown.classList.toggle('open');
+});
+
+document.addEventListener('click', () => {
+  brandSwitcher && brandSwitcher.classList.remove('open');
+  brandDropdown && brandDropdown.classList.remove('open');
+});
+
 
 /* ──────────────────────────────────────────
    STICKY NAV

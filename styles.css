@@ -1196,10 +1196,16 @@ ul { list-style: none; }
   .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
   .gig-inner { grid-template-columns: 1fr; gap: 40px; }
 }
-@media (max-width: 768px) {
-  .nav-links, .nav-phone { display: none; }
+/* Collapse to the hamburger menu earlier than the general 768px content
+   breakpoint below — with the brand-switcher added, the nav has too many
+   elements (links, phone, brand-switcher, lang-switcher, book button) to
+   fit comfortably between ~768-1024px, so it collapses at 940px instead. */
+@media (max-width: 940px) {
+  .nav-links, .nav-phone, .brand-switcher { display: none; }
   .nav-actions .btn { display: none; }
   .hamburger { display: flex; }
+}
+@media (max-width: 768px) {
   .hero-inner { grid-template-columns: 1fr; }
   .hero-visual { display: none; }
   .hero-title { font-size: 2.8rem; }
@@ -1339,4 +1345,201 @@ input[type="date"]::-webkit-calendar-picker-indicator { cursor: pointer; }
   background: var(--gold-dim);
   color: var(--gold-dark);
   border-color: rgba(200,160,32,0.2);
+}
+
+/* ════════════════════════════════
+   BRAND SWITCHER
+════════════════════════════════ */
+.brand-switcher { position: relative; }
+.brand-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 14px;
+  background: rgba(200,160,32,0.10);
+  border: 1.5px solid rgba(200,160,32,0.35);
+  border-radius: var(--radius-sm);
+  color: var(--gold-light);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  transition: all 0.2s;
+}
+.brand-btn:hover { background: rgba(200,160,32,0.18); border-color: var(--gold); }
+.nav.scrolled .brand-btn { background: var(--gold-dim); border-color: rgba(200,160,32,0.3); color: var(--gold-dark); }
+.brand-caret { font-size: 0.6rem; opacity: 0.75; transition: transform 0.2s; }
+.brand-switcher.open .brand-caret { transform: rotate(180deg); }
+.brand-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  background: var(--white);
+  border: 1px solid var(--border-md);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  min-width: 230px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 200;
+}
+.brand-dropdown.open { opacity: 1; pointer-events: all; transform: translateY(0); }
+.brand-option {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 16px;
+  color: var(--gray-600);
+  transition: background 0.14s, color 0.14s;
+}
+.brand-option:hover { background: var(--gray-50); }
+.brand-option.active { background: var(--gold-dim); }
+.brand-option-name { font-size: 0.86rem; font-weight: 700; color: var(--black); }
+.brand-option.active .brand-option-name { color: var(--gold-dark); }
+.brand-option-desc { font-size: 0.72rem; color: var(--gray-400); margin-top: 1px; }
+
+/* Mobile brand strip */
+.mobile-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 0 4px;
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+}
+.mobile-brand-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 4px;
+}
+.mobile-brand-option {
+  padding: 9px 10px;
+  font-size: 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--gray-50);
+  color: var(--gray-500);
+}
+.mobile-brand-option.active {
+  background: var(--gold-dim);
+  color: var(--gold-dark);
+  border-color: rgba(200,160,32,0.2);
+  font-weight: 700;
+}
+
+
+/* ════════════════════════════════
+   BRAND THEMES — Exotics / Boats / Jets / Experiences
+   (each overrides accent + dark-palette vars only; --gold is never
+   touched so the logo mark stays identical on every page)
+════════════════════════════════ */
+:root {
+  --brand-accent:       var(--gold);
+  --brand-accent-light: var(--gold-light);
+  --brand-accent-dim:   var(--gold-dim);
+}
+
+body.theme-exotics {
+  --brand-accent:       #D4AF37;
+  --brand-accent-light: #E8C860;
+  --brand-accent-dim:   rgba(212,175,55,0.10);
+  --dark-bg:   #050505;
+  --dark-bg-2: #0D0D0D;
+  --dark-card: #131313;
+}
+body.theme-exotics .hero-gradient {
+  background:
+    radial-gradient(ellipse at 30% 15%, rgba(212,175,55,0.16) 0%, transparent 55%),
+    linear-gradient(160deg, #050505 0%, #0d0d0d 45%, #000000 100%);
+}
+body.theme-exotics .hero-badge,
+body.theme-exotics .section-tag,
+body.theme-exotics .dark-section .section-tag { color: var(--brand-accent-light); background: var(--brand-accent-dim); border-color: rgba(212,175,55,0.30); }
+body.theme-exotics .badge-dot,
+body.theme-exotics .stars { color: var(--brand-accent); background: var(--brand-accent); }
+body.theme-exotics .stars { background: none; color: var(--brand-accent); }
+body.theme-exotics .pricing-popular-tag,
+body.theme-exotics .car-popular-badge { background: var(--brand-accent); color: var(--black); }
+body.theme-exotics .car-available.limited { background: var(--brand-accent-dim); border-color: rgba(212,175,55,0.3); color: var(--brand-accent); }
+body.theme-exotics .author-avatar { background: linear-gradient(135deg, #9A7810, var(--brand-accent-light)); }
+
+body.theme-boats {
+  --brand-accent:       #2E8B92;
+  --brand-accent-light: #4CB4BC;
+  --brand-accent-dim:   rgba(46,139,146,0.12);
+  --dark-bg:   #06141A;
+  --dark-bg-2: #0A1F26;
+  --dark-card: #0F2830;
+}
+body.theme-boats .hero-gradient {
+  background:
+    radial-gradient(ellipse at 70% 10%, rgba(46,139,146,0.20) 0%, transparent 55%),
+    linear-gradient(165deg, #06141A 0%, #0A2530 50%, #061318 100%);
+}
+body.theme-boats .hero-badge,
+body.theme-boats .section-tag,
+body.theme-boats .dark-section .section-tag { color: var(--brand-accent-light); background: var(--brand-accent-dim); border-color: rgba(46,139,146,0.32); }
+body.theme-boats .stars { color: var(--brand-accent); }
+body.theme-boats .pricing-popular-tag,
+body.theme-boats .car-popular-badge { background: var(--brand-accent); color: var(--white); }
+body.theme-boats .car-available.limited { background: var(--brand-accent-dim); border-color: rgba(46,139,146,0.3); color: var(--brand-accent-light); }
+body.theme-boats .author-avatar { background: linear-gradient(135deg, #1B5E63, var(--brand-accent-light)); }
+
+body.theme-jets {
+  --brand-accent:       #7FA8C9;
+  --brand-accent-light: #A6C7E0;
+  --brand-accent-dim:   rgba(127,168,201,0.12);
+  --dark-bg:   #0B0D10;
+  --dark-bg-2: #14171B;
+  --dark-card: #191D22;
+}
+body.theme-jets .hero-gradient {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(127,168,201,0.18) 0%, transparent 60%),
+    linear-gradient(165deg, #0B0D10 0%, #191D22 50%, #0B0D10 100%);
+}
+body.theme-jets .hero-badge,
+body.theme-jets .section-tag,
+body.theme-jets .dark-section .section-tag { color: var(--brand-accent-light); background: var(--brand-accent-dim); border-color: rgba(127,168,201,0.32); }
+body.theme-jets .stars { color: var(--brand-accent); }
+body.theme-jets .pricing-popular-tag,
+body.theme-jets .car-popular-badge { background: var(--brand-accent); color: var(--black); }
+body.theme-jets .car-available.limited { background: var(--brand-accent-dim); border-color: rgba(127,168,201,0.3); color: var(--brand-accent-light); }
+body.theme-jets .author-avatar { background: linear-gradient(135deg, #3D5A73, var(--brand-accent-light)); }
+
+body.theme-experiences {
+  --brand-accent:       #E8763C;
+  --brand-accent-light: #F5A25F;
+  --brand-accent-dim:   rgba(232,118,60,0.12);
+  --dark-bg:   #180D07;
+  --dark-bg-2: #201107;
+  --dark-card: #281608;
+}
+body.theme-experiences .hero-gradient {
+  background:
+    radial-gradient(ellipse at 25% 0%, rgba(232,118,60,0.24) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 90%, rgba(155,64,175,0.16) 0%, transparent 55%),
+    linear-gradient(165deg, #201107 0%, #180d07 60%, #0d0705 100%);
+}
+body.theme-experiences .hero-badge,
+body.theme-experiences .section-tag,
+body.theme-experiences .dark-section .section-tag { color: var(--brand-accent-light); background: var(--brand-accent-dim); border-color: rgba(232,118,60,0.32); }
+body.theme-experiences .stars { color: var(--brand-accent); }
+body.theme-experiences .pricing-popular-tag,
+body.theme-experiences .car-popular-badge { background: var(--brand-accent); color: var(--black); }
+body.theme-experiences .car-available.limited { background: var(--brand-accent-dim); border-color: rgba(232,118,60,0.3); color: var(--brand-accent-light); }
+body.theme-experiences .author-avatar { background: linear-gradient(135deg, #B5541F, var(--brand-accent-light)); }
+
+/* Generic inventory placeholder icon (used in place of photography until real images are provided) */
+.inv-icon {
+  font-size: 3.4rem;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.5));
+  line-height: 1;
 }
