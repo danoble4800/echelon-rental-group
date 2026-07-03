@@ -17,9 +17,35 @@ brandBtn && brandBtn.addEventListener('click', (e) => {
   brandSwitcher.classList.toggle('open');
   brandDropdown.classList.toggle('open');
 });
+
+/* Language switcher dropdown — toggle behavior only. Each page defines
+   its own global applyLang(lang) (see e.g. exotics-i18n.js) so content
+   never leaks between pages; this file just wires the UI + persistence. */
+const langSwitcher = document.getElementById('langSwitcher');
+const langBtn      = document.getElementById('langBtn');
+const langDropdown = document.getElementById('langDropdown');
+
+langBtn && langBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  langSwitcher.classList.toggle('open');
+  langDropdown.classList.toggle('open');
+});
+
+document.querySelectorAll('.lang-option').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (typeof applyLang === 'function') applyLang(btn.dataset.lang);
+    langSwitcher && langSwitcher.classList.remove('open');
+    langDropdown && langDropdown.classList.remove('open');
+    document.getElementById('mobileMenu').classList.remove('open');
+  });
+});
+
 document.addEventListener('click', () => {
   brandSwitcher && brandSwitcher.classList.remove('open');
   brandDropdown && brandDropdown.classList.remove('open');
+  langSwitcher && langSwitcher.classList.remove('open');
+  langDropdown && langDropdown.classList.remove('open');
 });
 
 /* Sticky nav background on scroll */
