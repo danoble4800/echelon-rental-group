@@ -1553,8 +1553,9 @@ body.theme-boats {
 }
 body.theme-boats .hero-gradient {
   background:
-    radial-gradient(ellipse at 70% 10%, rgba(46,139,146,0.20) 0%, transparent 55%),
-    linear-gradient(165deg, #06141A 0%, #0A2530 50%, #061318 100%);
+    linear-gradient(180deg, rgba(6,20,26,0.68) 0%, rgba(6,20,26,0.55) 40%, rgba(6,20,26,0.92) 100%),
+    radial-gradient(ellipse at 70% 10%, rgba(46,139,146,0.18) 0%, transparent 55%),
+    url('images/hero-yacht-boston.jpg') center 45% / cover no-repeat;
 }
 body.theme-boats .hero-badge,
 body.theme-boats .section-tag,
