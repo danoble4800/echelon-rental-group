@@ -19,6 +19,7 @@ const boatsI18n = {
     specs: ['Up to 6 Guests · Fishing or Cruising', 'Up to 12 Guests · Sunset &amp; Private Events', 'Up to 8 Guests · No License Required With Captain', 'Up to 10 Guests · Calm-Water Family Cruising'],
     pills: [['Fishing Gear', 'Captain Included'], ['Event-Ready', 'Captain Included'], ['Day Cruising', 'Captain Add-On'], ['Family Friendly', 'Captain Add-On']],
     perHalfDay: '/half-day', perFullDay: '/full-day', reserveBoat: 'Reserve This Boat',
+    contactPricing: 'Contact Us for Pricing',
     schedTag: 'Book', schedH2: 'Schedule Your Charter',
     schedDesc: "Tell us your dates and how many guests are joining — we'll confirm the right boat and captain within the hour.",
     fFirst: 'First Name', fLast: 'Last Name', fPhone: 'Phone Number', fEmail: 'Email Address',
@@ -35,7 +36,7 @@ const boatsI18n = {
       { name: 'Multi-Day / Weekend', desc: 'Extended charters &amp; getaways', unit: '/weekend', feats: ['Dockage assistance included', 'Provisioning concierge available', 'Captain strongly recommended', 'Flexible departure windows'] },
     ],
     popular: 'Most Popular', getStarted: 'Get Started',
-    priceNote: 'All prices shown are starting rates. Final price depends on vessel selected. Refundable damage deposit required.',
+    priceNote: 'Pricing varies by holiday, season, departure location, and charter length — contact us for an accurate quote. Refundable damage deposit required.',
     revTag: 'Our Clients', revH2: 'What Guests Say',
     reviews: [
       { q: '"Chartered the 45\' for my parents\' anniversary — captain knew all the best spots for sunset. Worth every penny."', name: 'Rebecca T.', role: 'Anniversary Charter' },
@@ -62,6 +63,7 @@ const boatsI18n = {
     specs: ['Hasta 6 Invitados · Pesca o Paseo', 'Hasta 12 Invitados · Atardeceres y Eventos Privados', 'Hasta 8 Invitados · No Requiere Licencia con Capitán', 'Hasta 10 Invitados · Paseo Familiar en Aguas Tranquilas'],
     pills: [['Equipo de Pesca', 'Capitán Incluido'], ['Lista para Eventos', 'Capitán Incluido'], ['Paseo Diurno', 'Capitán Opcional'], ['Ideal para Familias', 'Capitán Opcional']],
     perHalfDay: '/medio día', perFullDay: '/día completo', reserveBoat: 'Reservar Esta Embarcación',
+    contactPricing: 'Contáctenos para Cotización',
     schedTag: 'Reservar', schedH2: 'Programa Tu Charter',
     schedDesc: 'Cuéntanos tus fechas y cuántos invitados vienen — confirmaremos la embarcación y el capitán adecuados dentro de la hora.',
     fFirst: 'Nombre', fLast: 'Apellido', fPhone: 'Número de Teléfono', fEmail: 'Correo Electrónico',
@@ -78,7 +80,7 @@ const boatsI18n = {
       { name: 'Varios Días / Fin de Semana', desc: 'Charters extendidos y escapadas', unit: '/fin de semana', feats: ['Asistencia de atraque incluida', 'Conserjería de aprovisionamiento disponible', 'Se recomienda encarecidamente capitán', 'Horarios de salida flexibles'] },
     ],
     popular: 'Más Popular', getStarted: 'Comenzar',
-    priceNote: 'Los precios mostrados son tarifas iniciales. El precio final depende de la embarcación seleccionada. Se requiere depósito por daños reembolsable.',
+    priceNote: 'El precio varía según el día festivo, la temporada, el lugar de salida y la duración del charter — contáctenos para una cotización exacta. Se requiere depósito por daños reembolsable.',
     revTag: 'Nuestros Clientes', revH2: 'Lo Que Dicen Nuestros Invitados',
     reviews: [
       { q: 'Reservamos el de 45 pies para el aniversario de mis padres — el capitán conocía los mejores lugares para el atardecer. Valió cada centavo.', name: 'Rebecca T.', role: 'Charter de Aniversario' },
@@ -105,6 +107,7 @@ const boatsI18n = {
     specs: ['Até 6 Convidados · Pesca ou Passeio', 'Até 12 Convidados · Pôr do Sol e Eventos Privados', 'Até 8 Convidados · Sem Habilitação com Capitão', 'Até 10 Convidados · Passeio Familiar em Águas Calmas'],
     pills: [['Equipamento de Pesca', 'Capitão Incluído'], ['Pronto para Eventos', 'Capitão Incluído'], ['Passeio Diurno', 'Capitão Opcional'], ['Ideal para Famílias', 'Capitão Opcional']],
     perHalfDay: '/meio dia', perFullDay: '/dia inteiro', reserveBoat: 'Reservar Este Barco',
+    contactPricing: 'Entre em Contato para Cotação',
     schedTag: 'Reservar', schedH2: 'Agende Seu Charter',
     schedDesc: 'Diga-nos suas datas e quantos convidados vêm — confirmaremos o barco e o capitão certos dentro de uma hora.',
     fFirst: 'Nome', fLast: 'Sobrenome', fPhone: 'Telefone', fEmail: 'E-mail',
@@ -121,7 +124,7 @@ const boatsI18n = {
       { name: 'Vários Dias / Fim de Semana', desc: 'Charters estendidos e escapadas', unit: '/fim de semana', feats: ['Assistência de atracação incluída', 'Concierge de abastecimento disponível', 'Capitão fortemente recomendado', 'Horários de partida flexíveis'] },
     ],
     popular: 'Mais Popular', getStarted: 'Começar',
-    priceNote: 'Os preços exibidos são tarifas iniciais. O preço final depende da embarcação selecionada. Depósito de danos reembolsável é exigido.',
+    priceNote: 'O preço varia de acordo com feriado, época do ano, local de partida e duração do charter — entre em contato conosco para uma cotação precisa. Depósito de danos reembolsável é exigido.',
     revTag: 'Nossos Clientes', revH2: 'O Que Dizem Nossos Convidados',
     reviews: [
       { q: 'Reservamos o de 45 pés para o aniversário de casamento dos meus pais — o capitão conhecia os melhores lugares para o pôr do sol. Valeu cada centavo.', name: 'Rebecca T.', role: 'Charter de Aniversário' },
@@ -170,7 +173,6 @@ function applyLang(lang) {
   setText('#inventory .section-header p', t.invDesc);
 
   const cards = $$('#inventory .inventory-card');
-  const units = [t.perHalfDay, t.perHalfDay, t.perHalfDay, t.perHalfDay];
   cards.forEach((card, i) => {
     const badgeEl = card.querySelector('.car-available, .car-popular-badge');
     if (badgeEl && t.badges[i]) badgeEl.textContent = t.badges[i];
@@ -178,10 +180,8 @@ function applyLang(lang) {
     if (typeEl && t.types[i]) typeEl.textContent = t.types[i];
     const specEl = card.querySelector('.car-year');
     if (specEl && t.specs[i]) specEl.innerHTML = t.specs[i];
-    const unitEl = card.querySelector('.car-price-unit');
-    if (unitEl) unitEl.textContent = units[i];
-    const altEl = card.querySelector('.car-alt-prices small');
-    if (altEl) altEl.textContent = t.perFullDay;
+    const contactEl = card.querySelector('.car-price-contact');
+    if (contactEl) contactEl.textContent = t.contactPricing;
     const pillEls = card.querySelectorAll('.car-specs span');
     (t.pills[i] || []).forEach((txt, j) => { if (pillEls[j]) pillEls[j].textContent = txt; });
     const btnEl = card.querySelector('.btn-book');
@@ -214,7 +214,8 @@ function applyLang(lang) {
     if (!tier) return;
     card.querySelector('.pricing-card-header h3').textContent = tier.name;
     card.querySelector('.pricing-card-header p').textContent = tier.desc;
-    card.querySelector('.p-unit').textContent = tier.unit;
+    const quoteEl = card.querySelector('.p-quote');
+    if (quoteEl) quoteEl.textContent = t.contactPricing;
     const feats = card.querySelectorAll('.pricing-features li');
     tier.feats.forEach((txt, j) => { if (feats[j]) feats[j].innerHTML = '✓ ' + txt; });
     const btn = card.querySelector('.btn');

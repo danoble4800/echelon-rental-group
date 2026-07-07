@@ -726,6 +726,7 @@ ul { list-style: none; }
 .car-price-box { text-align: right; flex-shrink: 0; }
 .car-price { font-size: 1.6rem; font-weight: 900; color: var(--black); letter-spacing: -0.04em; display: block; }
 .car-price-unit { font-size: 0.72rem; color: var(--gray-400); }
+.car-price-contact { display: block; max-width: 120px; font-size: 0.85rem; font-weight: 700; line-height: 1.35; color: var(--gold-dark); }
 .car-specs {
   display: flex;
   flex-wrap: wrap;
@@ -889,6 +890,7 @@ ul { list-style: none; }
 .p-from { font-size: 0.72rem; opacity: 0.5; }
 .p-price { font-size: 2.6rem; font-weight: 900; letter-spacing: -0.05em; }
 .p-unit { font-size: 0.82rem; opacity: 0.55; }
+.p-quote { font-size: 1.7rem; font-weight: 900; letter-spacing: -0.03em; }
 .pricing-features { display: flex; flex-direction: column; gap: 11px; margin-bottom: 26px; }
 .pricing-features li { font-size: 0.85rem; display: flex; gap: 8px; opacity: 0.75; }
 .pricing-card.featured .pricing-features li { opacity: 0.65; }
