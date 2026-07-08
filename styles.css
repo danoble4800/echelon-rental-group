@@ -1578,8 +1578,9 @@ body.theme-jets {
 }
 body.theme-jets .hero-gradient {
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(127,168,201,0.18) 0%, transparent 60%),
-    linear-gradient(165deg, #0B0D10 0%, #191D22 50%, #0B0D10 100%);
+    linear-gradient(180deg, rgba(11,13,16,0.68) 0%, rgba(11,13,16,0.5) 40%, rgba(11,13,16,0.92) 100%),
+    radial-gradient(ellipse at 50% 0%, rgba(127,168,201,0.16) 0%, transparent 60%),
+    url('images/hero-jet-tarmac.jpg') center 42% / cover no-repeat;
 }
 body.theme-jets .hero-badge,
 body.theme-jets .section-tag,
