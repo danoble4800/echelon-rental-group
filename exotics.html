@@ -180,19 +180,18 @@
 
       <div class="car-grid inventory-grid">
         <div class="car-card inventory-card">
-          <div class="car-card-img" style="background: linear-gradient(135deg, #1a1a1a 0%, #2b2308 50%, #0a0a0a 100%); justify-content:center;">
+          <div class="car-card-img" style="background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.65) 100%), url('images/fleet/lamborghini-huracan.jpg') center 42% / cover no-repeat;">
             <div class="car-available">Available</div>
-            <span class="inv-icon">🏎️</span>
           </div>
           <div class="car-card-body">
             <div class="car-top">
               <div>
                 <span class="car-type-badge">Supercar</span>
-                <h3 class="car-name">Lamborghini Huracán EVO</h3>
+                <h3 class="car-name">Lamborghini Huracán</h3>
                 <p class="car-year">630 hp · 0–60 in 2.9s · 2 Seats</p>
               </div>
               <div class="car-price-box">
-                <span class="car-price">$1,450</span>
+                <span class="car-price">$1,500</span>
                 <span class="car-price-unit">/day</span>
               </div>
             </div>
@@ -201,7 +200,7 @@
               <span>🔊 V10</span>
               <span>🚚 Delivery</span>
             </div>
-            <button class="btn btn-book" onclick="selectForSchedule('Lamborghini Huracán EVO')">Reserve This Car</button>
+            <button class="btn btn-book" onclick="selectForSchedule('Lamborghini Huracán')">Reserve This Car</button>
           </div>
         </div>
 
@@ -231,19 +230,18 @@
         </div>
 
         <div class="car-card inventory-card">
-          <div class="car-card-img" style="background: linear-gradient(135deg, #14140f 0%, #221f10 50%, #0a0a0a 100%); justify-content:center;">
+          <div class="car-card-img" style="background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.65) 100%), url('images/fleet/rolls-royce-cullinan.jpg') center 30% / cover no-repeat;">
             <div class="car-available">Available</div>
-            <span class="inv-icon">🚘</span>
           </div>
           <div class="car-card-body">
             <div class="car-top">
               <div>
-                <span class="car-type-badge">Ultra-Luxury Sedan</span>
-                <h3 class="car-name">Rolls-Royce Ghost</h3>
+                <span class="car-type-badge">Ultra-Luxury SUV</span>
+                <h3 class="car-name">Rolls-Royce Cullinan</h3>
                 <p class="car-year">563 hp · 5 Seats · Chauffeur Available</p>
               </div>
               <div class="car-price-box">
-                <span class="car-price">$1,100</span>
+                <span class="car-price">$1,350</span>
                 <span class="car-price-unit">/day</span>
               </div>
             </div>
@@ -251,7 +249,7 @@
               <span>🎩 Chauffeur Option</span>
               <span>🚚 Delivery</span>
             </div>
-            <button class="btn btn-book" onclick="selectForSchedule('Rolls-Royce Ghost')">Reserve This Car</button>
+            <button class="btn btn-book" onclick="selectForSchedule('Rolls-Royce Cullinan')">Reserve This Car</button>
           </div>
         </div>
 
@@ -277,6 +275,54 @@
               <span>🚚 Delivery</span>
             </div>
             <button class="btn btn-book" onclick="selectForSchedule('Porsche 911 Turbo S')">Reserve This Car</button>
+          </div>
+        </div>
+
+        <div class="car-card inventory-card">
+          <div class="car-card-img" style="background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.65) 100%), url('images/fleet/g-wagon.jpg') center 40% / cover no-repeat;">
+            <div class="car-available">Available</div>
+          </div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge">Luxury SUV</span>
+                <h3 class="car-name">Mercedes-AMG G63</h3>
+                <p class="car-year">577 hp · 5 Seats · AWD</p>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$1,250</span>
+                <span class="car-price-unit">/day</span>
+              </div>
+            </div>
+            <div class="car-specs">
+              <span>🛞 AWD</span>
+              <span>🚚 Delivery</span>
+            </div>
+            <button class="btn btn-book" onclick="selectForSchedule('Mercedes-AMG G63')">Reserve This Car</button>
+          </div>
+        </div>
+
+        <div class="car-card inventory-card">
+          <div class="car-card-img" style="background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.65) 100%), url('images/fleet/lamborghini-urus.jpg') center 30% / cover no-repeat;">
+            <div class="car-available">Available</div>
+          </div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge">Super SUV</span>
+                <h3 class="car-name">Lamborghini Urus</h3>
+                <p class="car-year">641 hp · 0–60 in 3.1s · 5 Seats</p>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$1,300</span>
+                <span class="car-price-unit">/day</span>
+              </div>
+            </div>
+            <div class="car-specs">
+              <span>🛞 AWD</span>
+              <span>🚚 Delivery</span>
+            </div>
+            <button class="btn btn-book" onclick="selectForSchedule('Lamborghini Urus')">Reserve This Car</button>
           </div>
         </div>
       </div>
@@ -326,10 +372,12 @@
         <div class="form-group">
           <label>Vehicle of Interest</label>
           <select id="interestField" name="vehicleInterest">
-            <option>Lamborghini Huracán EVO</option>
+            <option>Lamborghini Huracán</option>
             <option>2026 Maybach GLS</option>
-            <option>Rolls-Royce Ghost</option>
+            <option>Rolls-Royce Cullinan</option>
             <option>Porsche 911 Turbo S</option>
+            <option>Mercedes-AMG G63</option>
+            <option>Lamborghini Urus</option>
             <option>Not Sure Yet</option>
           </select>
         </div>
@@ -482,7 +530,7 @@
       <div class="footer-links">
         <h4>Fleet</h4>
         <a href="#inventory">Supercars</a>
-        <a href="#inventory">Ultra-Luxury Sedans</a>
+        <a href="#inventory">Ultra-Luxury SUVs</a>
         <a href="#pricing">View Pricing</a>
       </div>
       <div class="footer-links">
