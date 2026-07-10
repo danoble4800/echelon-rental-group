@@ -1,7 +1,6 @@
 /* ──────────────────────────────────────────
-   ECHELON EXOTICS — CUSTOM CURSOR RING
-   Page-scoped: only include this on exotics.html. Skips touch/coarse
-   pointers automatically.
+   ECHELON RENTAL GROUP — CUSTOM CURSOR RING
+   Shared across all brand pages. Skips touch/coarse pointers automatically.
 ────────────────────────────────────────── */
 (function () {
   if (window.matchMedia('(pointer: coarse)').matches) return;

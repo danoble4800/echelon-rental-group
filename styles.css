@@ -32,6 +32,9 @@
   --dark-text-2:  #888888;
   --dark-text-3:  #555555;
 
+  /* Custom cursor ring accent (used on all brand pages) */
+  --champagne: #C9A86A;
+
   /* Semantic */
   --bg:       var(--white);
   --bg-alt:   var(--off-white);
@@ -1527,16 +1530,15 @@ body.theme-exotics {
   --dark-bg:   #050505;
   --dark-bg-2: #0D0D0D;
   --dark-card: #131313;
-  --champagne: #C9A86A;
 }
 
-/* ── Custom cursor ring ── */
-body.theme-exotics.cursor-ring-enabled,
-body.theme-exotics.cursor-ring-enabled a,
-body.theme-exotics.cursor-ring-enabled button,
-body.theme-exotics.cursor-ring-enabled input,
-body.theme-exotics.cursor-ring-enabled select,
-body.theme-exotics.cursor-ring-enabled textarea { cursor: none; }
+/* ── Custom cursor ring (all brand pages) ── */
+body.cursor-ring-enabled,
+body.cursor-ring-enabled a,
+body.cursor-ring-enabled button,
+body.cursor-ring-enabled input,
+body.cursor-ring-enabled select,
+body.cursor-ring-enabled textarea { cursor: none; }
 .cursor-ring {
   position: fixed;
   top: 0;
@@ -1606,6 +1608,47 @@ body.theme-exotics .pricing-popular-tag,
 body.theme-exotics .car-popular-badge { background: var(--brand-accent); color: var(--black); }
 body.theme-exotics .car-available.limited { background: var(--brand-accent-dim); border-color: rgba(212,175,55,0.3); color: var(--brand-accent); }
 body.theme-exotics .author-avatar { background: linear-gradient(135deg, #9A7810, var(--brand-accent-light)); }
+
+/* ── Full dark theme: fleet / pricing / testimonials sections ── */
+body.theme-exotics .fleet,
+body.theme-exotics .pricing,
+body.theme-exotics .testimonials {
+  background: var(--dark-bg);
+  color: var(--white);
+  border-top: 1px solid var(--dark-border);
+}
+
+/* Fleet cards */
+body.theme-exotics .car-card { background: var(--dark-card); border-color: var(--dark-border); box-shadow: none; }
+body.theme-exotics .car-card:hover { border-color: rgba(212,175,55,0.35); box-shadow: 0 12px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(212,175,55,0.12); }
+body.theme-exotics .car-card.featured { border-color: rgba(212,175,55,0.3); box-shadow: 0 0 0 1px rgba(212,175,55,0.15); }
+body.theme-exotics .car-name { color: var(--white); }
+body.theme-exotics .car-year { color: var(--dark-text-2); }
+body.theme-exotics .car-price { color: var(--white); }
+body.theme-exotics .car-price-unit { color: var(--dark-text-2); }
+body.theme-exotics .car-price-contact { color: var(--brand-accent-light); }
+body.theme-exotics .car-type-badge { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.6); border-color: var(--dark-border); }
+body.theme-exotics .car-specs span { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.55); border-color: var(--dark-border); }
+body.theme-exotics .btn-book { background: var(--white); color: var(--black); border-color: var(--white); }
+body.theme-exotics .btn-book:hover { background: var(--brand-accent); color: var(--black); border-color: var(--brand-accent); }
+
+/* Pricing cards */
+body.theme-exotics .pricing-card { background: var(--dark-card); border-color: var(--dark-border); color: var(--white); }
+body.theme-exotics .pricing-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+body.theme-exotics .pricing-card.featured {
+  background: linear-gradient(160deg, #1c1809 0%, #0d0d0d 100%);
+  border-color: rgba(212,175,55,0.4);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(212,175,55,0.2);
+}
+body.theme-exotics .pricing-card .btn-outline { border-color: rgba(255,255,255,0.25); color: var(--white); }
+body.theme-exotics .pricing-card .btn-outline:hover { border-color: var(--brand-accent); color: var(--brand-accent-light); }
+body.theme-exotics .pricing-note { color: var(--dark-text-2); }
+
+/* Testimonials */
+body.theme-exotics .testimonial-card { background: var(--dark-card); border-color: var(--dark-border); box-shadow: none; }
+body.theme-exotics .testimonial-card p { color: var(--dark-text-2); }
+body.theme-exotics .testimonial-author strong { color: var(--white); }
+body.theme-exotics .testimonial-author span { color: var(--dark-text-3); }
 
 body.theme-boats {
   --brand-accent:       #2E8B92;
