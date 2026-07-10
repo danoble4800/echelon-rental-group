@@ -1527,6 +1527,52 @@ body.theme-exotics {
   --dark-bg:   #050505;
   --dark-bg-2: #0D0D0D;
   --dark-card: #131313;
+  --champagne: #C9A86A;
+}
+
+/* ── Custom cursor ring ── */
+body.theme-exotics.cursor-ring-enabled,
+body.theme-exotics.cursor-ring-enabled a,
+body.theme-exotics.cursor-ring-enabled button,
+body.theme-exotics.cursor-ring-enabled input,
+body.theme-exotics.cursor-ring-enabled select,
+body.theme-exotics.cursor-ring-enabled textarea { cursor: none; }
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,106,0.7);
+  pointer-events: none;
+  opacity: 0;
+  transition: transform 80ms linear, opacity 250ms, width 200ms, height 200ms, border-color 200ms;
+  will-change: transform;
+}
+.cursor-ring.is-active {
+  width: 40px;
+  height: 40px;
+  border-color: var(--champagne);
+}
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--champagne);
+  box-shadow: 0 0 14px 3px rgba(201,168,106,0.55);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 250ms;
+  will-change: transform;
+}
+@media (pointer: coarse) {
+  .cursor-ring, .cursor-dot { display: none; }
 }
 /* Keep the nav dark on scroll instead of the default white-on-scroll treatment */
 body.theme-exotics .nav.scrolled {
