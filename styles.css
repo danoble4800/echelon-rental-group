@@ -256,6 +256,36 @@ ul { list-style: none; }
 .nav.scrolled .nav-phone { color: var(--gray-500); }
 .nav.scrolled .nav-phone:hover { color: var(--black); }
 
+.nav-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.65);
+  transition: all 0.2s;
+}
+.nav-social svg { width: 16px; height: 16px; fill: currentColor; display: block; }
+.nav-social:hover { background: rgba(255,255,255,0.12); color: var(--white); }
+.nav.scrolled .nav-social { background: var(--gray-50); border-color: var(--border-md); color: var(--gray-600); }
+.nav.scrolled .nav-social:hover { background: var(--gray-100); color: var(--black); }
+
+.mobile-social {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--gray-500);
+  border-bottom: 1px solid var(--border);
+}
+.mobile-social svg { width: 16px; height: 16px; fill: currentColor; }
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -1278,7 +1308,7 @@ ul { list-style: none; }
    elements (links, phone, brand-switcher, lang-switcher, book button) to
    fit comfortably between ~768-1024px, so it collapses at 940px instead. */
 @media (max-width: 940px) {
-  .nav-links, .nav-phone, .brand-switcher { display: none; }
+  .nav-links, .nav-phone, .nav-social, .brand-switcher { display: none; }
   .nav-actions .btn { display: none; }
   .hamburger { display: flex; }
 }
@@ -1591,6 +1621,8 @@ body.theme-exotics .nav.scrolled .nav-phone:hover { color: var(--white); }
 body.theme-exotics .nav.scrolled .hamburger span { background: var(--white); }
 body.theme-exotics .nav.scrolled .lang-btn { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); color: rgba(255,255,255,0.65); }
 body.theme-exotics .nav.scrolled .lang-btn:hover { background: rgba(255,255,255,0.12); color: var(--white); }
+body.theme-exotics .nav.scrolled .nav-social { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); color: rgba(255,255,255,0.65); }
+body.theme-exotics .nav.scrolled .nav-social:hover { background: rgba(255,255,255,0.12); color: var(--white); }
 body.theme-exotics .nav.scrolled .brand-btn { background: rgba(200,160,32,0.1); border-color: rgba(200,160,32,0.22); color: var(--gold-light); }
 body.theme-exotics .hero-gradient {
   background:
