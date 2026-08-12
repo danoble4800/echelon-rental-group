@@ -200,7 +200,6 @@ function applyLang(lang) {
   if (deliveryLabel) deliveryLabel.innerHTML = `${t.fDelivery} <span style="font-weight:400;color:var(--dark-text-3);">${t.fDeliveryHint}</span>`;
   const interestSel = $('#interestField');
   if (interestSel) { [...interestSel.options].forEach((opt, i) => { if (i === interestSel.options.length - 1) opt.text = t.fNotSure; }); }
-  setText('#schedule .checkbox-label', '');
   const checkLabel = $('#schedule .checkbox-label');
   if (checkLabel) { const input = checkLabel.querySelector('input'); checkLabel.textContent = ''; if (input) checkLabel.appendChild(input); checkLabel.append(' ' + t.fCheck); }
   setText('#schedule button[type=submit]', t.fSubmit);
