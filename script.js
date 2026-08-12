@@ -131,10 +131,10 @@ const i18n = {
     /* Testimonials */
     reviewsTag:    'Real Drivers',
     reviewsH2:     'What Our Renters Say',
-    review1:       '"I\'ve been doing DoorDash full-time for 8 months. Echelon\'s weekly rate keeps more of my earnings in my pocket. The Corolla is super fuel efficient — exactly what I needed."',
+    review1:       '"I\'ve been doing DoorDash full-time for 8 months. Echelon\'s weekly rate keeps more of my earnings in my pocket. The compact I got is super fuel efficient — exactly what I needed."',
     review1Name:   'Marcus R.',
     review1Sub:    'DoorDash Driver · 8 months',
-    review2:       '"My car broke down and I needed something same day. Echelon had me in a Civic within 2 hours. The process was so easy — just showed my license and I was out the door."',
+    review2:       '"My car broke down and I needed something same day. Echelon had me in a compact within 2 hours. The process was so easy — just showed my license and I was out the door."',
     review2Name:   'Jessica L.',
     review2Sub:    'Uber Eats Driver · 5 months',
     review3:       '"No other rental company offers unlimited miles at this price point. I drive 400+ miles a week for GrubHub and the monthly plan is by far the most economic option out there."',
@@ -305,10 +305,10 @@ const i18n = {
 
     reviewsTag:    'Conductores Reales',
     reviewsH2:     'Lo Que Dicen Nuestros Clientes',
-    review1:       '"Llevo 8 meses haciendo DoorDash a tiempo completo. La tarifa semanal de Echelon me deja más dinero en el bolsillo. El Corolla es super eficiente — exactamente lo que necesitaba."',
+    review1:       '"Llevo 8 meses haciendo DoorDash a tiempo completo. La tarifa semanal de Echelon me deja más dinero en el bolsillo. El compacto que me dieron es súper eficiente — exactamente lo que necesitaba."',
     review1Name:   'Marcus R.',
     review1Sub:    'Conductor DoorDash · 8 meses',
-    review2:       '"Mi carro se descompuso y necesitaba algo el mismo día. Echelon me dio un Civic en 2 horas. El proceso fue muy fácil — solo mostré mi licencia y listo."',
+    review2:       '"Mi carro se descompuso y necesitaba algo el mismo día. Echelon me dio un compacto en 2 horas. El proceso fue muy fácil — solo mostré mi licencia y listo."',
     review2Name:   'Jessica L.',
     review2Sub:    'Conductora Uber Eats · 5 meses',
     review3:       '"Ninguna otra compañía ofrece millaje ilimitado a este precio. Manejo más de 400 millas a la semana para GrubHub y el plan mensual es la opción más económica que existe."',
@@ -474,10 +474,10 @@ const i18n = {
 
     reviewsTag:    'Motoristas Reais',
     reviewsH2:     'O Que Nossos Clientes Dizem',
-    review1:       '"Faço DoorDash em tempo integral há 8 meses. A tarifa semanal da Echelon deixa mais dinheiro no meu bolso. O Corolla é super econômico — exatamente o que precisava."',
+    review1:       '"Faço DoorDash em tempo integral há 8 meses. A tarifa semanal da Echelon deixa mais dinheiro no meu bolso. O compacto que peguei é super econômico — exatamente o que precisava."',
     review1Name:   'Marcus R.',
     review1Sub:    'Motorista DoorDash · 8 meses',
-    review2:       '"Meu carro quebrou e precisei de um no mesmo dia. A Echelon me entregou um Civic em 2 horas. O processo foi simples — mostrei minha habilitação e pronto."',
+    review2:       '"Meu carro quebrou e precisei de um no mesmo dia. A Echelon me entregou um compacto em 2 horas. O processo foi simples — mostrei minha habilitação e pronto."',
     review2Name:   'Jessica L.',
     review2Sub:    'Motorista Uber Eats · 5 meses',
     review3:       '"Nenhuma outra locadora oferece quilometragem ilimitada nesse preço. Rodo mais de 400 milhas por semana para o GrubHub e o plano mensal é de longe a opção mais econômica."',
@@ -618,6 +618,14 @@ function applyLang(lang) {
   if (filters[1]) filters[1].textContent = t.filterCompact;
   if (filters[2]) filters[2].textContent = t.filterSedan;
   if (filters[3]) filters[3].textContent = t.filterSuv;
+
+  // Car category names (cards are generic Compact/Sedan/SUV, not specific models)
+  const carTypeLabels = { compact: t.filterCompact, sedan: t.filterSedan, suv: t.filterSuv };
+  $$('#carGrid .car-card').forEach(card => {
+    const nameEl = card.querySelector('.car-name');
+    const label = carTypeLabels[card.dataset.type];
+    if (nameEl && label) nameEl.textContent = label;
+  });
 
   // Car availability badges
   $$('.car-available:not(.limited)').forEach(el => el.textContent = t.cardAvailable);
