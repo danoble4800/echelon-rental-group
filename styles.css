@@ -158,6 +158,23 @@ ul { list-style: none; }
   opacity: 0.65;
 }
 
+.fleet-insurance-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  max-width: 680px;
+  margin: 24px auto 0;
+  padding: 16px 20px;
+  background: var(--gold-dim);
+  border: 1px solid rgba(200,160,32,0.25);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius-sm);
+  text-align: left;
+}
+.fleet-insurance-icon { font-size: 1.3rem; line-height: 1.3; flex-shrink: 0; }
+.fleet-insurance-note p { font-size: 0.86rem; line-height: 1.6; color: var(--gray-600); opacity: 1; max-width: none; }
+.fleet-insurance-note strong { color: var(--black); font-weight: 700; }
+
 /* Dark section overrides */
 .dark-section {
   background: var(--dark-bg);

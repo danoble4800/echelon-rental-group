@@ -50,6 +50,7 @@ const i18n = {
     fleetTag:      'Economic Fleet',
     fleetH2:       'Available Right Now',
     fleetDesc:     'Compact economy cars, full-size sedans, and SUVs — our entire fleet is well-maintained, affordable, and ready for any reason you need wheels.',
+    fleetInsuranceNote: '<strong>A note on insurance:</strong> The prices above apply to renters who carry their own auto insurance. Don\'t have a policy? No problem — we offer coverage for the full length of your rental, available to purchase directly from us at booking.',
     filterAll:     'All Vehicles',
     filterEconomy: 'Economy',
     filterSedan:   'Sedan',
@@ -228,6 +229,7 @@ const i18n = {
     fleetTag:      'Flota Económica',
     fleetH2:       'Disponibles Ahora',
     fleetDesc:     'Carros compactos, sedanes y SUVs — toda nuestra flota está bien mantenida, asequible y lista para cualquier necesidad.',
+    fleetInsuranceNote: '<strong>Una nota sobre el seguro:</strong> Los precios anteriores aplican a quienes cuentan con su propia póliza de seguro de auto. ¿No tienes una? No hay problema — ofrecemos cobertura durante toda la duración de tu alquiler, disponible para comprar directamente con nosotros al momento de reservar.',
     filterAll:     'Todos',
     filterEconomy: 'Económico',
     filterSedan:   'Sedán',
@@ -397,6 +399,7 @@ const i18n = {
     fleetTag:      'Frota Econômica',
     fleetH2:       'Disponíveis Agora',
     fleetDesc:     'Carros compactos, sedãs e SUVs — toda a nossa frota está bem mantida, acessível e pronta para qualquer necessidade.',
+    fleetInsuranceNote: '<strong>Uma nota sobre o seguro:</strong> Os preços acima se aplicam a quem já possui seguro de automóvel próprio. Não tem uma apólice? Sem problemas — oferecemos cobertura durante todo o período do aluguel, disponível para compra diretamente conosco no momento da reserva.',
     filterAll:     'Todos',
     filterEconomy: 'Econômico',
     filterSedan:   'Sedã',
@@ -611,6 +614,7 @@ function applyLang(lang) {
   if (fleetH2s[0]) fleetH2s[0].textContent = t.fleetH2;
   const fleetDescs = $$('.fleet .section-header p');
   if (fleetDescs[0]) fleetDescs[0].textContent = t.fleetDesc;
+  if (t.fleetInsuranceNote) set('.fleet-insurance-note p', t.fleetInsuranceNote);
 
   // Fleet filters
   const filters = $$('.filter-btn');
