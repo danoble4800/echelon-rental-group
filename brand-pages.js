@@ -76,7 +76,7 @@ const brandObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-document.querySelectorAll('.inventory-card, .pricing-card, .testimonial-card').forEach(el => {
+document.querySelectorAll('.inventory-card, .pricing-card, .testimonial-card, .faq-item').forEach(el => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(24px)';
   el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';

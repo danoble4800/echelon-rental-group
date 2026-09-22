@@ -7,7 +7,7 @@
 ────────────────────────────────────────── */
 const exoticsI18n = {
   en: {
-    navFleet: 'Fleet', navReserve: 'Reserve', navPricing: 'Pricing', navReviews: 'Reviews', navBtn: 'Reserve Now',
+    navFleet: 'Fleet', navReserve: 'Reserve', navFaq: 'FAQ', navReviews: 'Reviews', navBtn: 'Reserve Now',
     heroBadge: 'Exotic &amp; Luxury Fleet · By Appointment or Instant Book',
     heroTitle: 'Extraordinary Cars,<br /><span class="accent">Unforgettable Drives.</span>',
     heroSubtitle: 'Echelon Exotics puts <strong>Lamborghini, Ferrari, Porsche, and Rolls-Royce</strong> within reach — hourly, daily, or for the weekend. White-glove delivery available anywhere in the region.',
@@ -28,15 +28,16 @@ const exoticsI18n = {
     fNotSure: 'Not Sure Yet',
     fCheck: "I confirm I have a valid driver's license and agree to the rental terms.",
     fSubmit: 'Request Reservation', fNote: "We'll call you within 1 hour to confirm and arrange delivery.",
-    priceTag: 'Exotic Pricing', priceH2: 'Pick Your Plan',
-    priceDesc: 'Transparent, all-in pricing — insurance, mileage, and concierge terms clearly laid out before you book.',
-    tiers: [
-      { name: 'Daily', desc: 'Perfect for a single unforgettable day', unit: '/day', feats: ['125 miles/day included', 'Full insurance required at booking', 'Single-day minimum', 'Pickup or delivery available'] },
-      { name: 'Weekend', desc: 'Friday through Sunday', unit: '/weekend', feats: ['300 miles included', 'Complimentary delivery within 20mi', 'Priority vehicle selection', 'Dedicated concierge line'] },
-      { name: 'Weekly', desc: 'Maximum time behind the wheel', unit: '/week', feats: ['Unlimited local mileage', 'One complimentary vehicle swap', 'Dedicated concierge', 'Chauffeur add-on available'] },
+    faqTag: 'FAQ', faqH2: 'Frequently Asked Questions',
+    faqDesc: 'Everything you need to know before reserving your luxury or exotic rental.',
+    faqItems: [
+      { q: "What's included in the rental rate?", a: "Every rental includes 125 miles per day as a standard allowance. Need more for your trip? Let us know when you book and we'll work out a mileage plan that fits." },
+      { q: 'Do I need my own insurance?', a: 'Yes — a valid personal auto insurance policy with adequate liability coverage is required for every exotic and luxury rental. Our team confirms your coverage meets our minimum requirements before delivery.' },
+      { q: 'Is a security deposit required?', a: 'A refundable security deposit is required on every reservation. The exact amount depends on which vehicle you choose and is confirmed when you book.' },
+      { q: 'Can you deliver the car to me?', a: "Absolutely. We offer white-glove delivery and pickup anywhere in the region — to your home, hotel, venue, or the airport. Delivery details are arranged once you submit a reservation request." },
+      { q: 'Is a chauffeur available?', a: "Yes. Chauffeur service is available as an add-on for select vehicles — a great option for weddings, events, or nights out where you'd rather not drive." },
+      { q: "What's the minimum age and license requirement?", a: "Renters must be at least 25 years old with a valid driver's license in good standing. Some vehicles may carry additional requirements, which we'll confirm at booking." },
     ],
-    popular: 'Most Popular', getStarted: 'Get Started',
-    priceNote: 'All prices shown are starting rates. Final price depends on vehicle selected. Refundable security deposit required.',
     revTag: 'Our Clients', revH2: 'What Drivers Say',
     reviews: [
       { q: '"Rented the Huracán for my fortieth birthday — the delivery-to-my-door service made it feel like a five-star experience from the first minute."', name: 'Anthony V.', role: 'Weekend Rental' },
@@ -44,13 +45,13 @@ const exoticsI18n = {
       { q: "\"I've rented supercars from three different companies in New England — Echelon's condition and turnaround are the best by far.\"", name: 'Marco D.', role: 'Repeat Client' },
     ],
     footerBlurb: 'Luxury and exotic car rentals with white-glove delivery, part of the Echelon Rental Group family.',
-    footerFleetH: 'Fleet', footerFleet: ['Supercars', 'Ultra-Luxury SUVs', 'View Pricing'],
+    footerFleetH: 'Fleet', footerFleet: ['Supercars', 'Ultra-Luxury SUVs', 'FAQ'],
     footerBrandsH: 'Echelon Brands', footerContactH: 'Contact', footerHours: 'Mon–Sun: 7am – 9pm',
     footerCopy: '© 2026 Echelon Rental Group. All rights reserved.',
     toastTitle: 'Reservation Requested!', toastBody: "We'll call you within 1 hour to confirm.",
   },
   es: {
-    navFleet: 'Flota', navReserve: 'Reservar', navPricing: 'Precios', navReviews: 'Reseñas', navBtn: 'Reservar Ahora',
+    navFleet: 'Flota', navReserve: 'Reservar', navFaq: 'FAQ', navReviews: 'Reseñas', navBtn: 'Reservar Ahora',
     heroBadge: 'Flota Exótica y de Lujo · Con Cita o Reserva Instantánea',
     heroTitle: 'Autos Extraordinarios,<br /><span class="accent">Viajes Inolvidables.</span>',
     heroSubtitle: 'Echelon Exotics pone a tu alcance <strong>Lamborghini, Ferrari, Porsche y Rolls-Royce</strong> — por hora, por día o el fin de semana. Entrega de lujo disponible en toda la región.',
@@ -71,15 +72,16 @@ const exoticsI18n = {
     fNotSure: 'Aún No Estoy Seguro',
     fCheck: 'Confirmo que tengo una licencia de conducir válida y acepto los términos de alquiler.',
     fSubmit: 'Solicitar Reservación', fNote: 'Te llamaremos dentro de 1 hora para confirmar y coordinar la entrega.',
-    priceTag: 'Precios Exóticos', priceH2: 'Elige Tu Plan',
-    priceDesc: 'Precios transparentes y todo incluido — seguro, millaje y términos de conserjería claramente detallados antes de reservar.',
-    tiers: [
-      { name: 'Diario', desc: 'Perfecto para un día inolvidable', unit: '/día', feats: ['125 millas/día incluidas', 'Seguro completo requerido al reservar', 'Mínimo de un día', 'Recogida o entrega disponible'] },
-      { name: 'Fin de Semana', desc: 'De viernes a domingo', unit: '/fin de semana', feats: ['300 millas incluidas', 'Entrega gratuita dentro de 20 millas', 'Selección prioritaria de vehículo', 'Línea de conserjería dedicada'] },
-      { name: 'Semanal', desc: 'El máximo tiempo al volante', unit: '/semana', feats: ['Millaje local ilimitado', 'Un cambio de vehículo de cortesía', 'Conserjería dedicada', 'Chofer disponible como extra'] },
+    faqTag: 'FAQ', faqH2: 'Preguntas Frecuentes',
+    faqDesc: 'Todo lo que necesitas saber antes de reservar tu auto de lujo o exótico.',
+    faqItems: [
+      { q: '¿Qué incluye la tarifa de alquiler?', a: 'Cada alquiler incluye 125 millas por día como estándar. ¿Necesitas más para tu viaje? Avísanos al reservar y ajustaremos un plan de millaje que se adapte a ti.' },
+      { q: '¿Necesito mi propio seguro?', a: 'Sí — se requiere una póliza de seguro de auto personal con cobertura de responsabilidad civil adecuada para cada alquiler exótico y de lujo. Nuestro equipo confirma que tu cobertura cumple con nuestros requisitos mínimos antes de la entrega.' },
+      { q: '¿Se requiere un depósito de seguridad?', a: 'Se requiere un depósito de seguridad reembolsable en cada reservación. El monto exacto depende del vehículo que elijas y se confirma al reservar.' },
+      { q: '¿Pueden entregarme el auto?', a: 'Claro que sí. Ofrecemos entrega y recogida de lujo en toda la región — a tu casa, hotel, evento o el aeropuerto. Los detalles de entrega se coordinan una vez que envíes tu solicitud de reservación.' },
+      { q: '¿Hay chofer disponible?', a: 'Sí. El servicio de chofer está disponible como complemento para vehículos seleccionados — ideal para bodas, eventos o noches en las que prefieras no conducir.' },
+      { q: '¿Cuál es la edad mínima y el requisito de licencia?', a: 'Los arrendatarios deben tener al menos 25 años y una licencia de conducir válida y en regla. Algunos vehículos pueden tener requisitos adicionales, que confirmaremos al reservar.' },
     ],
-    popular: 'Más Popular', getStarted: 'Comenzar',
-    priceNote: 'Los precios mostrados son tarifas iniciales. El precio final depende del vehículo seleccionado. Se requiere depósito de seguridad reembolsable.',
     revTag: 'Nuestros Clientes', revH2: 'Lo Que Dicen los Conductores',
     reviews: [
       { q: '"Alquilé el Huracán para mi cumpleaños número cuarenta — el servicio de entrega a domicilio lo hizo sentir como una experiencia de cinco estrellas desde el primer minuto."', name: 'Anthony V.', role: 'Alquiler de Fin de Semana' },
@@ -87,13 +89,13 @@ const exoticsI18n = {
       { q: 'He alquilado superdeportivos de tres compañías diferentes en Nueva Inglaterra — la condición y rapidez de Echelon son las mejores por mucho.', name: 'Marco D.', role: 'Cliente Recurrente' },
     ],
     footerBlurb: 'Alquiler de autos exóticos y de lujo con entrega de conserjería, parte de la familia Echelon Rental Group.',
-    footerFleetH: 'Flota', footerFleet: ['Superdeportivos', 'SUVs Ultra de Lujo', 'Ver Precios'],
+    footerFleetH: 'Flota', footerFleet: ['Superdeportivos', 'SUVs Ultra de Lujo', 'FAQ'],
     footerBrandsH: 'Marcas Echelon', footerContactH: 'Contacto', footerHours: 'Lun–Dom: 7am – 9pm',
     footerCopy: '© 2026 Echelon Rental Group. Todos los derechos reservados.',
     toastTitle: '¡Reservación Solicitada!', toastBody: 'Te llamaremos dentro de 1 hora para confirmar.',
   },
   pt: {
-    navFleet: 'Frota', navReserve: 'Reservar', navPricing: 'Preços', navReviews: 'Avaliações', navBtn: 'Reservar Agora',
+    navFleet: 'Frota', navReserve: 'Reservar', navFaq: 'FAQ', navReviews: 'Avaliações', navBtn: 'Reservar Agora',
     heroBadge: 'Frota Exótica e de Luxo · Com Agendamento ou Reserva Instantânea',
     heroTitle: 'Carros Extraordinários,<br /><span class="accent">Passeios Inesquecíveis.</span>',
     heroSubtitle: 'A Echelon Exotics coloca ao seu alcance <strong>Lamborghini, Ferrari, Porsche e Rolls-Royce</strong> — por hora, por dia ou no fim de semana. Entrega de luxo disponível em toda a região.',
@@ -114,15 +116,16 @@ const exoticsI18n = {
     fNotSure: 'Ainda Não Sei',
     fCheck: 'Confirmo que tenho habilitação válida e concordo com os termos do aluguel.',
     fSubmit: 'Solicitar Reserva', fNote: 'Ligaremos em até 1 hora para confirmar e organizar a entrega.',
-    priceTag: 'Preços Exóticos', priceH2: 'Escolha Seu Plano',
-    priceDesc: 'Preços transparentes e completos — seguro, quilometragem e termos de concierge claramente detalhados antes de reservar.',
-    tiers: [
-      { name: 'Diário', desc: 'Perfeito para um dia inesquecível', unit: '/dia', feats: ['125 milhas/dia incluídas', 'Seguro completo exigido na reserva', 'Mínimo de um dia', 'Retirada ou entrega disponível'] },
-      { name: 'Fim de Semana', desc: 'De sexta a domingo', unit: '/fim de semana', feats: ['300 milhas incluídas', 'Entrega gratuita em até 20 milhas', 'Seleção prioritária de veículo', 'Linha de concierge dedicada'] },
-      { name: 'Semanal', desc: 'O máximo de tempo ao volante', unit: '/semana', feats: ['Quilometragem local ilimitada', 'Uma troca de veículo cortesia', 'Concierge dedicado', 'Motorista disponível como adicional'] },
+    faqTag: 'FAQ', faqH2: 'Perguntas Frequentes',
+    faqDesc: 'Tudo o que você precisa saber antes de reservar seu carro de luxo ou exótico.',
+    faqItems: [
+      { q: 'O que está incluído na tarifa de aluguel?', a: 'Cada aluguel inclui 125 milhas por dia como padrão. Precisa de mais para sua viagem? Avise-nos ao reservar e ajustaremos um plano de quilometragem que funcione para você.' },
+      { q: 'Preciso do meu próprio seguro?', a: 'Sim — é necessária uma apólice de seguro de automóvel pessoal com cobertura de responsabilidade adequada para todo aluguel exótico e de luxo. Nossa equipe confirma que sua cobertura atende aos requisitos mínimos antes da entrega.' },
+      { q: 'É necessário um depósito de segurança?', a: 'É exigido um depósito de segurança reembolsável em todas as reservas. O valor exato depende do veículo escolhido e é confirmado no momento da reserva.' },
+      { q: 'Vocês entregam o carro no meu endereço?', a: 'Com certeza. Oferecemos entrega e retirada de luxo em toda a região — na sua casa, hotel, evento ou aeroporto. Os detalhes da entrega são combinados assim que você enviar sua solicitação de reserva.' },
+      { q: 'Há motorista disponível?', a: 'Sim. O serviço de motorista está disponível como adicional para veículos selecionados — ótimo para casamentos, eventos ou noites em que você prefere não dirigir.' },
+      { q: 'Qual é a idade mínima e o requisito de habilitação?', a: 'Os locatários devem ter pelo menos 25 anos e uma habilitação válida e em dia. Alguns veículos podem ter requisitos adicionais, que confirmaremos na reserva.' },
     ],
-    popular: 'Mais Popular', getStarted: 'Começar',
-    priceNote: 'Os preços exibidos são tarifas iniciais. O preço final depende do veículo selecionado. Depósito de segurança reembolsável é exigido.',
     revTag: 'Nossos Clientes', revH2: 'O Que Dizem os Motoristas',
     reviews: [
       { q: '"Aluguei o Huracán para o meu aniversário de quarenta anos — o serviço de entrega na porta fez parecer uma experiência cinco estrelas desde o primeiro minuto."', name: 'Anthony V.', role: 'Aluguel de Fim de Semana' },
@@ -130,7 +133,7 @@ const exoticsI18n = {
       { q: 'Já aluguei superesportivos de três empresas diferentes na Nova Inglaterra — a condição e agilidade da Echelon são de longe as melhores.', name: 'Marco D.', role: 'Cliente Recorrente' },
     ],
     footerBlurb: 'Aluguel de carros exóticos e de luxo com entrega concierge, parte da família Echelon Rental Group.',
-    footerFleetH: 'Frota', footerFleet: ['Superesportivos', 'SUVs Ultra de Luxo', 'Ver Preços'],
+    footerFleetH: 'Frota', footerFleet: ['Superesportivos', 'SUVs Ultra de Luxo', 'FAQ'],
     footerBrandsH: 'Marcas Echelon', footerContactH: 'Contato', footerHours: 'Seg–Dom: 7h – 21h',
     footerCopy: '© 2026 Echelon Rental Group. Todos os direitos reservados.',
     toastTitle: 'Reserva Solicitada!', toastBody: 'Ligaremos em até 1 hora para confirmar.',
@@ -153,7 +156,7 @@ function applyLang(lang) {
   document.querySelectorAll('.lang-option').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
 
   const navLinks = $$('.nav-links a, .mobile-menu > a:not(.btn)');
-  const navLabels = [t.navFleet, t.navReserve, t.navPricing, t.navReviews];
+  const navLabels = [t.navFleet, t.navReserve, t.navFaq, t.navReviews];
   document.querySelectorAll('.nav-links li a').forEach((el, i) => { if (navLabels[i]) el.textContent = navLabels[i]; });
   document.querySelectorAll('.mobile-menu > a:not(.btn)').forEach((el, i) => { if (navLabels[i]) el.textContent = navLabels[i]; });
   document.querySelectorAll('.nav-actions .btn-primary, .mobile-menu .btn-primary').forEach(el => el.textContent = t.navBtn);
@@ -205,24 +208,16 @@ function applyLang(lang) {
   setText('#schedule button[type=submit]', t.fSubmit);
   setText('#schedule .modal-note', t.fNote);
 
-  setText('#pricing .section-tag', t.priceTag);
-  setText('#pricing .section-header h2', t.priceH2);
-  setText('#pricing .section-header p', t.priceDesc);
-  const priceCards = $$('.pricing-card');
-  priceCards.forEach((card, i) => {
-    const tier = t.tiers[i];
-    if (!tier) return;
-    card.querySelector('.pricing-card-header h3').textContent = tier.name;
-    card.querySelector('.pricing-card-header p').textContent = tier.desc;
-    card.querySelector('.p-unit').textContent = tier.unit;
-    const feats = card.querySelectorAll('.pricing-features li');
-    tier.feats.forEach((txt, j) => { if (feats[j]) feats[j].textContent = '✓ ' + txt; });
-    const btn = card.querySelector('.btn');
-    if (btn) btn.textContent = t.getStarted;
-    const tag = card.querySelector('.pricing-popular-tag');
-    if (tag) tag.textContent = t.popular;
+  setText('#faq .section-tag', t.faqTag);
+  setText('#faq .section-header h2', t.faqH2);
+  setText('#faq .section-header p', t.faqDesc);
+  const faqCards = $$('.faq-item');
+  faqCards.forEach((card, i) => {
+    const item = t.faqItems[i];
+    if (!item) return;
+    card.querySelector('summary').textContent = item.q;
+    card.querySelector('.faq-answer').textContent = item.a;
   });
-  setText('.pricing-note', t.priceNote);
 
   setText('#reviews .section-tag', t.revTag);
   setText('#reviews .section-header h2', t.revH2);
