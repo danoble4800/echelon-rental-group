@@ -692,6 +692,51 @@ ul { list-style: none; }
 .filter-btn.active { background: var(--black); border-color: var(--black); color: var(--white); }
 .car-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 
+/* ── Fleet carousel (3 cards visible, scroll one at a time) ── */
+.fleet-carousel { display: flex; align-items: center; gap: 12px; }
+.fleet-carousel-track {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 4px 2px;
+}
+.fleet-carousel-track::-webkit-scrollbar { display: none; }
+.fleet-carousel-track .car-card {
+  flex: 0 0 calc((100% - 40px) / 3);
+  scroll-snap-align: start;
+}
+.fleet-carousel-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  color: var(--white);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, opacity 0.2s;
+}
+.fleet-carousel-btn svg { width: 18px; height: 18px; }
+.fleet-carousel-btn:hover { background: var(--brand-accent); border-color: var(--brand-accent); color: var(--black); }
+.fleet-carousel-btn:disabled { opacity: 0.3; cursor: default; pointer-events: none; }
+@media (max-width: 1024px) {
+  .fleet-carousel-track .car-card { flex-basis: calc((100% - 20px) / 2); }
+}
+@media (max-width: 768px) {
+  .fleet-carousel-track .car-card { flex-basis: 100%; }
+  .fleet-carousel-btn { width: 38px; height: 38px; }
+  .fleet-carousel-btn svg { width: 16px; height: 16px; }
+}
+
 /* Car Card */
 .car-card {
   background: var(--white);

@@ -175,12 +175,16 @@
   <section class="fleet" id="inventory">
     <div class="section-inner">
       <div class="section-header">
-        <div class="section-tag">Exotic Fleet</div>
-        <h2>Available Right Now</h2>
+        <div class="section-tag">Featured Fleet</div>
+        <h2>The Cars Everyone's Asking For</h2>
         <p>Every car is detailed, inspected, and delivered exactly as pictured — no surprises, no substitutions without your approval.</p>
       </div>
 
-      <div class="car-grid inventory-grid">
+      <div class="fleet-carousel">
+        <button class="fleet-carousel-btn prev" aria-label="Show previous vehicles">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l-8 8 8 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="fleet-carousel-track">
         <div class="car-card inventory-card">
           <div class="car-card-img" style="background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.65) 100%), url('images/fleet/lamborghini-huracan.jpg') center 42% / cover no-repeat;">
             <div class="car-available">Available</div>
@@ -326,6 +330,10 @@
             <button class="btn btn-book" onclick="selectForSchedule('Lamborghini Urus')">Reserve This Car</button>
           </div>
         </div>
+        </div>
+        <button class="fleet-carousel-btn next" aria-label="Show more vehicles">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
       </div>
     </div>
   </section>
@@ -531,6 +539,7 @@
   <script src="exotics-i18n.js"></script>
   <script src="brand-pages.js"></script>
   <script src="exotics-form.js"></script>
+  <script src="fleet-carousel.js"></script>
   <script src="cursor-ring.js"></script>
 </body>
 </html>

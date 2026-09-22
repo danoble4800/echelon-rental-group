@@ -77,6 +77,11 @@ const brandObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
 document.querySelectorAll('.inventory-card, .pricing-card, .testimonial-card, .faq-item').forEach(el => {
+  // Cards inside a horizontally-scrolling carousel start clipped out of
+  // view by the track's overflow, so they never register as intersecting
+  // the viewport and would stay invisible forever — skip the reveal
+  // animation for those and just show them right away.
+  if (el.closest('.fleet-carousel-track')) return;
   el.style.opacity = '0';
   el.style.transform = 'translateY(24px)';
   el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
