@@ -1,5 +1,6 @@
 {
-  "rewrites": [
-    { "source": "/", "destination": "/exotics.html" }
+  "routes": [
+    { "src": "^/$", "dest": "/exotics.html" },
+    { "handle": "filesystem" }
   ]
 }
