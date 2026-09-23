@@ -121,6 +121,7 @@ CARS = [
         "price": "1,500",
         "image": "images/fleet/lamborghini-urus.jpg",
         "image_pos": "45%",
+        "gallery": ["images/fleet/lamborghini-urus.jpg"] + [f"images/fleet/lamborghini-urus-{i}.webp" for i in range(2, 4)],
         "deposit": "$3,500",
         "hp": "641 hp",
         "torque": "627 lb-ft",
