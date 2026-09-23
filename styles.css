@@ -692,13 +692,16 @@ ul { list-style: none; }
 .filter-btn.active { background: var(--black); border-color: var(--black); color: var(--white); }
 .car-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 
-/* ── Fleet carousel (3 cards visible, scroll one at a time) ── */
-.fleet-carousel { display: flex; align-items: center; gap: 12px; }
+/* ── Fleet carousel (one large car at a time) ── */
+/* Arrows float on top of the image (not beside it) so the photo keeps
+   the section's full width at every screen size — flanking them in a
+   row ate into the width badly on mobile, squeezing the image and
+   clipping the price text. */
+.fleet-carousel { position: relative; }
 .fleet-carousel-track {
   display: flex;
   gap: 20px;
-  flex: 1;
-  min-width: 0;
+  width: 100%;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
@@ -708,7 +711,7 @@ ul { list-style: none; }
 }
 .fleet-carousel-track::-webkit-scrollbar { display: none; }
 .fleet-carousel-track .car-card {
-  flex: 0 0 calc((100% - 40px) / 3);
+  flex: 0 0 100%;
   scroll-snap-align: start;
 }
 /* Image-forward layout: the photo fills the whole card, details float
@@ -722,6 +725,13 @@ ul { list-style: none; }
 .fleet-page-grid .car-card {
   position: relative;
   aspect-ratio: 1 / 1;
+}
+/* The carousel shows one big car at a time instead of a 1:1 grid tile —
+   an explicit viewport-relative height reads as "almost full screen"
+   without depending on the track's (now much wider) flex-basis width. */
+.fleet-carousel-track .car-card {
+  aspect-ratio: auto;
+  height: min(78vh, 720px);
 }
 .fleet-carousel-track .car-card-img,
 .explore-grid .car-card-img,
@@ -765,29 +775,45 @@ ul { list-style: none; }
 .explore-grid .car-card .btn-book,
 .fleet-page-grid .car-card .btn-book { position: relative; z-index: 2; }
 .fleet-carousel-btn {
-  flex-shrink: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: var(--dark-card);
-  border: 1px solid var(--dark-border);
+  background: rgba(10,10,10,0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.18);
   color: var(--white);
   cursor: pointer;
   transition: background 0.2s, border-color 0.2s, color 0.2s, opacity 0.2s;
 }
-.fleet-carousel-btn svg { width: 18px; height: 18px; }
+.fleet-carousel-btn.prev { left: 16px; }
+.fleet-carousel-btn.next { right: 16px; }
+.fleet-carousel-btn svg { width: 20px; height: 20px; }
 .fleet-carousel-btn:hover { background: var(--brand-accent); border-color: var(--brand-accent); color: var(--black); }
 .fleet-carousel-btn:disabled { opacity: 0.3; cursor: default; pointer-events: none; }
-@media (max-width: 1024px) {
-  .fleet-carousel-track .car-card { flex-basis: calc((100% - 20px) / 2); }
-}
+
+/* Bigger overlay type to match the much larger single-car showcase */
+.fleet-carousel-track .car-type-badge { font-size: 0.78rem; padding: 5px 12px; }
+.fleet-carousel-track .car-name { font-size: clamp(1.8rem, 3.4vw, 2.4rem); }
+.fleet-carousel-track .car-year { font-size: 1rem; }
+.fleet-carousel-track .car-price { font-size: clamp(1.9rem, 3vw, 2.4rem); }
+.fleet-carousel-track .car-price-unit { font-size: 1rem; }
+.fleet-carousel-track .car-specs span { font-size: 0.85rem; padding: 6px 12px; }
+.fleet-carousel-track .car-card-body { padding: clamp(20px, 4vw, 44px); }
+.fleet-carousel-track .btn-book { max-width: 320px; padding: 14px; font-size: 0.95rem; }
+
 @media (max-width: 768px) {
-  .fleet-carousel-track .car-card { flex-basis: 100%; aspect-ratio: 4 / 5; }
-  .fleet-carousel-btn { width: 38px; height: 38px; }
-  .fleet-carousel-btn svg { width: 16px; height: 16px; }
+  .fleet-carousel-track .car-card { height: min(60vh, 520px); }
+  .fleet-carousel-btn { width: 42px; height: 42px; }
+  .fleet-carousel-btn svg { width: 17px; height: 17px; }
+  .fleet-carousel-track .btn-book { max-width: none; }
 }
 
 /* Car Card */
@@ -1177,6 +1203,47 @@ ul { list-style: none; }
 
 .explore-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 .explore-cta { text-align: center; margin-top: 36px; }
+
+/* ── "Why Echelon" reasons (replaces the on-page reserve form) ── */
+.reason-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+.reason-item {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+}
+.reason-icon { display: block; font-size: 2rem; margin-bottom: 14px; }
+.reason-title { font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.reason-desc { font-size: 0.88rem; color: var(--dark-text-2); line-height: 1.6; }
+
+/* ── Reserve page: form + direct-contact panel ── */
+.reserve-layout { display: grid; grid-template-columns: 1fr 340px; gap: 32px; align-items: start; }
+.reserve-layout .modal-form { max-width: none; margin: 0; }
+.reserve-contact-panel {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+}
+.reserve-contact-panel h3 { font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.reserve-contact-panel > p { font-size: 0.85rem; color: var(--dark-text-2); line-height: 1.6; margin-bottom: 24px; }
+.reserve-contact-item { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+.reserve-contact-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--dark-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+.reserve-contact-label { display: block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dark-text-3); margin-bottom: 2px; }
+.reserve-contact-value { display: block; font-size: 0.92rem; font-weight: 700; color: var(--white); }
+a.reserve-contact-value:hover { color: var(--brand-accent-light); }
+.reserve-contact-panel .btn { margin-top: 8px; }
 
 /* ── Full fleet listing page: toolbar (filter + sort) and grid ── */
 .fleet-toolbar {
@@ -1630,6 +1697,7 @@ body.theme-exotics .filter-btn.active { background: var(--white); border-color: 
   .footer-inner { grid-template-columns: 1fr; gap: 28px; }
   .form-row { grid-template-columns: 1fr; }
   .section-inner { padding: 64px 20px; }
+  .reserve-layout { grid-template-columns: 1fr; }
 }
 @media (max-width: 480px) {
   .hero-title { font-size: 2.2rem; }

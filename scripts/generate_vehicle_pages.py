@@ -256,12 +256,12 @@ NAV_TEMPLATE = """  <!-- CUSTOM CURSOR RING -->
       </a>
       <ul class="nav-links">
         <li><a href="fleet.html">Fleet</a></li>
-        <li><a href="exotics.html#schedule">Reserve</a></li>
+        <li><a href="reserve.html">Reserve</a></li>
         <li><a href="exotics.html#faq">FAQ</a></li>
         <li><a href="exotics.html#reviews">Reviews</a></li>
       </ul>
       <div class="nav-actions">
-        <a href="tel:+15084442276" class="nav-phone">📞 508-444-2276</a>
+        <a href="tel:+15084442276" class="nav-social" aria-label="Call Echelon">📞</a>
         <a href="https://www.instagram.com/echelonrentalgroup/" class="nav-social" target="_blank" rel="noopener noreferrer" aria-label="Follow Echelon on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.3 2.3.4.6.2 1 .5 1.4 1 .4.4.7.8 1 1.4.2.4.4 1.1.4 2.3.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.9-.4 2.3-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4 1-.4.2-1.1.4-2.3.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.3-2.3-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1.1-.4-2.3-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.3-1.9.4-2.3.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-1 .4-.2 1.1-.4 2.3-.4 1.3-.1 1.7-.1 4.9-.1M12 0C8.7 0 8.3 0 7 .1c-1.3.1-2.2.3-3 .6-.8.3-1.5.7-2.2 1.4C1.1 2.8.7 3.5.4 4.3c-.3.8-.5 1.7-.6 3C-.1 8.3 0 8.7 0 12s0 3.7.1 5c.1 1.3.3 2.2.6 3 .3.8.7 1.5 1.4 2.2.7.7 1.4 1.1 2.2 1.4.8.3 1.7.5 3 .6C8.3 24 8.7 24 12 24s3.7 0 5-.1c1.3-.1 2.2-.3 3-.6.8-.3 1.5-.7 2.2-1.4.7-.7 1.1-1.4 1.4-2.2.3-.8.5-1.7.6-3 .1-1.3.1-1.7.1-5s0-3.7-.1-5c-.1-1.3-.3-2.2-.6-3-.3-.8-.7-1.5-1.4-2.2C21.2 1.1 20.5.7 19.7.4c-.8-.3-1.7-.5-3-.6C15.7 0 15.3 0 12 0z"/><path d="M12 5.8A6.2 6.2 0 1 0 18.2 12 6.2 6.2 0 0 0 12 5.8zm0 10.2A4 4 0 1 1 16 12a4 4 0 0 1-4 4z"/><circle cx="18.4" cy="5.6" r="1.4"/></svg></a>
         <div class="brand-switcher" id="brandSwitcher">
           <button class="brand-btn" id="brandBtn" aria-label="Switch Echelon brand">
@@ -299,7 +299,7 @@ NAV_TEMPLATE = """  <!-- CUSTOM CURSOR RING -->
     </div>
     <div class="mobile-menu" id="mobileMenu">
       <a href="fleet.html">Fleet</a>
-      <a href="exotics.html#schedule">Reserve</a>
+      <a href="reserve.html">Reserve</a>
       <a href="exotics.html#faq">FAQ</a>
       <a href="exotics.html#reviews">Reviews</a>
       <a href="{reserve_href}" class="btn btn-primary">Reserve Now</a>
@@ -425,7 +425,7 @@ def build_page(car):
     )
     vehicle_q = quote(car["name"])
 
-    nav = NAV_TEMPLATE.format(reserve_href=f"exotics.html?vehicle={vehicle_q}#schedule")
+    nav = NAV_TEMPLATE.format(reserve_href=f"reserve.html?vehicle={vehicle_q}")
     footer = FOOTER_TEMPLATE
 
     return f"""<!DOCTYPE html>
@@ -473,7 +473,7 @@ def build_page(car):
             <div class="quick-fact" style="grid-column: 1 / -1;"><span class="qf-label">Delivery</span><span class="qf-value">Complimentary within 10 miles — additional mileage available on request</span></div>
           </div>
           <div class="vehicle-cta-row">
-            <a href="exotics.html?vehicle={vehicle_q}#schedule" class="btn btn-primary btn-lg">Book Now</a>
+            <a href="reserve.html?vehicle={vehicle_q}" class="btn btn-primary btn-lg">Book Now</a>
             <a href="tel:+15084442276" class="btn btn-outline-light btn-lg">Call Us</a>
           </div>
         </div>
@@ -575,7 +575,7 @@ def build_fleet_page():
 
     cards = "\n".join(mini_card_html(c) for c in CARS)
 
-    nav = NAV_TEMPLATE.format(reserve_href="exotics.html#schedule")
+    nav = NAV_TEMPLATE.format(reserve_href="reserve.html")
     footer = FOOTER_TEMPLATE
 
     return f"""<!DOCTYPE html>
@@ -638,6 +638,135 @@ def build_fleet_page():
 """
 
 
+def build_reserve_page():
+    vehicle_options = "\n".join(f"            <option>{c['name']}</option>" for c in CARS)
+
+    nav = NAV_TEMPLATE.format(reserve_href="reserve.html")
+    footer = FOOTER_TEMPLATE
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reserve Your Car | Echelon Exotics</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="1024x1024" href="/app-icon-1024.png" />
+  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png" />
+
+  <meta property="og:type"        content="website" />
+  <meta property="og:site_name"   content="Echelon Rental Group" />
+  <meta property="og:title"       content="Reserve Your Car | Echelon Exotics" />
+  <meta property="og:description" content="Schedule your Echelon Exotics rental — tell us what you'd like to drive and when, or call us directly." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body class="theme-exotics">
+
+{nav}
+  <!-- ───────────── RESERVE ───────────── -->
+  <section class="dark-section" id="schedule" style="padding-top: calc(var(--nav-h) + 60px);">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-tag">Reserve</div>
+        <h2>Schedule Your Drive</h2>
+        <p>Tell us what you'd like to drive and when &mdash; we'll confirm availability and delivery details within the hour.</p>
+      </div>
+
+      <div class="reserve-layout">
+        <form class="modal-form" style="background:var(--dark-card);border:1px solid var(--dark-border);border-radius:var(--radius-lg);padding:32px;" onsubmit="submitInquiry(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" name="firstName" placeholder="John" required />
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" name="lastName" placeholder="Smith" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" name="phone" placeholder="(555) 000-0000" required />
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" name="email" placeholder="you@example.com" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Pick-Up Date</label>
+              <input type="date" name="pickupDate" required />
+            </div>
+            <div class="form-group">
+              <label>Return Date</label>
+              <input type="date" name="returnDate" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Vehicle of Interest</label>
+            <select id="interestField" name="vehicleInterest">
+{vehicle_options}
+            <option>Not Sure Yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Delivery Location <span style="font-weight:400;color:var(--dark-text-3);">(optional &mdash; concierge delivery)</span></label>
+            <input type="text" name="deliveryLocation" placeholder="Address, hotel, or venue" />
+          </div>
+          <div class="form-group checkbox-group">
+            <label class="checkbox-label" style="color:var(--dark-text-2);">
+              <input type="checkbox" required />
+              I confirm I have a valid driver's license and agree to the rental terms.
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">Request Reservation</button>
+          <p class="modal-note" style="color:var(--dark-text-3);">We'll call you within 1 hour to confirm and arrange delivery.</p>
+        </form>
+
+        <div class="reserve-contact-panel">
+          <h3>Prefer to Talk It Through?</h3>
+          <p>Our team is available around the clock to help you pick the right car.</p>
+          <div class="reserve-contact-item">
+            <span class="reserve-contact-icon">📞</span>
+            <div>
+              <span class="reserve-contact-label">Call or Text</span>
+              <a href="tel:+15084442276" class="reserve-contact-value">508-444-2276</a>
+            </div>
+          </div>
+          <div class="reserve-contact-item">
+            <span class="reserve-contact-icon">✉️</span>
+            <div>
+              <span class="reserve-contact-label">Email</span>
+              <a href="mailto:info@echelonrentalgroup.com" class="reserve-contact-value">info@echelonrentalgroup.com</a>
+            </div>
+          </div>
+          <div class="reserve-contact-item">
+            <span class="reserve-contact-icon">🕐</span>
+            <div>
+              <span class="reserve-contact-label">Hours</span>
+              <span class="reserve-contact-value">Open 24 Hours, 7 Days a Week</span>
+            </div>
+          </div>
+          <a href="https://www.instagram.com/echelonrentalgroup/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light btn-full">Message Us on Instagram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{footer}
+  <script src="brand-pages.js"></script>
+  <script src="exotics-form.js"></script>
+  <script src="cursor-ring.js"></script>
+</body>
+</html>
+"""
+
+
 def main():
     for car in CARS:
         html = build_page(car)
@@ -651,6 +780,12 @@ def main():
     with open(fleet_path, "w") as f:
         f.write(fleet_html)
     print("wrote", fleet_path)
+
+    reserve_html = build_reserve_page()
+    reserve_path = os.path.join(ROOT, "reserve.html")
+    with open(reserve_path, "w") as f:
+        f.write(reserve_html)
+    print("wrote", reserve_path)
 
 
 if __name__ == "__main__":

@@ -20,14 +20,16 @@ const exoticsI18n = {
     specs: ['630 hp · 0–60 in 2.9s · 2 Seats', '612 hp · 5 Seats · Chauffeur Available', '563 hp · 5 Seats · Chauffeur Available', '502 hp · 0–60 in 3.2s · 2 Seats', '577 hp · 5 Seats · AWD', '641 hp · 0–60 in 3.1s · 5 Seats'],
     pills: [['AWD', 'V10', 'Delivery'], ['Chauffeur Option', 'Delivery'], ['Chauffeur Option', 'Delivery'], ['RWD', 'Delivery'], ['AWD', 'Delivery'], ['AWD', 'Delivery']],
     perDay: '/day', reserveCar: 'Reserve This Car',
-    schedTag: 'Reserve', schedH2: 'Schedule Your Drive',
-    schedDesc: "Tell us what you'd like to drive and when — we'll confirm availability and delivery details within the hour.",
-    fFirst: 'First Name', fLast: 'Last Name', fPhone: 'Phone Number', fEmail: 'Email Address',
-    fPickup: 'Pick-Up Date', fReturn: 'Return Date', fInterest: 'Vehicle of Interest',
-    fDelivery: 'Delivery Location', fDeliveryHint: '(optional — concierge delivery)',
-    fNotSure: 'Not Sure Yet',
-    fCheck: "I confirm I have a valid driver's license and agree to the rental terms.",
-    fSubmit: 'Request Reservation', fNote: "We'll call you within 1 hour to confirm and arrange delivery.",
+    whyTag: 'Why Echelon', whyH2: 'The Echelon Difference',
+    whyDesc: "Locally owned, hand-picked, and built around getting you behind the wheel without the runaround.",
+    reasons: [
+      { title: 'Complimentary Delivery', desc: "We'll bring the car to you — the first 10 miles are on us, with delivery available further out on request." },
+      { title: 'Easy Booking', desc: 'Reserve online or call us directly — most requests are confirmed within the hour, no lengthy paperwork.' },
+      { title: 'Transparent Pricing', desc: "No hidden fees, no surprise charges at pickup. What you're quoted is what you pay." },
+      { title: 'Locally Owned & Established', desc: 'Echelon is Massachusetts-based and locally owned — not a faceless franchise. We know our clients and our cars.' },
+      { title: 'Curated Fleet', desc: 'Every vehicle is hand-selected, detailed, and inspected before it reaches you — no surprises, no substitutions.' },
+    ],
+    whyCta: 'Reserve Your Car',
     faqTag: 'FAQ', faqH2: 'Frequently Asked Questions',
     faqDesc: 'Everything you need to know before reserving your luxury or exotic rental.',
     faqItems: [
@@ -64,14 +66,16 @@ const exoticsI18n = {
     specs: ['630 hp · 0–100 en 2.9s · 2 Asientos', '612 hp · 5 Asientos · Chofer Disponible', '563 hp · 5 Asientos · Chofer Disponible', '502 hp · 0–100 en 3.2s · 2 Asientos', '577 hp · 5 Asientos · Tracción AWD', '641 hp · 0–100 en 3.1s · 5 Asientos'],
     pills: [['Tracción AWD', 'V10', 'Entrega'], ['Opción de Chofer', 'Entrega'], ['Opción de Chofer', 'Entrega'], ['Tracción Trasera', 'Entrega'], ['Tracción AWD', 'Entrega'], ['Tracción AWD', 'Entrega']],
     perDay: '/día', reserveCar: 'Reservar Este Auto',
-    schedTag: 'Reservar', schedH2: 'Programa Tu Viaje',
-    schedDesc: 'Cuéntanos qué te gustaría conducir y cuándo — confirmaremos disponibilidad y detalles de entrega dentro de la hora.',
-    fFirst: 'Nombre', fLast: 'Apellido', fPhone: 'Número de Teléfono', fEmail: 'Correo Electrónico',
-    fPickup: 'Fecha de Recogida', fReturn: 'Fecha de Devolución', fInterest: 'Vehículo de Interés',
-    fDelivery: 'Lugar de Entrega', fDeliveryHint: '(opcional — entrega de conserjería)',
-    fNotSure: 'Aún No Estoy Seguro',
-    fCheck: 'Confirmo que tengo una licencia de conducir válida y acepto los términos de alquiler.',
-    fSubmit: 'Solicitar Reservación', fNote: 'Te llamaremos dentro de 1 hora para confirmar y coordinar la entrega.',
+    whyTag: 'Por Qué Echelon', whyH2: 'La Diferencia Echelon',
+    whyDesc: 'De propiedad local, seleccionados a mano, y pensados para ponerte al volante sin complicaciones.',
+    reasons: [
+      { title: 'Entrega Sin Costo', desc: 'Te llevamos el auto — las primeras 10 millas corren por nuestra cuenta, con entrega disponible más lejos bajo solicitud.' },
+      { title: 'Reserva Fácil', desc: 'Reserva en línea o llámanos directamente — la mayoría de las solicitudes se confirman en menos de una hora, sin trámites largos.' },
+      { title: 'Precios Transparentes', desc: 'Sin cargos ocultos ni sorpresas al recoger el auto. Lo que se cotiza es lo que pagas.' },
+      { title: 'De Propiedad Local y Establecida', desc: 'Echelon tiene su base en Massachusetts y es de propiedad local — no una franquicia sin rostro. Conocemos a nuestros clientes y nuestros autos.' },
+      { title: 'Flota Curada', desc: 'Cada vehículo es seleccionado a mano, detallado e inspeccionado antes de llegar a ti — sin sorpresas ni sustituciones.' },
+    ],
+    whyCta: 'Reserva Tu Auto',
     faqTag: 'FAQ', faqH2: 'Preguntas Frecuentes',
     faqDesc: 'Todo lo que necesitas saber antes de reservar tu auto de lujo o exótico.',
     faqItems: [
@@ -108,14 +112,16 @@ const exoticsI18n = {
     specs: ['630 cv · 0–100 em 2.9s · 2 Lugares', '612 cv · 5 Lugares · Motorista Disponível', '563 cv · 5 Lugares · Motorista Disponível', '502 cv · 0–100 em 3.2s · 2 Lugares', '577 cv · 5 Lugares · Tração AWD', '641 cv · 0–100 em 3.1s · 5 Lugares'],
     pills: [['Tração AWD', 'V10', 'Entrega'], ['Opção de Motorista', 'Entrega'], ['Opção de Motorista', 'Entrega'], ['Tração Traseira', 'Entrega'], ['Tração AWD', 'Entrega'], ['Tração AWD', 'Entrega']],
     perDay: '/dia', reserveCar: 'Reservar Este Carro',
-    schedTag: 'Reservar', schedH2: 'Agende Seu Passeio',
-    schedDesc: 'Diga-nos o que gostaria de dirigir e quando — confirmaremos disponibilidade e detalhes de entrega dentro de uma hora.',
-    fFirst: 'Nome', fLast: 'Sobrenome', fPhone: 'Telefone', fEmail: 'E-mail',
-    fPickup: 'Data de Retirada', fReturn: 'Data de Devolução', fInterest: 'Veículo de Interesse',
-    fDelivery: 'Local de Entrega', fDeliveryHint: '(opcional — entrega com concierge)',
-    fNotSure: 'Ainda Não Sei',
-    fCheck: 'Confirmo que tenho habilitação válida e concordo com os termos do aluguel.',
-    fSubmit: 'Solicitar Reserva', fNote: 'Ligaremos em até 1 hora para confirmar e organizar a entrega.',
+    whyTag: 'Por Que Echelon', whyH2: 'A Diferença Echelon',
+    whyDesc: 'De propriedade local, selecionados à mão, e feitos para te colocar ao volante sem complicação.',
+    reasons: [
+      { title: 'Entrega Gratuita', desc: 'Levamos o carro até você — as primeiras 10 milhas são por nossa conta, com entrega mais distante disponível sob solicitação.' },
+      { title: 'Reserva Fácil', desc: 'Reserve online ou nos ligue diretamente — a maioria dos pedidos é confirmada em até uma hora, sem burocracia.' },
+      { title: 'Preços Transparentes', desc: 'Sem taxas ocultas, sem surpresas na retirada. O que é cotado é o que você paga.' },
+      { title: 'Propriedade Local e Estabelecida', desc: 'A Echelon é sediada em Massachusetts e de propriedade local — não uma franquia sem rosto. Conhecemos nossos clientes e nossos carros.' },
+      { title: 'Frota Curada', desc: 'Cada veículo é selecionado à mão, detalhado e inspecionado antes de chegar até você — sem surpresas, sem substituições.' },
+    ],
+    whyCta: 'Reserve Seu Carro',
     faqTag: 'FAQ', faqH2: 'Perguntas Frequentes',
     faqDesc: 'Tudo o que você precisa saber antes de reservar seu carro de luxo ou exótico.',
     faqItems: [
@@ -190,23 +196,19 @@ function applyLang(lang) {
     if (btnEl) btnEl.textContent = t.reserveCar;
   });
 
-  setText('#schedule .section-tag', t.schedTag);
-  setText('#schedule .section-header h2', t.schedH2);
-  setText('#schedule .section-header p', t.schedDesc);
-  const formLabels = $$('#schedule .form-group label');
-  const labelMap = [t.fFirst, t.fLast, t.fPhone, t.fEmail, t.fPickup, t.fReturn, t.fInterest, null];
-  formLabels.forEach((el, i) => {
-    if (i === labelMap.length - 1) return; // delivery label handled separately (has inline hint span)
-    if (labelMap[i]) el.textContent = labelMap[i];
+  setText('#why-echelon .section-tag', t.whyTag || 'Why Echelon');
+  setText('#why-echelon .section-header h2', t.whyH2 || 'The Echelon Difference');
+  setText('#why-echelon .section-header p', t.whyDesc);
+  const reasonCards = $$('#why-echelon .reason-item');
+  reasonCards.forEach((card, i) => {
+    const r = t.reasons && t.reasons[i];
+    if (!r) return;
+    const titleEl = card.querySelector('.reason-title');
+    const descEl = card.querySelector('.reason-desc');
+    if (titleEl) titleEl.textContent = r.title;
+    if (descEl) descEl.textContent = r.desc;
   });
-  const deliveryLabel = $('#schedule select[name=vehicleInterest]') && $('#schedule select[name=vehicleInterest]').closest('.form-group').nextElementSibling.querySelector('label');
-  if (deliveryLabel) deliveryLabel.innerHTML = `${t.fDelivery} <span style="font-weight:400;color:var(--dark-text-3);">${t.fDeliveryHint}</span>`;
-  const interestSel = $('#interestField');
-  if (interestSel) { [...interestSel.options].forEach((opt, i) => { if (i === interestSel.options.length - 1) opt.text = t.fNotSure; }); }
-  const checkLabel = $('#schedule .checkbox-label');
-  if (checkLabel) { const input = checkLabel.querySelector('input'); checkLabel.textContent = ''; if (input) checkLabel.appendChild(input); checkLabel.append(' ' + t.fCheck); }
-  setText('#schedule button[type=submit]', t.fSubmit);
-  setText('#schedule .modal-note', t.fNote);
+  setText('#why-echelon .explore-cta .btn', t.whyCta || 'Reserve Your Car');
 
   setText('#faq .section-tag', t.faqTag);
   setText('#faq .section-header h2', t.faqH2);
