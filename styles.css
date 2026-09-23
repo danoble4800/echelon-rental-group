@@ -1205,16 +1205,23 @@ ul { list-style: none; }
 .explore-cta { text-align: center; margin-top: 36px; }
 
 /* ── "Why Echelon" reasons (replaces the on-page reserve form) ── */
-.reason-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
-.reason-item {
-  background: var(--dark-card);
-  border: 1px solid var(--dark-border);
-  border-radius: var(--radius-lg);
-  padding: 28px 24px;
+.reason-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 44px 64px;
+  max-width: 960px;
+  margin: 0 auto;
 }
-.reason-icon { display: block; font-size: 2rem; margin-bottom: 14px; }
-.reason-title { font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
-.reason-desc { font-size: 0.88rem; color: var(--dark-text-2); line-height: 1.6; }
+.reason-item { display: grid; grid-template-columns: 44px 1fr; grid-template-rows: auto 1fr; column-gap: 20px; align-items: start; }
+#why-echelon .explore-cta { margin-top: 56px; }
+.reason-icon { grid-row: span 2; width: 36px; height: 36px; color: var(--gold); margin-top: 2px; }
+.reason-title { font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 6px; letter-spacing: 0.01em; }
+.reason-desc { font-size: 0.88rem; color: var(--dark-text-2); line-height: 1.6; margin: 0; }
+@media (max-width: 768px) {
+  .reason-list { grid-template-columns: 1fr; gap: 32px; }
+  .reason-item { grid-template-columns: 36px 1fr; column-gap: 16px; }
+  .reason-icon { width: 30px; height: 30px; }
+}
 
 /* ── Reserve page: form + direct-contact panel ── */
 .reserve-layout { display: grid; grid-template-columns: 1fr 340px; gap: 32px; align-items: start; }
