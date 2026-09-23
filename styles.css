@@ -1140,6 +1140,29 @@ ul { list-style: none; }
   overflow: hidden;
 }
 .vehicle-gallery-main .inv-icon { font-size: 6rem; }
+.vehicle-gallery { min-width: 0; }
+.vehicle-thumbs {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.vehicle-thumbs::-webkit-scrollbar { display: none; }
+.vehicle-thumb {
+  flex: 0 0 auto;
+  width: 72px;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--dark-border);
+  background: var(--dark-card) center / cover no-repeat;
+  opacity: 0.55;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.2s, border-color 0.2s;
+}
+.vehicle-thumb:hover { opacity: 0.85; }
+.vehicle-thumb.is-active { opacity: 1; border-color: var(--gold); }
 .vehicle-gallery-caption {
   position: absolute;
   bottom: 16px;

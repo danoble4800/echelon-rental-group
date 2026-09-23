@@ -77,8 +77,9 @@ CARS = [
         "type_badge": "Sports Car",
         "badge": "limited",
         "price": "1,500",
-        "image": None,
-        "image_pos": None,
+        "image": "images/fleet/porsche-gt3-1.webp",
+        "image_pos": "60%",
+        "gallery": [f"images/fleet/porsche-gt3-{i}.webp" for i in range(1, 8)],
         "deposit": "$5,000",
         "hp": "502 hp",
         "torque": "346 lb-ft",
@@ -360,7 +361,23 @@ FOOTER_TEMPLATE = """  <!-- ───────────── FOOTER ─�
 def gallery_html(car):
     if car["image"]:
         style = f"background: url('{car['image']}') center {car['image_pos']} / cover no-repeat;"
-        return f'<div class="vehicle-gallery-main" style="{style}"></div>'
+        main = f'<div class="vehicle-gallery-main" style="{style}"></div>'
+        photos = car.get("gallery") or []
+        if len(photos) < 2:
+            return main
+        items = []
+        for i, src in enumerate(photos):
+            active = " is-active" if i == 0 else ""
+            pos = car["image_pos"] if i == 0 else "50%"
+            items.append(
+                f'            <button type="button" class="vehicle-thumb{active}" data-src="{src}" data-pos="{pos}" '
+                f'style="background-image: url(&#39;{src}&#39;);" aria-label="Show photo {i + 1} of {len(photos)}"></button>'
+            )
+        thumbs = "\n".join(items)
+        return f"""{main}
+          <div class="vehicle-thumbs">
+{thumbs}
+          </div>"""
     return (
         '<div class="vehicle-gallery-main" style="background: linear-gradient(135deg, #101010 0%, #1c1c1c 50%, #0a0a0a 100%);">'
         '<span class="inv-icon">🚗</span>'
@@ -557,6 +574,7 @@ def build_page(car):
 
 {footer}
   <script src="brand-pages.js"></script>
+  <script src="vehicle-gallery.js"></script>
   <script src="cursor-ring.js"></script>
 </body>
 </html>
