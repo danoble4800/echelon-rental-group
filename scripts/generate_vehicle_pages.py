@@ -139,8 +139,9 @@ CARS = [
         "type_badge": "Supercar",
         "badge": "available",
         "price": "1,500",
-        "image": None,
-        "image_pos": None,
+        "image": "images/fleet/mclaren-570s-spider-1.webp",
+        "image_pos": "55%",
+        "gallery": [f"images/fleet/mclaren-570s-spider-{i}.webp" for i in range(1, 5)],
         "deposit": "$5,000",
         "hp": "562 hp",
         "torque": "443 lb-ft",
@@ -375,6 +376,13 @@ def gallery_html(car):
                 f'style="background-image: url(&#39;{src}&#39;);" aria-label="Show photo {i + 1} of {len(photos)}"></button>'
             )
         thumbs = "\n".join(items)
+        main = (
+            f'<div class="vehicle-gallery-main" style="{style}">'
+            '<button type="button" class="vehicle-gallery-nav prev" aria-label="Previous photo">&#8249;</button>'
+            '<button type="button" class="vehicle-gallery-nav next" aria-label="Next photo">&#8250;</button>'
+            f'<span class="vehicle-gallery-count">1 / {len(photos)}</span>'
+            "</div>"
+        )
         return f"""{main}
           <div class="vehicle-thumbs">
 {thumbs}
