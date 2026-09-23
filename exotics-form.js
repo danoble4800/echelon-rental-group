@@ -31,3 +31,13 @@ function submitInquiry(e) {
     .then(() => { showToast(); form.reset(); })
     .catch(() => { showToast(); form.reset(); });
 }
+
+/* A vehicle detail page's "Book Now" / "Reserve Now" links point here
+   as exotics.html?vehicle=<name>#schedule — pre-fill and jump to the
+   form the same way an in-page "Reserve This Car" click does. */
+(function () {
+  const vehicle = new URLSearchParams(window.location.search).get('vehicle');
+  if (vehicle && typeof selectForSchedule === 'function') {
+    selectForSchedule(vehicle);
+  }
+})();
