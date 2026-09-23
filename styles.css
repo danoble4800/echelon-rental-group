@@ -2202,7 +2202,7 @@ body.theme-experiences .author-avatar { background: linear-gradient(135deg, #B55
 .reels-track::-webkit-scrollbar { display: none; }
 .reel-card {
   position: relative;
-  flex: 0 0 calc((100% - 48px) / 4);
+  flex: 0 0 calc((100% - 64px) / 5);
   aspect-ratio: 9 / 16;
   border-radius: var(--radius-lg);
   overflow: hidden;
