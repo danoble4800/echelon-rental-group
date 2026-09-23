@@ -60,6 +60,7 @@ CARS = [
         "price": "1,600",
         "image": "images/fleet/rolls-royce-cullinan.jpg",
         "image_pos": "32%",
+        "gallery": ["images/fleet/rolls-royce-cullinan.jpg"] + [f"images/fleet/rolls-royce-cullinan-{i}.webp" for i in range(2, 5)],
         "deposit": "$5,000",
         "hp": "563 hp",
         "torque": "627 lb-ft",
