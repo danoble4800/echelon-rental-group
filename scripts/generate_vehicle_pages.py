@@ -224,8 +224,10 @@ CARS = [
         "type_badge": "Luxury SUV",
         "badge": "available",
         "price": "750",
-        "image": None,
-        "image_pos": None,
+        "image": "images/fleet/range-rover-p530-se-1.webp",
+        "image_pos": "60%",
+        "image_x": "15%",
+        "gallery": [f"images/fleet/range-rover-p530-se-{i}.webp" for i in range(1, 5)],
         "deposit": "$3,000",
         "hp": "523 hp",
         "torque": "553 lb-ft",
@@ -364,9 +366,14 @@ FOOTER_TEMPLATE = """  <!-- ───────────── FOOTER ─�
 """
 
 
+def cover_pos(car):
+    # "image_x" optionally shifts the cover photo sideways (default: centered).
+    return f"{car.get('image_x', 'center')} {car['image_pos']}"
+
+
 def gallery_html(car):
     if car["image"]:
-        style = f"background: url('{car['image']}') center {car['image_pos']} / cover no-repeat;"
+        style = f"background: url('{car['image']}') {cover_pos(car)} / cover no-repeat;"
         main = f'<div class="vehicle-gallery-main" style="{style}"></div>'
         photos = car.get("gallery") or []
         if len(photos) < 2:
@@ -374,7 +381,7 @@ def gallery_html(car):
         items = []
         for i, src in enumerate(photos):
             active = " is-active" if i == 0 else ""
-            pos = car["image_pos"] if i == 0 else "50%"
+            pos = cover_pos(car) if i == 0 else "center 50%"
             items.append(
                 f'            <button type="button" class="vehicle-thumb{active}" data-src="{src}" data-pos="{pos}" '
                 f'style="background-image: url(&#39;{src}&#39;);" aria-label="Show photo {i + 1} of {len(photos)}"></button>'
@@ -418,7 +425,7 @@ def badge_html(car):
 def mini_card_html(car):
     badge = badge_html(car)
     if car["image"]:
-        style = f"background: url('{car['image']}') center {car['image_pos']} / cover no-repeat;"
+        style = f"background: url('{car['image']}') {cover_pos(car)} / cover no-repeat;"
         img_inner = f'<div class="car-card-img" style="{style}">{badge}</div>'
     else:
         style = "background: linear-gradient(135deg, #101010 0%, #1c1c1c 50%, #0a0a0a 100%); justify-content:center;"

@@ -11,7 +11,7 @@
     current = (i + thumbs.length) % thumbs.length;
     const thumb = thumbs[current];
     main.style.backgroundImage = `url('${thumb.dataset.src}')`;
-    main.style.backgroundPosition = `center ${thumb.dataset.pos}`;
+    main.style.backgroundPosition = thumb.dataset.pos;
     thumbs.forEach((t) => t.classList.toggle('is-active', t === thumb));
     thumb.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
     if (count) count.textContent = `${current + 1} / ${thumbs.length}`;
