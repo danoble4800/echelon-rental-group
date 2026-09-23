@@ -56,7 +56,7 @@ CARS = [
         "name": "Rolls-Royce Cullinan",
         "type_badge": "Ultra-Luxury SUV",
         "badge": "available",
-        "price": "1,350",
+        "price": "1,600",
         "image": "images/fleet/rolls-royce-cullinan.jpg",
         "image_pos": "32%",
         "deposit": "$5,000",
@@ -96,7 +96,7 @@ CARS = [
         "name": "Mercedes-AMG G63",
         "type_badge": "Luxury SUV",
         "badge": "available",
-        "price": "1,250",
+        "price": "850",
         "image": "images/fleet/g-wagon.jpg",
         "image_pos": "38%",
         "deposit": "$3,500",
@@ -116,7 +116,7 @@ CARS = [
         "name": "Lamborghini Urus",
         "type_badge": "Super SUV",
         "badge": "available",
-        "price": "1,300",
+        "price": "1,500",
         "image": "images/fleet/lamborghini-urus.jpg",
         "image_pos": "45%",
         "deposit": "$3,500",
@@ -129,6 +129,106 @@ CARS = [
         "seats": "5",
         "engine": "4.0L Twin-Turbo V8",
         "blurb": "The Urus proves an SUV can out-accelerate most supercars without sacrificing space for five. It's Lamborghini's answer to “what if we didn't compromise,” equally at home at a black-tie event or a weekend mountain drive.",
+    },
+    {
+        "slug": "mclaren-570s-spider",
+        "file": "car-mclaren-570s-spider.html",
+        "name": "McLaren 570S Spider",
+        "type_badge": "Supercar",
+        "badge": "available",
+        "price": "1,500",
+        "image": None,
+        "image_pos": None,
+        "deposit": "$5,000",
+        "hp": "562 hp",
+        "torque": "443 lb-ft",
+        "zero_sixty": "3.1s",
+        "top_speed": "204 mph",
+        "drivetrain": "RWD",
+        "transmission": "7-Speed Dual-Clutch",
+        "seats": "2",
+        "engine": "3.8L Twin-Turbo V8",
+        "blurb": "The 570S Spider brings McLaren's motorsport DNA to open-top driving &mdash; a twin-turbo V8 right behind your head and a retractable hardtop for when the weather cooperates. Built for drivers who want supercar theater without giving up everyday usability.",
+    },
+    {
+        "slug": "corvette-c8",
+        "file": "car-corvette-c8.html",
+        "name": "Corvette C8",
+        "type_badge": "Sports Car",
+        "badge": "available",
+        "price": "650",
+        "image": None,
+        "image_pos": None,
+        "deposit": "$2,500",
+        "hp": "495 hp",
+        "torque": "470 lb-ft",
+        "zero_sixty": "2.9s",
+        "top_speed": "194 mph",
+        "drivetrain": "RWD",
+        "transmission": "8-Speed Dual-Clutch",
+        "seats": "2",
+        "engine": "6.2L Naturally Aspirated V8",
+        "blurb": "The mid-engine C8 rewrote what an American sports car could be &mdash; supercar proportions, a naturally aspirated V8 howling right behind the seats, and a price point that makes it one of our most accessible thrill rides.",
+    },
+    {
+        "slug": "bentayga",
+        "file": "car-bentayga.html",
+        "name": "Bentley Bentayga",
+        "type_badge": "Ultra-Luxury SUV",
+        "badge": "available",
+        "price": "1,000",
+        "image": None,
+        "image_pos": None,
+        "deposit": "$3,000",
+        "hp": "542 hp",
+        "torque": "568 lb-ft",
+        "zero_sixty": "4.4s",
+        "top_speed": "180 mph",
+        "drivetrain": "AWD",
+        "transmission": "8-Speed Automatic",
+        "seats": "5",
+        "engine": "4.0L Twin-Turbo V8",
+        "blurb": "The Bentayga proves an SUV can be handcrafted &mdash; a twin-turbo V8, a cabin trimmed in leather and wood veneer, and enough composure to make rough roads feel like red carpet. Ideal for clients who want luxury and capability in equal measure.",
+    },
+    {
+        "slug": "escalade-esv",
+        "file": "car-escalade-esv.html",
+        "name": "Cadillac Escalade ESV Sport Platinum",
+        "type_badge": "Luxury SUV",
+        "badge": "available",
+        "price": "600",
+        "image": None,
+        "image_pos": None,
+        "deposit": "$2,500",
+        "hp": "420 hp",
+        "torque": "460 lb-ft",
+        "zero_sixty": "6.0s",
+        "top_speed": "130 mph",
+        "drivetrain": "AWD",
+        "transmission": "10-Speed Automatic",
+        "seats": "7",
+        "engine": "6.2L Naturally Aspirated V8",
+        "blurb": "The Escalade ESV is American full-size luxury at its biggest and boldest &mdash; three rows of first-class seating, a commanding presence, and the extended wheelbase for maximum cargo and legroom. A favorite for group travel and airport runs alike.",
+    },
+    {
+        "slug": "range-rover-p530-se",
+        "file": "car-range-rover-p530-se.html",
+        "name": "Range Rover P530 SE",
+        "type_badge": "Luxury SUV",
+        "badge": "available",
+        "price": "750",
+        "image": None,
+        "image_pos": None,
+        "deposit": "$3,000",
+        "hp": "523 hp",
+        "torque": "553 lb-ft",
+        "zero_sixty": "4.4s",
+        "top_speed": "155 mph",
+        "drivetrain": "AWD",
+        "transmission": "8-Speed Automatic",
+        "seats": "5",
+        "engine": "4.4L Twin-Turbo V8",
+        "blurb": "The Range Rover pairs go-anywhere capability with a cabin that rivals any luxury sedan &mdash; the P530's twin-turbo V8 gives it real muscle, while the SE trim keeps things refined inside and out. Equally at home on a dirt road or in a hotel valet line.",
     },
 ]
 
@@ -500,20 +600,16 @@ def build_fleet_page():
 <body class="theme-exotics">
 
 {nav}
-  <!-- ───────────── FLEET PAGE HEADER ───────────── -->
-  <section class="dark-section" style="padding-top: calc(var(--nav-h) + 60px); padding-bottom: 20px;">
-    <div class="section-inner">
-      <div class="section-header">
+  <!-- ───────────── FLEET PAGE HEADER + FILTER / SORT / GRID ─────────────
+       One section (not two) so .section-inner's padding doesn't stack —
+       that was the cause of the huge black gap around the header. ── -->
+  <section class="dark-section" style="padding-top: calc(var(--nav-h) + 40px);">
+    <div class="section-inner" style="padding-top: 0; padding-bottom: 60px;">
+      <div class="section-header" style="margin-bottom: 32px;">
         <div class="section-tag">Full Inventory</div>
         <h2>The Complete Echelon Exotics Fleet</h2>
         <p>Browse, filter, and sort every vehicle available to reserve today.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- ───────────── FILTER / SORT / GRID ───────────── -->
-  <section class="dark-section" style="padding-top: 0;">
-    <div class="section-inner">
       <div class="fleet-toolbar">
         <div class="fleet-filters" id="fleetFilters">{filter_btns}
         </div>

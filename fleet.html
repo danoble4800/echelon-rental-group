@@ -91,20 +91,16 @@
     </div>
   </nav>
 
-  <!-- ───────────── FLEET PAGE HEADER ───────────── -->
-  <section class="dark-section" style="padding-top: calc(var(--nav-h) + 60px); padding-bottom: 20px;">
-    <div class="section-inner">
-      <div class="section-header">
+  <!-- ───────────── FLEET PAGE HEADER + FILTER / SORT / GRID ─────────────
+       One section (not two) so .section-inner's padding doesn't stack —
+       that was the cause of the huge black gap around the header. ── -->
+  <section class="dark-section" style="padding-top: calc(var(--nav-h) + 40px);">
+    <div class="section-inner" style="padding-top: 0; padding-bottom: 60px;">
+      <div class="section-header" style="margin-bottom: 32px;">
         <div class="section-tag">Full Inventory</div>
         <h2>The Complete Echelon Exotics Fleet</h2>
         <p>Browse, filter, and sort every vehicle available to reserve today.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- ───────────── FILTER / SORT / GRID ───────────── -->
-  <section class="dark-section" style="padding-top: 0;">
-    <div class="section-inner">
       <div class="fleet-toolbar">
         <div class="fleet-filters" id="fleetFilters">
         <button class="filter-btn active" data-filter="all">All Vehicles</button>
@@ -160,7 +156,7 @@
           </div>
         </a>
 
-        <a href="car-cullinan.html" class="car-card inventory-card" style="display:block;" data-type="Ultra-Luxury SUV" data-price="1350" data-hp="563" data-name="Rolls-Royce Cullinan">
+        <a href="car-cullinan.html" class="car-card inventory-card" style="display:block;" data-type="Ultra-Luxury SUV" data-price="1600" data-hp="563" data-name="Rolls-Royce Cullinan">
           <div class="car-card-img" style="background: url('images/fleet/rolls-royce-cullinan.jpg') center 32% / cover no-repeat;"><div class="car-available">Available</div></div>
           <div class="car-card-body">
             <div class="car-top">
@@ -169,7 +165,7 @@
                 <h3 class="car-name">Rolls-Royce Cullinan</h3>
               </div>
               <div class="car-price-box">
-                <span class="car-price">$1,350</span>
+                <span class="car-price">$1,600</span>
                 <span class="car-price-unit">/day</span>
               </div>
             </div>
@@ -194,7 +190,7 @@
           </div>
         </a>
 
-        <a href="car-g63.html" class="car-card inventory-card" style="display:block;" data-type="Luxury SUV" data-price="1250" data-hp="577" data-name="Mercedes-AMG G63">
+        <a href="car-g63.html" class="car-card inventory-card" style="display:block;" data-type="Luxury SUV" data-price="850" data-hp="577" data-name="Mercedes-AMG G63">
           <div class="car-card-img" style="background: url('images/fleet/g-wagon.jpg') center 38% / cover no-repeat;"><div class="car-available">Available</div></div>
           <div class="car-card-body">
             <div class="car-top">
@@ -203,7 +199,7 @@
                 <h3 class="car-name">Mercedes-AMG G63</h3>
               </div>
               <div class="car-price-box">
-                <span class="car-price">$1,250</span>
+                <span class="car-price">$850</span>
                 <span class="car-price-unit">/day</span>
               </div>
             </div>
@@ -211,7 +207,7 @@
           </div>
         </a>
 
-        <a href="car-urus.html" class="car-card inventory-card" style="display:block;" data-type="Super SUV" data-price="1300" data-hp="641" data-name="Lamborghini Urus">
+        <a href="car-urus.html" class="car-card inventory-card" style="display:block;" data-type="Super SUV" data-price="1500" data-hp="641" data-name="Lamborghini Urus">
           <div class="car-card-img" style="background: url('images/fleet/lamborghini-urus.jpg') center 45% / cover no-repeat;"><div class="car-available">Available</div></div>
           <div class="car-card-body">
             <div class="car-top">
@@ -220,7 +216,92 @@
                 <h3 class="car-name">Lamborghini Urus</h3>
               </div>
               <div class="car-price-box">
-                <span class="car-price">$1,300</span>
+                <span class="car-price">$1,500</span>
+                <span class="car-price-unit">/day</span>
+              </div>
+            </div>
+            <span class="btn btn-book" style="display:block;">View Details</span>
+          </div>
+        </a>
+
+        <a href="car-mclaren-570s-spider.html" class="car-card inventory-card" style="display:block;" data-type="Supercar" data-price="1500" data-hp="562" data-name="McLaren 570S Spider">
+          <div class="car-card-img" style="background: linear-gradient(135deg, #101010 0%, #1c1c1c 50%, #0a0a0a 100%); justify-content:center;"><div class="car-available">Available</div><span class="inv-icon">🚗</span></div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge">Supercar</span>
+                <h3 class="car-name">McLaren 570S Spider</h3>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$1,500</span>
+                <span class="car-price-unit">/day</span>
+              </div>
+            </div>
+            <span class="btn btn-book" style="display:block;">View Details</span>
+          </div>
+        </a>
+
+        <a href="car-corvette-c8.html" class="car-card inventory-card" style="display:block;" data-type="Sports Car" data-price="650" data-hp="495" data-name="Corvette C8">
+          <div class="car-card-img" style="background: linear-gradient(135deg, #101010 0%, #1c1c1c 50%, #0a0a0a 100%); justify-content:center;"><div class="car-available">Available</div><span class="inv-icon">🚗</span></div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge">Sports Car</span>
+                <h3 class="car-name">Corvette C8</h3>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$650</span>
+                <span class="car-price-unit">/day</span>
+              </div>
+            </div>
+            <span class="btn btn-book" style="display:block;">View Details</span>
+          </div>
+        </a>
+
+        <a href="car-bentayga.html" class="car-card inventory-card" style="display:block;" data-type="Ultra-Luxury SUV" data-price="1000" data-hp="542" data-name="Bentley Bentayga">
+          <div class="car-card-img" style="background: linear-gradient(135deg, #101010 0%, #1c1c1c 50%, #0a0a0a 100%); justify-content:center;"><div class="car-available">Available</div><span class="inv-icon">🚗</span></div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge">Ultra-Luxury SUV</span>
+                <h3 class="car-name">Bentley Bentayga</h3>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$1,000</span>
+                <span class="car-price-unit">/day</span>
+              </div>
+            </div>
+            <span class="btn btn-book" style="display:block;">View Details</span>
+          </div>
+        </a>
+
+        <a href="car-escalade-esv.html" class="car-card inventory-card" style="display:block;" data-type="Luxury SUV" data-price="600" data-hp="420" data-name="Cadillac Escalade ESV Sport Platinum">
+          <div class="car-card-img" style="background: linear-gradient(135deg, #101010 0%, #1c1c1c 50%, #0a0a0a 100%); justify-content:center;"><div class="car-available">Available</div><span class="inv-icon">🚗</span></div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge">Luxury SUV</span>
+                <h3 class="car-name">Cadillac Escalade ESV Sport Platinum</h3>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$600</span>
+                <span class="car-price-unit">/day</span>
+              </div>
+            </div>
+            <span class="btn btn-book" style="display:block;">View Details</span>
+          </div>
+        </a>
+
+        <a href="car-range-rover-p530-se.html" class="car-card inventory-card" style="display:block;" data-type="Luxury SUV" data-price="750" data-hp="523" data-name="Range Rover P530 SE">
+          <div class="car-card-img" style="background: linear-gradient(135deg, #101010 0%, #1c1c1c 50%, #0a0a0a 100%); justify-content:center;"><div class="car-available">Available</div><span class="inv-icon">🚗</span></div>
+          <div class="car-card-body">
+            <div class="car-top">
+              <div>
+                <span class="car-type-badge">Luxury SUV</span>
+                <h3 class="car-name">Range Rover P530 SE</h3>
+              </div>
+              <div class="car-price-box">
+                <span class="car-price">$750</span>
                 <span class="car-price-unit">/day</span>
               </div>
             </div>
