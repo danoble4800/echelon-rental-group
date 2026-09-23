@@ -20,6 +20,9 @@ const exoticsI18n = {
     specs: ['630 hp · 0–60 in 2.9s · 2 Seats', '612 hp · 5 Seats · Chauffeur Available', '563 hp · 5 Seats · Chauffeur Available', '502 hp · 0–60 in 3.2s · 2 Seats', '577 hp · 5 Seats · AWD', '641 hp · 0–60 in 3.1s · 5 Seats'],
     pills: [['AWD', 'V10', 'Delivery'], ['Chauffeur Option', 'Delivery'], ['Chauffeur Option', 'Delivery'], ['RWD', 'Delivery'], ['AWD', 'Delivery'], ['AWD', 'Delivery']],
     perDay: '/day', reserveCar: 'Reserve This Car',
+    reelsTag: 'Echelon Stories', reelsH2: 'Seen on the Road',
+    reelsDesc: 'Real moments from our clients and our own shoots. Tag @EchelonRentalGroup on Instagram for a chance to be featured.',
+    reelsFollow: 'Follow @EchelonRentalGroup',
     whyTag: 'Why Echelon', whyH2: 'The Echelon Difference',
     whyDesc: "Locally owned, hand-picked, and built around getting you behind the wheel without the runaround.",
     reasons: [
@@ -66,6 +69,9 @@ const exoticsI18n = {
     specs: ['630 hp · 0–100 en 2.9s · 2 Asientos', '612 hp · 5 Asientos · Chofer Disponible', '563 hp · 5 Asientos · Chofer Disponible', '502 hp · 0–100 en 3.2s · 2 Asientos', '577 hp · 5 Asientos · Tracción AWD', '641 hp · 0–100 en 3.1s · 5 Asientos'],
     pills: [['Tracción AWD', 'V10', 'Entrega'], ['Opción de Chofer', 'Entrega'], ['Opción de Chofer', 'Entrega'], ['Tracción Trasera', 'Entrega'], ['Tracción AWD', 'Entrega'], ['Tracción AWD', 'Entrega']],
     perDay: '/día', reserveCar: 'Reservar Este Auto',
+    reelsTag: 'Historias Echelon', reelsH2: 'Visto en el Camino',
+    reelsDesc: 'Momentos reales de nuestros clientes y nuestras propias sesiones. Etiqueta a @EchelonRentalGroup en Instagram para aparecer aquí.',
+    reelsFollow: 'Sigue a @EchelonRentalGroup',
     whyTag: 'Por Qué Echelon', whyH2: 'La Diferencia Echelon',
     whyDesc: 'De propiedad local, seleccionados a mano, y pensados para ponerte al volante sin complicaciones.',
     reasons: [
@@ -112,6 +118,9 @@ const exoticsI18n = {
     specs: ['630 cv · 0–100 em 2.9s · 2 Lugares', '612 cv · 5 Lugares · Motorista Disponível', '563 cv · 5 Lugares · Motorista Disponível', '502 cv · 0–100 em 3.2s · 2 Lugares', '577 cv · 5 Lugares · Tração AWD', '641 cv · 0–100 em 3.1s · 5 Lugares'],
     pills: [['Tração AWD', 'V10', 'Entrega'], ['Opção de Motorista', 'Entrega'], ['Opção de Motorista', 'Entrega'], ['Tração Traseira', 'Entrega'], ['Tração AWD', 'Entrega'], ['Tração AWD', 'Entrega']],
     perDay: '/dia', reserveCar: 'Reservar Este Carro',
+    reelsTag: 'Histórias Echelon', reelsH2: 'Visto na Estrada',
+    reelsDesc: 'Momentos reais dos nossos clientes e das nossas próprias gravações. Marque @EchelonRentalGroup no Instagram para aparecer aqui.',
+    reelsFollow: 'Siga @EchelonRentalGroup',
     whyTag: 'Por Que Echelon', whyH2: 'A Diferença Echelon',
     whyDesc: 'De propriedade local, selecionados à mão, e feitos para te colocar ao volante sem complicação.',
     reasons: [
@@ -195,6 +204,11 @@ function applyLang(lang) {
     const btnEl = card.querySelector('.btn-book');
     if (btnEl) btnEl.textContent = t.reserveCar;
   });
+
+  setText('#stories .section-tag', t.reelsTag || 'Echelon Stories');
+  setText('#stories .section-header h2', t.reelsH2 || 'Seen on the Road');
+  setText('#stories .section-header p', t.reelsDesc);
+  setText('#stories .explore-cta .btn', t.reelsFollow || 'Follow @EchelonRentalGroup');
 
   setText('#why-echelon .section-tag', t.whyTag || 'Why Echelon');
   setText('#why-echelon .section-header h2', t.whyH2 || 'The Echelon Difference');

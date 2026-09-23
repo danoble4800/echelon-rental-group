@@ -344,6 +344,57 @@
     </div>
   </section>
 
+  <!-- ───────────── STORIES (vertical video reels) ───────────── -->
+  <section class="reels dark-section" id="stories">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-tag">Echelon Stories</div>
+        <h2>Seen on the Road</h2>
+        <p>Real moments from our clients and our own shoots. Tag @EchelonRentalGroup on Instagram for a chance to be featured.</p>
+      </div>
+      <div class="reels-track">
+        <button type="button" class="reel-card" data-src="videos/reels/reel-1.mp4" data-poster="videos/reels/reel-1-poster.jpg" aria-label="Watch story: On Set">
+          <video class="reel-preview" src="videos/reels/reel-1-preview.mp4" poster="videos/reels/reel-1-poster.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+          <span class="reel-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></span>
+          <span class="reel-caption"><span class="reel-title">On Set</span><span class="reel-sub">Maybach GLS</span></span>
+        </button>
+        <button type="button" class="reel-card" data-src="videos/reels/reel-2.mp4" data-poster="videos/reels/reel-2-poster.jpg" aria-label="Watch story: Night at Encore">
+          <video class="reel-preview" src="videos/reels/reel-2-preview.mp4" poster="videos/reels/reel-2-poster.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+          <span class="reel-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></span>
+          <span class="reel-caption"><span class="reel-title">Night at Encore</span><span class="reel-sub">Maybach GLS</span></span>
+        </button>
+        <button type="button" class="reel-card" data-src="videos/reels/reel-3.mp4" data-poster="videos/reels/reel-3-poster.jpg" aria-label="Watch story: Showroom Night">
+          <video class="reel-preview" src="videos/reels/reel-3-preview.mp4" poster="videos/reels/reel-3-poster.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+          <span class="reel-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></span>
+          <span class="reel-caption"><span class="reel-title">Showroom Night</span><span class="reel-sub">Maybach GLS</span></span>
+        </button>
+        <button type="button" class="reel-card" data-src="videos/reels/reel-4.mp4" data-poster="videos/reels/reel-4-poster.jpg" aria-label="Watch story: After Hours">
+          <video class="reel-preview" src="videos/reels/reel-4-preview.mp4" poster="videos/reels/reel-4-poster.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+          <span class="reel-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></span>
+          <span class="reel-caption"><span class="reel-title">After Hours</span><span class="reel-sub">Showroom</span></span>
+        </button>
+      </div>
+      <div class="explore-cta"><a href="https://www.instagram.com/echelonrentalgroup/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light">Follow @EchelonRentalGroup</a></div>
+    </div>
+  </section>
+
+  <div class="reel-viewer" id="reelViewer" role="dialog" aria-modal="true" aria-label="Echelon Stories" hidden>
+    <div class="reel-viewer-backdrop"></div>
+    <button type="button" class="reel-viewer-nav prev" aria-label="Previous story"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l-8 8 8 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <div class="reel-stage">
+      <video class="reel-video" playsinline preload="auto"></video>
+      <div class="reel-progress"></div>
+      <div class="reel-topbar">
+        <span class="reel-viewer-title"></span>
+        <button type="button" class="reel-mute" aria-label="Mute"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="icon-sound" d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z" fill="currentColor"/><path class="icon-muted" d="M4 9v6h4l5 4V5L8 9H4zm15.6 3 2.2-2.2-1.1-1.1-2.2 2.2-2.2-2.2-1.1 1.1 2.2 2.2-2.2 2.2 1.1 1.1 2.2-2.2 2.2 2.2 1.1-1.1z" fill="currentColor"/></svg></button>
+        <button type="button" class="reel-close" aria-label="Close stories"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+      </div>
+      <button type="button" class="reel-tap prev" aria-label="Previous story"></button>
+      <button type="button" class="reel-tap next" aria-label="Next story"></button>
+    </div>
+    <button type="button" class="reel-viewer-nav next" aria-label="Next story"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+
   <!-- ───────────── SCHEDULING ───────────── -->
   <section class="gig-section dark-section" id="why-echelon">
     <div class="section-inner">
@@ -519,6 +570,7 @@
   <script src="exotics-i18n.js"></script>
   <script src="brand-pages.js"></script>
   <script src="fleet-carousel.js"></script>
+  <script src="reels.js"></script>
   <script src="cursor-ring.js"></script>
 </body>
 </html>
