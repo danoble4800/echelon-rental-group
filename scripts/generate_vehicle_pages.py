@@ -39,6 +39,7 @@ CARS = [
         "price": "1,000",
         "image": "images/fleet/maybach-gls.jpg",
         "image_pos": "55%",
+        "gallery": ["images/fleet/maybach-gls.jpg"] + [f"images/fleet/maybach-gls-{i}.webp" for i in range(2, 7)],
         "deposit": "$3,000",
         "hp": "612 hp",
         "torque": "664 lb-ft",
