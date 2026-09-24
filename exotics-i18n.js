@@ -22,7 +22,7 @@ const exoticsI18n = {
     perDay: '/day', reserveCar: 'Reserve This Car',
     reelsTag: 'Echelon Stories', reelsH2: 'Seen on the Road',
     reelsDesc: 'Real moments from our clients and our own shoots. Tag @EchelonRentalGroup on Instagram for a chance to be featured.',
-    reelsFollow: 'Follow @EchelonRentalGroup',
+    reelsKicker: 'Join the Ride', reelsFollow: 'Follow Us on Instagram', reelsFollowBtn: 'Follow',
     whyTag: 'Why Echelon', whyH2: 'The Echelon Difference',
     whyDesc: "Locally owned, hand-picked, and built around getting you behind the wheel without the runaround.",
     reasons: [
@@ -79,7 +79,7 @@ const exoticsI18n = {
     perDay: '/día', reserveCar: 'Reservar Este Auto',
     reelsTag: 'Historias Echelon', reelsH2: 'Visto en el Camino',
     reelsDesc: 'Momentos reales de nuestros clientes y nuestras propias sesiones. Etiqueta a @EchelonRentalGroup en Instagram para aparecer aquí.',
-    reelsFollow: 'Sigue a @EchelonRentalGroup',
+    reelsKicker: 'Únete al Viaje', reelsFollow: 'Síguenos en Instagram', reelsFollowBtn: 'Seguir',
     whyTag: 'Por Qué Echelon', whyH2: 'La Diferencia Echelon',
     whyDesc: 'De propiedad local, seleccionados a mano, y pensados para ponerte al volante sin complicaciones.',
     reasons: [
@@ -136,7 +136,7 @@ const exoticsI18n = {
     perDay: '/dia', reserveCar: 'Reservar Este Carro',
     reelsTag: 'Histórias Echelon', reelsH2: 'Visto na Estrada',
     reelsDesc: 'Momentos reais dos nossos clientes e das nossas próprias gravações. Marque @EchelonRentalGroup no Instagram para aparecer aqui.',
-    reelsFollow: 'Siga @EchelonRentalGroup',
+    reelsKicker: 'Venha Junto', reelsFollow: 'Siga-nos no Instagram', reelsFollowBtn: 'Seguir',
     whyTag: 'Por Que Echelon', whyH2: 'A Diferença Echelon',
     whyDesc: 'De propriedade local, selecionados à mão, e feitos para te colocar ao volante sem complicação.',
     reasons: [
@@ -232,7 +232,9 @@ function applyLang(lang) {
   setText('#stories .section-tag', t.reelsTag || 'Echelon Stories');
   setText('#stories .section-header h2', t.reelsH2 || 'Seen on the Road');
   setText('#stories .section-header p', t.reelsDesc);
-  setText('#stories .explore-cta .btn', t.reelsFollow || 'Follow @EchelonRentalGroup');
+  setText('#stories .ig-follow-kicker', t.reelsKicker);
+  setText('#stories .ig-follow-title', t.reelsFollow);
+  setText('#stories .ig-follow-btn', t.reelsFollowBtn);
 
   setText('#why-echelon .section-tag', t.whyTag || 'Why Echelon');
   setText('#why-echelon .section-header h2', t.whyH2 || 'The Echelon Difference');
