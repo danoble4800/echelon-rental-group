@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reserve Your Car | Echelon Exotics</title>
+  <title>Cancellation &amp; Refund Policy | Echelon Exotics</title>
+  <meta name="description" content="How cancellations, reservation changes, security deposits, and refunds work at Echelon Exotics." />
   <link rel="stylesheet" href="styles.css" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="1024x1024" href="/app-icon-1024.png" />
@@ -11,8 +12,8 @@
 
   <meta property="og:type"        content="website" />
   <meta property="og:site_name"   content="Echelon Rental Group" />
-  <meta property="og:title"       content="Reserve Your Car | Echelon Exotics" />
-  <meta property="og:description" content="Schedule your Echelon Exotics rental — tell us what you'd like to drive and when, or call us directly." />
+  <meta property="og:title"       content="Cancellation &amp; Refund Policy | Echelon Exotics" />
+  <meta property="og:description" content="How cancellations, reservation changes, security deposits, and refunds work at Echelon Exotics." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -91,104 +92,90 @@
     </div>
   </nav>
 
-  <!-- ───────────── RESERVE ───────────── -->
-  <section class="dark-section" id="schedule" style="padding-top: calc(var(--nav-h) + 60px);">
+  <!-- ───────────── PAGE HERO ───────────── -->
+  <section class="page-hero dark-section">
     <div class="section-inner">
-      <div class="section-header">
-        <div class="section-tag">Reserve</div>
-        <h2>Schedule Your Drive</h2>
-        <p>Tell us what you'd like to drive and when &mdash; we'll confirm availability and delivery details within the hour.</p>
-      </div>
+      <div class="section-tag">Resources</div>
+      <h1>Cancellation &amp; Refund Policy</h1>
+      <p>Plans change, and we get it. Here's how cancellations, changes, and refunds work for Echelon Exotics reservations.</p>
+      <p class="page-meta">Last updated September 24, 2026</p>
+    </div>
+  </section>
 
-      <div class="reserve-layout">
-        <form class="modal-form" style="background:var(--dark-card);border:1px solid var(--dark-border);border-radius:var(--radius-lg);padding:32px;" onsubmit="submitInquiry(event)">
-          <div class="form-row">
-            <div class="form-group">
-              <label>First Name</label>
-              <input type="text" name="firstName" placeholder="John" required />
-            </div>
-            <div class="form-group">
-              <label>Last Name</label>
-              <input type="text" name="lastName" placeholder="Smith" required />
-            </div>
+  <!-- ───────────── POLICY BODY ───────────── -->
+  <section class="dark-section">
+    <div class="section-inner tight">
+      <div class="policy-layout">
+        <aside class="policy-aside">
+          <div>
+            <h4>Resources</h4>
+            <nav aria-label="Resources">
+            <a href="rental-policies.html">Rental Policies</a>
+            <a href="cancellation-policy.html" aria-current="page">Cancellation &amp; Refunds</a>
+            <a href="terms-of-service.html">Terms of Service</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="accessibility.html">Accessibility Statement</a>
+            </nav>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Phone Number</label>
-              <input type="tel" name="phone" placeholder="(555) 000-0000" required />
-            </div>
-            <div class="form-group">
-              <label>Email Address</label>
-              <input type="email" name="email" placeholder="you@example.com" required />
-            </div>
+          <div class="policy-toc">
+            <h4>On This Page</h4>
+            <nav aria-label="On this page">
+            <a href="#summary">At a Glance</a>
+            <a href="#cancelling">Cancelling a Reservation</a>
+            <a href="#changes">Changing a Reservation</a>
+            <a href="#our-cancellations">If We Need to Cancel</a>
+            <a href="#early-returns">Early Returns</a>
+            <a href="#deposits">Security Deposit Refunds</a>
+            <a href="#how-refunds">How Refunds Are Issued</a>
+            <a href="#contact">Questions</a>
+            </nav>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Pick-Up Date</label>
-              <input type="date" name="pickupDate" required />
-            </div>
-            <div class="form-group">
-              <label>Return Date</label>
-              <input type="date" name="returnDate" required />
-            </div>
+        </aside>
+        <article class="prose">
+          <h2 id="summary">At a Glance</h2>
+          <div class="fact-sheet">
+            <div class="fact-row"><span>72+ hours before pickup</span><span>Full refund</span></div>
+            <div class="fact-row"><span>24&ndash;72 hours before pickup</span><span>50% refund or 100% credit</span></div>
+            <div class="fact-row"><span>Under 24 hours / no-show</span><span>Non-refundable</span></div>
+            <div class="fact-row"><span>Security deposit</span><span>Released after inspection</span></div>
           </div>
-          <div class="form-group">
-            <label>Vehicle of Interest</label>
-            <select id="interestField" name="vehicleInterest">
-            <option>Lamborghini Huracán</option>
-            <option>2026 Maybach GLS</option>
-            <option>Rolls-Royce Cullinan</option>
-            <option>Porsche GT3</option>
-            <option>Mercedes-AMG G63</option>
-            <option>Lamborghini Urus</option>
-            <option>McLaren 570S Spider</option>
-            <option>Corvette C8</option>
-            <option>Bentley Bentayga</option>
-            <option>Cadillac Escalade ESV Sport Platinum</option>
-            <option>Range Rover P530 SE</option>
-            <option>Not Sure Yet</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Delivery Location <span style="font-weight:400;color:var(--dark-text-3);">(optional &mdash; concierge delivery)</span></label>
-            <input type="text" name="deliveryLocation" placeholder="Address, hotel, or venue" />
-          </div>
-          <div class="form-group checkbox-group">
-            <label class="checkbox-label" style="color:var(--dark-text-2);">
-              <input type="checkbox" required />
-              I confirm I have a valid driver's license and agree to the <a href="rental-policies.html" target="_blank" class="inline-link">Rental Policies</a>, <a href="cancellation-policy.html" target="_blank" class="inline-link">Cancellation Policy</a>, and <a href="terms-of-service.html" target="_blank" class="inline-link">Terms of Service</a>.
-            </label>
-          </div>
-          <button type="submit" class="btn btn-primary btn-full">Request Reservation</button>
-          <p class="modal-note" style="color:var(--dark-text-3);">We'll call you within 1 hour to confirm and arrange delivery.</p>
-        </form>
 
-        <div class="reserve-contact-panel">
-          <h3>Prefer to Talk It Through?</h3>
-          <p>Our team is available around the clock to help you pick the right car.</p>
-          <div class="reserve-contact-item">
-            <span class="reserve-contact-icon">📞</span>
-            <div>
-              <span class="reserve-contact-label">Call or Text</span>
-              <a href="tel:+15084442276" class="reserve-contact-value">508-444-2276</a>
-            </div>
-          </div>
-          <div class="reserve-contact-item">
-            <span class="reserve-contact-icon">✉️</span>
-            <div>
-              <span class="reserve-contact-label">Email</span>
-              <a href="mailto:info@echelonrentalgroup.com" class="reserve-contact-value">info@echelonrentalgroup.com</a>
-            </div>
-          </div>
-          <div class="reserve-contact-item">
-            <span class="reserve-contact-icon">🕐</span>
-            <div>
-              <span class="reserve-contact-label">Hours</span>
-              <span class="reserve-contact-value">Open 24 Hours, 7 Days a Week</span>
-            </div>
-          </div>
-          <a href="https://www.instagram.com/echelonrentalgroup/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light btn-full">Message Us on Instagram</a>
-        </div>
+          <h2 id="cancelling">Cancelling a Reservation</h2>
+          <p>To cancel, call, text, or email us. Your cancellation is effective at the time we receive it, and we'll confirm it in writing.</p>
+          <ul>
+            <li><strong>72 hours or more</strong> before your scheduled pickup or delivery time: full refund of all rental charges paid.</li>
+            <li><strong>Between 24 and 72 hours</strong> before: your choice of a 50% refund of rental charges, or a 100% credit toward a future rental taken within 12 months.</li>
+            <li><strong>Less than 24 hours</strong> before, or a no-show: rental charges are non-refundable.</li>
+          </ul>
+
+          <h2 id="changes">Changing a Reservation</h2>
+          <p>Date, time, and vehicle changes are free when requested at least 24 hours before your rental begins, subject to availability. If you switch to a vehicle with a different rate, the price difference applies. Changes requested within 24 hours are handled case by case.</p>
+
+          <h2 id="our-cancellations">If We Need to Cancel</h2>
+          <p>If Echelon cancels your reservation, or your reserved vehicle becomes unavailable for reasons within our control, we'll offer a comparable vehicle. If none suits you, you'll receive a full refund.</p>
+          <p>If severe weather or road conditions make a rental unsafe, we'll work with you to reschedule at no charge.</p>
+
+          <h2 id="early-returns">Early Returns</h2>
+          <p>Rental time that goes unused because a vehicle is returned early is not refunded.</p>
+
+          <h2 id="deposits">Security Deposit Refunds</h2>
+          <ul>
+            <li>Your security deposit is released once the vehicle is returned and inspected, typically within <strong>7 business days</strong>.</li>
+            <li>Any charges from the rental, such as extra mileage, fuel, tolls, violations, cleaning, or damage, are deducted first, with an itemized summary sent to you.</li>
+            <li>Depending on your card issuer, a released deposit or refund may take an additional 5&ndash;10 business days to appear on your statement.</li>
+          </ul>
+
+          <h2 id="how-refunds">How Refunds Are Issued</h2>
+          <p>Refunds are returned to the original form of payment. Credits are tied to the primary renter's name and are non-transferable.</p>
+
+          <h2 id="contact">Questions</h2>
+          <p>Questions about anything on this page? Our team is available 24 hours a day, 7 days a week.</p>
+          <ul>
+            <li>Call or text: <a href="tel:+15084442276">508-444-2276</a></li>
+            <li>Email: <a href="mailto:info@echelonrentalgroup.com">info@echelonrentalgroup.com</a></li>
+            <li>Instagram: <a href="https://www.instagram.com/echelonrentalgroup/" target="_blank" rel="noopener noreferrer">@EchelonRentalGroup</a></li>
+          </ul>
+        </article>
       </div>
     </div>
   </section>
@@ -254,7 +241,6 @@
   </footer>
 
   <script src="brand-pages.js"></script>
-  <script src="exotics-form.js"></script>
   <script src="cursor-ring.js"></script>
 </body>
 </html>

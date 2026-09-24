@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reserve Your Car | Echelon Exotics</title>
+  <title>Accessibility Statement | Echelon Exotics</title>
+  <meta name="description" content="Echelon Exotics' commitment to web accessibility, the measures we take, known limitations, and how to get help." />
   <link rel="stylesheet" href="styles.css" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="1024x1024" href="/app-icon-1024.png" />
@@ -11,8 +12,8 @@
 
   <meta property="og:type"        content="website" />
   <meta property="og:site_name"   content="Echelon Rental Group" />
-  <meta property="og:title"       content="Reserve Your Car | Echelon Exotics" />
-  <meta property="og:description" content="Schedule your Echelon Exotics rental — tell us what you'd like to drive and when, or call us directly." />
+  <meta property="og:title"       content="Accessibility Statement | Echelon Exotics" />
+  <meta property="og:description" content="Echelon Exotics' commitment to web accessibility, the measures we take, known limitations, and how to get help." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -91,104 +92,76 @@
     </div>
   </nav>
 
-  <!-- ───────────── RESERVE ───────────── -->
-  <section class="dark-section" id="schedule" style="padding-top: calc(var(--nav-h) + 60px);">
+  <!-- ───────────── PAGE HERO ───────────── -->
+  <section class="page-hero dark-section">
     <div class="section-inner">
-      <div class="section-header">
-        <div class="section-tag">Reserve</div>
-        <h2>Schedule Your Drive</h2>
-        <p>Tell us what you'd like to drive and when &mdash; we'll confirm availability and delivery details within the hour.</p>
-      </div>
+      <div class="section-tag">Resources</div>
+      <h1>Accessibility Statement</h1>
+      <p>Our commitment to making Echelon Exotics usable for everyone, and how to reach us if something isn't working for you.</p>
+      <p class="page-meta">Last updated September 24, 2026</p>
+    </div>
+  </section>
 
-      <div class="reserve-layout">
-        <form class="modal-form" style="background:var(--dark-card);border:1px solid var(--dark-border);border-radius:var(--radius-lg);padding:32px;" onsubmit="submitInquiry(event)">
-          <div class="form-row">
-            <div class="form-group">
-              <label>First Name</label>
-              <input type="text" name="firstName" placeholder="John" required />
-            </div>
-            <div class="form-group">
-              <label>Last Name</label>
-              <input type="text" name="lastName" placeholder="Smith" required />
-            </div>
+  <!-- ───────────── POLICY BODY ───────────── -->
+  <section class="dark-section">
+    <div class="section-inner tight">
+      <div class="policy-layout">
+        <aside class="policy-aside">
+          <div>
+            <h4>Resources</h4>
+            <nav aria-label="Resources">
+            <a href="rental-policies.html">Rental Policies</a>
+            <a href="cancellation-policy.html">Cancellation &amp; Refunds</a>
+            <a href="terms-of-service.html">Terms of Service</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="accessibility.html" aria-current="page">Accessibility Statement</a>
+            </nav>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Phone Number</label>
-              <input type="tel" name="phone" placeholder="(555) 000-0000" required />
-            </div>
-            <div class="form-group">
-              <label>Email Address</label>
-              <input type="email" name="email" placeholder="you@example.com" required />
-            </div>
+          <div class="policy-toc">
+            <h4>On This Page</h4>
+            <nav aria-label="On this page">
+            <a href="#commitment">Our Commitment</a>
+            <a href="#measures">What We're Doing</a>
+            <a href="#limitations">Known Limitations</a>
+            <a href="#assistance">Need Help Booking?</a>
+            <a href="#feedback">Feedback &amp; Contact</a>
+            </nav>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Pick-Up Date</label>
-              <input type="date" name="pickupDate" required />
-            </div>
-            <div class="form-group">
-              <label>Return Date</label>
-              <input type="date" name="returnDate" required />
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Vehicle of Interest</label>
-            <select id="interestField" name="vehicleInterest">
-            <option>Lamborghini Huracán</option>
-            <option>2026 Maybach GLS</option>
-            <option>Rolls-Royce Cullinan</option>
-            <option>Porsche GT3</option>
-            <option>Mercedes-AMG G63</option>
-            <option>Lamborghini Urus</option>
-            <option>McLaren 570S Spider</option>
-            <option>Corvette C8</option>
-            <option>Bentley Bentayga</option>
-            <option>Cadillac Escalade ESV Sport Platinum</option>
-            <option>Range Rover P530 SE</option>
-            <option>Not Sure Yet</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Delivery Location <span style="font-weight:400;color:var(--dark-text-3);">(optional &mdash; concierge delivery)</span></label>
-            <input type="text" name="deliveryLocation" placeholder="Address, hotel, or venue" />
-          </div>
-          <div class="form-group checkbox-group">
-            <label class="checkbox-label" style="color:var(--dark-text-2);">
-              <input type="checkbox" required />
-              I confirm I have a valid driver's license and agree to the <a href="rental-policies.html" target="_blank" class="inline-link">Rental Policies</a>, <a href="cancellation-policy.html" target="_blank" class="inline-link">Cancellation Policy</a>, and <a href="terms-of-service.html" target="_blank" class="inline-link">Terms of Service</a>.
-            </label>
-          </div>
-          <button type="submit" class="btn btn-primary btn-full">Request Reservation</button>
-          <p class="modal-note" style="color:var(--dark-text-3);">We'll call you within 1 hour to confirm and arrange delivery.</p>
-        </form>
+        </aside>
+        <article class="prose">
+          <h2 id="commitment">Our Commitment</h2>
+          <p>Echelon Rental Group wants everyone to be able to browse our fleet, request a reservation, and reach our team, regardless of ability or the technology they use. We're working to make the Echelon Exotics website conform to the <strong>Web Content Accessibility Guidelines (WCAG) 2.1, Level AA</strong>.</p>
 
-        <div class="reserve-contact-panel">
-          <h3>Prefer to Talk It Through?</h3>
-          <p>Our team is available around the clock to help you pick the right car.</p>
-          <div class="reserve-contact-item">
-            <span class="reserve-contact-icon">📞</span>
-            <div>
-              <span class="reserve-contact-label">Call or Text</span>
-              <a href="tel:+15084442276" class="reserve-contact-value">508-444-2276</a>
-            </div>
-          </div>
-          <div class="reserve-contact-item">
-            <span class="reserve-contact-icon">✉️</span>
-            <div>
-              <span class="reserve-contact-label">Email</span>
-              <a href="mailto:info@echelonrentalgroup.com" class="reserve-contact-value">info@echelonrentalgroup.com</a>
-            </div>
-          </div>
-          <div class="reserve-contact-item">
-            <span class="reserve-contact-icon">🕐</span>
-            <div>
-              <span class="reserve-contact-label">Hours</span>
-              <span class="reserve-contact-value">Open 24 Hours, 7 Days a Week</span>
-            </div>
-          </div>
-          <a href="https://www.instagram.com/echelonrentalgroup/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light btn-full">Message Us on Instagram</a>
-        </div>
+          <h2 id="measures">What We're Doing</h2>
+          <ul>
+            <li>Using semantic HTML, headings, and landmarks so screen readers can navigate each page</li>
+            <li>Providing text alternatives for meaningful images and labels for form fields and buttons</li>
+            <li>Supporting keyboard navigation for menus, FAQs, galleries, and forms</li>
+            <li>Keeping text and interface colors at readable contrast against our dark theme</li>
+            <li>Pausing the scrolling brand marquee when your device requests reduced motion</li>
+            <li>Designing layouts that work on phones, tablets, and desktops, and with browser zoom</li>
+          </ul>
+
+          <h2 id="limitations">Known Limitations</h2>
+          <p>We're still improving some areas of the site:</p>
+          <ul>
+            <li>Echelon Stories videos don't yet include captions or transcripts. They're short vehicle showcases, and we're working on adding captions.</li>
+            <li>The custom cursor effect is decorative only, and it's disabled on touch devices.</li>
+          </ul>
+          <p>If any part of the site gets in your way, please tell us. We'll help you directly and use your feedback to fix it.</p>
+
+          <h2 id="assistance">Need Help Booking?</h2>
+          <p>You never need to use the website to rent with us. Our team can take your entire reservation by phone, text, or email, 24 hours a day, 7 days a week.</p>
+          <p>If you have questions about getting in and out of a particular vehicle, or about accommodations such as chauffeur service, ask us before you book and we'll help you find the right fit.</p>
+
+          <h2 id="feedback">Feedback &amp; Contact</h2>
+          <p>To report an accessibility barrier or request information in another format, reach out. We aim to respond within 2 business days. Our team is available 24 hours a day, 7 days a week.</p>
+          <ul>
+            <li>Call or text: <a href="tel:+15084442276">508-444-2276</a></li>
+            <li>Email: <a href="mailto:info@echelonrentalgroup.com">info@echelonrentalgroup.com</a></li>
+            <li>Instagram: <a href="https://www.instagram.com/echelonrentalgroup/" target="_blank" rel="noopener noreferrer">@EchelonRentalGroup</a></li>
+          </ul>
+        </article>
       </div>
     </div>
   </section>
@@ -254,7 +227,6 @@
   </footer>
 
   <script src="brand-pages.js"></script>
-  <script src="exotics-form.js"></script>
   <script src="cursor-ring.js"></script>
 </body>
 </html>

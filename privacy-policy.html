@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reserve Your Car | Echelon Exotics</title>
+  <title>Privacy Policy | Echelon Exotics</title>
+  <meta name="description" content="How Echelon Rental Group collects, uses, shares, and protects personal information through the Echelon Exotics website and rentals." />
   <link rel="stylesheet" href="styles.css" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="1024x1024" href="/app-icon-1024.png" />
@@ -11,8 +12,8 @@
 
   <meta property="og:type"        content="website" />
   <meta property="og:site_name"   content="Echelon Rental Group" />
-  <meta property="og:title"       content="Reserve Your Car | Echelon Exotics" />
-  <meta property="og:description" content="Schedule your Echelon Exotics rental — tell us what you'd like to drive and when, or call us directly." />
+  <meta property="og:title"       content="Privacy Policy | Echelon Exotics" />
+  <meta property="og:description" content="How Echelon Rental Group collects, uses, shares, and protects personal information through the Echelon Exotics website and rentals." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -91,104 +92,109 @@
     </div>
   </nav>
 
-  <!-- ───────────── RESERVE ───────────── -->
-  <section class="dark-section" id="schedule" style="padding-top: calc(var(--nav-h) + 60px);">
+  <!-- ───────────── PAGE HERO ───────────── -->
+  <section class="page-hero dark-section">
     <div class="section-inner">
-      <div class="section-header">
-        <div class="section-tag">Reserve</div>
-        <h2>Schedule Your Drive</h2>
-        <p>Tell us what you'd like to drive and when &mdash; we'll confirm availability and delivery details within the hour.</p>
-      </div>
+      <div class="section-tag">Resources</div>
+      <h1>Privacy Policy</h1>
+      <p>How Echelon collects, uses, and protects your personal information.</p>
+      <p class="page-meta">Last updated September 24, 2026</p>
+    </div>
+  </section>
 
-      <div class="reserve-layout">
-        <form class="modal-form" style="background:var(--dark-card);border:1px solid var(--dark-border);border-radius:var(--radius-lg);padding:32px;" onsubmit="submitInquiry(event)">
-          <div class="form-row">
-            <div class="form-group">
-              <label>First Name</label>
-              <input type="text" name="firstName" placeholder="John" required />
-            </div>
-            <div class="form-group">
-              <label>Last Name</label>
-              <input type="text" name="lastName" placeholder="Smith" required />
-            </div>
+  <!-- ───────────── POLICY BODY ───────────── -->
+  <section class="dark-section">
+    <div class="section-inner tight">
+      <div class="policy-layout">
+        <aside class="policy-aside">
+          <div>
+            <h4>Resources</h4>
+            <nav aria-label="Resources">
+            <a href="rental-policies.html">Rental Policies</a>
+            <a href="cancellation-policy.html">Cancellation &amp; Refunds</a>
+            <a href="terms-of-service.html">Terms of Service</a>
+            <a href="privacy-policy.html" aria-current="page">Privacy Policy</a>
+            <a href="accessibility.html">Accessibility Statement</a>
+            </nav>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Phone Number</label>
-              <input type="tel" name="phone" placeholder="(555) 000-0000" required />
-            </div>
-            <div class="form-group">
-              <label>Email Address</label>
-              <input type="email" name="email" placeholder="you@example.com" required />
-            </div>
+          <div class="policy-toc">
+            <h4>On This Page</h4>
+            <nav aria-label="On this page">
+            <a href="#overview">Overview</a>
+            <a href="#collect">Information We Collect</a>
+            <a href="#use">How We Use Your Information</a>
+            <a href="#share">How We Share Information</a>
+            <a href="#retention">Data Retention &amp; Security</a>
+            <a href="#choices">Your Choices &amp; Rights</a>
+            <a href="#children">Children's Privacy</a>
+            <a href="#changes">Changes to This Policy</a>
+            <a href="#contact">Contact</a>
+            </nav>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Pick-Up Date</label>
-              <input type="date" name="pickupDate" required />
-            </div>
-            <div class="form-group">
-              <label>Return Date</label>
-              <input type="date" name="returnDate" required />
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Vehicle of Interest</label>
-            <select id="interestField" name="vehicleInterest">
-            <option>Lamborghini Huracán</option>
-            <option>2026 Maybach GLS</option>
-            <option>Rolls-Royce Cullinan</option>
-            <option>Porsche GT3</option>
-            <option>Mercedes-AMG G63</option>
-            <option>Lamborghini Urus</option>
-            <option>McLaren 570S Spider</option>
-            <option>Corvette C8</option>
-            <option>Bentley Bentayga</option>
-            <option>Cadillac Escalade ESV Sport Platinum</option>
-            <option>Range Rover P530 SE</option>
-            <option>Not Sure Yet</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Delivery Location <span style="font-weight:400;color:var(--dark-text-3);">(optional &mdash; concierge delivery)</span></label>
-            <input type="text" name="deliveryLocation" placeholder="Address, hotel, or venue" />
-          </div>
-          <div class="form-group checkbox-group">
-            <label class="checkbox-label" style="color:var(--dark-text-2);">
-              <input type="checkbox" required />
-              I confirm I have a valid driver's license and agree to the <a href="rental-policies.html" target="_blank" class="inline-link">Rental Policies</a>, <a href="cancellation-policy.html" target="_blank" class="inline-link">Cancellation Policy</a>, and <a href="terms-of-service.html" target="_blank" class="inline-link">Terms of Service</a>.
-            </label>
-          </div>
-          <button type="submit" class="btn btn-primary btn-full">Request Reservation</button>
-          <p class="modal-note" style="color:var(--dark-text-3);">We'll call you within 1 hour to confirm and arrange delivery.</p>
-        </form>
+        </aside>
+        <article class="prose">
+          <h2 id="overview">Overview</h2>
+          <p>This Privacy Policy explains what personal information Echelon Rental Group ("Echelon," "we," "us") collects through the Echelon Exotics website and our rental services, how we use it, and the choices you have. <strong>We do not sell your personal information.</strong></p>
 
-        <div class="reserve-contact-panel">
-          <h3>Prefer to Talk It Through?</h3>
-          <p>Our team is available around the clock to help you pick the right car.</p>
-          <div class="reserve-contact-item">
-            <span class="reserve-contact-icon">📞</span>
-            <div>
-              <span class="reserve-contact-label">Call or Text</span>
-              <a href="tel:+15084442276" class="reserve-contact-value">508-444-2276</a>
-            </div>
-          </div>
-          <div class="reserve-contact-item">
-            <span class="reserve-contact-icon">✉️</span>
-            <div>
-              <span class="reserve-contact-label">Email</span>
-              <a href="mailto:info@echelonrentalgroup.com" class="reserve-contact-value">info@echelonrentalgroup.com</a>
-            </div>
-          </div>
-          <div class="reserve-contact-item">
-            <span class="reserve-contact-icon">🕐</span>
-            <div>
-              <span class="reserve-contact-label">Hours</span>
-              <span class="reserve-contact-value">Open 24 Hours, 7 Days a Week</span>
-            </div>
-          </div>
-          <a href="https://www.instagram.com/echelonrentalgroup/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light btn-full">Message Us on Instagram</a>
-        </div>
+          <h2 id="collect">Information We Collect</h2>
+          <h3>Information you give us</h3>
+          <ul>
+            <li><strong>Reservation requests:</strong> name, phone number, email address, rental dates, vehicle of interest, and delivery location.</li>
+            <li><strong>Rental verification:</strong> driver's license details, proof of insurance, and payment card information needed to confirm a rental and hold a security deposit.</li>
+            <li><strong>Communications:</strong> anything you share when you call, text, email, or message us on Instagram.</li>
+          </ul>
+          <h3>Information collected automatically</h3>
+          <ul>
+            <li><strong>Server logs:</strong> our hosting provider records standard technical data such as IP address, browser type, and pages requested, for security and reliability.</li>
+            <li><strong>Language preference:</strong> if you choose a language, it's saved in your browser's local storage so the site remembers it. It isn't sent to us.</li>
+            <li><strong>Vehicle data:</strong> our vehicles may be equipped with GPS and telematics systems that record location and driving data during a rental.</li>
+          </ul>
+          <p>We do not use advertising cookies or third-party tracking pixels on the Echelon Exotics website.</p>
+
+          <h2 id="use">How We Use Your Information</h2>
+          <ul>
+            <li>To respond to your requests, confirm reservations, and arrange delivery and pickup</li>
+            <li>To verify eligibility, insurance, and payment, and to process deposits, charges, and refunds</li>
+            <li>To protect our vehicles, recover them if necessary, and resolve tolls, violations, or damage</li>
+            <li>To contact you about your rental by phone, text, or email</li>
+            <li>To improve our website and services, and to comply with legal obligations</li>
+          </ul>
+
+          <h2 id="share">How We Share Information</h2>
+          <p>We share personal information only as needed to run our business:</p>
+          <ul>
+            <li><strong>Service providers</strong> that help us operate, such as website hosting, Google Workspace (where reservation requests are stored), and payment processors, which may use it only to provide services to us</li>
+            <li><strong>Insurance companies</strong> when verifying coverage or handling a claim</li>
+            <li><strong>Toll authorities and law enforcement</strong> when resolving violations, responding to legal process, or protecting our vehicles, customers, or others</li>
+            <li><strong>Within Echelon Rental Group</strong>, so our brands can serve you consistently</li>
+          </ul>
+          <p>Our website loads fonts from Google Fonts, which receives your IP address when fonts are requested.</p>
+
+          <h2 id="retention">Data Retention &amp; Security</h2>
+          <p>We keep personal information only as long as needed for the purposes above, including legal, tax, and insurance requirements. We use reasonable administrative, technical, and physical safeguards to protect it, consistent with Massachusetts data security regulations (201 CMR 17.00). No method of transmission or storage is completely secure.</p>
+
+          <h2 id="choices">Your Choices &amp; Rights</h2>
+          <ul>
+            <li>You can request access to, correction of, or deletion of your personal information, subject to legal and contractual retention requirements.</li>
+            <li>You can opt out of non-essential texts or emails at any time by replying STOP or contacting us.</li>
+            <li>You can clear your language preference by clearing your browser's site data.</li>
+          </ul>
+          <p>To make a request, contact us using the details below. We may need to verify your identity before acting on it.</p>
+
+          <h2 id="children">Children's Privacy</h2>
+          <p>Our services are intended for adults. We do not knowingly collect personal information from children under 13 through this website.</p>
+
+          <h2 id="changes">Changes to This Policy</h2>
+          <p>We may update this policy from time to time. The "Last updated" date at the top of this page shows when it last changed.</p>
+
+          <h2 id="contact">Contact</h2>
+          <p>Questions about anything on this page? Our team is available 24 hours a day, 7 days a week.</p>
+          <ul>
+            <li>Call or text: <a href="tel:+15084442276">508-444-2276</a></li>
+            <li>Email: <a href="mailto:info@echelonrentalgroup.com">info@echelonrentalgroup.com</a></li>
+            <li>Instagram: <a href="https://www.instagram.com/echelonrentalgroup/" target="_blank" rel="noopener noreferrer">@EchelonRentalGroup</a></li>
+          </ul>
+        </article>
       </div>
     </div>
   </section>
@@ -254,7 +260,6 @@
   </footer>
 
   <script src="brand-pages.js"></script>
-  <script src="exotics-form.js"></script>
   <script src="cursor-ring.js"></script>
 </body>
 </html>

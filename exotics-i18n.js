@@ -7,7 +7,7 @@
 ────────────────────────────────────────── */
 const exoticsI18n = {
   en: {
-    navFleet: 'Fleet', navReserve: 'Reserve', navFaq: 'FAQ', navReviews: 'Reviews', navBtn: 'Reserve Now',
+    navFleet: 'Fleet', navHow: 'How It Works', navAbout: 'About', navFaq: 'FAQ', navBtn: 'Reserve Now',
     heroBadge: 'Exotic &amp; Luxury Fleet · By Appointment or Instant Book',
     heroTitle: 'Extraordinary Cars,<br /><span class="accent">Unforgettable Drives.</span>',
     heroSubtitle: 'Echelon Exotics puts <strong>Lamborghini, Ferrari, Porsche, and Rolls-Royce</strong> within reach — hourly, daily, or for the weekend. White-glove delivery available anywhere in the region.',
@@ -33,8 +33,10 @@ const exoticsI18n = {
       { title: 'Curated Fleet', desc: 'Every vehicle is hand-selected, detailed, and inspected before it reaches you — no surprises, no substitutions.' },
     ],
     whyCta: 'Reserve Your Car',
+    whyHow: 'See How It Works',
     faqTag: 'FAQ', faqH2: 'Frequently Asked Questions',
     faqDesc: 'Everything you need to know before reserving your luxury or exotic rental.',
+    faqAll: 'See All FAQs',
     faqItems: [
       { q: "What's included in the rental rate?", a: "Every rental includes 125 miles per day as a standard allowance. Need more for your trip? Let us know when you book and we'll work out a mileage plan that fits." },
       { q: 'Do I need my own insurance?', a: 'Yes — a valid personal auto insurance policy with adequate liability coverage is required for every exotic and luxury rental. Our team confirms your coverage meets our minimum requirements before delivery.' },
@@ -50,13 +52,19 @@ const exoticsI18n = {
       { q: "\"I've rented supercars from three different companies in New England — Echelon's condition and turnaround are the best by far.\"", name: 'Marco D.', role: 'Repeat Client' },
     ],
     footerBlurb: 'Luxury and exotic car rentals with white-glove delivery, part of the Echelon Rental Group family.',
-    footerFleetH: 'Fleet', footerFleet: ['Supercars', 'Ultra-Luxury SUVs', 'FAQ'],
-    footerBrandsH: 'Echelon Brands', footerContactH: 'Contact', footerHours: 'Open 24 Hours, 7 Days a Week',
+    footerCols: [
+      { h: 'Quick Links', links: ['Home', 'View Full Fleet', 'Reserve a Car', 'How It Works', 'FAQs'] },
+      { h: 'Company', links: ['About Us', 'Service Areas', 'Client Reviews', 'Echelon Stories'] },
+      { h: 'Resources', links: ['Rental Policies', 'Cancellation & Refunds', 'Terms of Service', 'Privacy Policy', 'Accessibility'] },
+      { h: 'Echelon Brands' },
+      { h: 'Contact' },
+    ],
+    footerLegal: ['Privacy', 'Terms', 'Accessibility'], footerHours: 'Open 24 Hours, 7 Days a Week',
     footerCopy: '© 2026 Echelon Rental Group. All rights reserved.',
     toastTitle: 'Reservation Requested!', toastBody: "We'll call you within 1 hour to confirm.",
   },
   es: {
-    navFleet: 'Flota', navReserve: 'Reservar', navFaq: 'FAQ', navReviews: 'Reseñas', navBtn: 'Reservar Ahora',
+    navFleet: 'Flota', navHow: 'Cómo Funciona', navAbout: 'Nosotros', navFaq: 'FAQ', navBtn: 'Reservar Ahora',
     heroBadge: 'Flota Exótica y de Lujo · Con Cita o Reserva Instantánea',
     heroTitle: 'Autos Extraordinarios,<br /><span class="accent">Viajes Inolvidables.</span>',
     heroSubtitle: 'Echelon Exotics pone a tu alcance <strong>Lamborghini, Ferrari, Porsche y Rolls-Royce</strong> — por hora, por día o el fin de semana. Entrega de lujo disponible en toda la región.',
@@ -82,8 +90,10 @@ const exoticsI18n = {
       { title: 'Flota Curada', desc: 'Cada vehículo es seleccionado a mano, detallado e inspeccionado antes de llegar a ti — sin sorpresas ni sustituciones.' },
     ],
     whyCta: 'Reserva Tu Auto',
+    whyHow: 'Ver Cómo Funciona',
     faqTag: 'FAQ', faqH2: 'Preguntas Frecuentes',
     faqDesc: 'Todo lo que necesitas saber antes de reservar tu auto de lujo o exótico.',
+    faqAll: 'Ver Todas las Preguntas',
     faqItems: [
       { q: '¿Qué incluye la tarifa de alquiler?', a: 'Cada alquiler incluye 125 millas por día como estándar. ¿Necesitas más para tu viaje? Avísanos al reservar y ajustaremos un plan de millaje que se adapte a ti.' },
       { q: '¿Necesito mi propio seguro?', a: 'Sí — se requiere una póliza de seguro de auto personal con cobertura de responsabilidad civil adecuada para cada alquiler exótico y de lujo. Nuestro equipo confirma que tu cobertura cumple con nuestros requisitos mínimos antes de la entrega.' },
@@ -99,13 +109,19 @@ const exoticsI18n = {
       { q: 'He alquilado superdeportivos de tres compañías diferentes en Nueva Inglaterra — la condición y rapidez de Echelon son las mejores por mucho.', name: 'Marco D.', role: 'Cliente Recurrente' },
     ],
     footerBlurb: 'Alquiler de autos exóticos y de lujo con entrega de conserjería, parte de la familia Echelon Rental Group.',
-    footerFleetH: 'Flota', footerFleet: ['Superdeportivos', 'SUVs Ultra de Lujo', 'FAQ'],
-    footerBrandsH: 'Marcas Echelon', footerContactH: 'Contacto', footerHours: 'Abierto las 24 Horas, los 7 Días de la Semana',
+    footerCols: [
+      { h: 'Enlaces Rápidos', links: ['Inicio', 'Ver Toda la Flota', 'Reservar un Auto', 'Cómo Funciona', 'Preguntas Frecuentes'] },
+      { h: 'Empresa', links: ['Sobre Nosotros', 'Áreas de Servicio', 'Reseñas de Clientes', 'Historias Echelon'] },
+      { h: 'Recursos', links: ['Políticas de Alquiler', 'Cancelaciones y Reembolsos', 'Términos de Servicio', 'Política de Privacidad', 'Accesibilidad'] },
+      { h: 'Marcas Echelon' },
+      { h: 'Contacto' },
+    ],
+    footerLegal: ['Privacidad', 'Términos', 'Accesibilidad'], footerHours: 'Abierto las 24 Horas, los 7 Días de la Semana',
     footerCopy: '© 2026 Echelon Rental Group. Todos los derechos reservados.',
     toastTitle: '¡Reservación Solicitada!', toastBody: 'Te llamaremos dentro de 1 hora para confirmar.',
   },
   pt: {
-    navFleet: 'Frota', navReserve: 'Reservar', navFaq: 'FAQ', navReviews: 'Avaliações', navBtn: 'Reservar Agora',
+    navFleet: 'Frota', navHow: 'Como Funciona', navAbout: 'Sobre', navFaq: 'FAQ', navBtn: 'Reservar Agora',
     heroBadge: 'Frota Exótica e de Luxo · Com Agendamento ou Reserva Instantânea',
     heroTitle: 'Carros Extraordinários,<br /><span class="accent">Passeios Inesquecíveis.</span>',
     heroSubtitle: 'A Echelon Exotics coloca ao seu alcance <strong>Lamborghini, Ferrari, Porsche e Rolls-Royce</strong> — por hora, por dia ou no fim de semana. Entrega de luxo disponível em toda a região.',
@@ -131,8 +147,10 @@ const exoticsI18n = {
       { title: 'Frota Curada', desc: 'Cada veículo é selecionado à mão, detalhado e inspecionado antes de chegar até você — sem surpresas, sem substituições.' },
     ],
     whyCta: 'Reserve Seu Carro',
+    whyHow: 'Veja Como Funciona',
     faqTag: 'FAQ', faqH2: 'Perguntas Frequentes',
     faqDesc: 'Tudo o que você precisa saber antes de reservar seu carro de luxo ou exótico.',
+    faqAll: 'Ver Todas as Perguntas',
     faqItems: [
       { q: 'O que está incluído na tarifa de aluguel?', a: 'Cada aluguel inclui 125 milhas por dia como padrão. Precisa de mais para sua viagem? Avise-nos ao reservar e ajustaremos um plano de quilometragem que funcione para você.' },
       { q: 'Preciso do meu próprio seguro?', a: 'Sim — é necessária uma apólice de seguro de automóvel pessoal com cobertura de responsabilidade adequada para todo aluguel exótico e de luxo. Nossa equipe confirma que sua cobertura atende aos requisitos mínimos antes da entrega.' },
@@ -148,8 +166,14 @@ const exoticsI18n = {
       { q: 'Já aluguei superesportivos de três empresas diferentes na Nova Inglaterra — a condição e agilidade da Echelon são de longe as melhores.', name: 'Marco D.', role: 'Cliente Recorrente' },
     ],
     footerBlurb: 'Aluguel de carros exóticos e de luxo com entrega concierge, parte da família Echelon Rental Group.',
-    footerFleetH: 'Frota', footerFleet: ['Superesportivos', 'SUVs Ultra de Luxo', 'FAQ'],
-    footerBrandsH: 'Marcas Echelon', footerContactH: 'Contato', footerHours: 'Aberto 24 Horas, 7 Dias por Semana',
+    footerCols: [
+      { h: 'Links Rápidos', links: ['Início', 'Ver Toda a Frota', 'Reservar um Carro', 'Como Funciona', 'Perguntas Frequentes'] },
+      { h: 'Empresa', links: ['Sobre Nós', 'Áreas de Atendimento', 'Avaliações de Clientes', 'Histórias Echelon'] },
+      { h: 'Recursos', links: ['Políticas de Aluguel', 'Cancelamentos e Reembolsos', 'Termos de Serviço', 'Política de Privacidade', 'Acessibilidade'] },
+      { h: 'Marcas Echelon' },
+      { h: 'Contato' },
+    ],
+    footerLegal: ['Privacidade', 'Termos', 'Acessibilidade'], footerHours: 'Aberto 24 Horas, 7 Dias por Semana',
     footerCopy: '© 2026 Echelon Rental Group. Todos os direitos reservados.',
     toastTitle: 'Reserva Solicitada!', toastBody: 'Ligaremos em até 1 hora para confirmar.',
   },
@@ -171,7 +195,7 @@ function applyLang(lang) {
   document.querySelectorAll('.lang-option').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
 
   const navLinks = $$('.nav-links a, .mobile-menu > a:not(.btn)');
-  const navLabels = [t.navFleet, t.navReserve, t.navFaq, t.navReviews];
+  const navLabels = [t.navFleet, t.navHow, t.navAbout, t.navFaq];
   document.querySelectorAll('.nav-links li a').forEach((el, i) => { if (navLabels[i]) el.textContent = navLabels[i]; });
   document.querySelectorAll('.mobile-menu > a:not(.btn)').forEach((el, i) => { if (navLabels[i]) el.textContent = navLabels[i]; });
   document.querySelectorAll('.nav-actions .btn-primary, .mobile-menu .btn-primary').forEach(el => el.textContent = t.navBtn);
@@ -222,11 +246,14 @@ function applyLang(lang) {
     if (titleEl) titleEl.textContent = r.title;
     if (descEl) descEl.textContent = r.desc;
   });
-  setText('#why-echelon .explore-cta .btn', t.whyCta || 'Reserve Your Car');
+  const whyCtas = $$('#why-echelon .explore-cta .btn');
+  if (whyCtas[0]) whyCtas[0].textContent = t.whyCta || 'Reserve Your Car';
+  if (whyCtas[1]) whyCtas[1].textContent = t.whyHow;
 
   setText('#faq .section-tag', t.faqTag);
   setText('#faq .section-header h2', t.faqH2);
   setText('#faq .section-header p', t.faqDesc);
+  setText('#faq .explore-cta .btn', t.faqAll);
   const faqCards = $$('.faq-item');
   faqCards.forEach((card, i) => {
     const item = t.faqItems[i];
@@ -247,12 +274,14 @@ function applyLang(lang) {
   });
 
   setText('.footer-brand p', t.footerBlurb);
-  const footerHeads = $$('.footer-links h4');
-  if (footerHeads[0]) footerHeads[0].textContent = t.footerFleetH;
-  if (footerHeads[1]) footerHeads[1].textContent = t.footerBrandsH;
-  if (footerHeads[2]) footerHeads[2].textContent = t.footerContactH;
-  const fleetLinks = footerHeads[0] && footerHeads[0].parentElement.querySelectorAll('a');
-  if (fleetLinks) t.footerFleet.forEach((txt, i) => { if (fleetLinks[i]) fleetLinks[i].textContent = txt; });
+  $$('.footer-links').forEach((col, i) => {
+    const c = t.footerCols[i];
+    if (!c) return;
+    col.querySelector('h4').textContent = c.h;
+    if (!c.links) return;
+    col.querySelectorAll('a').forEach((a, j) => { if (c.links[j]) a.textContent = c.links[j]; });
+  });
+  $$('.footer-legal a').forEach((a, i) => { if (t.footerLegal[i]) a.textContent = t.footerLegal[i]; });
   setText('.footer-hours', t.footerHours);
   setText('.footer-bottom p', t.footerCopy);
 

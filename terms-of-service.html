@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reserve Your Car | Echelon Exotics</title>
+  <title>Terms of Service | Echelon Exotics</title>
+  <meta name="description" content="Terms of Service for the Echelon Exotics website and reservation requests." />
   <link rel="stylesheet" href="styles.css" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="1024x1024" href="/app-icon-1024.png" />
@@ -11,8 +12,8 @@
 
   <meta property="og:type"        content="website" />
   <meta property="og:site_name"   content="Echelon Rental Group" />
-  <meta property="og:title"       content="Reserve Your Car | Echelon Exotics" />
-  <meta property="og:description" content="Schedule your Echelon Exotics rental — tell us what you'd like to drive and when, or call us directly." />
+  <meta property="og:title"       content="Terms of Service | Echelon Exotics" />
+  <meta property="og:description" content="Terms of Service for the Echelon Exotics website and reservation requests." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -91,104 +92,95 @@
     </div>
   </nav>
 
-  <!-- ───────────── RESERVE ───────────── -->
-  <section class="dark-section" id="schedule" style="padding-top: calc(var(--nav-h) + 60px);">
+  <!-- ───────────── PAGE HERO ───────────── -->
+  <section class="page-hero dark-section">
     <div class="section-inner">
-      <div class="section-header">
-        <div class="section-tag">Reserve</div>
-        <h2>Schedule Your Drive</h2>
-        <p>Tell us what you'd like to drive and when &mdash; we'll confirm availability and delivery details within the hour.</p>
-      </div>
+      <div class="section-tag">Resources</div>
+      <h1>Terms of Service</h1>
+      <p>The terms that apply when you use the Echelon Exotics website and request a reservation.</p>
+      <p class="page-meta">Last updated September 24, 2026</p>
+    </div>
+  </section>
 
-      <div class="reserve-layout">
-        <form class="modal-form" style="background:var(--dark-card);border:1px solid var(--dark-border);border-radius:var(--radius-lg);padding:32px;" onsubmit="submitInquiry(event)">
-          <div class="form-row">
-            <div class="form-group">
-              <label>First Name</label>
-              <input type="text" name="firstName" placeholder="John" required />
-            </div>
-            <div class="form-group">
-              <label>Last Name</label>
-              <input type="text" name="lastName" placeholder="Smith" required />
-            </div>
+  <!-- ───────────── POLICY BODY ───────────── -->
+  <section class="dark-section">
+    <div class="section-inner tight">
+      <div class="policy-layout">
+        <aside class="policy-aside">
+          <div>
+            <h4>Resources</h4>
+            <nav aria-label="Resources">
+            <a href="rental-policies.html">Rental Policies</a>
+            <a href="cancellation-policy.html">Cancellation &amp; Refunds</a>
+            <a href="terms-of-service.html" aria-current="page">Terms of Service</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="accessibility.html">Accessibility Statement</a>
+            </nav>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Phone Number</label>
-              <input type="tel" name="phone" placeholder="(555) 000-0000" required />
-            </div>
-            <div class="form-group">
-              <label>Email Address</label>
-              <input type="email" name="email" placeholder="you@example.com" required />
-            </div>
+          <div class="policy-toc">
+            <h4>On This Page</h4>
+            <nav aria-label="On this page">
+            <a href="#acceptance">Acceptance of These Terms</a>
+            <a href="#reservations">Reservations</a>
+            <a href="#pricing">Pricing &amp; Availability</a>
+            <a href="#communications">Communications</a>
+            <a href="#website-use">Use of the Website</a>
+            <a href="#ip">Intellectual Property</a>
+            <a href="#third-party">Third-Party Links</a>
+            <a href="#disclaimers">Disclaimers</a>
+            <a href="#liability">Limitation of Liability</a>
+            <a href="#law">Governing Law</a>
+            <a href="#changes">Changes to These Terms</a>
+            <a href="#contact">Contact</a>
+            </nav>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Pick-Up Date</label>
-              <input type="date" name="pickupDate" required />
-            </div>
-            <div class="form-group">
-              <label>Return Date</label>
-              <input type="date" name="returnDate" required />
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Vehicle of Interest</label>
-            <select id="interestField" name="vehicleInterest">
-            <option>Lamborghini Huracán</option>
-            <option>2026 Maybach GLS</option>
-            <option>Rolls-Royce Cullinan</option>
-            <option>Porsche GT3</option>
-            <option>Mercedes-AMG G63</option>
-            <option>Lamborghini Urus</option>
-            <option>McLaren 570S Spider</option>
-            <option>Corvette C8</option>
-            <option>Bentley Bentayga</option>
-            <option>Cadillac Escalade ESV Sport Platinum</option>
-            <option>Range Rover P530 SE</option>
-            <option>Not Sure Yet</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Delivery Location <span style="font-weight:400;color:var(--dark-text-3);">(optional &mdash; concierge delivery)</span></label>
-            <input type="text" name="deliveryLocation" placeholder="Address, hotel, or venue" />
-          </div>
-          <div class="form-group checkbox-group">
-            <label class="checkbox-label" style="color:var(--dark-text-2);">
-              <input type="checkbox" required />
-              I confirm I have a valid driver's license and agree to the <a href="rental-policies.html" target="_blank" class="inline-link">Rental Policies</a>, <a href="cancellation-policy.html" target="_blank" class="inline-link">Cancellation Policy</a>, and <a href="terms-of-service.html" target="_blank" class="inline-link">Terms of Service</a>.
-            </label>
-          </div>
-          <button type="submit" class="btn btn-primary btn-full">Request Reservation</button>
-          <p class="modal-note" style="color:var(--dark-text-3);">We'll call you within 1 hour to confirm and arrange delivery.</p>
-        </form>
+        </aside>
+        <article class="prose">
+          <h2 id="acceptance">Acceptance of These Terms</h2>
+          <p>These Terms of Service govern your use of the Echelon Exotics website and the services offered through it by Echelon Rental Group ("Echelon," "we," "us"). By using this website or submitting a reservation request, you agree to these terms. If you don't agree, please don't use the website.</p>
 
-        <div class="reserve-contact-panel">
-          <h3>Prefer to Talk It Through?</h3>
-          <p>Our team is available around the clock to help you pick the right car.</p>
-          <div class="reserve-contact-item">
-            <span class="reserve-contact-icon">📞</span>
-            <div>
-              <span class="reserve-contact-label">Call or Text</span>
-              <a href="tel:+15084442276" class="reserve-contact-value">508-444-2276</a>
-            </div>
-          </div>
-          <div class="reserve-contact-item">
-            <span class="reserve-contact-icon">✉️</span>
-            <div>
-              <span class="reserve-contact-label">Email</span>
-              <a href="mailto:info@echelonrentalgroup.com" class="reserve-contact-value">info@echelonrentalgroup.com</a>
-            </div>
-          </div>
-          <div class="reserve-contact-item">
-            <span class="reserve-contact-icon">🕐</span>
-            <div>
-              <span class="reserve-contact-label">Hours</span>
-              <span class="reserve-contact-value">Open 24 Hours, 7 Days a Week</span>
-            </div>
-          </div>
-          <a href="https://www.instagram.com/echelonrentalgroup/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light btn-full">Message Us on Instagram</a>
-        </div>
+          <h2 id="reservations">Reservations</h2>
+          <ul>
+            <li>Submitting a reservation request does not guarantee a vehicle. A reservation is confirmed only when Echelon confirms it with you directly.</li>
+            <li>Every rental is governed by a separate rental agreement signed before the rental begins, along with our <a href="rental-policies.html">Rental Policies</a> and <a href="cancellation-policy.html">Cancellation &amp; Refund Policy</a>. If those documents conflict with these terms, the rental agreement controls.</li>
+            <li>You agree that the information you provide is accurate and complete.</li>
+          </ul>
+
+          <h2 id="pricing">Pricing &amp; Availability</h2>
+          <p>Rates, vehicles, and availability shown on the website may change without notice. We make every effort to keep information accurate, but errors can occur. If a posted price is wrong, we'll contact you before confirming your reservation. Vehicle photos are representative of the vehicle you'll receive.</p>
+
+          <h2 id="communications">Communications</h2>
+          <p>By submitting a request, you agree that Echelon may contact you by phone, text message, or email about your reservation. Message and data rates may apply. You can ask us to stop non-essential messages at any time.</p>
+
+          <h2 id="website-use">Use of the Website</h2>
+          <p>You agree not to misuse the website, including by attempting to gain unauthorized access, interfering with its operation, submitting false or fraudulent requests, or using automated tools to collect its content.</p>
+
+          <h2 id="ip">Intellectual Property</h2>
+          <p>All content on this website, including text, photographs, videos, logos, and design, is owned by or licensed to Echelon Rental Group and may not be copied or reused without our written permission. Vehicle manufacturer names and logos belong to their respective owners and are used only to identify the vehicles we offer. Echelon is not affiliated with or endorsed by those manufacturers.</p>
+
+          <h2 id="third-party">Third-Party Links</h2>
+          <p>The website links to third-party services such as Instagram. We aren't responsible for their content or practices, and your use of them is governed by their own terms.</p>
+
+          <h2 id="disclaimers">Disclaimers</h2>
+          <p>The website is provided "as is" and "as available." To the fullest extent permitted by law, Echelon disclaims all warranties, express or implied, regarding the website and its content.</p>
+
+          <h2 id="liability">Limitation of Liability</h2>
+          <p>To the fullest extent permitted by law, Echelon will not be liable for any indirect, incidental, special, or consequential damages arising from your use of the website. Liability related to a rental is governed by your rental agreement.</p>
+
+          <h2 id="law">Governing Law</h2>
+          <p>These terms are governed by the laws of the Commonwealth of Massachusetts, without regard to its conflict-of-law rules. Any dispute will be resolved in the state or federal courts located in Massachusetts.</p>
+
+          <h2 id="changes">Changes to These Terms</h2>
+          <p>We may update these terms from time to time. The "Last updated" date at the top of this page shows when they last changed. Continued use of the website means you accept the updated terms.</p>
+
+          <h2 id="contact">Contact</h2>
+          <p>Questions about anything on this page? Our team is available 24 hours a day, 7 days a week.</p>
+          <ul>
+            <li>Call or text: <a href="tel:+15084442276">508-444-2276</a></li>
+            <li>Email: <a href="mailto:info@echelonrentalgroup.com">info@echelonrentalgroup.com</a></li>
+            <li>Instagram: <a href="https://www.instagram.com/echelonrentalgroup/" target="_blank" rel="noopener noreferrer">@EchelonRentalGroup</a></li>
+          </ul>
+        </article>
       </div>
     </div>
   </section>
@@ -254,7 +246,6 @@
   </footer>
 
   <script src="brand-pages.js"></script>
-  <script src="exotics-form.js"></script>
   <script src="cursor-ring.js"></script>
 </body>
 </html>

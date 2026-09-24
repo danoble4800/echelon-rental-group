@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reserve Your Car | Echelon Exotics</title>
+  <title>About Us | Echelon Exotics</title>
+  <meta name="description" content="Echelon Exotics is the locally owned, Massachusetts-based luxury and exotic car rental division of Echelon Rental Group." />
   <link rel="stylesheet" href="styles.css" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="1024x1024" href="/app-icon-1024.png" />
@@ -11,8 +12,8 @@
 
   <meta property="og:type"        content="website" />
   <meta property="og:site_name"   content="Echelon Rental Group" />
-  <meta property="og:title"       content="Reserve Your Car | Echelon Exotics" />
-  <meta property="og:description" content="Schedule your Echelon Exotics rental — tell us what you'd like to drive and when, or call us directly." />
+  <meta property="og:title"       content="About Us | Echelon Exotics" />
+  <meta property="og:description" content="Echelon Exotics is the locally owned, Massachusetts-based luxury and exotic car rental division of Echelon Rental Group." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -91,103 +92,116 @@
     </div>
   </nav>
 
-  <!-- ───────────── RESERVE ───────────── -->
-  <section class="dark-section" id="schedule" style="padding-top: calc(var(--nav-h) + 60px);">
+  <!-- ───────────── PAGE HERO ───────────── -->
+  <section class="page-hero dark-section">
     <div class="section-inner">
-      <div class="section-header">
-        <div class="section-tag">Reserve</div>
-        <h2>Schedule Your Drive</h2>
-        <p>Tell us what you'd like to drive and when &mdash; we'll confirm availability and delivery details within the hour.</p>
+      <div class="section-tag">About Us</div>
+      <h1>Driven by Detail,<br /><span class="accent">Built on Trust.</span></h1>
+      <p>Echelon Exotics is the luxury and exotic car division of Echelon Rental Group, a locally owned Massachusetts company. We put extraordinary cars within reach without the runaround.</p>
+    </div>
+  </section>
+
+  <!-- ───────────── STORY ───────────── -->
+  <section class="dark-section">
+    <div class="section-inner">
+      <div class="split">
+        <div class="prose">
+          <div class="section-tag">Our Story</div>
+          <h2>More Than the Keys</h2>
+          <p>Echelon started with a simple idea: renting an exotic car should feel as special as driving one. Too often it means long counters, vague pricing, and a car that doesn't match the photos. We built Echelon to be the opposite.</p>
+          <p>Every car in our fleet is hand-picked, professionally detailed, and inspected before every rental. We deliver it to your door, hotel, venue, or airport, walk you through it, and pick it up when you're done. Pricing is transparent from the first quote, and a real person answers the phone any time of day.</p>
+          <p>Whether it's a Lamborghini for a milestone birthday, a Rolls-Royce for a wedding, or a Maybach with a chauffeur for a night in the city, our job is to make the day feel effortless so you can focus on the drive.</p>
+        </div>
+        <div class="split-media" role="img" aria-label="2026 Maybach GLS from the Echelon Exotics fleet" style="background-image: url('images/fleet/maybach-gls.jpg');"></div>
       </div>
+    </div>
+  </section>
 
-      <div class="reserve-layout">
-        <form class="modal-form" style="background:var(--dark-card);border:1px solid var(--dark-border);border-radius:var(--radius-lg);padding:32px;" onsubmit="submitInquiry(event)">
-          <div class="form-row">
-            <div class="form-group">
-              <label>First Name</label>
-              <input type="text" name="firstName" placeholder="John" required />
-            </div>
-            <div class="form-group">
-              <label>Last Name</label>
-              <input type="text" name="lastName" placeholder="Smith" required />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Phone Number</label>
-              <input type="tel" name="phone" placeholder="(555) 000-0000" required />
-            </div>
-            <div class="form-group">
-              <label>Email Address</label>
-              <input type="email" name="email" placeholder="you@example.com" required />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Pick-Up Date</label>
-              <input type="date" name="pickupDate" required />
-            </div>
-            <div class="form-group">
-              <label>Return Date</label>
-              <input type="date" name="returnDate" required />
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Vehicle of Interest</label>
-            <select id="interestField" name="vehicleInterest">
-            <option>Lamborghini Huracán</option>
-            <option>2026 Maybach GLS</option>
-            <option>Rolls-Royce Cullinan</option>
-            <option>Porsche GT3</option>
-            <option>Mercedes-AMG G63</option>
-            <option>Lamborghini Urus</option>
-            <option>McLaren 570S Spider</option>
-            <option>Corvette C8</option>
-            <option>Bentley Bentayga</option>
-            <option>Cadillac Escalade ESV Sport Platinum</option>
-            <option>Range Rover P530 SE</option>
-            <option>Not Sure Yet</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Delivery Location <span style="font-weight:400;color:var(--dark-text-3);">(optional &mdash; concierge delivery)</span></label>
-            <input type="text" name="deliveryLocation" placeholder="Address, hotel, or venue" />
-          </div>
-          <div class="form-group checkbox-group">
-            <label class="checkbox-label" style="color:var(--dark-text-2);">
-              <input type="checkbox" required />
-              I confirm I have a valid driver's license and agree to the <a href="rental-policies.html" target="_blank" class="inline-link">Rental Policies</a>, <a href="cancellation-policy.html" target="_blank" class="inline-link">Cancellation Policy</a>, and <a href="terms-of-service.html" target="_blank" class="inline-link">Terms of Service</a>.
-            </label>
-          </div>
-          <button type="submit" class="btn btn-primary btn-full">Request Reservation</button>
-          <p class="modal-note" style="color:var(--dark-text-3);">We'll call you within 1 hour to confirm and arrange delivery.</p>
-        </form>
+  <!-- ───────────── VALUES ───────────── -->
+  <section class="dark-section">
+    <div class="section-inner tight">
+      <div class="section-header">
+        <div class="section-tag">What We Stand For</div>
+        <h2>The Echelon Standard</h2>
+        <p>The promises we make on every rental, whether it's your first or your fiftieth.</p>
+      </div>
+      <div class="card-grid">
+        <div class="info-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <h3>Complimentary Delivery</h3>
+          <p>We bring the car to you. The first 10 miles are on us, and we can deliver further out on request.</p>
+        </div>
+        <div class="info-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="m9 15 2 2 4-4"/></svg>
+          <h3>Easy Booking</h3>
+          <p>Reserve online or call us directly. Most requests are confirmed within the hour, with minimal paperwork.</p>
+        </div>
+        <div class="info-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg>
+          <h3>Transparent Pricing</h3>
+          <p>No hidden fees and no surprise charges at pickup. What you're quoted is what you pay.</p>
+        </div>
+        <div class="info-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9v12h14V9"/><path d="M10 21v-6h4v6"/></svg>
+          <h3>Locally Owned</h3>
+          <p>Echelon is Massachusetts-based and locally owned, not a faceless franchise. We know our clients and our cars.</p>
+        </div>
+        <div class="info-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m10.8 12.2 9.2-9.2M16 7l3 3M14 9l2 2"/></svg>
+          <h3>Curated Fleet</h3>
+          <p>Every vehicle is hand-selected, detailed, and inspected before it reaches you. No surprises, no substitutions.</p>
+        </div>
+        <div class="info-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <h3>Always Available</h3>
+          <p>Our team is on call 24 hours a day, 7 days a week, from your first question to the moment the keys come back.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="reserve-contact-panel">
-          <h3>Prefer to Talk It Through?</h3>
-          <p>Our team is available around the clock to help you pick the right car.</p>
-          <div class="reserve-contact-item">
-            <span class="reserve-contact-icon">📞</span>
-            <div>
-              <span class="reserve-contact-label">Call or Text</span>
-              <a href="tel:+15084442276" class="reserve-contact-value">508-444-2276</a>
-            </div>
-          </div>
-          <div class="reserve-contact-item">
-            <span class="reserve-contact-icon">✉️</span>
-            <div>
-              <span class="reserve-contact-label">Email</span>
-              <a href="mailto:info@echelonrentalgroup.com" class="reserve-contact-value">info@echelonrentalgroup.com</a>
-            </div>
-          </div>
-          <div class="reserve-contact-item">
-            <span class="reserve-contact-icon">🕐</span>
-            <div>
-              <span class="reserve-contact-label">Hours</span>
-              <span class="reserve-contact-value">Open 24 Hours, 7 Days a Week</span>
-            </div>
-          </div>
-          <a href="https://www.instagram.com/echelonrentalgroup/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light btn-full">Message Us on Instagram</a>
+  <!-- ───────────── FAMILY ───────────── -->
+  <section class="dark-section">
+    <div class="section-inner tight">
+      <div class="section-header">
+        <div class="section-tag">Echelon Rental Group</div>
+        <h2>One Family, Every Way to Travel</h2>
+        <p>Echelon Exotics is one of five brands under the Echelon Rental Group name, each built on the same standard of service.</p>
+      </div>
+      <div class="card-grid two">
+        <div class="info-card">
+          <h3><a href="index.html">Economic Rentals</a></h3>
+          <p>Affordable, everyday car rentals for when you just need to get where you're going.</p>
+          <ul><li>Daily</li><li>Weekly</li><li>Monthly</li></ul>
+        </div>
+        <div class="info-card">
+          <h3><a href="boats.html">Boat Charters</a></h3>
+          <p>Yacht and boat charters along the New England coast for groups, celebrations, and sunset cruises.</p>
+          <ul><li>Yachts</li><li>Day Charters</li></ul>
+        </div>
+        <div class="info-card">
+          <h3><a href="jets.html">Jet Charters</a></h3>
+          <p>Private aviation for business trips and getaways, with no terminals and no waiting.</p>
+          <ul><li>Private Jets</li><li>On Demand</li></ul>
+        </div>
+        <div class="info-card">
+          <h3><a href="experiences.html">Experiences</a></h3>
+          <p>Curated adventures that pair our vehicles, boats, and jets into one seamless itinerary.</p>
+          <ul><li>Curated</li><li>Group Friendly</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── CTA ───────────── -->
+  <section class="dark-section">
+    <div class="section-inner tight">
+      <div class="cta-band">
+        <h2>Ready When You Are</h2>
+        <p>Browse the fleet, send a request, and we'll confirm availability and delivery details within the hour.</p>
+        <div class="cta-actions">
+          <a href="reserve.html" class="btn btn-primary btn-lg">Reserve a Car</a>
+          <a href="tel:+15084442276" class="btn btn-outline-light btn-lg">Call 508-444-2276</a>
         </div>
       </div>
     </div>
@@ -254,7 +268,6 @@
   </footer>
 
   <script src="brand-pages.js"></script>
-  <script src="exotics-form.js"></script>
   <script src="cursor-ring.js"></script>
 </body>
 </html>

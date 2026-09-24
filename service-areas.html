@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reserve Your Car | Echelon Exotics</title>
+  <title>Service Areas | Echelon Exotics</title>
+  <meta name="description" content="Echelon Exotics delivers luxury and exotic rental cars across Massachusetts and Rhode Island, including Boston, Worcester, Cape Cod, Providence, and major airports." />
   <link rel="stylesheet" href="styles.css" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="1024x1024" href="/app-icon-1024.png" />
@@ -11,8 +12,8 @@
 
   <meta property="og:type"        content="website" />
   <meta property="og:site_name"   content="Echelon Rental Group" />
-  <meta property="og:title"       content="Reserve Your Car | Echelon Exotics" />
-  <meta property="og:description" content="Schedule your Echelon Exotics rental — tell us what you'd like to drive and when, or call us directly." />
+  <meta property="og:title"       content="Service Areas | Echelon Exotics" />
+  <meta property="og:description" content="Echelon Exotics delivers luxury and exotic rental cars across Massachusetts and Rhode Island, including Boston, Worcester, Cape Cod, Providence, and major airports." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -91,103 +92,124 @@
     </div>
   </nav>
 
-  <!-- ───────────── RESERVE ───────────── -->
-  <section class="dark-section" id="schedule" style="padding-top: calc(var(--nav-h) + 60px);">
+  <!-- ───────────── PAGE HERO ───────────── -->
+  <section class="page-hero dark-section">
     <div class="section-inner">
-      <div class="section-header">
-        <div class="section-tag">Reserve</div>
-        <h2>Schedule Your Drive</h2>
-        <p>Tell us what you'd like to drive and when &mdash; we'll confirm availability and delivery details within the hour.</p>
+      <div class="section-tag">Service Areas</div>
+      <h1>We Bring the Car <span class="accent">to You</span></h1>
+      <p>Echelon Exotics is based in Massachusetts and delivers across the state and into Rhode Island, to homes, hotels, venues, and airports.</p>
+    </div>
+  </section>
+
+  <!-- ───────────── HOW DELIVERY WORKS ───────────── -->
+  <section class="dark-section">
+    <div class="section-inner tight">
+      <div class="card-grid">
+        <div class="info-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg>
+          <h3>Complimentary Delivery</h3>
+          <p>The first 10 miles of delivery and pickup are on us. Beyond that, delivery is quoted at booking, with no surprises.</p>
+        </div>
+        <div class="info-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9v12h14V9"/><path d="M10 21v-6h4v6"/></svg>
+          <h3>Self-Pickup</h3>
+          <p>Prefer to come to us? Self-pickup is available at our location. The address is shared with your confirmation.</p>
+        </div>
+        <div class="info-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <h3>Anywhere in New England</h3>
+          <p>Need the car somewhere we haven't listed? Delivery elsewhere in New England is available on request.</p>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <div class="reserve-layout">
-        <form class="modal-form" style="background:var(--dark-card);border:1px solid var(--dark-border);border-radius:var(--radius-lg);padding:32px;" onsubmit="submitInquiry(event)">
-          <div class="form-row">
-            <div class="form-group">
-              <label>First Name</label>
-              <input type="text" name="firstName" placeholder="John" required />
-            </div>
-            <div class="form-group">
-              <label>Last Name</label>
-              <input type="text" name="lastName" placeholder="Smith" required />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Phone Number</label>
-              <input type="tel" name="phone" placeholder="(555) 000-0000" required />
-            </div>
-            <div class="form-group">
-              <label>Email Address</label>
-              <input type="email" name="email" placeholder="you@example.com" required />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Pick-Up Date</label>
-              <input type="date" name="pickupDate" required />
-            </div>
-            <div class="form-group">
-              <label>Return Date</label>
-              <input type="date" name="returnDate" required />
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Vehicle of Interest</label>
-            <select id="interestField" name="vehicleInterest">
-            <option>Lamborghini Huracán</option>
-            <option>2026 Maybach GLS</option>
-            <option>Rolls-Royce Cullinan</option>
-            <option>Porsche GT3</option>
-            <option>Mercedes-AMG G63</option>
-            <option>Lamborghini Urus</option>
-            <option>McLaren 570S Spider</option>
-            <option>Corvette C8</option>
-            <option>Bentley Bentayga</option>
-            <option>Cadillac Escalade ESV Sport Platinum</option>
-            <option>Range Rover P530 SE</option>
-            <option>Not Sure Yet</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Delivery Location <span style="font-weight:400;color:var(--dark-text-3);">(optional &mdash; concierge delivery)</span></label>
-            <input type="text" name="deliveryLocation" placeholder="Address, hotel, or venue" />
-          </div>
-          <div class="form-group checkbox-group">
-            <label class="checkbox-label" style="color:var(--dark-text-2);">
-              <input type="checkbox" required />
-              I confirm I have a valid driver's license and agree to the <a href="rental-policies.html" target="_blank" class="inline-link">Rental Policies</a>, <a href="cancellation-policy.html" target="_blank" class="inline-link">Cancellation Policy</a>, and <a href="terms-of-service.html" target="_blank" class="inline-link">Terms of Service</a>.
-            </label>
-          </div>
-          <button type="submit" class="btn btn-primary btn-full">Request Reservation</button>
-          <p class="modal-note" style="color:var(--dark-text-3);">We'll call you within 1 hour to confirm and arrange delivery.</p>
-        </form>
+  <!-- ───────────── REGIONS ───────────── -->
+  <section class="dark-section">
+    <div class="section-inner tight">
+      <div class="section-header">
+        <div class="section-tag">Where We Deliver</div>
+        <h2>Areas We Serve</h2>
+        <p>A sample of the towns we deliver to most often. Don't see yours? Just ask.</p>
+      </div>
+      <div class="card-grid">
+        <div class="info-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <h3>Greater Boston</h3>
+          <p>Downtown, the Back Bay, the Seaport, Cambridge, and the surrounding suburbs.</p>
+          <ul><li>Boston</li><li>Cambridge</li><li>Brookline</li><li>Newton</li><li>Quincy</li></ul>
+        </div>
+        <div class="info-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <h3>MetroWest</h3>
+          <p>Suburban delivery to homes, offices, and venues west of the city.</p>
+          <ul><li>Framingham</li><li>Natick</li><li>Wellesley</li><li>Marlborough</li></ul>
+        </div>
+        <div class="info-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <h3>Central Massachusetts</h3>
+          <p>Worcester and the surrounding towns.</p>
+          <ul><li>Worcester</li><li>Shrewsbury</li><li>Westborough</li></ul>
+        </div>
+        <div class="info-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <h3>South Shore &amp; South Coast</h3>
+          <p>From the South Shore down to the South Coast.</p>
+          <ul><li>Brockton</li><li>Plymouth</li><li>New Bedford</li><li>Fall River</li></ul>
+        </div>
+        <div class="info-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <h3>Cape Cod</h3>
+          <p>Summer weekends, weddings, and getaways on the Cape.</p>
+          <ul><li>Hyannis</li><li>Falmouth</li><li>Chatham</li></ul>
+        </div>
+        <div class="info-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <h3>Rhode Island</h3>
+          <p>Just across the border for weekends by the water.</p>
+          <ul><li>Providence</li><li>Newport</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="reserve-contact-panel">
-          <h3>Prefer to Talk It Through?</h3>
-          <p>Our team is available around the clock to help you pick the right car.</p>
-          <div class="reserve-contact-item">
-            <span class="reserve-contact-icon">📞</span>
-            <div>
-              <span class="reserve-contact-label">Call or Text</span>
-              <a href="tel:+15084442276" class="reserve-contact-value">508-444-2276</a>
-            </div>
-          </div>
-          <div class="reserve-contact-item">
-            <span class="reserve-contact-icon">✉️</span>
-            <div>
-              <span class="reserve-contact-label">Email</span>
-              <a href="mailto:info@echelonrentalgroup.com" class="reserve-contact-value">info@echelonrentalgroup.com</a>
-            </div>
-          </div>
-          <div class="reserve-contact-item">
-            <span class="reserve-contact-icon">🕐</span>
-            <div>
-              <span class="reserve-contact-label">Hours</span>
-              <span class="reserve-contact-value">Open 24 Hours, 7 Days a Week</span>
-            </div>
-          </div>
-          <a href="https://www.instagram.com/echelonrentalgroup/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light btn-full">Message Us on Instagram</a>
+  <!-- ───────────── AIRPORTS ───────────── -->
+  <section class="dark-section" id="airports">
+    <div class="section-inner tight">
+      <div class="section-header">
+        <div class="section-tag">Airport Delivery</div>
+        <h2>Land and Drive</h2>
+        <p>Send us your flight details and we'll time the delivery to your arrival.</p>
+      </div>
+      <div class="card-grid">
+        <div class="info-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 20.5 12 16l-7-3.5V10l7 1.5V6a1.5 1.5 0 0 1 3 0v5.5l7-1.5v2.5L15 16l1.5 4.5-3-1z"/></svg>
+          <h3>Boston Logan International (BOS)</h3>
+          <p>Meet your car curbside or at the rental lot when you land.</p>
+        </div>
+        <div class="info-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 20.5 12 16l-7-3.5V10l7 1.5V6a1.5 1.5 0 0 1 3 0v5.5l7-1.5v2.5L15 16l1.5 4.5-3-1z"/></svg>
+          <h3>Rhode Island T.F. Green (PVD)</h3>
+          <p>Convenient for the South Coast, Rhode Island, and Cape trips.</p>
+        </div>
+        <div class="info-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 20.5 12 16l-7-3.5V10l7 1.5V6a1.5 1.5 0 0 1 3 0v5.5l7-1.5v2.5L15 16l1.5 4.5-3-1z"/></svg>
+          <h3>Private &amp; Regional Terminals</h3>
+          <p>Including Hanscom Field (BED) and Norwood (OWD). Flying private? Pair your car with an <a href="jets.html" class="inline-link">Echelon Jet Charter</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── CTA ───────────── -->
+  <section class="dark-section">
+    <div class="section-inner tight">
+      <div class="cta-band">
+        <h2>Tell Us Where to Meet You</h2>
+        <p>Add your delivery address, hotel, or venue to your reservation request and we'll confirm the details.</p>
+        <div class="cta-actions">
+          <a href="reserve.html" class="btn btn-primary btn-lg">Reserve a Car</a>
+          <a href="tel:+15084442276" class="btn btn-outline-light btn-lg">Call 508-444-2276</a>
         </div>
       </div>
     </div>
@@ -254,7 +276,6 @@
   </footer>
 
   <script src="brand-pages.js"></script>
-  <script src="exotics-form.js"></script>
   <script src="cursor-ring.js"></script>
 </body>
 </html>
