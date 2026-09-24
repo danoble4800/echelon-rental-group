@@ -1,0 +1,14 @@
+{
+  "name": "echelon-rental-group",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "preview": "node scripts/preview-server.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.128.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
