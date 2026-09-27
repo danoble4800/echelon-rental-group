@@ -1,18 +1,21 @@
 /* ──────────────────────────────────────────
    ECHELON EXOTICS — RESERVATION FORM SUBMIT
-   Page-scoped: posts to the Apps Script Web App bound to the
+   Page-scoped: posts to /api/lead, which saves to the
    "Echelon Exotic Rental Reservations" Google Sheet. Loaded after
    brand-pages.js so this overrides that file's shared, visual-only
    submitInquiry() for this page only — Boat Charters, Jet Charters,
    and Experiences keep the placeholder until they get their own
    endpoint wired up the same way.
 ────────────────────────────────────────── */
-const EXOTICS_RESERVATION_ENDPOINT = 'https://script.google.com/macros/s/AKfycbztTb8TSdAMHOy-nq-csXu4FRjcKk8NGO_srQsZlbytJEMkFDY7MqKcd-bs0vDm7rPn/exec';
-
 function submitInquiry(e) {
   e.preventDefault();
   const form = e.target;
+  const button = form.querySelector('button[type="submit"]');
+  if (button.disabled) return;           // ignore double taps while sending
+  button.disabled = true;
+
   const payload = {
+    form:             'exotics',
     firstName:        form.firstName.value,
     lastName:         form.lastName.value,
     phone:            form.phone.value,
@@ -23,13 +26,19 @@ function submitInquiry(e) {
     deliveryLocation: form.deliveryLocation.value
   };
 
-  fetch(EXOTICS_RESERVATION_ENDPOINT, {
+  // /api/lead saves the reservation to the Google Sheet and emails the team.
+  fetch('/api/lead', {
     method: 'POST',
-    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
   })
-    .then(() => { showToast(); form.reset(); })
-    .catch(() => { showToast(); form.reset(); });
+    .then(res => {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      showToast();
+      form.reset();
+    })
+    .catch(() => alert("Sorry, we couldn't send your reservation. Please call or text us at 508-444-2276 and we'll book it for you."))
+    .finally(() => { button.disabled = false; });
 }
 
 /* A vehicle detail page's "Book Now" / "Reserve Now" links point here

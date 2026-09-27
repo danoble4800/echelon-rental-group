@@ -5,7 +5,8 @@
  *   npm run preview        then open http://localhost:3000
  *
  * Serves the static pages the same way Vercel does ("/" -> exotics.html) and
- * runs api/chat.js for /api/chat. Reads ANTHROPIC_API_KEY from .env.local.
+ * runs api/chat.js for /api/chat and api/lead.js for /api/lead. Reads
+ * ANTHROPIC_API_KEY (and optional RESEND_API_KEY / LEAD_ALERT_EMAIL) from .env.local.
  */
 import http from "node:http";
 import fs from "node:fs";
@@ -25,6 +26,7 @@ if (fs.existsSync(envFile)) {
 }
 
 const { default: chatHandler } = await import("../api/chat.js");
+const { default: leadHandler } = await import("../api/lead.js");
 
 const TYPES = {
   ".html": "text/html; charset=utf-8", ".css": "text/css", ".js": "text/javascript",
@@ -59,8 +61,9 @@ function serveStatic(req, res) {
 
 http
   .createServer((req, res) => {
-    if (new URL(req.url, "http://localhost").pathname === "/api/chat") {
-      chatHandler(req, res).catch((err) => {
+    const apiHandler = { "/api/chat": chatHandler, "/api/lead": leadHandler }[new URL(req.url, "http://localhost").pathname];
+    if (apiHandler) {
+      apiHandler(req, res).catch((err) => {
         console.error(err);
         if (!res.headersSent) res.writeHead(500);
         res.end();

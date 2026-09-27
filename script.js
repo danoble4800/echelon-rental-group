@@ -1002,8 +1002,11 @@ function scrollToFleet() {
 /* ──────────────────────────────────────────
    BOOKING MODAL
 ────────────────────────────────────────── */
+let currentModalCar = '';
+
 function openModal(carName, daily, weekly, monthly) {
   currentModalPrices = { daily, weekly, monthly };
+  currentModalCar = carName;
   const t = i18n[currentLang] || i18n.en;
   document.getElementById('modalCarName').textContent = `${t.modalBookPrefix} ${carName}`;
 
@@ -1051,12 +1054,21 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 /* ──────────────────────────────────────────
    BOOKING FORM SUBMIT
 ────────────────────────────────────────── */
-const RESERVATION_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwGxR_0jnB79jV918XK2q088lHf8b6J8el0IqKURr6XQ0yLd1yeWdH1VkkSofSSF4ehQA/exec';
+const BOOKING_ERROR = {
+  en: "Sorry, we couldn't send your reservation. Please call or text us at 508-444-2276 and we'll book it for you.",
+  es: "Lo sentimos, no pudimos enviar tu reserva. Llámanos o envíanos un mensaje al 508-444-2276 y la haremos por ti.",
+  pt: "Desculpe, não conseguimos enviar sua reserva. Ligue ou mande mensagem para 508-444-2276 e faremos a reserva para você."
+};
 
 function submitBooking(e) {
   e.preventDefault();
   const form = e.target;
+  const button = form.querySelector('button[type="submit"]');
+  if (button.disabled) return;           // ignore double taps while sending
+  button.disabled = true;
+
   const payload = {
+    form:       'economy',
     firstName:  form.firstName.value,
     lastName:   form.lastName.value,
     phone:      form.phone.value,
@@ -1064,16 +1076,23 @@ function submitBooking(e) {
     pickupDate: form.pickupDate.value,
     returnDate: form.returnDate.value,
     useCase:    form.useCase.value,
-    car:        document.getElementById('modalCarName').textContent
+    car:        currentModalCar
   };
 
-  fetch(RESERVATION_ENDPOINT, {
+  // /api/lead saves the reservation to the Google Sheet and emails the team.
+  fetch('/api/lead', {
     method: 'POST',
-    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
   })
-    .then(() => { closeModal(); showToast(); form.reset(); })
-    .catch(() => { closeModal(); showToast(); form.reset(); });
+    .then(res => {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      closeModal();
+      showToast();
+      form.reset();
+    })
+    .catch(() => alert(BOOKING_ERROR[currentLang] || BOOKING_ERROR.en))
+    .finally(() => { button.disabled = false; });
 }
 
 function showToast() {
