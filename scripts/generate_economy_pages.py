@@ -18,11 +18,12 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from generate_site_pages import CONTACT_BLOCK, page_hero, policy_page  # noqa: E402
-from generate_vehicle_pages import NAV_TEMPLATE  # noqa: E402
+from generate_vehicle_pages import ANALYTICS, NAV_TEMPLATE  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 LAST_UPDATED = "September 27, 2026"
+PRIVACY_UPDATED = "September 28, 2026"
 
 RESOURCES = [
     ("economy-rental-policies.html", "Rental Policies"),
@@ -206,7 +207,7 @@ def shell(title, description, body):
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-</head>
+{ANALYTICS}</head>
 <body>
 
 {NAV}
@@ -505,9 +506,10 @@ def build_privacy():
           <ul>
             <li><strong>Server logs:</strong> our hosting provider records standard technical data such as IP address, browser type, and pages requested, for security and reliability.</li>
             <li><strong>Browser storage:</strong> your language choice is saved in your browser's local storage, and your current chat conversation is kept in session storage until you close the tab. Neither is used for tracking.</li>
+            <li><strong>Visitor analytics:</strong> we use Vercel Web Analytics to count page views and see which pages are visited, which website referred you, and your general device type and country. It doesn't use cookies and doesn't identify you individually.</li>
             <li><strong>Vehicle data:</strong> our vehicles may be equipped with GPS and telematics systems that record location and driving data during a rental.</li>
           </ul>
-          <p>We do not use advertising cookies or third-party tracking pixels on the Echelon Economic Rentals website.</p>"""),
+          <p>We do not use cookies for analytics or advertising, and we do not use third-party tracking pixels on the Echelon Economic Rentals website.</p>"""),
         ("use", "How We Use Your Information", """
           <ul>
             <li>To respond to your requests, confirm reservations, and arrange delivery and pickup</li>
@@ -515,12 +517,12 @@ def build_privacy():
             <li>To answer your questions through the chat assistant</li>
             <li>To protect our vehicles, recover them if necessary, and resolve tolls, violations, or damage</li>
             <li>To contact you about your rental by phone, text, or email</li>
-            <li>To improve our website and services, and to comply with legal obligations</li>
+            <li>To understand how visitors use our website, improve it and our services, and comply with legal obligations</li>
           </ul>"""),
         ("share", "How We Share Information", """
           <p>We share personal information only as needed to run our business:</p>
           <ul>
-            <li><strong>Service providers</strong> that help us operate, such as website hosting, Google Workspace (where reservation requests are stored), email delivery, payment processors, and our AI provider (Anthropic), which processes chat messages to generate the assistant's replies. They may use it only to provide services to us.</li>
+            <li><strong>Service providers</strong> that help us operate, such as website hosting and analytics, Google Workspace (where reservation requests are stored), email delivery, payment processors, and our AI provider (Anthropic), which processes chat messages to generate the assistant's replies. They may use it only to provide services to us.</li>
             <li><strong>Insurance companies</strong> when verifying coverage or handling a claim</li>
             <li><strong>Toll authorities and law enforcement</strong> when resolving violations, responding to legal process, or protecting our vehicles, customers, or others</li>
             <li><strong>Within Echelon Rental Group</strong>, so our brands can serve you consistently</li>
@@ -541,11 +543,9 @@ def build_privacy():
           <p>We may update this policy from time to time. The "Last updated" date at the top of this page shows when it last changed.</p>"""),
         ("contact", "Contact", CONTACT_BLOCK),
     ]
-    body = economy_policy_page(
-        "economy-privacy-policy.html", "Privacy Policy",
-        "How Echelon collects, uses, and protects your personal information.",
-        sections,
-    )
+    body = policy_page("economy-privacy-policy.html", "Privacy Policy", "Resources",
+                       "How Echelon collects, uses, and protects your personal information.",
+                       sections, resources=RESOURCES, last_updated=PRIVACY_UPDATED)
     return shell("Privacy Policy",
                  "How Echelon Rental Group collects, uses, shares, and protects personal information through the Echelon Economic Rentals website and rentals.", body)
 

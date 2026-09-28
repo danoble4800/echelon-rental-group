@@ -253,6 +253,12 @@ USE_CASES = [
     ("🎂", "Birthdays &amp; Celebrations"),
 ]
 
+# Shared <head> snippet for every generated page.
+ANALYTICS = """  <!-- Vercel Web Analytics: cookie-free page views (enable under the Vercel project's Analytics tab) -->
+  <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+  <script defer src="/_vercel/insights/script.js"></script>
+"""
+
 NAV_TEMPLATE = """  <!-- CUSTOM CURSOR RING -->
   <div aria-hidden="true" class="cursor-ring"></div>
   <div aria-hidden="true" class="cursor-dot"></div>
@@ -505,7 +511,7 @@ def build_page(car):
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-</head>
+{ANALYTICS}</head>
 <body class="theme-exotics">
 
 {nav}
@@ -657,7 +663,7 @@ def build_fleet_page():
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-</head>
+{ANALYTICS}</head>
 <body class="theme-exotics">
 
 {nav}
@@ -723,7 +729,7 @@ def build_reserve_page():
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-</head>
+{ANALYTICS}</head>
 <body class="theme-exotics">
 
 {nav}
