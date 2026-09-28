@@ -18,6 +18,7 @@ from generate_vehicle_pages import NAV_TEMPLATE, FOOTER_TEMPLATE  # noqa: E402
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 LAST_UPDATED = "September 24, 2026"
+PRIVACY_UPDATED = "September 28, 2026"
 PHONE = '<a href="tel:+15084442276">508-444-2276</a>'
 EMAIL = '<a href="mailto:info@echelonrentalgroup.com">info@echelonrentalgroup.com</a>'
 
@@ -652,12 +653,13 @@ def build_privacy():
           <ul>
             <li><strong>Reservation requests:</strong> name, phone number, email address, rental dates, vehicle of interest, and delivery location.</li>
             <li><strong>Rental verification:</strong> driver's license details, proof of insurance, and payment card information needed to confirm a rental and hold a security deposit.</li>
+            <li><strong>Chat messages:</strong> anything you type into the chat assistant on our website.</li>
             <li><strong>Communications:</strong> anything you share when you call, text, email, or message us on Instagram.</li>
           </ul>
           <h3>Information collected automatically</h3>
           <ul>
             <li><strong>Server logs:</strong> our hosting provider records standard technical data such as IP address, browser type, and pages requested, for security and reliability.</li>
-            <li><strong>Language preference:</strong> if you choose a language, it's saved in your browser's local storage so the site remembers it. It isn't sent to us.</li>
+            <li><strong>Browser storage:</strong> your language choice is saved in your browser's local storage, and your current chat conversation is kept in session storage until you close the tab. Neither is used for tracking.</li>
             <li><strong>Vehicle data:</strong> our vehicles may be equipped with GPS and telematics systems that record location and driving data during a rental.</li>
           </ul>
           <p>We do not use advertising cookies or third-party tracking pixels on the Echelon Exotics website.</p>"""),
@@ -665,6 +667,7 @@ def build_privacy():
           <ul>
             <li>To respond to your requests, confirm reservations, and arrange delivery and pickup</li>
             <li>To verify eligibility, insurance, and payment, and to process deposits, charges, and refunds</li>
+            <li>To answer your questions through the chat assistant</li>
             <li>To protect our vehicles, recover them if necessary, and resolve tolls, violations, or damage</li>
             <li>To contact you about your rental by phone, text, or email</li>
             <li>To improve our website and services, and to comply with legal obligations</li>
@@ -672,7 +675,7 @@ def build_privacy():
         ("share", "How We Share Information", """
           <p>We share personal information only as needed to run our business:</p>
           <ul>
-            <li><strong>Service providers</strong> that help us operate, such as website hosting, Google Workspace (where reservation requests are stored), and payment processors, which may use it only to provide services to us</li>
+            <li><strong>Service providers</strong> that help us operate, such as website hosting, Google Workspace (where reservation requests are stored), email delivery, payment processors, and our AI provider (Anthropic), which processes chat messages to generate the assistant's replies. They may use it only to provide services to us.</li>
             <li><strong>Insurance companies</strong> when verifying coverage or handling a claim</li>
             <li><strong>Toll authorities and law enforcement</strong> when resolving violations, responding to legal process, or protecting our vehicles, customers, or others</li>
             <li><strong>Within Echelon Rental Group</strong>, so our brands can serve you consistently</li>
@@ -684,7 +687,7 @@ def build_privacy():
           <ul>
             <li>You can request access to, correction of, or deletion of your personal information, subject to legal and contractual retention requirements.</li>
             <li>You can opt out of non-essential texts or emails at any time by replying STOP or contacting us.</li>
-            <li>You can clear your language preference by clearing your browser's site data.</li>
+            <li>You can clear your language preference and chat history by clearing your browser's site data.</li>
           </ul>
           <p>To make a request, contact us using the details below. We may need to verify your identity before acting on it.</p>"""),
         ("children", "Children's Privacy", """
@@ -696,7 +699,7 @@ def build_privacy():
     body = policy_page(
         "privacy-policy.html", "Privacy Policy", "Resources",
         "How Echelon collects, uses, and protects your personal information.",
-        sections,
+        sections, last_updated=PRIVACY_UPDATED,
     )
     return shell("privacy-policy.html", "Privacy Policy",
                  "How Echelon Rental Group collects, uses, shares, and protects personal information through the Echelon Exotics website and rentals.", body)

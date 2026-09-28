@@ -29,9 +29,6 @@ const i18n = {
     widgetReturn:   'Return Date',
     widgetType:     'Vehicle Type',
     widgetAny:      'Any Vehicle',
-    widgetEconomy:  'Economy',
-    widgetSedan:    'Sedan',
-    widgetCompact:  'Compact',
     widgetBtn:      'Check Availability',
     widgetNote:     'No hidden fees · Free cancellation up to 24hrs',
 
@@ -69,6 +66,7 @@ const i18n = {
     serveTag:      'Who We Serve',
     serveH2:       'A Car for Every Reason.',
     serveDesc:     'Heading away for the weekend, visiting family, or waiting on your own car to come out of the shop? Need a dependable ride for the daily commute, or a car for a few weeks of delivery work? Echelon has you covered with <strong>flexible, affordable rentals</strong> and a fleet to match every need.',
+    priceFrom: 'from',
     useCard1: 'Weekend Getaways', useCard2: 'Car in the Shop', useCard3: 'Daily Commuting',
     useCard4: 'Family &amp; Events', useCard5: 'Delivery &amp; Gig Work',
     ben1Title:     'No long-term commitments',
@@ -248,9 +246,6 @@ const i18n = {
     widgetReturn:  'Fecha de Devolución',
     widgetType:    'Tipo de Vehículo',
     widgetAny:     'Cualquier Vehículo',
-    widgetEconomy: 'Económico',
-    widgetSedan:   'Sedán',
-    widgetCompact: 'Compacto',
     widgetBtn:     'Verificar Disponibilidad',
     widgetNote:    'Sin cargos ocultos · Cancelación gratuita hasta 24hrs',
 
@@ -284,6 +279,7 @@ const i18n = {
     serveTag:      'A Quién Servimos',
     serveH2:       'Un Carro para Cada Razón.',
     serveDesc:     '¿Te vas de fin de semana, visitas a la familia o esperas que tu carro salga del taller? ¿Necesitas un transporte confiable para el trayecto diario o un carro para unas semanas de reparto? Echelon te cubre con <strong>rentas flexibles y asequibles</strong> y una flota para cada necesidad.',
+    priceFrom: 'desde',
     useCard1: 'Escapadas de Fin de Semana', useCard2: 'Carro en el Taller', useCard3: 'Trayecto Diario',
     useCard4: 'Familia y Eventos', useCard5: 'Reparto y Trabajo por App',
     ben1Title:     'Sin compromisos a largo plazo',
@@ -454,9 +450,6 @@ const i18n = {
     widgetReturn:  'Data de Devolução',
     widgetType:    'Tipo de Veículo',
     widgetAny:     'Qualquer Veículo',
-    widgetEconomy: 'Econômico',
-    widgetSedan:   'Sedã',
-    widgetCompact: 'Compacto',
     widgetBtn:     'Verificar Disponibilidade',
     widgetNote:    'Sem taxas ocultas · Cancelamento gratuito em até 24hrs',
 
@@ -490,6 +483,7 @@ const i18n = {
     serveTag:      'Quem Atendemos',
     serveH2:       'Um Carro para Cada Motivo.',
     serveDesc:     'Vai viajar no fim de semana, visitar a família ou está esperando seu carro sair da oficina? Precisa de um carro confiável para o trajeto diário ou para algumas semanas de entregas? A Echelon tem <strong>aluguel flexível e acessível</strong> e uma frota para cada necessidade.',
+    priceFrom: 'a partir de',
     useCard1: 'Escapadas de Fim de Semana', useCard2: 'Carro na Oficina', useCard3: 'Trajeto Diário',
     useCard4: 'Família e Eventos', useCard5: 'Entregas e Trabalho por App',
     ben1Title:     'Sem compromissos de longo prazo',
@@ -700,9 +694,9 @@ function applyLang(lang) {
   const vSel = $('#vehicleType');
   if (vSel && vSel.options.length >= 4) {
     vSel.options[0].text = t.widgetAny;
-    vSel.options[1].text = t.widgetEconomy;
-    vSel.options[2].text = t.widgetSedan;
-    vSel.options[3].text = t.widgetCompact;
+    vSel.options[1].text = t.filterCompact;
+    vSel.options[2].text = t.filterSedan;
+    vSel.options[3].text = t.filterSuv;
   }
 
   setText('.btn-search', t.widgetBtn);
@@ -1005,7 +999,7 @@ mobileMenu.querySelectorAll('a').forEach(link => {
   const today    = new Date();
   const tomorrow = new Date(today);
   tomorrow.setDate(today.getDate() + 1);
-  const toISO = d => d.toISOString().split('T')[0];
+  const toISO = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 
   const pickupEl = document.getElementById('pickupDate');
   const returnEl = document.getElementById('returnDate');
@@ -1014,8 +1008,8 @@ mobileMenu.querySelectorAll('a').forEach(link => {
 
   if (pickupEl && returnEl) {
     pickupEl.addEventListener('change', () => {
-      const p = new Date(pickupEl.value);
-      const r = new Date(returnEl.value);
+      const p = new Date(pickupEl.value + 'T00:00');
+      const r = new Date(returnEl.value + 'T00:00');
       if (r <= p) {
         const next = new Date(p);
         next.setDate(p.getDate() + 1);
@@ -1070,6 +1064,9 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
    SCROLL TO FLEET
 ────────────────────────────────────────── */
 function scrollToFleet() {
+  const type = document.getElementById('vehicleType').value || 'all';
+  const filterBtn = document.querySelector(`.filter-btn[data-filter="${type}"]`);
+  if (filterBtn) filterBtn.click();
   document.getElementById('fleet').scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -1084,8 +1081,8 @@ function openModal(carName, daily, weekly, monthly) {
   const t = i18n[currentLang] || i18n.en;
   document.getElementById('modalCarName').textContent = `${t.modalBookPrefix} ${carName}`;
 
-  document.querySelectorAll('.modal-tab').forEach(tab => tab.classList.remove('active'));
-  document.querySelector('.modal-tab[data-modal-plan="daily"]').classList.add('active');
+  const heroPlan = document.querySelector('.wtab.active')?.dataset.plan || 'daily';
+  document.querySelectorAll('.modal-tab').forEach(tab => tab.classList.toggle('active', tab.dataset.modalPlan === heroPlan));
   updateModalUnit();
 
   const pickup = document.getElementById('pickupDate').value;

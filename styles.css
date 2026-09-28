@@ -492,7 +492,7 @@ ul { list-style: none; }
   align-items: flex-end;
   flex-wrap: wrap;
 }
-.widget-field { flex: 1; min-width: 0; overflow: hidden; }
+.widget-field { flex: 1 1 130px; min-width: 0; overflow: hidden; }
 .widget-field label {
   display: block;
   font-size: 0.7rem;
@@ -522,7 +522,7 @@ ul { list-style: none; }
 .widget-field select:focus { border-color: var(--gold); }
 .widget-field select option { background: #1a1a1a; }
 .widget-divider { color: rgba(255,255,255,0.2); padding-bottom: 10px; }
-.btn-search { flex-shrink: 0; align-self: flex-end; }
+.btn-search { flex: 1 0 100%; align-self: stretch; margin-top: 4px; }  /* own row so the dates have room */
 .widget-note { margin-top: 12px; font-size: 0.72rem; color: rgba(255,255,255,0.25); }
 
 /* ── Hero Visual ── */
