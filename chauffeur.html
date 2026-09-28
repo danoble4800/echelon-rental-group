@@ -20,7 +20,7 @@
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
-<body class="theme-exotics">
+<body class="theme-exotics page-chauffeur">
 
   <!-- CUSTOM CURSOR RING -->
   <div aria-hidden="true" class="cursor-ring"></div>
@@ -114,234 +114,257 @@
   </nav>
 
   <!-- ───────────── HERO ───────────── -->
-  <section class="hero dark-section">
-    <div class="hero-bg"><div class="hero-gradient"></div></div>
-    <div class="hero-inner">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <span class="badge-dot"></span>
-          Chauffeur Service · Hourly, Daily, or Point-to-Point
-        </div>
-        <h1 class="hero-title">
-          Sit Back.<br /><span class="accent">We'll Drive.</span>
-        </h1>
-        <p class="hero-subtitle">
-          <strong>Echelon Chauffeur Service</strong> pairs our luxury fleet with professional, vetted drivers,
-          so you arrive in a Rolls-Royce, Maybach, or Bentley without touching the wheel.
+  <section class="ch-hero">
+    <div class="ch-hero-inner">
+      <div class="ch-hero-copy">
+        <p class="ch-eyebrow">Echelon Chauffeur Service</p>
+        <h1 class="ch-hero-title">Sit Back.<br /><em>We'll Drive.</em></h1>
+        <p class="ch-hero-sub">
+          A professional, vetted chauffeur and a freshly detailed Rolls-Royce, Maybach, Bentley, or Escalade.
+          Hourly, by the day, or point to point.
         </p>
-        <div class="hero-platforms">
-          <span class="platform-tag everyday">Professional Chauffeurs</span>
-          <span class="platform-tag everyday">Airport Meet &amp; Greet</span>
-          <span class="platform-tag everyday">Open 24/7</span>
-        </div>
-        <div class="cta-actions">
+        <div class="ch-hero-ctas">
           <a href="#book" class="btn btn-primary btn-lg">Book a Chauffeur</a>
-          <a href="#vehicles" class="btn btn-outline-light btn-lg">See the Vehicles</a>
+          <a href="tel:+15084442276" class="ch-hero-call">Or call 508-444-2276</a>
         </div>
+        <ul class="ch-creds">
+          <li><strong>Vetted</strong><span>Professional chauffeurs</span></li>
+          <li><strong>Tracked</strong><span>Flights monitored</span></li>
+          <li><strong>24/7</strong><span>Dispatch, every day</span></li>
+        </ul>
+      </div>
+      <figure class="ch-hero-photo">
+        <img src="images/fleet/maybach-gls.jpg" alt="Black Mercedes-Maybach GLS parked in front of the Zakim Bridge in Boston" />
+        <figcaption class="ch-hero-card">
+          <span class="ch-hero-card-label">Tonight's Ride</span>
+          <span class="ch-hero-card-car">Mercedes-Maybach GLS</span>
+          <span class="ch-hero-card-meta">Chauffeur included · Door to door</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ───────────── SERVICES ───────────── -->
+  <section class="ch-section ch-services" id="services">
+    <div class="section-inner">
+      <div class="ch-section-head">
+        <p class="ch-eyebrow">The Service</p>
+        <h2 class="ch-title">Four Ways to Ride</h2>
+      </div>
+      <div class="ch-service-grid">
+        <a href="#book" class="ch-service" onclick="pickService('Hourly')">
+          <span class="ch-service-num">01</span>
+          <h3>Hourly</h3>
+          <p>Your chauffeur stays with you for as many stops as you need: meetings, shopping, dinner.</p>
+          <span class="ch-service-link">Book hourly →</span>
+        </a>
+        <a href="#book" class="ch-service" onclick="pickService('Airport Transfer')">
+          <span class="ch-service-num">02</span>
+          <h3>Airport Transfer</h3>
+          <p>Logan, Providence, or private terminals. We track your flight and meet you on arrival.</p>
+          <span class="ch-service-link">Book a transfer →</span>
+        </a>
+        <a href="#book" class="ch-service" onclick="pickService('Point-to-Point')">
+          <span class="ch-service-num">03</span>
+          <h3>Point-to-Point</h3>
+          <p>One pickup, one destination. The simplest way to arrive somewhere in style.</p>
+          <span class="ch-service-link">Book a ride →</span>
+        </a>
+        <a href="#book" class="ch-service" onclick="pickService('Full Day')">
+          <span class="ch-service-num">04</span>
+          <h3>Full Day &amp; Events</h3>
+          <p>A car and driver on call from morning to night, for weddings, roadshows, and big days.</p>
+          <span class="ch-service-link">Book the day →</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ───────────── VEHICLES ───────────── -->
-  <section class="fleet" id="vehicles">
+  <!-- ───────────── CHAUFFEURED FLEET ───────────── -->
+  <section class="ch-section ch-fleet" id="vehicles">
     <div class="section-inner">
-      <div class="section-header">
-        <div class="section-tag">Chauffeured Fleet</div>
-        <h2>Choose Your Ride</h2>
-        <p>Every ride comes with a professional chauffeur, a freshly detailed car, and door-to-door service.</p>
+      <div class="ch-section-head">
+        <p class="ch-eyebrow">The Chauffeured Fleet</p>
+        <h2 class="ch-title">Choose Your Ride</h2>
       </div>
-      <div class="car-grid inventory-grid">
-        <div class="car-card inventory-card featured">
-          <div class="car-card-img" style="background: url('images/fleet/rolls-royce-cullinan.jpg') center 50% / cover no-repeat;">
-            <div class="car-popular-badge">Most Requested</div>
-          </div>
-          <div class="car-card-body">
-            <div class="car-top">
-              <div>
-                <span class="car-type-badge">Ultra Luxury</span>
-                <h3 class="car-name">Rolls-Royce Cullinan</h3>
-                <p class="car-year">Up to 4 Passengers · Weddings &amp; Events</p>
-              </div>
-              <div class="car-price-box">
-                <span class="car-price-contact">Contact Us for Pricing</span>
-              </div>
-            </div>
-            <div class="car-specs">
-              <span>🥂 Red Carpet</span>
-              <span>👔 Chauffeur Included</span>
-            </div>
-            <a href="#book" class="btn btn-book" onclick="pickRide('Rolls-Royce Cullinan')">Book This Ride</a>
-          </div>
-        </div>
 
-        <div class="car-card inventory-card">
-          <div class="car-card-img" style="background: url('images/fleet/maybach-gls.jpg') center 50% / cover no-repeat;">
-            <div class="car-available">Available</div>
-          </div>
-          <div class="car-card-body">
-            <div class="car-top">
-              <div>
-                <span class="car-type-badge">Executive</span>
-                <h3 class="car-name">Mercedes-Maybach GLS</h3>
-                <p class="car-year">Up to 4 Passengers · Executive Travel</p>
-              </div>
-              <div class="car-price-box">
-                <span class="car-price-contact">Contact Us for Pricing</span>
-              </div>
-            </div>
-            <div class="car-specs">
-              <span>💺 Massage Seats</span>
-              <span>👔 Chauffeur Included</span>
-            </div>
-            <a href="#book" class="btn btn-book" onclick="pickRide('Mercedes-Maybach GLS')">Book This Ride</a>
-          </div>
+      <article class="ch-car">
+        <div class="ch-car-img"><img src="images/fleet/rolls-royce-cullinan.jpg" alt="Rolls-Royce Cullinan" loading="lazy" /></div>
+        <div class="ch-car-info">
+          <span class="ch-car-tag">Most Requested</span>
+          <h3>Rolls-Royce Cullinan</h3>
+          <p>The arrival everyone remembers. Our first choice for weddings, red carpets, and milestone nights.</p>
+          <dl class="ch-car-specs">
+            <div><dt>Passengers</dt><dd>Up to 4</dd></div>
+            <div><dt>Best For</dt><dd>Weddings &amp; Events</dd></div>
+            <div><dt>Chauffeur</dt><dd>Included</dd></div>
+          </dl>
+          <a href="#book" class="ch-car-btn" onclick="pickRide('Rolls-Royce Cullinan')">Request the Cullinan</a>
         </div>
+      </article>
 
-        <div class="car-card inventory-card">
-          <div class="car-card-img" style="background: url('images/fleet/bentayga-1.webp') center 50% / cover no-repeat;">
-            <div class="car-available">Available</div>
-          </div>
-          <div class="car-card-body">
-            <div class="car-top">
-              <div>
-                <span class="car-type-badge">Luxury SUV</span>
-                <h3 class="car-name">Bentley Bentayga</h3>
-                <p class="car-year">Up to 4 Passengers · Nights Out</p>
-              </div>
-              <div class="car-price-box">
-                <span class="car-price-contact">Contact Us for Pricing</span>
-              </div>
-            </div>
-            <div class="car-specs">
-              <span>✨ Handcrafted Cabin</span>
-              <span>👔 Chauffeur Included</span>
-            </div>
-            <a href="#book" class="btn btn-book" onclick="pickRide('Bentley Bentayga')">Book This Ride</a>
-          </div>
+      <article class="ch-car ch-car--flip">
+        <div class="ch-car-img"><img src="images/fleet/maybach-gls-3.webp" alt="Mercedes-Maybach GLS 600 in Boston" loading="lazy" /></div>
+        <div class="ch-car-info">
+          <span class="ch-car-tag">Executive</span>
+          <h3>Mercedes-Maybach GLS</h3>
+          <p>A quiet rear cabin with massage seats, made for executives, clients, and long days on the road.</p>
+          <dl class="ch-car-specs">
+            <div><dt>Passengers</dt><dd>Up to 4</dd></div>
+            <div><dt>Best For</dt><dd>Executive Travel</dd></div>
+            <div><dt>Chauffeur</dt><dd>Included</dd></div>
+          </dl>
+          <a href="#book" class="ch-car-btn" onclick="pickRide('Mercedes-Maybach GLS')">Request the Maybach</a>
         </div>
+      </article>
 
-        <div class="car-card inventory-card">
-          <div class="car-card-img" style="background: url('images/fleet/escalade-esv-1.webp') center 50% / cover no-repeat;">
-            <div class="car-available">Available</div>
-          </div>
-          <div class="car-card-body">
-            <div class="car-top">
-              <div>
-                <span class="car-type-badge">Group Travel</span>
-                <h3 class="car-name">Cadillac Escalade ESV</h3>
-                <p class="car-year">Up to 6 Passengers · Airport &amp; Groups</p>
-              </div>
-              <div class="car-price-box">
-                <span class="car-price-contact">Contact Us for Pricing</span>
-              </div>
-            </div>
-            <div class="car-specs">
-              <span>🧳 Extra Luggage</span>
-              <span>👔 Chauffeur Included</span>
-            </div>
-            <a href="#book" class="btn btn-book" onclick="pickRide('Cadillac Escalade ESV')">Book This Ride</a>
-          </div>
+      <article class="ch-car">
+        <div class="ch-car-img"><img src="images/fleet/bentayga-5.webp" alt="Bentley Bentayga" loading="lazy" /></div>
+        <div class="ch-car-info">
+          <span class="ch-car-tag">Luxury SUV</span>
+          <h3>Bentley Bentayga</h3>
+          <p>A handcrafted cabin for dinners, concerts, and nights out, with no parking and no drive home to worry about.</p>
+          <dl class="ch-car-specs">
+            <div><dt>Passengers</dt><dd>Up to 4</dd></div>
+            <div><dt>Best For</dt><dd>Nights Out</dd></div>
+            <div><dt>Chauffeur</dt><dd>Included</dd></div>
+          </dl>
+          <a href="#book" class="ch-car-btn" onclick="pickRide('Bentley Bentayga')">Request the Bentayga</a>
         </div>
+      </article>
+
+      <article class="ch-car ch-car--flip">
+        <div class="ch-car-img"><img src="images/fleet/escalade-esv-1.webp" alt="Cadillac Escalade ESV" loading="lazy" /></div>
+        <div class="ch-car-info">
+          <span class="ch-car-tag">Group Travel</span>
+          <h3>Cadillac Escalade ESV</h3>
+          <p>Room for the whole party and the luggage. Our go-to for airport runs and groups.</p>
+          <dl class="ch-car-specs">
+            <div><dt>Passengers</dt><dd>Up to 6</dd></div>
+            <div><dt>Best For</dt><dd>Airport &amp; Groups</dd></div>
+            <div><dt>Chauffeur</dt><dd>Included</dd></div>
+          </dl>
+          <a href="#book" class="ch-car-btn" onclick="pickRide('Cadillac Escalade ESV')">Request the Escalade</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ───────────── HOW THE RIDE WORKS ───────────── -->
+  <section class="ch-section ch-journey" id="how">
+    <div class="section-inner">
+      <div class="ch-section-head">
+        <p class="ch-eyebrow">Your Ride</p>
+        <h2 class="ch-title">From Request to Arrival</h2>
       </div>
+      <ol class="ch-steps">
+        <li>
+          <span class="ch-step-dot"></span>
+          <h3>Request</h3>
+          <p>Tell us the date, pickup, and where you're headed, online or by phone.</p>
+        </li>
+        <li>
+          <span class="ch-step-dot"></span>
+          <h3>Confirm</h3>
+          <p>Within the hour we confirm your car, your chauffeur, and your quote.</p>
+        </li>
+        <li>
+          <span class="ch-step-dot"></span>
+          <h3>Pickup</h3>
+          <p>Your chauffeur arrives with a freshly detailed car. At the airport, they meet you on arrival.</p>
+        </li>
+        <li>
+          <span class="ch-step-dot"></span>
+          <h3>Arrive</h3>
+          <p>Door to door, on your schedule. Add stops or extend the time as the day unfolds.</p>
+        </li>
+      </ol>
     </div>
   </section>
 
   <!-- ───────────── OCCASIONS ───────────── -->
-  <section class="gig-section dark-section" id="occasions">
-    <div class="section-inner">
-      <div class="section-header">
-        <div class="section-tag">Occasions</div>
-        <h2>Wherever You Need to Be</h2>
-        <p>One ride or a full day on call, your chauffeur works around your schedule.</p>
-      </div>
-      <div class="reason-list">
-        <div class="reason-item">
-          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg>
-          <div class="reason-title">Weddings</div>
-          <p class="reason-desc">Arrive in a Rolls-Royce with your chauffeur handling the door, the timing, and the getaway.</p>
-        </div>
-        <div class="reason-item">
-          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 16l20-6-20-6 4 6-4 6z"/><path d="M6 10h8"/></svg>
-          <div class="reason-title">Airport Transfers</div>
-          <p class="reason-desc">Logan, Providence, or private terminals. We track your flight and meet you on arrival.</p>
-        </div>
-        <div class="reason-item">
-          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
-          <div class="reason-title">Nights Out</div>
-          <p class="reason-desc">Dinner, concerts, and games. No parking, no rideshare wait, no worrying about the drive home.</p>
-        </div>
-        <div class="reason-item">
-          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-          <div class="reason-title">Corporate Travel</div>
-          <p class="reason-desc">Quiet, discreet rides for executives, clients, and roadshows. Hourly or by the day.</p>
-        </div>
-        <div class="reason-item">
-          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.9 6.9L22 9.3l-5.5 4.8L18.2 21 12 17.3 5.8 21l1.7-6.9L2 9.3l7.1-.4z"/></svg>
-          <div class="reason-title">Special Occasions</div>
-          <p class="reason-desc">Proms, anniversaries, birthdays, and proposals. Tell us the plan and we will make it smooth.</p>
-        </div>
-      </div>
+  <section class="ch-occasions" id="occasions">
+    <div class="ch-occasions-inner">
+      <p class="ch-eyebrow">Occasions</p>
+      <h2 class="ch-title">Wherever You Need to Be</h2>
+      <ul class="ch-occasion-list">
+        <li><h3>Weddings</h3><p>The door, the timing, and the getaway, handled.</p></li>
+        <li><h3>Airport Transfers</h3><p>Flight tracked, met on arrival.</p></li>
+        <li><h3>Nights Out</h3><p>Dinner, concerts, and games. No rideshare wait.</p></li>
+        <li><h3>Corporate Travel</h3><p>Quiet, discreet rides for executives and clients.</p></li>
+        <li><h3>Special Occasions</h3><p>Proms, anniversaries, birthdays, and proposals.</p></li>
+      </ul>
     </div>
   </section>
 
   <!-- ───────────── BOOK ───────────── -->
-  <section class="fleet" id="book">
+  <section class="ch-section ch-book" id="book">
     <div class="section-inner">
-      <div class="section-header">
-        <div class="section-tag">Book</div>
-        <h2>Request a Chauffeur</h2>
-        <p>Tell us where and when. We'll confirm your car, driver, and quote within the hour.</p>
-      </div>
-      <form class="modal-form" style="max-width:560px;margin:0 auto;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:var(--radius-lg);padding:32px;" onsubmit="submitInquiry(event)">
-        <div class="form-row">
-          <div class="form-group"><label>First Name</label><input type="text" name="firstName" placeholder="John" required /></div>
-          <div class="form-group"><label>Last Name</label><input type="text" name="lastName" placeholder="Smith" required /></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group"><label>Phone Number</label><input type="tel" name="phone" placeholder="(555) 000-0000" required /></div>
-          <div class="form-group"><label>Email Address</label><input type="email" name="email" placeholder="you@example.com" required /></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group"><label>Date</label><input type="date" name="rideDate" required /></div>
-          <div class="form-group"><label>Pickup Time</label><input type="time" name="pickupTime" required /></div>
-        </div>
-        <div class="form-row">
+      <div class="ch-book-layout">
+        <aside class="ch-book-aside">
+          <p class="ch-eyebrow">Reservations</p>
+          <h2 class="ch-title">Request a Chauffeur</h2>
+          <p class="ch-book-lead">Tell us where and when. We'll confirm your car, driver, and quote within the hour.</p>
+          <a href="tel:+15084442276" class="ch-book-phone">
+            <span>Call or text, 24/7</span>
+            <strong>508-444-2276</strong>
+          </a>
+          <ul class="ch-book-list">
+            <li>Pricing depends on the vehicle, hours, and route</li>
+            <li>Everything included is spelled out in your quote</li>
+            <li>Same-day requests are often possible, so just call</li>
+          </ul>
+        </aside>
+        <form class="modal-form ch-form" onsubmit="submitInquiry(event)">
+          <div class="form-row">
+            <div class="form-group"><label>First Name</label><input type="text" name="firstName" placeholder="John" required /></div>
+            <div class="form-group"><label>Last Name</label><input type="text" name="lastName" placeholder="Smith" required /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Phone Number</label><input type="tel" name="phone" placeholder="(555) 000-0000" required /></div>
+            <div class="form-group"><label>Email Address</label><input type="email" name="email" placeholder="you@example.com" required /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Date</label><input type="date" name="rideDate" required /></div>
+            <div class="form-group"><label>Pickup Time</label><input type="time" name="pickupTime" required /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Service Type</label>
+              <select id="serviceField" name="serviceType">
+                <option>Hourly</option>
+                <option>Airport Transfer</option>
+                <option>Point-to-Point</option>
+                <option>Full Day</option>
+                <option>Wedding / Event</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Passengers</label><input type="number" name="passengers" min="1" max="6" placeholder="e.g. 2" required /></div>
+          </div>
+          <div class="form-group"><label>Pickup Address</label><input type="text" name="pickup" placeholder="Hotel, home, or airport" required /></div>
+          <div class="form-group"><label>Drop-off Address</label><input type="text" name="dropoff" placeholder="Where are you headed?" /></div>
           <div class="form-group">
-            <label>Service Type</label>
-            <select name="serviceType">
-              <option>Hourly</option>
-              <option>Airport Transfer</option>
-              <option>Point-to-Point</option>
-              <option>Full Day</option>
-              <option>Wedding / Event</option>
+            <label>Vehicle</label>
+            <select id="rideField" name="vehicle">
+              <option>Rolls-Royce Cullinan</option>
+              <option>Mercedes-Maybach GLS</option>
+              <option>Bentley Bentayga</option>
+              <option>Cadillac Escalade ESV</option>
+              <option>Not Sure Yet</option>
             </select>
           </div>
-          <div class="form-group"><label>Passengers</label><input type="number" name="passengers" min="1" max="6" placeholder="e.g. 2" required /></div>
-        </div>
-        <div class="form-group"><label>Pickup Address</label><input type="text" name="pickup" placeholder="Hotel, home, or airport" required /></div>
-        <div class="form-group"><label>Drop-off Address</label><input type="text" name="dropoff" placeholder="Where are you headed?" /></div>
-        <div class="form-group">
-          <label>Vehicle</label>
-          <select id="rideField" name="vehicle">
-            <option>Rolls-Royce Cullinan</option>
-            <option>Mercedes-Maybach GLS</option>
-            <option>Bentley Bentayga</option>
-            <option>Cadillac Escalade ESV</option>
-            <option>Not Sure Yet</option>
-          </select>
-        </div>
-        <button type="submit" class="btn btn-primary btn-full">Request My Chauffeur</button>
-        <p class="modal-note" style="color:var(--dark-text-3);">Prefer to talk? Call or text <a href="tel:+15084442276">508-444-2276</a>, 24/7.</p>
-      </form>
+          <button type="submit" class="btn btn-primary btn-full">Request My Chauffeur</button>
+        </form>
+      </div>
     </div>
   </section>
 
   <!-- ───────────── FAQ ───────────── -->
   <section class="faq" id="faq">
     <div class="section-inner">
-      <div class="section-header">
-        <div class="section-tag">FAQ</div>
-        <h2>Chauffeur Service Questions</h2>
+      <div class="ch-section-head">
+        <p class="ch-eyebrow">FAQ</p>
+        <h2 class="ch-title">Chauffeur Service Questions</h2>
       </div>
       <div class="faq-list">
         <details class="faq-item" open>
@@ -445,6 +468,47 @@
     function pickRide(name) {
       var f = document.getElementById('rideField');
       if (f) f.value = name;
+    }
+    function pickService(name) {
+      var f = document.getElementById('serviceField');
+      if (f) f.value = name;
+    }
+
+    /* Overrides brand-pages.js's visual-only submitInquiry(). Chauffeur requests
+       go to /api/lead as an Exotics lead so they land in the same reservations
+       sheet and alert email, tagged "Chauffeur" in the vehicle column. */
+    function submitInquiry(e) {
+      e.preventDefault();
+      var form = e.target;
+      var button = form.querySelector('button[type="submit"]');
+      if (button.disabled) return;
+      button.disabled = true;
+
+      var route = form.pickup.value + (form.dropoff.value ? ' → ' + form.dropoff.value : '');
+      var payload = {
+        form:             'exotics',
+        firstName:        form.firstName.value,
+        lastName:         form.lastName.value,
+        phone:            form.phone.value,
+        email:            form.email.value,
+        pickupDate:       form.rideDate.value,
+        returnDate:       form.rideDate.value,
+        vehicleInterest:  'Chauffeur: ' + form.vehicle.value + ' (' + form.serviceType.value + ')',
+        deliveryLocation: form.pickupTime.value + ' · ' + form.passengers.value + ' pax · ' + route
+      };
+
+      fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          showToast();
+          form.reset();
+        })
+        .catch(function () { alert("Sorry, we couldn't send your request. Please call or text us at 508-444-2276 and we'll book it for you."); })
+        .finally(function () { button.disabled = false; });
     }
   </script>
 </body>
