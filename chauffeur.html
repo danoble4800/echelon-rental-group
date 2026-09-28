@@ -475,8 +475,8 @@
     }
 
     /* Overrides brand-pages.js's visual-only submitInquiry(). Chauffeur requests
-       go to /api/lead as an Exotics lead so they land in the same reservations
-       sheet and alert email, tagged "Chauffeur" in the vehicle column. */
+       go to /api/lead, which saves them to the "Echelon Chauffeur Reservations"
+       Google Sheet and emails the team. */
     function submitInquiry(e) {
       e.preventDefault();
       var form = e.target;
@@ -484,18 +484,9 @@
       if (button.disabled) return;
       button.disabled = true;
 
-      var route = form.pickup.value + (form.dropoff.value ? ' → ' + form.dropoff.value : '');
-      var payload = {
-        form:             'exotics',
-        firstName:        form.firstName.value,
-        lastName:         form.lastName.value,
-        phone:            form.phone.value,
-        email:            form.email.value,
-        pickupDate:       form.rideDate.value,
-        returnDate:       form.rideDate.value,
-        vehicleInterest:  'Chauffeur: ' + form.vehicle.value + ' (' + form.serviceType.value + ')',
-        deliveryLocation: form.pickupTime.value + ' · ' + form.passengers.value + ' pax · ' + route
-      };
+      var payload = { form: 'chauffeur' };
+      ['firstName', 'lastName', 'phone', 'email', 'rideDate', 'pickupTime', 'serviceType',
+       'passengers', 'vehicle', 'pickup', 'dropoff'].forEach(function (k) { payload[k] = form[k].value; });
 
       fetch('/api/lead', {
         method: 'POST',
