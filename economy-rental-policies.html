@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rental Policies | Echelon Economic Rentals</title>
+  <meta name="description" content="Echelon Economic Rentals policies: driver eligibility, insurance, deposits, daily/weekly/monthly plans, delivery work, fuel, and returns." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="1024x1024" href="/app-icon-1024.png" />
+  <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png" />
+
+  <meta property="og:type"        content="website" />
+  <meta property="og:site_name"   content="Echelon Rental Group" />
+  <meta property="og:title"       content="Rental Policies | Echelon Economic Rentals" />
+  <meta property="og:description" content="Echelon Economic Rentals policies: driver eligibility, insurance, deposits, daily/weekly/monthly plans, delivery work, fuel, and returns." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- CUSTOM CURSOR RING -->
+  <div aria-hidden="true" class="cursor-ring"></div>
+  <div aria-hidden="true" class="cursor-dot"></div>
+
+  <!-- ───────────── NAVIGATION ───────────── -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-main">ECHELON</span>
+        <span class="logo-sub">ECONOMIC RENTALS</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#fleet">Fleet</a></li>
+        <li><a href="index.html#pricing">Pricing</a></li>
+        <li><a href="index.html#compare">Why Echelon</a></li>
+        <li><a href="economy-faq.html">FAQ</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="tel:+15084442276" class="nav-social" aria-label="Call Echelon">📞</a>
+        <a href="https://www.instagram.com/echelonrentalgroup/" class="nav-social" target="_blank" rel="noopener noreferrer" aria-label="Follow Echelon on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.3 2.3.4.6.2 1 .5 1.4 1 .4.4.7.8 1 1.4.2.4.4 1.1.4 2.3.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.9-.4 2.3-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4 1-.4.2-1.1.4-2.3.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.3-2.3-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1.1-.4-2.3-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.3-1.9.4-2.3.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-1 .4-.2 1.1-.4 2.3-.4 1.3-.1 1.7-.1 4.9-.1M12 0C8.7 0 8.3 0 7 .1c-1.3.1-2.2.3-3 .6-.8.3-1.5.7-2.2 1.4C1.1 2.8.7 3.5.4 4.3c-.3.8-.5 1.7-.6 3C-.1 8.3 0 8.7 0 12s0 3.7.1 5c.1 1.3.3 2.2.6 3 .3.8.7 1.5 1.4 2.2.7.7 1.4 1.1 2.2 1.4.8.3 1.7.5 3 .6C8.3 24 8.7 24 12 24s3.7 0 5-.1c1.3-.1 2.2-.3 3-.6.8-.3 1.5-.7 2.2-1.4.7-.7 1.1-1.4 1.4-2.2.3-.8.5-1.7.6-3 .1-1.3.1-1.7.1-5s0-3.7-.1-5c-.1-1.3-.3-2.2-.6-3-.3-.8-.7-1.5-1.4-2.2C21.2 1.1 20.5.7 19.7.4c-.8-.3-1.7-.5-3-.6C15.7 0 15.3 0 12 0z"/><path d="M12 5.8A6.2 6.2 0 1 0 18.2 12 6.2 6.2 0 0 0 12 5.8zm0 10.2A4 4 0 1 1 16 12a4 4 0 0 1-4 4z"/><circle cx="18.4" cy="5.6" r="1.4"/></svg></a>
+        <div class="brand-switcher" id="brandSwitcher">
+          <button class="brand-btn" id="brandBtn" aria-label="Switch Echelon brand">
+            <span class="brand-current" id="brandLabel">Economic Rentals</span>
+            <span class="brand-caret">▾</span>
+          </button>
+          <div class="brand-dropdown" id="brandDropdown">
+            <a class="brand-option active" href="index.html">
+              <span class="brand-option-name">Economic Rentals</span>
+              <span class="brand-option-desc">Affordable car rentals</span>
+            </a>
+            <a class="brand-option" href="exotics.html">
+              <span class="brand-option-name">Exotics</span>
+              <span class="brand-option-desc">Luxury &amp; exotic cars</span>
+            </a>
+            <a class="brand-option" href="boats.html">
+              <span class="brand-option-name">Boat Charters</span>
+              <span class="brand-option-desc">Yacht &amp; boat charters</span>
+            </a>
+            <a class="brand-option" href="jets.html">
+              <span class="brand-option-name">Jet Charters</span>
+              <span class="brand-option-desc">Private aviation</span>
+            </a>
+            <a class="brand-option" href="experiences.html">
+              <span class="brand-option-name">Experiences</span>
+              <span class="brand-option-desc">Curated adventures</span>
+            </a>
+          </div>
+        </div>
+        <a href="index.html#fleet" class="btn btn-primary">Book Now</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html#fleet">Fleet</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#compare">Why Echelon</a>
+      <a href="economy-faq.html">FAQ</a>
+      <a href="index.html#fleet" class="btn btn-primary">Book Now</a>
+      <div class="mobile-brand">
+        <span class="mobile-brand-label">Echelon Brands</span>
+        <a class="mobile-brand-option active" href="index.html">Economic Rentals</a>
+        <a class="mobile-brand-option" href="exotics.html">Exotics</a>
+        <a class="mobile-brand-option" href="boats.html">Boat Charters</a>
+        <a class="mobile-brand-option" href="jets.html">Jet Charters</a>
+        <a class="mobile-brand-option" href="experiences.html">Experiences</a>
+      </div>
+      <a href="https://www.instagram.com/echelonrentalgroup/" class="mobile-social" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.3 2.3.4.6.2 1 .5 1.4 1 .4.4.7.8 1 1.4.2.4.4 1.1.4 2.3.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.9-.4 2.3-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4 1-.4.2-1.1.4-2.3.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.3-2.3-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1.1-.4-2.3-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.3-1.9.4-2.3.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-1 .4-.2 1.1-.4 2.3-.4 1.3-.1 1.7-.1 4.9-.1M12 0C8.7 0 8.3 0 7 .1c-1.3.1-2.2.3-3 .6-.8.3-1.5.7-2.2 1.4C1.1 2.8.7 3.5.4 4.3c-.3.8-.5 1.7-.6 3C-.1 8.3 0 8.7 0 12s0 3.7.1 5c.1 1.3.3 2.2.6 3 .3.8.7 1.5 1.4 2.2.7.7 1.4 1.1 2.2 1.4.8.3 1.7.5 3 .6C8.3 24 8.7 24 12 24s3.7 0 5-.1c1.3-.1 2.2-.3 3-.6.8-.3 1.5-.7 2.2-1.4.7-.7 1.1-1.4 1.4-2.2.3-.8.5-1.7.6-3 .1-1.3.1-1.7.1-5s0-3.7-.1-5c-.1-1.3-.3-2.2-.6-3-.3-.8-.7-1.5-1.4-2.2C21.2 1.1 20.5.7 19.7.4c-.8-.3-1.7-.5-3-.6C15.7 0 15.3 0 12 0z"/><path d="M12 5.8A6.2 6.2 0 1 0 18.2 12 6.2 6.2 0 0 0 12 5.8zm0 10.2A4 4 0 1 1 16 12a4 4 0 0 1-4 4z"/><circle cx="18.4" cy="5.6" r="1.4"/></svg>Instagram</a>
+    </div>
+  </nav>
+
+  <!-- ───────────── PAGE HERO ───────────── -->
+  <section class="page-hero dark-section">
+    <div class="section-inner">
+      <div class="section-tag">Resources</div>
+      <h1>Rental Policies</h1>
+      <p>The standards every Echelon Economic Rentals rental follows, covering eligibility, insurance, plans, permitted use, and vehicle care. Your signed rental agreement governs each rental.</p>
+      <p class="page-meta">Last updated September 27, 2026</p>
+    </div>
+  </section>
+
+  <!-- ───────────── POLICY BODY ───────────── -->
+  <section class="dark-section">
+    <div class="section-inner tight">
+      <div class="policy-layout">
+        <aside class="policy-aside">
+          <div>
+            <h4>Resources</h4>
+            <nav aria-label="Resources">
+            <a href="economy-rental-policies.html" aria-current="page">Rental Policies</a>
+            <a href="economy-cancellation-policy.html">Cancellation &amp; Refunds</a>
+            <a href="economy-terms-of-service.html">Terms of Service</a>
+            <a href="economy-privacy-policy.html">Privacy Policy</a>
+            <a href="economy-accessibility.html">Accessibility Statement</a>
+            </nav>
+          </div>
+          <div class="policy-toc">
+            <h4>On This Page</h4>
+            <nav aria-label="On this page">
+            <a href="#eligibility">Driver Eligibility</a>
+            <a href="#insurance">Insurance</a>
+            <a href="#deposit">Security Deposit &amp; Payment</a>
+            <a href="#plans">Daily, Weekly &amp; Monthly Plans</a>
+            <a href="#mileage">Mileage &amp; Travel</a>
+            <a href="#permitted-use">Permitted Use</a>
+            <a href="#prohibited">Prohibited Uses</a>
+            <a href="#delivery">Delivery &amp; Pickup</a>
+            <a href="#fuel">Fuel</a>
+            <a href="#vehicle-care">Vehicle Care &amp; Maintenance</a>
+            <a href="#tolls">Tolls, Tickets &amp; Violations</a>
+            <a href="#returns">Extensions &amp; Returns</a>
+            <a href="#damage">Accidents, Damage &amp; Breakdowns</a>
+            <a href="#contact">Questions</a>
+            </nav>
+          </div>
+        </aside>
+        <article class="prose">
+          <h2 id="eligibility">Driver Eligibility</h2>
+          <ul>
+            <li>All drivers must be <strong>21 years of age or older</strong>.</li>
+            <li>A valid, unexpired driver's license is required.</li>
+            <li>Only drivers listed on the rental agreement may operate the vehicle. Each additional driver must meet the same requirements.</li>
+            <li>Echelon may decline any rental at its discretion, including when verification can't be completed.</li>
+          </ul>
+
+          <h2 id="insurance">Insurance</h2>
+          <p>Every rental must be insured in one of two ways:</p>
+          <ul>
+            <li><strong>Your own policy:</strong> a valid personal auto insurance policy that extends to rental vehicles. Our listed rates apply to renters who carry their own insurance.</li>
+            <li><strong>Coverage from Echelon:</strong> don't have a policy? You can buy coverage from us for the full length of your rental when you book.</li>
+          </ul>
+          <p>If you'll use the car for delivery work, check that your policy covers it. Many personal policies exclude delivery driving. Ask us about coverage when you book.</p>
+
+          <h2 id="deposit">Security Deposit &amp; Payment</h2>
+          <ul>
+            <li>Qualified renters pay a <strong>$0 security deposit</strong>. We'll confirm what applies to you when we call to confirm your reservation.</li>
+            <li>Payment is collected when we confirm your reservation by phone.</li>
+            <li>Any charges from the rental, such as fuel, tolls, violations, or cleaning, are charged to the payment method on file.</li>
+          </ul>
+
+          <h2 id="plans">Daily, Weekly &amp; Monthly Plans</h2>
+          <ul>
+            <li><strong>Daily:</strong> any available car, unlimited miles, 24/7 roadside assistance, and an optional insurance add-on.</li>
+            <li><strong>Weekly:</strong> everything in Daily, plus a lower rate than daily, priority car selection, one car swap per week, and a dedicated support line.</li>
+            <li><strong>Monthly:</strong> everything in Weekly, plus our best rate, fully covered maintenance, the same car reserved for you, and loyalty rewards on renewals.</li>
+            <li>Rates are listed on our <a href="index.html#pricing">Pricing &amp; Plans</a> section and are starting rates. The final price depends on the vehicle.</li>
+          </ul>
+
+          <h2 id="mileage">Mileage &amp; Travel</h2>
+          <p>Every rental includes <strong>unlimited miles</strong>. If you plan to take the car outside New England, let us know before you go.</p>
+
+          <h2 id="permitted-use">Permitted Use</h2>
+          <p>Our cars are for everyday life, whatever that looks like for you: weekend trips, road trips, commuting, errands, family visits, moving, or a replacement while your own car is in the shop.</p>
+          <ul>
+            <li><strong>Delivery work is welcome.</strong> You may use the car for DoorDash, Grubhub, Uber Eats, Amazon Flex, and similar delivery services.</li>
+            <li><strong>Passenger rideshare needs approval.</strong> Driving passengers for Uber, Lyft, or similar services requires Echelon's approval before your rental starts.</li>
+          </ul>
+
+          <h2 id="prohibited">Prohibited Uses</h2>
+          <p>The following are not allowed:</p>
+          <ul>
+            <li>Racing, speed tests, or any competitive driving</li>
+            <li>Off-road driving or towing of any kind</li>
+            <li>Driving under the influence of alcohol, drugs, or any impairing substance</li>
+            <li>Passenger rideshare without Echelon's prior approval</li>
+            <li>Use by any driver not listed on the rental agreement</li>
+            <li>Any illegal purpose</li>
+          </ul>
+
+          <h2 id="delivery">Delivery &amp; Pickup</h2>
+          <ul>
+            <li>Local delivery and pickup are <strong>free</strong>. Longer distances are priced by distance and quoted at booking.</li>
+            <li>At handoff, we check the vehicle's condition with you before the rental begins.</li>
+          </ul>
+
+          <h2 id="fuel">Fuel</h2>
+          <p>Return the car with <strong>the same fuel level it had at pickup</strong>. If it comes back with less fuel, a refueling charge applies.</p>
+
+          <h2 id="vehicle-care">Vehicle Care &amp; Maintenance</h2>
+          <ul>
+            <li><strong>No smoking or vaping</strong> of any kind in any vehicle.</li>
+            <li>Pets are not permitted without prior approval.</li>
+            <li>Return the car in the condition you received it, allowing for normal use. Excessive dirt, stains, or odors will incur a cleaning fee.</li>
+            <li>Routine maintenance, such as oil changes and tire checks, is handled by Echelon. On the monthly plan, maintenance is fully covered. If we need the car for scheduled service during a long rental, we'll arrange it with you.</li>
+            <li>If a warning light comes on, call us.</li>
+          </ul>
+
+          <h2 id="tolls">Tolls, Tickets &amp; Violations</h2>
+          <p>The renter is responsible for all tolls, parking tickets, speeding and red-light camera violations, and towing or impound fees incurred during the rental. These are charged to the payment method on file.</p>
+
+          <h2 id="returns">Extensions &amp; Returns</h2>
+          <ul>
+            <li>Extensions are <strong>free</strong>: keep the car at your plan's rate. Contact us before your return time. Extensions are subject to availability.</li>
+            <li>Return the car at the date and time on your rental agreement. Running late? Tell us as early as you can. Late returns are handled case by case.</li>
+          </ul>
+
+          <h2 id="damage">Accidents, Damage &amp; Breakdowns</h2>
+          <ul>
+            <li>24/7 roadside assistance is included with every rental.</li>
+            <li>Report any accident, damage, warning light, or breakdown to Echelon <strong>right away</strong> at 508-444-2276, any time.</li>
+            <li>In an accident, make sure everyone is safe, contact the police when required, and get a police report. Don't arrange towing or repairs without our approval.</li>
+            <li>The renter is responsible for damage to the vehicle during the rental, to the extent permitted by law and subject to any coverage purchased from Echelon.</li>
+          </ul>
+
+          <h2 id="contact">Questions</h2>
+          <p>Questions about anything on this page? Our team is available 24 hours a day, 7 days a week.</p>
+          <ul>
+            <li>Call or text: <a href="tel:+15084442276">508-444-2276</a></li>
+            <li>Email: <a href="mailto:info@echelonrentalgroup.com">info@echelonrentalgroup.com</a></li>
+            <li>Instagram: <a href="https://www.instagram.com/echelonrentalgroup/" target="_blank" rel="noopener noreferrer">@EchelonRentalGroup</a></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── FOOTER ───────────── -->
+  <footer class="footer">
+    <div class="footer-inner footer-inner--wide">
+      <div class="footer-brand">
+        <a href="index.html" class="logo footer-logo">
+          <span class="logo-main">ECHELON</span>
+          <span class="logo-sub">ECONOMIC RENTALS</span>
+        </a>
+        <p>Affordable, flexible car rentals for everyday life, from weekend trips to the daily commute. Part of the Echelon Rental Group family.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/echelonrentalgroup" target="_blank" rel="noopener" class="social-link social-instagram">@EchelonRentalGroup</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="index.html#fleet">View the Fleet</a>
+        <a href="index.html#pricing">Pricing &amp; Plans</a>
+        <a href="index.html#fleet">Book a Car</a>
+        <a href="economy-faq.html">FAQs</a>
+      </div>
+      <div class="footer-links">
+        <h4>Company</h4>
+        <a href="index.html#compare">Why Echelon</a>
+        <a href="index.html#gig-workers">Who We Serve</a>
+        <a href="index.html#reviews">Renter Reviews</a>
+      </div>
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <a href="economy-rental-policies.html">Rental Policies</a>
+        <a href="economy-cancellation-policy.html">Cancellation &amp; Refunds</a>
+        <a href="economy-terms-of-service.html">Terms of Service</a>
+        <a href="economy-privacy-policy.html">Privacy Policy</a>
+        <a href="economy-accessibility.html">Accessibility</a>
+      </div>
+      <div class="footer-links">
+        <h4>Echelon Brands</h4>
+        <a href="exotics.html">Exotics</a>
+        <a href="boats.html">Boat Charters</a>
+        <a href="jets.html">Jet Charters</a>
+        <a href="experiences.html">Experiences</a>
+      </div>
+      <div class="footer-links">
+        <h4>Contact</h4>
+        <a href="tel:+15084442276">508-444-2276</a>
+        <a href="mailto:info@echelonrentalgroup.com">info@echelonrentalgroup.com</a>
+        <p class="footer-hours">Open 24 Hours, 7 Days a Week</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Echelon Rental Group. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="economy-privacy-policy.html">Privacy</a>
+        <a href="economy-terms-of-service.html">Terms</a>
+        <a href="economy-accessibility.html">Accessibility</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="brand-pages.js"></script>
+  <script src="cursor-ring.js"></script>
+  <script src="chat-widget.js" data-brand="economy"></script>
+</body>
+</html>

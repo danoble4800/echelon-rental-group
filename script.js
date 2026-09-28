@@ -18,9 +18,8 @@ const i18n = {
 
     /* Hero */
     heroBadge:    'Flexible Rentals · For Any Driver, Any Need',
-    heroTitle:    'Drive More,<br/><span class="accent">Earn More.</span>',
-    heroSubtitle: 'Echelon Rental Group offers <strong>affordable, flexible car rentals</strong> for gig drivers, daily commuters, families, and anyone in between. Compact cars, sedans, and SUVs — available daily, weekly, or monthly.',
-    platformEveryday: 'Everyday Use',
+    heroTitle:    'Go Anywhere.<br/><span class="accent">Pay Less.</span>',
+    heroSubtitle: 'Echelon offers <strong>affordable, flexible car rentals</strong> for whatever life brings: weekend getaways, road trips, family visits, the daily commute, or a car while yours is in the shop. Compact cars, sedans, and SUVs, available by the day, week, or month.',
 
     /* Booking widget */
     widgetDaily:    'Daily',
@@ -68,26 +67,27 @@ const i18n = {
 
     /* Who We Serve */
     serveTag:      'Who We Serve',
-    serveH2:       'Rentals for Everyone.',
-    serveDesc:     'Whether you\'re a gig driver clocking miles for DoorDash or Amazon Flex, a commuter who needs a car while yours is in the shop, a family planning a road trip, or simply someone who wants a vehicle without the commitment — Echelon has you covered with <strong>flexible, affordable rentals</strong> and a fleet to match every need.',
-    serveEveryday: 'Everyday Drivers',
+    serveH2:       'A Car for Every Reason.',
+    serveDesc:     'Heading away for the weekend, visiting family, or waiting on your own car to come out of the shop? Need a dependable ride for the daily commute, or a car for a few weeks of delivery work? Echelon has you covered with <strong>flexible, affordable rentals</strong> and a fleet to match every need.',
+    useCard1: 'Weekend Getaways', useCard2: 'Car in the Shop', useCard3: 'Daily Commuting',
+    useCard4: 'Family &amp; Events', useCard5: 'Delivery &amp; Gig Work',
     ben1Title:     'No long-term commitments',
     ben1Desc:      'Rent daily, extend weekly, or lock in a monthly rate — your call.',
     ben2Title:     'Unlimited mileage included',
-    ben2Desc:      'Drive as many miles as your deliveries require. No mileage caps.',
+    ben2Desc:      'Road trip, long commute, or a full week of deliveries: drive as far as you need. No mileage caps.',
     ben3Title:     'Maintenance handled',
-    ben3Desc:      'Oil changes, tire checks — we keep the car running so you stay earning.',
+    ben3Desc:      'Oil changes, tire checks — we keep the car running so you can focus on the road.',
     ben4Title:     'Compact cars, sedans & SUVs',
     ben4Desc:      'Choose the right size for your trip — from fuel-efficient compacts to spacious SUVs.',
-    earningsTitle: 'Weekly Earnings Estimate',
-    earningsBadge: 'DoorDash Driver',
+    earningsTitle: 'Gig Driver? Do the Math',
+    earningsBadge: 'DoorDash Example',
     earningsRow1:  'Avg. weekly earnings',
     earningsRow2:  'Echelon weekly rental',
     earningsRow3:  'Est. fuel (300mi @ 33MPG)',
     earningsTotal: 'Your take-home',
     earningsNote:  '* Estimates based on average gig earnings. Individual results vary.',
-    serveCtaH3:    'Ready to start?',
-    serveCtaP:     'Get your rental today — whether it\'s for deliveries, commuting, a trip, or just everyday life.',
+    serveCtaH3:    'Need a car this week?',
+    serveCtaP:     'Book today for a weekend away, the daily commute, a car while yours is in the shop, or a week of deliveries.',
     serveCtaBtn:   'View Available Cars',
 
     /* Pricing */
@@ -97,7 +97,7 @@ const i18n = {
     planDaily:     'Daily',
     planDailyDesc: 'Perfect for short-term needs',
     planWeekly:    'Weekly',
-    planWeeklyDesc:'Best for consistent gig work',
+    planWeeklyDesc:'Best for longer trips & steady driving',
     planMonthly:   'Monthly',
     planMonthlyDesc:'Maximum savings, maximum flex',
     popular:       'Most Popular',
@@ -115,22 +115,22 @@ const i18n = {
 
     /* Compare */
     compareTag:         'Why Choose Echelon',
-    compareH2:          'Why Drivers Choose Echelon',
+    compareH2:          'Why Renters Choose Echelon',
     compareSubtitle:    'Same roads. A smarter way to rent.',
     compareCompHead:    'THE COMPETITION',
     compareEchHead:     'ECHELON',
     cFeat1: 'No Hidden Fees',        cFeat2: 'Flat, Transparent Rates',
     cFeat3: '$0 Security Deposit',   cFeat4: 'Unlimited Miles',
     cFeat5: 'Free Rental Extensions',cFeat6: 'Free Local Delivery*',
-    cFeat7: 'Daily / Weekly / Monthly', cFeat8: 'Built for Gig Drivers',
-    compareBannerTitle: 'GIG DRIVERS WELCOME',
-    compareBannerSub:   'UBER EATS · DOORDASH · GRUBHUB',
+    cFeat7: 'Daily / Weekly / Monthly', cFeat8: 'Delivery & Gig Work Allowed',
+    compareBannerTitle: 'EVERY TRIP WELCOME',
+    compareBannerSub:   'WEEKEND TRIPS · COMMUTES · ERRANDS · GIG WORK',
     compareDisclaimer:  '*Free local delivery · longer distances priced by distance',
     compareTaglineMain: 'EXCELLENCE IN MOTION',
     compareTaglineSub:  'NEW ENGLAND · @echelonrentalgroup',
 
     /* Testimonials */
-    reviewsTag:    'Real Drivers',
+    reviewsTag:    'Real Renters',
     reviewsH2:     'What Our Renters Say',
     review1:       '"I\'ve been doing DoorDash full-time for 8 months. Echelon\'s weekly rate keeps more of my earnings in my pocket. The compact I got is super fuel efficient — exactly what I needed."',
     review1Name:   'Marcus R.',
@@ -144,28 +144,60 @@ const i18n = {
 
     /* CTA */
     ctaH2:         'Ready to hit the road?',
-    ctaP:          'Join hundreds of drivers — gig workers, commuters, and everyday renters — already rolling with Echelon.',
+    ctaP:          'Join hundreds of renters — commuters, travelers, families, and gig drivers — already rolling with Echelon.',
     ctaBtn:        'View Available Cars',
     ctaCall:       'Call Us: 508-444-2276',
 
+    /* Hero use-case tags */
+    useWeekend: 'Weekend Trips', useRoadTrip: 'Road Trips', useCommute: 'Commuting',
+    useShop: 'Car in the Shop', useGig: 'Delivery Work',
+
+    /* FAQ */
+    navFaq:  'FAQ',
+    faqTag:  'FAQ',
+    faqH2:   'Frequently Asked Questions',
+    faqDesc: 'Everything you need to know before you book. Can\'t find your answer? Call or text us any time at 508-444-2276.',
+    faqQ1: 'What do I need to rent a car?',
+    faqA1: 'You\'ll need to be 21 or older with a valid driver\'s license. Bring your own auto insurance, or add coverage from us for the full length of your rental when you book.',
+    faqQ2: 'Is there a security deposit?',
+    faqA2: 'Qualified renters pay a $0 security deposit. We\'ll confirm what applies to you when we call to confirm your reservation.',
+    faqQ3: 'Are the miles really unlimited?',
+    faqA3: 'Yes. Every daily, weekly, and monthly rental includes unlimited miles, so take the road trip. Just let us know before you leave New England.',
+    faqQ4: 'Can I use the car for delivery apps?',
+    faqA4: 'Yes. DoorDash, Grubhub, Uber Eats, Amazon Flex, and other delivery work are welcome. Passenger rideshare needs our approval first. Many personal policies don\'t cover delivery work, so ask us about coverage when you book.',
+    faqQ5: 'Can you deliver the car to me?',
+    faqA5: 'Yes. Local delivery and pickup are free. Longer distances are priced by distance, and we\'ll quote it when you book.',
+    faqQ6: 'What if my plans change?',
+    faqA6: 'Cancel with at least 24 hours\' notice at no charge. Need the car longer? Rental extensions are free at your plan\'s rate, subject to availability.',
+    faqAll: 'See All FAQs',
+
     /* Footer */
-    footerDesc:    'Affordable, flexible rentals for gig drivers, commuters, families, and anyone who needs a great car without the commitment.',
-    footerFleet:   'Fleet',
-    footerCompany: 'Company',
-    footerContact: 'Contact',
-    footerHours:   'Open 24 Hours, 7 Days a Week',
-    footerEconomy: 'Economy Cars',
-    footerSedans:  'Sedans',
-    footerCompact: 'Compact Cars',
-    footerPricing: 'View Pricing',
-    footerHow:     'Why Echelon',
-    navHow:        'Why Echelon',
-    footerGig:     'Driver Program',
-    footerFaq:     'FAQ',
-    footerContactLink: 'Contact Us',
-    footerPrivacy: 'Privacy Policy',
-    footerTerms:   'Terms of Service',
-    footerCopy:    '© 2024 Echelon Rental Group. All rights reserved.',
+    footerDesc:      'Affordable, flexible car rentals for everyday life, from weekend trips to the daily commute. Part of the Echelon Rental Group family.',
+    footerQuick:     'Quick Links',
+    footerHome:      'Home',
+    footerFleetLink: 'View the Fleet',
+    footerPricing:   'Pricing &amp; Plans',
+    footerBook:      'Book a Car',
+    footerFaq:       'FAQs',
+    footerCompany:   'Company',
+    footerHow:       'Why Echelon',
+    footerServe:     'Who We Serve',
+    footerReviews:   'Renter Reviews',
+    footerResources: 'Resources',
+    footerPolicies:  'Rental Policies',
+    footerCancel:    'Cancellation &amp; Refunds',
+    footerTerms:     'Terms of Service',
+    footerPrivacy:   'Privacy Policy',
+    footerAccess:    'Accessibility',
+    footerBrands:    'Echelon Brands',
+    footerBoats:     'Boat Charters',
+    footerJets:      'Jet Charters',
+    footerExperiences: 'Experiences',
+    footerContact:   'Contact',
+    footerHours:     'Open 24 Hours, 7 Days a Week',
+    footerCopy:      '© 2026 Echelon Rental Group. All rights reserved.',
+    footerPrivacyShort: 'Privacy',
+    footerTermsShort:   'Terms',
 
     /* Modal */
     modalSubtitle: 'Complete your reservation below',
@@ -176,11 +208,16 @@ const i18n = {
     modalPickup:   'Pick-Up Date',
     modalReturn:   'Return Date',
     modalUsage:    'How Will You Use This Car?',
-    modalUsage1:   'DoorDash',
-    modalUsage2:   'GrubHub',
-    modalUsage3:   'Uber Eats',
-    modalUsage4:   'Personal Use',
-    modalUsage5:   'Other Delivery',
+    useOpt0: 'Choose one…',
+    useOpt1: 'Personal / Everyday Use',
+    useOpt2: 'Weekend Trip or Vacation',
+    useOpt3: 'Car in the Shop / Insurance Replacement',
+    useOpt4: 'Commuting to Work',
+    useOpt5: 'Family Visit or Special Event',
+    useOpt6: 'Moving or Errands',
+    useOpt7: 'Delivery Apps (DoorDash, Uber Eats, etc.)',
+    useOpt8: 'Rideshare (Uber / Lyft) — needs approval',
+    useOpt9: 'Other',
     modalCheck:    'I confirm I have a valid driver\'s license and agree to the rental terms.',
     modalSubmit:   'Request Reservation',
     modalNote:     'We\'ll call you within 1 hour to confirm and collect payment.',
@@ -201,9 +238,8 @@ const i18n = {
     navPhone:      '📞 508-444-2276',
 
     heroBadge:    'Rentas Flexibles · Para Todo Conductor y Necesidad',
-    heroTitle:    'Maneja Más,<br/><span class="accent">Gana Más.</span>',
-    heroSubtitle: 'Echelon Rental Group ofrece <strong>rentas de autos asequibles y flexibles</strong> para conductores de reparto, viajeros diarios, familias y cualquier persona. Carros compactos, sedanes y SUVs — disponibles por día, semana o mes.',
-    platformEveryday: 'Uso Diario',
+    heroTitle:    'Ve a Donde Quieras.<br/><span class="accent">Paga Menos.</span>',
+    heroSubtitle: 'Echelon ofrece <strong>rentas de autos asequibles y flexibles</strong> para lo que la vida traiga: escapadas de fin de semana, viajes por carretera, visitas familiares, el trayecto diario o un carro mientras el tuyo está en el taller. Carros compactos, sedanes y SUVs, disponibles por día, semana o mes.',
 
     widgetDaily:   'Diario',
     widgetWeekly:  'Semanal',
@@ -246,26 +282,27 @@ const i18n = {
     specMpg:       'MPG',
 
     serveTag:      'A Quién Servimos',
-    serveH2:       'Rentas para Todos.',
-    serveDesc:     'Ya sea que conduzcas para DoorDash o Amazon Flex, necesites un carro mientras el tuyo está en el taller, planees un viaje en familia, o simplemente quieras un vehículo sin compromisos — Echelon te tiene con <strong>rentas flexibles y asequibles</strong> y una flota para cada necesidad.',
-    serveEveryday: 'Conductores Diarios',
+    serveH2:       'Un Carro para Cada Razón.',
+    serveDesc:     '¿Te vas de fin de semana, visitas a la familia o esperas que tu carro salga del taller? ¿Necesitas un transporte confiable para el trayecto diario o un carro para unas semanas de reparto? Echelon te cubre con <strong>rentas flexibles y asequibles</strong> y una flota para cada necesidad.',
+    useCard1: 'Escapadas de Fin de Semana', useCard2: 'Carro en el Taller', useCard3: 'Trayecto Diario',
+    useCard4: 'Familia y Eventos', useCard5: 'Reparto y Trabajo por App',
     ben1Title:     'Sin compromisos a largo plazo',
     ben1Desc:      'Renta por día, extiende por semana o fija una tarifa mensual — tú decides.',
     ben2Title:     'Millaje ilimitado incluido',
-    ben2Desc:      'Maneja todas las millas que necesites. Sin límites de millaje.',
+    ben2Desc:      'Viaje por carretera, trayecto largo o una semana completa de repartos: maneja lo que necesites. Sin límite de millas.',
     ben3Title:     'Mantenimiento incluido',
-    ben3Desc:      'Cambios de aceite, revisión de llantas — mantenemos el carro andando para que sigas ganando.',
+    ben3Desc:      'Cambios de aceite, revisión de llantas — mantenemos el carro en marcha para que te enfoques en el camino.',
     ben4Title:     'Compactos, sedanes y SUVs',
     ben4Desc:      'Elige el tamaño adecuado — desde compactos eficientes hasta SUVs espaciosos.',
-    earningsTitle: 'Estimado de Ganancias Semanales',
-    earningsBadge: 'Conductor DoorDash',
+    earningsTitle: '¿Repartidor? Haz las Cuentas',
+    earningsBadge: 'Ejemplo DoorDash',
     earningsRow1:  'Ganancias promedio semanales',
     earningsRow2:  'Renta semanal Echelon',
     earningsRow3:  'Combustible est. (300mi @ 33MPG)',
     earningsTotal: 'Tu ganancia',
     earningsNote:  '* Estimados basados en ganancias promedio. Los resultados varían.',
-    serveCtaH3:    '¿Listo para comenzar?',
-    serveCtaP:     'Obtén tu renta hoy — ya sea para entregas, trabajo, un viaje o la vida diaria.',
+    serveCtaH3:    '¿Necesitas un carro esta semana?',
+    serveCtaP:     'Reserva hoy para un fin de semana fuera, el trayecto diario, un carro mientras el tuyo está en el taller o una semana de repartos.',
     serveCtaBtn:   'Ver Carros Disponibles',
 
     pricingTag:    'Precios Económicos',
@@ -274,7 +311,7 @@ const i18n = {
     planDaily:     'Diario',
     planDailyDesc: 'Perfecto para necesidades a corto plazo',
     planWeekly:    'Semanal',
-    planWeeklyDesc:'Ideal para trabajo constante',
+    planWeeklyDesc:'Ideal para viajes largos y uso constante',
     planMonthly:   'Mensual',
     planMonthlyDesc:'Máximo ahorro, máxima flexibilidad',
     popular:       'Más Popular',
@@ -291,21 +328,21 @@ const i18n = {
     pricingNote:   'Todos los precios mostrados son tarifas iniciales. El precio final depende del vehículo seleccionado. No se requiere depósito de seguridad para solicitantes calificados.',
 
     compareTag:         '¿Por Qué Echelon?',
-    compareH2:          'Por Qué los Conductores Eligen Echelon',
+    compareH2:          'Por Qué los Clientes Eligen Echelon',
     compareSubtitle:    'Las mismas calles. Una forma más inteligente de rentar.',
     compareCompHead:    'LA COMPETENCIA',
     compareEchHead:     'ECHELON',
     cFeat1: 'Sin Cargos Ocultos',       cFeat2: 'Tarifas Planas y Transparentes',
     cFeat3: '$0 Depósito de Seguridad', cFeat4: 'Millas Ilimitadas',
     cFeat5: 'Extensiones Gratuitas',    cFeat6: 'Entrega Local Gratis*',
-    cFeat7: 'Diario / Semanal / Mensual', cFeat8: 'Hecho para Conductores Gig',
-    compareBannerTitle: 'CONDUCTORES GIG BIENVENIDOS',
-    compareBannerSub:   'UBER EATS · DOORDASH · GRUBHUB',
+    cFeat7: 'Diario / Semanal / Mensual', cFeat8: 'Se Permite Trabajo de Reparto',
+    compareBannerTitle: 'TODO VIAJE ES BIENVENIDO',
+    compareBannerSub:   'FINES DE SEMANA · TRAYECTOS · MANDADOS · REPARTO',
     compareDisclaimer:  '*Entrega local gratis · distancias mayores con costo adicional',
     compareTaglineMain: 'EXCELENCIA EN MOVIMIENTO',
     compareTaglineSub:  'NEW ENGLAND · @echelonrentalgroup',
 
-    reviewsTag:    'Conductores Reales',
+    reviewsTag:    'Clientes Reales',
     reviewsH2:     'Lo Que Dicen Nuestros Clientes',
     review1:       '"Llevo 8 meses haciendo DoorDash a tiempo completo. La tarifa semanal de Echelon me deja más dinero en el bolsillo. El compacto que me dieron es súper eficiente — exactamente lo que necesitaba."',
     review1Name:   'Marcus R.',
@@ -318,26 +355,57 @@ const i18n = {
     review3Sub:    'Conductor GrubHub · 1 año',
 
     ctaH2:         '¿Listo para manejar?',
-    ctaP:          'Únete a cientos de conductores — repartidores, viajeros y usuarios diarios — ya rodando con Echelon.',
+    ctaP:          'Únete a cientos de clientes — viajeros diarios, turistas, familias y repartidores — que ya ruedan con Echelon.',
     ctaBtn:        'Ver Carros Disponibles',
     ctaCall:       'Llámanos: 508-444-2276',
 
-    footerDesc:    'Rentas asequibles y flexibles para conductores de reparto, viajeros, familias y cualquier persona que necesite un buen carro sin compromisos.',
-    footerFleet:   'Flota',
-    footerCompany: 'Empresa',
-    footerContact: 'Contacto',
-    footerHours:   'Abierto las 24 Horas, los 7 Días de la Semana',
-    footerEconomy: 'Carros Económicos',
-    footerSedans:  'Sedanes',
-    footerCompact: 'Carros Compactos',
-    footerPricing: 'Ver Precios',
-    footerHow:     '¿Por Qué Echelon?',
-    footerGig:     'Programa de Conductores',
-    footerFaq:     'Preguntas Frecuentes',
-    footerContactLink: 'Contáctanos',
-    footerPrivacy: 'Política de Privacidad',
-    footerTerms:   'Términos de Servicio',
-    footerCopy:    '© 2024 Echelon Rental Group. Todos los derechos reservados.',
+    useWeekend: 'Fines de Semana', useRoadTrip: 'Viajes por Carretera', useCommute: 'Trayecto Diario',
+    useShop: 'Tu Carro en el Taller', useGig: 'Trabajo de Reparto',
+
+    navFaq:  'Preguntas',
+    faqTag:  'Preguntas Frecuentes',
+    faqH2:   'Preguntas Frecuentes',
+    faqDesc: 'Todo lo que necesitas saber antes de reservar. ¿No encuentras tu respuesta? Llámanos o escríbenos cuando quieras al 508-444-2276.',
+    faqQ1: '¿Qué necesito para rentar un carro?',
+    faqA1: 'Debes tener 21 años o más y una licencia de conducir válida. Usa tu propio seguro de auto o agrega nuestra cobertura por toda la renta al reservar.',
+    faqQ2: '¿Hay depósito de seguridad?',
+    faqA2: 'Los clientes que califican pagan $0 de depósito. Te confirmamos lo que aplica en tu caso cuando te llamemos para confirmar la reserva.',
+    faqQ3: '¿Las millas son realmente ilimitadas?',
+    faqA3: 'Sí. Toda renta diaria, semanal y mensual incluye millas ilimitadas, así que haz ese viaje. Solo avísanos antes de salir de Nueva Inglaterra.',
+    faqQ4: '¿Puedo usar el carro para apps de reparto?',
+    faqA4: 'Sí. DoorDash, Grubhub, Uber Eats, Amazon Flex y otros trabajos de reparto son bienvenidos. Llevar pasajeros (rideshare) requiere nuestra aprobación previa. Muchas pólizas personales no cubren el reparto, así que pregúntanos por la cobertura al reservar.',
+    faqQ5: '¿Pueden entregarme el carro?',
+    faqA5: 'Sí. La entrega y recogida local son gratis. Las distancias más largas se cotizan según la distancia al reservar.',
+    faqQ6: '¿Y si cambian mis planes?',
+    faqA6: 'Cancela sin costo con al menos 24 horas de aviso. ¿Necesitas el carro más tiempo? Las extensiones son gratis a la tarifa de tu plan, sujeto a disponibilidad.',
+    faqAll: 'Ver Todas las Preguntas',
+
+    footerDesc:      'Rentas de autos asequibles y flexibles para el día a día, desde viajes de fin de semana hasta el trayecto diario. Parte de la familia Echelon Rental Group.',
+    footerQuick:     'Enlaces Rápidos',
+    footerHome:      'Inicio',
+    footerFleetLink: 'Ver la Flota',
+    footerPricing:   'Precios y Planes',
+    footerBook:      'Reservar un Carro',
+    footerFaq:       'Preguntas Frecuentes',
+    footerCompany:   'Empresa',
+    footerHow:       '¿Por Qué Echelon?',
+    footerServe:     'A Quién Servimos',
+    footerReviews:   'Reseñas',
+    footerResources: 'Recursos',
+    footerPolicies:  'Políticas de Renta',
+    footerCancel:    'Cancelaciones y Reembolsos',
+    footerTerms:     'Términos de Servicio',
+    footerPrivacy:   'Política de Privacidad',
+    footerAccess:    'Accesibilidad',
+    footerBrands:    'Marcas Echelon',
+    footerBoats:     'Charters de Botes',
+    footerJets:      'Charters de Jets',
+    footerExperiences: 'Experiencias',
+    footerContact:   'Contacto',
+    footerHours:     'Abierto las 24 Horas, los 7 Días de la Semana',
+    footerCopy:      '© 2026 Echelon Rental Group. Todos los derechos reservados.',
+    footerPrivacyShort: 'Privacidad',
+    footerTermsShort:   'Términos',
 
     modalSubtitle: 'Completa tu reservación abajo',
     modalFirst:    'Nombre',
@@ -347,11 +415,16 @@ const i18n = {
     modalPickup:   'Fecha de Recogida',
     modalReturn:   'Fecha de Devolución',
     modalUsage:    '¿Cómo usarás este carro?',
-    modalUsage1:   'DoorDash',
-    modalUsage2:   'GrubHub',
-    modalUsage3:   'Uber Eats',
-    modalUsage4:   'Uso Personal',
-    modalUsage5:   'Otra Entrega',
+    useOpt0: 'Elige una opción…',
+    useOpt1: 'Uso Personal / Diario',
+    useOpt2: 'Fin de Semana o Vacaciones',
+    useOpt3: 'Carro en el Taller / Reemplazo del Seguro',
+    useOpt4: 'Ir al Trabajo',
+    useOpt5: 'Visita Familiar o Evento Especial',
+    useOpt6: 'Mudanza o Mandados',
+    useOpt7: 'Apps de Reparto (DoorDash, Uber Eats, etc.)',
+    useOpt8: 'Rideshare (Uber / Lyft) — requiere aprobación',
+    useOpt9: 'Otro',
     modalCheck:    'Confirmo que tengo una licencia de conducir válida y acepto los términos de alquiler.',
     modalSubmit:   'Solicitar Reservación',
     modalNote:     'Te llamaremos en 1 hora para confirmar y cobrar el pago.',
@@ -371,9 +444,8 @@ const i18n = {
     navPhone:      '📞 508-444-2276',
 
     heroBadge:    'Aluguel Flexível · Para Todo Motorista e Necessidade',
-    heroTitle:    'Dirija Mais,<br/><span class="accent">Ganhe Mais.</span>',
-    heroSubtitle: 'A Echelon Rental Group oferece <strong>aluguel de carros acessível e flexível</strong> para entregadores, motoristas do dia a dia, famílias e qualquer pessoa. Carros compactos, sedãs e SUVs — disponíveis diário, semanal ou mensal.',
-    platformEveryday: 'Uso Diário',
+    heroTitle:    'Vá Aonde Quiser.<br/><span class="accent">Pague Menos.</span>',
+    heroSubtitle: 'A Echelon oferece <strong>aluguel de carros acessível e flexível</strong> para tudo o que a vida pedir: escapadas de fim de semana, viagens de carro, visitas à família, o trajeto diário ou um carro enquanto o seu está na oficina. Carros compactos, sedãs e SUVs, disponíveis por dia, semana ou mês.',
 
     widgetDaily:   'Diário',
     widgetWeekly:  'Semanal',
@@ -416,26 +488,27 @@ const i18n = {
     specMpg:       'MPG',
 
     serveTag:      'Quem Atendemos',
-    serveH2:       'Aluguel para Todos.',
-    serveDesc:     'Seja você um entregador rodando para DoorDash ou Amazon Flex, um motorista que precisa de carro enquanto o seu está na oficina, uma família planejando uma viagem, ou simplesmente alguém que quer um veículo sem compromisso — a Echelon tem tudo para você com <strong>aluguel flexível e acessível</strong> e uma frota para cada necessidade.',
-    serveEveryday: 'Motoristas do Dia a Dia',
+    serveH2:       'Um Carro para Cada Motivo.',
+    serveDesc:     'Vai viajar no fim de semana, visitar a família ou está esperando seu carro sair da oficina? Precisa de um carro confiável para o trajeto diário ou para algumas semanas de entregas? A Echelon tem <strong>aluguel flexível e acessível</strong> e uma frota para cada necessidade.',
+    useCard1: 'Escapadas de Fim de Semana', useCard2: 'Carro na Oficina', useCard3: 'Trajeto Diário',
+    useCard4: 'Família e Eventos', useCard5: 'Entregas e Trabalho por App',
     ben1Title:     'Sem compromissos de longo prazo',
     ben1Desc:      'Alugue por dia, estenda por semana ou fixe uma taxa mensal — você decide.',
     ben2Title:     'Quilometragem ilimitada incluída',
-    ben2Desc:      'Dirija quantos quilômetros precisar. Sem limite de quilometragem.',
+    ben2Desc:      'Viagem de carro, trajeto longo ou uma semana inteira de entregas: dirija o quanto precisar. Sem limite de milhas.',
     ben3Title:     'Manutenção incluída',
-    ben3Desc:      'Trocas de óleo, verificação de pneus — mantemos o carro rodando para você continuar ganhando.',
+    ben3Desc:      'Troca de óleo, revisão de pneus — mantemos o carro rodando para você focar na estrada.',
     ben4Title:     'Compactos, sedãs e SUVs',
     ben4Desc:      'Escolha o tamanho certo para sua viagem — de compactos econômicos a SUVs espaçosos.',
-    earningsTitle: 'Estimativa de Ganhos Semanais',
-    earningsBadge: 'Motorista DoorDash',
+    earningsTitle: 'Entregador? Faça as Contas',
+    earningsBadge: 'Exemplo DoorDash',
     earningsRow1:  'Ganhos médios semanais',
     earningsRow2:  'Aluguel semanal Echelon',
     earningsRow3:  'Combustível est. (300mi @ 33MPG)',
     earningsTotal: 'Seu lucro líquido',
     earningsNote:  '* Estimativas baseadas em ganhos médios. Resultados individuais variam.',
-    serveCtaH3:    'Pronto para começar?',
-    serveCtaP:     'Alugue hoje — para entregas, trabalho, uma viagem ou o dia a dia.',
+    serveCtaH3:    'Precisa de um carro esta semana?',
+    serveCtaP:     'Reserve hoje para um fim de semana fora, o trajeto diário, um carro enquanto o seu está na oficina ou uma semana de entregas.',
     serveCtaBtn:   'Ver Carros Disponíveis',
 
     pricingTag:    'Preços Econômicos',
@@ -444,7 +517,7 @@ const i18n = {
     planDaily:     'Diário',
     planDailyDesc: 'Perfeito para necessidades de curto prazo',
     planWeekly:    'Semanal',
-    planWeeklyDesc:'Ideal para trabalho constante',
+    planWeeklyDesc:'Ideal para viagens longas e uso constante',
     planMonthly:   'Mensal',
     planMonthlyDesc:'Máxima economia, máxima flexibilidade',
     popular:       'Mais Popular',
@@ -461,21 +534,21 @@ const i18n = {
     pricingNote:   'Todos os preços mostrados são tarifas iniciais. O preço final depende do veículo selecionado. Não é necessário depósito de segurança para solicitantes qualificados.',
 
     compareTag:         'Por Que Echelon?',
-    compareH2:          'Por Que os Motoristas Escolhem a Echelon',
+    compareH2:          'Por Que os Clientes Escolhem a Echelon',
     compareSubtitle:    'As mesmas ruas. Uma forma mais inteligente de alugar.',
     compareCompHead:    'A CONCORRÊNCIA',
     compareEchHead:     'ECHELON',
     cFeat1: 'Sem Taxas Ocultas',         cFeat2: 'Tarifas Planas e Transparentes',
     cFeat3: '$0 Depósito de Segurança',  cFeat4: 'Quilometragem Ilimitada',
     cFeat5: 'Extensões Gratuitas',       cFeat6: 'Entrega Local Grátis*',
-    cFeat7: 'Diário / Semanal / Mensal', cFeat8: 'Feito para Motoristas Gig',
-    compareBannerTitle: 'MOTORISTAS GIG BEM-VINDOS',
-    compareBannerSub:   'UBER EATS · DOORDASH · GRUBHUB',
+    cFeat7: 'Diário / Semanal / Mensal', cFeat8: 'Trabalho de Entrega Permitido',
+    compareBannerTitle: 'TODA VIAGEM É BEM-VINDA',
+    compareBannerSub:   'FINS DE SEMANA · TRAJETOS · RECADOS · ENTREGAS',
     compareDisclaimer:  '*Entrega local grátis · distâncias maiores com custo adicional',
     compareTaglineMain: 'EXCELÊNCIA EM MOVIMENTO',
     compareTaglineSub:  'NEW ENGLAND · @echelonrentalgroup',
 
-    reviewsTag:    'Motoristas Reais',
+    reviewsTag:    'Clientes Reais',
     reviewsH2:     'O Que Nossos Clientes Dizem',
     review1:       '"Faço DoorDash em tempo integral há 8 meses. A tarifa semanal da Echelon deixa mais dinheiro no meu bolso. O compacto que peguei é super econômico — exatamente o que precisava."',
     review1Name:   'Marcus R.',
@@ -488,26 +561,57 @@ const i18n = {
     review3Sub:    'Motorista GrubHub · 1 ano',
 
     ctaH2:         'Pronto para Dirigir?',
-    ctaP:          'Junte-se a centenas de motoristas — entregadores, commuters e usuários do dia a dia — já rodando com a Echelon.',
+    ctaP:          'Junte-se a centenas de clientes — quem vai ao trabalho, viajantes, famílias e entregadores — já rodando com a Echelon.',
     ctaBtn:        'Ver Carros Disponíveis',
     ctaCall:       'Ligue: 508-444-2276',
 
-    footerDesc:    'Aluguel acessível e flexível para entregadores, motoristas, famílias e qualquer pessoa que precisa de um bom carro sem compromisso.',
-    footerFleet:   'Frota',
-    footerCompany: 'Empresa',
-    footerContact: 'Contato',
-    footerHours:   'Aberto 24 Horas, 7 Dias por Semana',
-    footerEconomy: 'Carros Econômicos',
-    footerSedans:  'Sedãs',
-    footerCompact: 'Carros Compactos',
-    footerPricing: 'Ver Preços',
-    footerHow:     'Por Que Echelon?',
-    footerGig:     'Programa para Motoristas',
-    footerFaq:     'Perguntas Frequentes',
-    footerContactLink: 'Fale Conosco',
-    footerPrivacy: 'Política de Privacidade',
-    footerTerms:   'Termos de Serviço',
-    footerCopy:    '© 2024 Echelon Rental Group. Todos os direitos reservados.',
+    useWeekend: 'Fins de Semana', useRoadTrip: 'Viagens de Carro', useCommute: 'Trajeto Diário',
+    useShop: 'Carro na Oficina', useGig: 'Trabalho de Entrega',
+
+    navFaq:  'Dúvidas',
+    faqTag:  'Perguntas Frequentes',
+    faqH2:   'Perguntas Frequentes',
+    faqDesc: 'Tudo o que você precisa saber antes de reservar. Não encontrou sua resposta? Ligue ou mande mensagem a qualquer hora para 508-444-2276.',
+    faqQ1: 'O que preciso para alugar um carro?',
+    faqA1: 'Você precisa ter 21 anos ou mais e uma carteira de motorista válida. Use seu próprio seguro de carro ou contrate nossa cobertura para todo o aluguel ao reservar.',
+    faqQ2: 'Tem depósito de segurança?',
+    faqA2: 'Clientes qualificados pagam $0 de depósito. Confirmamos o que se aplica a você quando ligarmos para confirmar a reserva.',
+    faqQ3: 'As milhas são realmente ilimitadas?',
+    faqA3: 'Sim. Todo aluguel diário, semanal e mensal inclui milhas ilimitadas, então pode pegar a estrada. Só nos avise antes de sair da Nova Inglaterra.',
+    faqQ4: 'Posso usar o carro para apps de entrega?',
+    faqA4: 'Sim. DoorDash, Grubhub, Uber Eats, Amazon Flex e outros trabalhos de entrega são bem-vindos. Transporte de passageiros (rideshare) precisa da nossa aprovação antes. Muitos seguros pessoais não cobrem entregas, então pergunte sobre cobertura ao reservar.',
+    faqQ5: 'Vocês entregam o carro?',
+    faqA5: 'Sim. Entrega e retirada locais são gratuitas. Distâncias maiores são cobradas conforme a distância, com orçamento na reserva.',
+    faqQ6: 'E se meus planos mudarem?',
+    faqA6: 'Cancele sem custo com pelo menos 24 horas de antecedência. Precisa do carro por mais tempo? Extensões são grátis na tarifa do seu plano, conforme disponibilidade.',
+    faqAll: 'Ver Todas as Perguntas',
+
+    footerDesc:      'Aluguel de carros acessível e flexível para o dia a dia, de viagens de fim de semana ao trajeto diário. Parte da família Echelon Rental Group.',
+    footerQuick:     'Links Rápidos',
+    footerHome:      'Início',
+    footerFleetLink: 'Ver a Frota',
+    footerPricing:   'Preços e Planos',
+    footerBook:      'Reservar um Carro',
+    footerFaq:       'Perguntas Frequentes',
+    footerCompany:   'Empresa',
+    footerHow:       'Por Que Echelon?',
+    footerServe:     'Quem Atendemos',
+    footerReviews:   'Avaliações',
+    footerResources: 'Recursos',
+    footerPolicies:  'Políticas de Aluguel',
+    footerCancel:    'Cancelamentos e Reembolsos',
+    footerTerms:     'Termos de Serviço',
+    footerPrivacy:   'Política de Privacidade',
+    footerAccess:    'Acessibilidade',
+    footerBrands:    'Marcas Echelon',
+    footerBoats:     'Fretamento de Barcos',
+    footerJets:      'Fretamento de Jatos',
+    footerExperiences: 'Experiências',
+    footerContact:   'Contato',
+    footerHours:     'Aberto 24 Horas, 7 Dias por Semana',
+    footerCopy:      '© 2026 Echelon Rental Group. Todos os direitos reservados.',
+    footerPrivacyShort: 'Privacidade',
+    footerTermsShort:   'Termos',
 
     modalSubtitle: 'Preencha sua reserva abaixo',
     modalFirst:    'Nome',
@@ -517,11 +621,16 @@ const i18n = {
     modalPickup:   'Data de Retirada',
     modalReturn:   'Data de Devolução',
     modalUsage:    'Como Você Vai Usar Este Carro?',
-    modalUsage1:   'DoorDash',
-    modalUsage2:   'GrubHub',
-    modalUsage3:   'Uber Eats',
-    modalUsage4:   'Uso Pessoal',
-    modalUsage5:   'Outra Entrega',
+    useOpt0: 'Escolha uma opção…',
+    useOpt1: 'Uso Pessoal / Dia a Dia',
+    useOpt2: 'Fim de Semana ou Férias',
+    useOpt3: 'Carro na Oficina / Carro Reserva do Seguro',
+    useOpt4: 'Ir ao Trabalho',
+    useOpt5: 'Visita à Família ou Evento',
+    useOpt6: 'Mudança ou Recados',
+    useOpt7: 'Apps de Entrega (DoorDash, Uber Eats, etc.)',
+    useOpt8: 'Rideshare (Uber / Lyft) — precisa de aprovação',
+    useOpt9: 'Outro',
     modalCheck:    'Confirmo que tenho habilitação válida e concordo com os termos do aluguel.',
     modalSubmit:   'Solicitar Reserva',
     modalNote:     'Ligaremos em até 1 hora para confirmar e cobrar o pagamento.',
@@ -568,12 +677,13 @@ function applyLang(lang) {
   setText('#mobileServe', t.navServe);
   setText('#mobileHow', t.navHow);
   setText('#mobileBookBtn', t.navBook);
+  setText('.nav-links a[href="#faq"]', t.navFaq);
+  setText('#mobileFaq', t.navFaq);
 
   // ── Hero ──
   setText('.hero-badge', t.heroBadge);
   set('.hero-title', t.heroTitle);
   set('.hero-subtitle', t.heroSubtitle);
-  setText('.platform-tag.everyday', t.platformEveryday);
 
   // Widget tabs (hero + modal)
   $$('.wtab[data-plan="daily"]').forEach(el => el.textContent = t.widgetDaily);
@@ -667,9 +777,6 @@ function applyLang(lang) {
 
   set('.gig-desc', t.serveDesc);
 
-  // Platform logo last card (Everyday Drivers)
-  const platformCards = $$('.platform-logo-card span:last-child');
-  if (platformCards[4]) platformCards[4].textContent = t.serveEveryday;
 
   // Benefits
   const benItems = $$('.benefit-item');
@@ -783,32 +890,8 @@ function applyLang(lang) {
   if (ctaBtns[0]) ctaBtns[0].textContent = t.ctaBtn;
   if (ctaBtns[1]) ctaBtns[1].textContent = t.ctaCall;
 
-  // ── Footer ──
-  setText('.footer-brand p', t.footerDesc);
-
-  const fHeadings = $$('.footer-links h4');
-  if (fHeadings[0]) fHeadings[0].textContent = t.footerFleet;
-  if (fHeadings[1]) fHeadings[1].textContent = t.footerCompany;
-  if (fHeadings[2]) fHeadings[2].textContent = t.footerContact;
-
-  const fFleetLinks = $$('.footer-inner .footer-links:nth-child(2) a');
-  if (fFleetLinks[0]) fFleetLinks[0].textContent = t.footerEconomy;
-  if (fFleetLinks[1]) fFleetLinks[1].textContent = t.footerSedans;
-  if (fFleetLinks[2]) fFleetLinks[2].textContent = t.footerCompact;
-  if (fFleetLinks[3]) fFleetLinks[3].textContent = t.footerPricing;
-
-  const fCompLinks = $$('.footer-inner .footer-links:nth-child(3) a');
-  if (fCompLinks[0]) fCompLinks[0].textContent = t.footerHow;
-  if (fCompLinks[1]) fCompLinks[1].textContent = t.footerGig;
-  if (fCompLinks[2]) fCompLinks[2].textContent = t.footerFaq;
-  if (fCompLinks[3]) fCompLinks[3].textContent = t.footerContactLink;
-
-  setText('.footer-hours', t.footerHours);
-  setText('.footer-bottom p', t.footerCopy);
-
-  const fLegal = $$('.footer-legal a');
-  if (fLegal[0]) fLegal[0].textContent = t.footerPrivacy;
-  if (fLegal[1]) fLegal[1].textContent = t.footerTerms;
+  // ── FAQ, footer, and hero tags: elements tagged with data-i18n="key" ──
+  $$('[data-i18n]').forEach(el => { if (t[el.dataset.i18n] != null) el.innerHTML = t[el.dataset.i18n]; });
 
   // ── Modal ──
   setText('.modal-header p', t.modalSubtitle);
@@ -826,15 +909,6 @@ function applyLang(lang) {
   mLabels.forEach((label, i) => {
     if (labelMap[i]) label.textContent = labelMap[i];
   });
-
-  const usageSel = $('.modal-form select');
-  if (usageSel && usageSel.options.length >= 5) {
-    usageSel.options[0].text = t.modalUsage1;
-    usageSel.options[1].text = t.modalUsage2;
-    usageSel.options[2].text = t.modalUsage3;
-    usageSel.options[3].text = t.modalUsage4;
-    usageSel.options[4].text = t.modalUsage5;
-  }
 
   const checkLabel = $('.checkbox-label');
   if (checkLabel) {

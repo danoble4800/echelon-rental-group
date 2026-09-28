@@ -132,15 +132,15 @@ def shell(filename, title, description, body):
 #   POLICY PAGES — shared sidebar layout
 # ════════════════════════════════════════════
 
-def policy_page(filename, title, tag, intro, sections):
+def policy_page(filename, title, tag, intro, sections, resources=RESOURCES, last_updated=LAST_UPDATED):
     """sections: list of (anchor_id, heading, inner_html)."""
     resource_links = "\n".join(
         f'            <a href="{href}"' + (' aria-current="page"' if href == filename else "") + f">{label}</a>"
-        for href, label in RESOURCES
+        for href, label in resources
     )
     toc_links = "\n".join(f'            <a href="#{sid}">{heading}</a>' for sid, heading, _ in sections)
     content = "\n\n".join(f'          <h2 id="{sid}">{heading}</h2>\n{inner.strip(chr(10))}' for sid, heading, inner in sections)
-    hero = page_hero(tag, title, intro, f'      <p class="page-meta">Last updated {LAST_UPDATED}</p>\n')
+    hero = page_hero(tag, title, intro, f'      <p class="page-meta">Last updated {last_updated}</p>\n')
     return hero + f"""
   <!-- ───────────── POLICY BODY ───────────── -->
   <section class="dark-section">

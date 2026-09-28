@@ -1,14 +1,15 @@
 // POST /api/chat — Echelon Concierge chatbot backend (Vercel serverless function).
 //
 // The chat widget (chat-widget.js) sends the conversation so far as
-// { messages: [{ role: "user" | "assistant", content: "..." }, ...], lang }.
+// { messages: [{ role: "user" | "assistant", content: "..." }, ...], lang, brand }.
+// "brand" picks the knowledge base (exotics or economy; defaults to exotics).
 // The reply is streamed back as plain text so it appears word by word.
 //
 // Requires the ANTHROPIC_API_KEY environment variable (Vercel project settings
 // in production, .env.local for the local preview).
 
 import Anthropic from "@anthropic-ai/sdk";
-import { SYSTEM_PROMPT } from "./_knowledge.js";
+import { SYSTEM_PROMPTS } from "./_knowledge.js";
 
 const MODEL = "claude-opus-5";
 const MAX_MESSAGES = 20;        // only the most recent turns are sent to the model
@@ -72,9 +73,11 @@ export default async function handler(req, res) {
     return sendText(res, 429, "You're sending messages a little quickly. Please wait a moment and try again.");
   }
 
-  let messages;
+  let messages, systemPrompt;
   try {
-    messages = cleanMessages((await readJson(req)).messages);
+    const body = await readJson(req);
+    messages = cleanMessages(body.messages);
+    systemPrompt = Object.hasOwn(SYSTEM_PROMPTS, body.brand) ? SYSTEM_PROMPTS[body.brand] : SYSTEM_PROMPTS.exotics;
   } catch {
     return sendText(res, 400, "Invalid request");
   }
@@ -96,7 +99,7 @@ export default async function handler(req, res) {
       // If the model declines a request, Anthropic retries it on its recommended fallback model.
       betas: ["server-side-fallback-2026-07-01"],
       fallbacks: "default",
-      system: [{ type: "text", text: SYSTEM_PROMPT, cache_control: { type: "ephemeral" } }],
+      system: [{ type: "text", text: systemPrompt, cache_control: { type: "ephemeral" } }],
       messages,
     });
 

@@ -2,11 +2,35 @@
    Echelon Concierge — AI chat widget (bottom-right corner)
    Talks to /api/chat. Styles live in styles.css under
    "CHAT WIDGET". Follows the site language (echelon-lang).
+   Brand comes from the script tag: <script src="chat-widget.js"
+   data-brand="economy">. Defaults to exotics.
 ═══════════════════════════════════════════════════════ */
 (function () {
   const API_URL = '/api/chat';
-  const STORE_KEY = 'echelon-chat';
+  const BRAND = document.currentScript?.dataset.brand === 'economy' ? 'economy' : 'exotics';
+  const STORE_KEY = BRAND === 'exotics' ? 'echelon-chat' : `echelon-chat-${BRAND}`;
   const MAX_CHARS = 1500;
+
+  // Per-brand text that differs from the Exotics defaults below.
+  const BRAND_STRINGS = {
+    economy: {
+      en: {
+        placeholder: 'Ask about cars, rates, requirements…',
+        welcome: "Welcome to Echelon Economic Rentals. I can help with our cars, daily, weekly, and monthly rates, requirements, and rental policies. What can I help you with?",
+        suggestions: ['What do I need to rent a car?', 'Is there a security deposit?', 'Which car is best for a family trip?'],
+      },
+      es: {
+        placeholder: 'Pregunta por autos, tarifas, requisitos…',
+        welcome: 'Bienvenido a Echelon Economic Rentals. Puedo ayudarte con nuestros autos, tarifas diarias, semanales y mensuales, requisitos y políticas de alquiler. ¿En qué te puedo ayudar?',
+        suggestions: ['¿Qué necesito para alquilar un auto?', '¿Hay depósito de seguridad?', '¿Qué auto es mejor para un viaje en familia?'],
+      },
+      pt: {
+        placeholder: 'Pergunte sobre carros, tarifas, requisitos…',
+        welcome: 'Bem-vindo à Echelon Economic Rentals. Posso ajudar com nossos carros, tarifas diárias, semanais e mensais, requisitos e políticas de aluguel. Como posso ajudar?',
+        suggestions: ['O que preciso para alugar um carro?', 'Tem depósito de segurança?', 'Qual carro é melhor para uma viagem em família?'],
+      },
+    },
+  };
 
   const STRINGS = {
     en: {
@@ -51,7 +75,7 @@
     try { return STRINGS[localStorage.getItem('echelon-lang')] ? localStorage.getItem('echelon-lang') : 'en'; }
     catch { return 'en'; }
   };
-  const t = () => STRINGS[lang()];
+  const t = () => ({ ...STRINGS[lang()], ...(BRAND_STRINGS[BRAND]?.[lang()] || {}) });
 
   // Conversation survives page reloads within the same browser tab.
   let history = [];
@@ -181,7 +205,7 @@
       const res = await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: history, lang: lang() }),
+        body: JSON.stringify({ messages: history, lang: lang(), brand: BRAND }),
       });
       if (!res.ok || !res.body) throw new Error(`HTTP ${res.status}`);
       const reader = res.body.getReader();

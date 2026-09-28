@@ -252,8 +252,20 @@ ul { list-style: none; }
   color: rgba(255,255,255,0.65);
   transition: color 0.2s;
   letter-spacing: 0.01em;
+  white-space: nowrap;
 }
 .nav-links a:hover { color: var(--white); }
+/* Narrow desktops: tighten spacing so five links (and longer translations) fit on one line */
+@media (max-width: 1240px) {
+  .nav-inner { gap: 20px; }
+  .nav-links { gap: 18px; }
+}
+@media (max-width: 1140px) {
+  .nav-link-optional { display: none; }
+  .nav-inner { gap: 16px; }
+  .nav-links { gap: 14px; }
+}
+@media (max-width: 1080px) { .nav-links a { white-space: normal; } }
 .nav.scrolled .nav-links a { color: var(--gray-500); }
 .nav.scrolled .nav-links a:hover { color: var(--black); }
 
