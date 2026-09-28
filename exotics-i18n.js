@@ -7,7 +7,7 @@
 ────────────────────────────────────────── */
 const exoticsI18n = {
   en: {
-    navFleet: 'Fleet', navHow: 'How It Works', navAbout: 'About', navFaq: 'FAQ', navBtn: 'Reserve Now',
+    navFleet: 'Fleet', navChauffeur: 'Chauffeur', navHow: 'How It Works', navAbout: 'About', navFaq: 'FAQ', navBtn: 'Reserve Now',
     heroBadge: 'Exotic &amp; Luxury Fleet · By Appointment or Instant Book',
     heroTitle: 'Extraordinary Cars,<br /><span class="accent">Unforgettable Drives.</span>',
     heroSubtitle: 'Echelon Exotics puts <strong>Lamborghini, Ferrari, Porsche, and Rolls-Royce</strong> within reach — hourly, daily, or for the weekend. White-glove delivery available anywhere in the region.',
@@ -64,7 +64,7 @@ const exoticsI18n = {
     toastTitle: 'Reservation Requested!', toastBody: "We'll call you within 1 hour to confirm.",
   },
   es: {
-    navFleet: 'Flota', navHow: 'Cómo Funciona', navAbout: 'Nosotros', navFaq: 'FAQ', navBtn: 'Reservar Ahora',
+    navFleet: 'Flota', navChauffeur: 'Chofer', navHow: 'Cómo Funciona', navAbout: 'Nosotros', navFaq: 'FAQ', navBtn: 'Reservar Ahora',
     heroBadge: 'Flota Exótica y de Lujo · Con Cita o Reserva Instantánea',
     heroTitle: 'Autos Extraordinarios,<br /><span class="accent">Viajes Inolvidables.</span>',
     heroSubtitle: 'Echelon Exotics pone a tu alcance <strong>Lamborghini, Ferrari, Porsche y Rolls-Royce</strong> — por hora, por día o el fin de semana. Entrega de lujo disponible en toda la región.',
@@ -121,7 +121,7 @@ const exoticsI18n = {
     toastTitle: '¡Reservación Solicitada!', toastBody: 'Te llamaremos dentro de 1 hora para confirmar.',
   },
   pt: {
-    navFleet: 'Frota', navHow: 'Como Funciona', navAbout: 'Sobre', navFaq: 'FAQ', navBtn: 'Reservar Agora',
+    navFleet: 'Frota', navChauffeur: 'Motorista', navHow: 'Como Funciona', navAbout: 'Sobre', navFaq: 'FAQ', navBtn: 'Reservar Agora',
     heroBadge: 'Frota Exótica e de Luxo · Com Agendamento ou Reserva Instantânea',
     heroTitle: 'Carros Extraordinários,<br /><span class="accent">Passeios Inesquecíveis.</span>',
     heroSubtitle: 'A Echelon Exotics coloca ao seu alcance <strong>Lamborghini, Ferrari, Porsche e Rolls-Royce</strong> — por hora, por dia ou no fim de semana. Entrega de luxo disponível em toda a região.',
@@ -195,7 +195,7 @@ function applyLang(lang) {
   document.querySelectorAll('.lang-option').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
 
   const navLinks = $$('.nav-links a, .mobile-menu > a:not(.btn)');
-  const navLabels = [t.navFleet, t.navHow, t.navAbout, t.navFaq];
+  const navLabels = [t.navFleet, t.navChauffeur, t.navHow, t.navAbout, t.navFaq];
   document.querySelectorAll('.nav-links li a').forEach((el, i) => { if (navLabels[i]) el.textContent = navLabels[i]; });
   document.querySelectorAll('.mobile-menu > a:not(.btn)').forEach((el, i) => { if (navLabels[i]) el.textContent = navLabels[i]; });
   document.querySelectorAll('.nav-actions .btn-primary, .mobile-menu .btn-primary').forEach(el => el.textContent = t.navBtn);
