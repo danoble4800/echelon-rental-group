@@ -866,6 +866,12 @@ ul { list-style: none; }
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
+/* Economy cards with a photo instead of an illustration */
+.car-card-img--photo { padding: 0; aspect-ratio: 16 / 10; min-height: 0; background: var(--gray-100); overflow: hidden; }
+.car-card-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.car-card-img--photo .car-available { background: rgba(10,10,10,0.72); border-color: rgba(34,197,94,0.45); backdrop-filter: blur(6px); z-index: 1; }
+.car-card-img--photo .car-popular-badge { z-index: 1; }
+.car-photo-note { position: absolute; left: 12px; bottom: 10px; z-index: 1; padding: 3px 8px; border-radius: 5px; background: rgba(10,10,10,0.6); color: rgba(255,255,255,0.85); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.02em; }
 .car-available.limited {
   background: rgba(200,160,32,0.12);
   border-color: rgba(200,160,32,0.25);
