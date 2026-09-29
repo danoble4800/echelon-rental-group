@@ -351,7 +351,8 @@
     const sum = (k) => list.reduce((s, a) => s + (a.stats[k] || 0), 0);
     $('#staffPanel').innerHTML =
       '<div class="p-toolbar"><div><p class="p-eyebrow">Ambassador program</p><h2 class="p-h2">Ambassadors</h2></div>' +
-      '<button type="button" class="p-btn p-btn--gold" id="addAmbBtn">+ Add ambassador</button></div>' +
+      '<div class="p-actions"><button type="button" class="p-btn" data-copy="' + esc(location.origin + '/ambassadors') + '" data-copy-label="Application link">Copy application link</button>' +
+      '<button type="button" class="p-btn p-btn--gold" id="addAmbBtn">+ Add ambassador</button></div></div>' +
       '<div class="p-stats">' +
       stat('Active ambassadors', active.length) + stat('Link clicks · 30 days', sum('clicks30')) +
       stat('Referred bookings', sum('referred'), sum('completed') + ' completed') + stat('Owed to ambassadors', usd(sum('balance')), usd(sum('paid')) + ' paid so far', true) +
