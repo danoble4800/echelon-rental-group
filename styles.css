@@ -1297,7 +1297,7 @@ ul { list-style: none; }
 }
 
 /* ── Reserve page: form + direct-contact panel ── */
-.reserve-layout { display: grid; grid-template-columns: 1fr 340px; gap: 32px; align-items: start; }
+.reserve-layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 32px; align-items: start; }
 .reserve-layout .modal-form { max-width: none; margin: 0; }
 .reserve-contact-panel {
   background: var(--dark-card);
@@ -1777,7 +1777,7 @@ body.theme-exotics .filter-btn.active { background: var(--white); border-color: 
   .footer-inner { grid-template-columns: 1fr; gap: 28px; }
   .form-row { grid-template-columns: 1fr; }
   .section-inner { padding: 64px 20px; }
-  .reserve-layout { grid-template-columns: 1fr; }
+  .reserve-layout { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 480px) {
   .hero-title { font-size: 2.2rem; }
@@ -2273,7 +2273,8 @@ body.theme-experiences .author-avatar { background: linear-gradient(135deg, #B55
 
 @media (max-width: 1024px) { .reel-card { flex-basis: calc((100% - 32px) / 3); } }
 @media (max-width: 640px) {
-  .reels-track { margin: 0 -24px; padding: 0 24px 4px; scroll-padding: 0 24px; gap: 12px; }
+  /* Bleed to the screen edge: matches .section-inner's 20px side padding on phones. */
+  .reels-track { margin: 0 -20px; padding: 0 20px 4px; scroll-padding: 0 20px; gap: 12px; }
   .reel-card { flex-basis: 62%; }
 }
 
@@ -2979,3 +2980,25 @@ body.page-home #why-echelon { border-top: none; }  /* no divider under Our Brand
 /* ── Team & ambassador sign-in (links to /portal) ── */
 .nav-signin:hover { color: var(--gold); border-color: var(--gold-glow); }
 .mobile-menu a.mobile-signin { color: var(--gold); font-size: 14px; }
+
+/* ── Exotics phone header: keep the call / Instagram / sign-in icons next to
+   the language picker once the nav collapses to the hamburger (940px). ── */
+@media (max-width: 940px) {
+  body.theme-exotics .nav-actions { margin-left: auto; gap: 10px; }
+  body.theme-exotics .nav-actions .nav-social { display: flex; }
+  body.theme-exotics .hamburger { margin-left: 4px; }
+}
+@media (max-width: 480px) {
+  body.theme-exotics .nav-inner { padding: 0 14px; gap: 10px; }
+  body.theme-exotics .nav-actions { gap: 6px; }
+  body.theme-exotics .nav-actions .nav-social { width: 32px; height: 32px; }
+  body.theme-exotics .lang-btn { padding: 7px 8px; }
+  body.theme-exotics .lang-btn .lang-caret { display: none; }
+}
+@media (max-width: 370px) {
+  body.theme-exotics .lang-btn .lang-globe { display: none; }
+}
+/* Booking form: a little less padding on phones (inline style sets 32px). */
+@media (max-width: 480px) {
+  .reserve-layout .modal-form { padding: 22px 18px !important; }
+}
