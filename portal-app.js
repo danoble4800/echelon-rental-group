@@ -182,7 +182,7 @@
     btn.disabled = true;
     try {
       await auth('forgot', { email: f.email.value });
-      $('#authLead').textContent = "If that email is on the team, a link is on its way. It works for 2 hours. Didn't get it? Ask an Echelon owner to text you one.";
+      $('#authLead').textContent = "If that email is on the team, a link is on its way. It works for 2 hours. Didn't get it? Ask an Echelon team member to text you one.";
     } catch (err) {
       $('#authError').textContent = err.message;
     } finally { btn.disabled = false; }

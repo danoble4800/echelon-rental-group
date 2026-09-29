@@ -55,13 +55,25 @@ async function personForSetup(token) {
 
 async function setup(req, res, { token, password }) {
   const person = await personForSetup(token);
-  if (!person) return sendJson(res, 400, { error: "This link has expired or was already used. Ask an owner for a new one." });
+  if (!person) return sendJson(res, 400, { error: "This link has expired or was already used. Ask an Echelon team member for a new one." });
   if (String(password || "").length < MIN_PASSWORD) {
     return sendJson(res, 400, { error: `Use at least ${MIN_PASSWORD} characters.` });
   }
   person.password = await hashPassword(String(password));
   await writeCells("Team", `K${person.row}:M${person.row}`, [person.password, 0, ""]);
   return sendJson(res, 200, { user: publicUser(person) }, { "Set-Cookie": sessionCookie(req, person) });
+}
+
+// The first owner is seeded with the placeholder name "Owner"; don't greet anyone by a role.
+function firstName(person) {
+  const name = String(person.name || "").trim();
+  return name && !ROLES.includes(name.toLowerCase()) ? name.split(/\s+/)[0] : "there";
+}
+
+// Lead alerts go out as "Echelon Leads"; people setting a password should see the company name.
+function senderAddress() {
+  const from = process.env.LEAD_ALERT_FROM || "onboarding@resend.dev";
+  return (from.match(/<([^>]+)>/) || [, from])[1].trim();
 }
 
 async function forgot(req, res, { email }) {
@@ -73,10 +85,10 @@ async function forgot(req, res, { email }) {
       method: "POST",
       headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
       body: JSON.stringify({
-        from: process.env.LEAD_ALERT_FROM || "Echelon Leads <onboarding@resend.dev>",
+        from: `Echelon Rental Group <${senderAddress()}>`,
         to: person.email,
         subject: "Set your Echelon Portal password",
-        text: `Hi ${person.name || "there"},\n\nUse this link within 2 hours to set your Echelon Portal password:\n${link}\n\nIf you didn't ask for this, you can ignore this email.`,
+        text: `Hi ${firstName(person)},\n\nUse this link within 2 hours to set your Echelon Portal password:\n${link}\n\nIf you didn't ask for this, you can ignore this email.`,
       }),
     }).catch((err) => ({ ok: false, err }));
     if (!res2.ok) console.error("Setup email failed:", res2.status || res2.err);
@@ -103,7 +115,7 @@ export default async function handler(req, res) {
         const person = await personForSetup(body.token);
         return person
           ? sendJson(res, 200, { name: person.name, email: person.email })
-          : sendJson(res, 400, { error: "This link has expired or was already used. Ask an owner for a new one." });
+          : sendJson(res, 400, { error: "This link has expired or was already used. Ask an Echelon team member for a new one." });
       }
       case "logout": return sendJson(res, 200, { ok: true }, { "Set-Cookie": clearCookie(req) });
       default: return sendJson(res, 400, { error: "Unknown action" });
