@@ -142,7 +142,7 @@
     $('#setupForm').hidden = mode !== 'setup';
     $('#authError').textContent = '';
     $('#authTitle').textContent = mode === 'forgot' ? 'Set or reset password' : mode === 'setup' ? 'Create your password' : 'Sign in';
-    if (mode === 'login') $('#authLead').textContent = 'Owners and staff see the Echelon CRM. Ambassadors see their own dashboard.';
+    if (mode === 'login') $('#authLead').textContent = 'Sign in with the email Echelon added you with.';
     if (mode === 'forgot') $('#authLead').textContent = "Enter the email you were added with and we'll send you a link to set your password.";
     const first = $('#' + mode + 'Form input');
     if (first) setTimeout(() => first.focus(), 50);

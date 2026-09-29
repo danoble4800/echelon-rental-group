@@ -2975,3 +2975,7 @@ body.page-home #why-echelon { border-top: none; }  /* no divider under Our Brand
   background: var(--gold-dim); border: 1px solid var(--gold-glow); border-radius: var(--radius-sm);
   color: var(--white); font: 500 14px/1.45 var(--font);
 }
+
+/* ── Team & ambassador sign-in (links to /portal) ── */
+.nav-signin:hover { color: var(--gold); border-color: var(--gold-glow); }
+.mobile-menu a.mobile-signin { color: var(--gold); font-size: 14px; }
