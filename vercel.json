@@ -2,6 +2,7 @@
   "routes": [
     { "src": "^/$", "dest": "/exotics.html" },
     { "src": "^/portal/?$", "dest": "/portal.html" },
+    { "src": "^/ambassadors/?$", "dest": "/ambassadors.html" },
     { "src": "^/r/([A-Za-z0-9-]{2,24})/?$", "status": 302, "headers": { "Location": "/?ref=$1" } },
     { "handle": "filesystem" }
   ]

@@ -73,6 +73,13 @@ export function demoSheets() {
           title: "Payouts",
           rows: [["Date", "Code", "Amount", "Method", "Note", "Recorded By"], [dateIn(-12), "MARCUS", "150", "Zelle", "August rentals", "owner@demo.test"]],
         },
+        {
+          title: "Applications",
+          rows: [
+            ["Submitted", "First Name", "Last Name", "Email", "Phone", "Instagram", "City", "Birthdate", "Followers", "How They'd Promote", "Status", "Reviewed", "Notes"],
+            [daysAgo(2, 14), "Devon", "Price", "devon.price@example.com", "(555) 010-5521", "@devonprice", "Boston, MA", "1998-04-12", "10K–50K", "I shoot car content around Boston and host monthly meetups.", "New", "", ""],
+          ],
+        },
       ],
     },
     "demo-other": { tabs: [{ title: "Sheet1", rows: [] }] },

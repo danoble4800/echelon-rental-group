@@ -1,18 +1,20 @@
 // /api/portal — data for the Echelon Portal (/portal). Every request needs a session from
 // /api/auth, and the caller's role (Team tab) decides what they can see:
 //
-//   owner       Reservations, Referrals, Ambassadors, Team, payouts, any ambassador's dashboard
+//   owner       Reservations, Referrals, Ambassadors (+ applications), Team, payouts, any
+//               ambassador's dashboard
 //   employee    Reservations, Referrals
 //   ambassador  their own dashboard only (customers shown as "Jane D.", no contact details)
 //
 //   GET  ?view=reservations | referrals | ambassadors | team | dashboard[&code=XYZ]
 //   POST { action: "updateReservation" | "updateReferral" | "addPerson" | "updatePerson"
-//                  | "setupLink" | "recordPayout", ... }
+//                  | "setupLink" | "recordPayout" | "approveApplication"
+//                  | "declineApplication", ... }
 
 import { batchGet, dropdownOptions, listTabs, sheetSafe, tabRange, updateRange } from "./_google.js";
 import {
   appendRow, currentUser, DEFAULT_COMMISSION, DEFAULT_PERK, EXOTIC_SHEET_ID, firstName, isActive, money,
-  readCrm, readJson, REFERRAL_STATUSES, ROLES, sameOrigin, sendJson, setupToken, siteOrigin,
+  nowEastern, readCrm, readJson, REFERRAL_STATUSES, ROLES, sameOrigin, sendJson, setupToken, siteOrigin,
   todayEastern, writeCells,
 } from "./_crm.js";
 
@@ -130,6 +132,12 @@ function dashboard(req, person, crm) {
 
 function ambassadorsView(req, crm) {
   return {
+    // Open applications first (oldest at the top, so nobody waits longest), then the last
+    // few decisions for reference.
+    applications: [
+      ...crm.Applications.filter((a) => /^new$/i.test(a.status)),
+      ...crm.Applications.filter((a) => !/^new$/i.test(a.status)).reverse().slice(0, 10),
+    ],
     ambassadors: crm.Team.filter((p) => p.role === "ambassador").map((p) => {
       const s = ambassadorStats(p, crm);
       return {
@@ -193,8 +201,8 @@ function cleanCode(code) {
   return clean;
 }
 
-async function addPerson(req, body) {
-  const { Team } = await readCrm(["Team"]);
+async function addPerson(req, body, team) {
+  const Team = team || (await readCrm(["Team"])).Team;
   const email = String(body.email || "").trim().toLowerCase();
   const role = ROLES.includes(body.role) ? body.role : null;
   const name = String(body.name || "").trim().slice(0, 80);
@@ -242,6 +250,33 @@ async function updatePerson(user, body) {
   return { ok: true };
 }
 
+// ── Ambassador applications (/ambassadors → api/apply.js) ──
+
+async function findApplication(body) {
+  const crm = await readCrm(["Applications", "Team"]);
+  const app = crm.Applications.find((a) => a.row === Number(body.row));
+  if (!app || app.email !== String(body.email || "").toLowerCase()) throw new HttpError(409, "This application moved. Refresh and try again.");
+  if (!/^new$/i.test(app.status)) throw new HttpError(409, `This application was already ${app.status.toLowerCase()}.`);
+  return { app, Team: crm.Team };
+}
+
+async function approveApplication(req, user, body) {
+  const { app, Team } = await findApplication(body);
+  const name = `${app.firstName} ${app.lastName}`.trim();
+  const out = await addPerson(req, {
+    role: "ambassador", name, email: app.email, phone: app.phone, code: body.code,
+    commission: body.commission, perk: body.perk, payoutMethod: body.payoutMethod,
+  }, Team);
+  await writeCells("Applications", `K${app.row}:L${app.row}`, ["Approved", `${nowEastern()} · ${user.email}`]);
+  return { ...out, name };
+}
+
+async function declineApplication(user, body) {
+  const { app } = await findApplication(body);
+  await writeCells("Applications", `K${app.row}:M${app.row}`, ["Declined", `${nowEastern()} · ${user.email}`, String(body.notes || app.notes).slice(0, 500)]);
+  return { ok: true };
+}
+
 // ── Router ──
 
 export default async function handler(req, res) {
@@ -268,7 +303,7 @@ export default async function handler(req, res) {
         }
         case "ambassadors":
           need(isOwner);
-          return sendJson(res, 200, ambassadorsView(req, await readCrm(["Team", "Referrals", "Clicks", "Payouts"])));
+          return sendJson(res, 200, ambassadorsView(req, await readCrm(["Team", "Referrals", "Clicks", "Payouts", "Applications"])));
         case "team": {
           need(isOwner);
           const { Team } = await readCrm(["Team"]);
@@ -317,6 +352,12 @@ export default async function handler(req, res) {
       case "recordPayout":
         need(isOwner);
         return sendJson(res, 200, await recordPayout(user, body));
+      case "approveApplication":
+        need(isOwner);
+        return sendJson(res, 200, await approveApplication(req, user, body));
+      case "declineApplication":
+        need(isOwner);
+        return sendJson(res, 200, await declineApplication(user, body));
       default:
         return sendJson(res, 400, { error: "Unknown action" });
     }
