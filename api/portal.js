@@ -1,12 +1,12 @@
 // /api/portal — data for the Echelon Portal (/portal). Every request needs a session from
 // /api/auth, and the caller's role (Team tab) decides what they can see:
 //
-//   owner       Reservations, Referrals, Ambassadors (+ applications), Team, payouts, any
+//   owner       Reservations, Referrals, Ambassadors, Applications, Team, payouts, any
 //               ambassador's dashboard
 //   employee    Reservations, Referrals
 //   ambassador  their own dashboard only (customers shown as "Jane D.", no contact details)
 //
-//   GET  ?view=reservations | referrals | ambassadors | team | dashboard[&code=XYZ]
+//   GET  ?view=reservations | referrals | ambassadors | applications | team | dashboard[&code=XYZ]
 //   POST { action: "updateReservation" | "updateReferral" | "addPerson" | "updatePerson"
 //                  | "setupLink" | "recordPayout" | "approveApplication"
 //                  | "declineApplication", ... }
@@ -132,12 +132,6 @@ function dashboard(req, person, crm) {
 
 function ambassadorsView(req, crm) {
   return {
-    // Open applications first (oldest at the top, so nobody waits longest), then the last
-    // few decisions for reference.
-    applications: [
-      ...crm.Applications.filter((a) => /^new$/i.test(a.status)),
-      ...crm.Applications.filter((a) => !/^new$/i.test(a.status)).reverse().slice(0, 10),
-    ],
     ambassadors: crm.Team.filter((p) => p.role === "ambassador").map((p) => {
       const s = ambassadorStats(p, crm);
       return {
@@ -313,7 +307,21 @@ export default async function handler(req, res) {
         }
         case "ambassadors":
           need(isOwner);
-          return sendJson(res, 200, ambassadorsView(req, await readCrm(["Team", "Referrals", "Clicks", "Payouts", "Applications"])));
+          return sendJson(res, 200, ambassadorsView(req, await readCrm(["Team", "Referrals", "Clicks", "Payouts"])));
+        case "applications": {
+          need(isOwner);
+          const { Applications } = await readCrm(["Applications"]);
+          return sendJson(res, 200, {
+            // Waiting ones first, oldest at the top so nobody waits longest; then every
+            // reviewed one, newest first.
+            applications: [
+              ...Applications.filter((a) => /^new$/i.test(a.status)),
+              ...Applications.filter((a) => !/^new$/i.test(a.status)).reverse(),
+            ],
+            defaultPerk: DEFAULT_PERK, defaultCommission: DEFAULT_COMMISSION,
+            minCommission: MIN_COMMISSION, maxCommission: MAX_COMMISSION,
+          });
+        }
         case "team": {
           need(isOwner);
           const { Team } = await readCrm(["Team"]);

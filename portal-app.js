@@ -125,6 +125,7 @@
     } else {
       show('staff');
       $$('#staffTabs [data-owner]').forEach((b) => { b.hidden = me.role !== 'owner'; });
+      if (me.role === 'owner') get('applications').then((d) => { state.applications = d; updateAppCount(); }).catch(() => {});
       const saved = sessionStorageGet('portalTab');
       selectTab(saved && (me.role === 'owner' || ['reservations', 'referrals'].indexOf(saved) >= 0) ? saved : 'reservations');
     }
@@ -223,7 +224,7 @@
     tab = name;
     sessionStorageSet('portalTab', name);
     $$('#staffTabs [data-tab]').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tab === name)));
-    ({ reservations: loadReservations, referrals: loadReferrals, ambassadors: loadAmbassadors, team: loadTeam })[name]();
+    ({ reservations: loadReservations, referrals: loadReferrals, ambassadors: loadAmbassadors, applications: loadApplications, team: loadTeam })[name]();
   }
 
   async function load(view, fn) {
@@ -358,7 +359,6 @@
       stat('Referred bookings', sum('referred'), sum('completed') + ' completed') + stat('Owed to ambassadors', usd(sum('balance')), usd(sum('paid')) + ' paid so far', true) +
       '</div>' +
       (newLink ? setupBox(newLink.name, newLink.link) : '') +
-      applicationsSection(data) +
       '<form class="p-card p-form" id="addAmbForm" hidden>' +
       '<h3 class="p-card-title">New ambassador</h3>' +
       '<div class="p-grid-2">' +
@@ -388,19 +388,48 @@
     });
   }
 
-  // Applications from the public /ambassadors page ─
-  function applicationsSection(data) {
-    const apps = data.applications || [];
-    const open = apps.filter((a) => /^new$/i.test(a.status));
-    const done = apps.filter((a) => !/^new$/i.test(a.status));
-    if (!apps.length) return '';
-    return '<div class="p-apps"><h3 class="p-h3">Applications' + (open.length ? ' ' + chip(open.length + ' waiting', 'gold') : '') + '</h3>' +
-      (open.length ? '<div class="p-list">' + open.map(appCard).join('') + '</div>' : '<div class="p-empty">No applications waiting. New ones from echelonrentalgroup.com/ambassadors show up here.</div>') +
-      (done.length ? '<details class="p-apps-done"><summary>Recently reviewed (' + done.length + ')</summary><div class="p-list">' +
-        done.map((a) => '<div class="p-card p-card--flat"><div class="p-card-head"><div><h3 class="p-card-title">' + esc(a.firstName + ' ' + a.lastName) + '</h3>' +
-          '<p class="p-card-sub">' + esc(a.instagram) + ' · ' + esc(a.reviewed) + '</p></div>' + chip(a.status, statusTone(a.status === 'Approved' ? 'complete' : 'cancel')) + '</div></div>').join('') +
-        '</div></details>' : '') +
-      '</div>';
+  // Applications (owner) ─ from the public /ambassadors page ─
+  let appFilter = 'New';
+
+  function loadApplications() { return load('applications', (newLink) => { updateAppCount(); renderApplications(newLink); }); }
+
+  function updateAppCount() {
+    const n = ((state.applications && state.applications.applications) || []).filter((a) => /^new$/i.test(a.status)).length;
+    const badge = $('#appCount');
+    badge.textContent = n;
+    badge.hidden = !n;
+  }
+
+  function renderApplications(newLink) {
+    const all = state.applications.applications;
+    const groups = [['New', (a) => /^new$/i.test(a.status)], ['Approved', (a) => a.status === 'Approved'], ['Declined', (a) => a.status === 'Declined'], ['All', () => true]];
+    const list = all.filter((groups.find((g) => g[0] === appFilter) || groups[0])[1]);
+    $('#staffPanel').innerHTML =
+      '<div class="p-toolbar"><div><p class="p-eyebrow">Ambassador program</p><h2 class="p-h2">Applications</h2></div>' +
+      '<button type="button" class="p-btn" data-copy="' + esc(location.origin + '/ambassadors') + '" data-copy-label="Application link">Copy application link</button></div>' +
+      (newLink ? setupBox(newLink.name, newLink.link) : '') +
+      '<div class="p-filters">' + groups.map((g) =>
+        '<button type="button" class="p-filter" data-afilter="' + g[0] + '" aria-pressed="' + (g[0] === appFilter) + '">' + g[0] + '<b>' + all.filter(g[1]).length + '</b></button>').join('') + '</div>' +
+      '<div class="p-list">' + (list.length ? list.map((a) => (/^new$/i.test(a.status) ? appCard(a) : reviewedCard(a))).join('')
+        : '<div class="p-empty">' + (appFilter === 'New' ? 'No applications waiting. New ones from echelonrentalgroup.com/ambassadors show up here.' : 'Nothing here.') + '</div>') + '</div>';
+  }
+
+  function appDetails(a) {
+    const handle = String(a.instagram || '').replace(/^@/, '');
+    return '<div class="p-mini">' +
+      '<span>Instagram <b><a href="https://instagram.com/' + encodeURIComponent(handle) + '" target="_blank" rel="noopener">@' + esc(handle) + '</a></b></span>' +
+      '<span>Followers <b>' + esc(a.followers) + '</b></span><span>City <b>' + esc(a.city) + '</b></span><span>Age <b>' + esc(ageOf(a.birthdate)) + '</b></span></div>' +
+      (a.pitch ? '<p class="p-quote">' + esc(a.pitch) + '</p>' : '');
+  }
+
+  function reviewedCard(a) {
+    const approved = a.status === 'Approved';
+    return '<article class="p-card"><div class="p-card-head"><div><h3 class="p-card-title">' + esc(a.firstName + ' ' + a.lastName) + '</h3>' +
+      '<p class="p-card-sub">' + esc(a.email) + ' · ' + esc(a.phone) + '</p></div>' +
+      '<div class="p-actions">' + chip(a.status, approved ? 'good' : 'bad') + '</div></div>' +
+      appDetails(a) +
+      '<div class="p-meta"><span>Applied ' + esc(shortDate(a.submitted)) + '</span>' + (a.reviewed ? '<span>' + (approved ? 'Approved ' : 'Declined ') + esc(a.reviewed) + '</span>' : '') + '</div>' +
+      '</article>';
   }
 
   function ageOf(v) {
@@ -413,30 +442,26 @@
   }
 
   function appCard(a) {
-    const handle = String(a.instagram || '').replace(/^@/, '');
     const name = a.firstName + ' ' + a.lastName;
     return '<article class="p-card" data-app-row="' + a.row + '" data-email="' + esc(a.email) + '" data-name="' + esc(name) + '">' +
       '<div class="p-card-head"><div><h3 class="p-card-title">' + esc(name) + '</h3>' +
       '<p class="p-card-sub">' + esc(a.email) + ' · ' + esc(a.phone) + '</p></div>' +
-      '<div class="p-actions">' + chip('Applied ' + ago(a.submitted)) + '</div></div>' +
-      '<div class="p-mini">' +
-      '<span>Instagram <b><a href="https://instagram.com/' + encodeURIComponent(handle) + '" target="_blank" rel="noopener">@' + esc(handle) + '</a></b></span>' +
-      '<span>Followers <b>' + esc(a.followers) + '</b></span><span>City <b>' + esc(a.city) + '</b></span><span>Age <b>' + esc(ageOf(a.birthdate)) + '</b></span></div>' +
-      (a.pitch ? '<p class="p-quote">' + esc(a.pitch) + '</p>' : '') +
+      '<div class="p-actions">' + chip('Applied ' + shortDate(a.submitted), 'gold') + '</div></div>' +
+      appDetails(a) +
       '<div class="p-actions">' +
       '<button type="button" class="p-btn p-btn--sm p-btn--gold" data-toggle="approve">Approve</button>' +
       '<button type="button" class="p-btn p-btn--sm p-btn--ghost" data-decline-app>Decline</button></div>' +
       '<form class="p-form" data-form="approve" hidden><div class="p-grid-2">' +
       '<label>Link code (optional)<input name="code" placeholder="Made from first name" /></label>' +
-      '<label>Commission % (' + commissionRange() + ')<input type="text" inputmode="decimal" name="commission" value="' + esc(state.ambassadors.defaultCommission) + '" /></label>' +
+      '<label>Commission % (' + commissionRange() + ')<input type="text" inputmode="decimal" name="commission" value="' + esc(state.applications.defaultCommission) + '" /></label>' +
       '<label>Payout method<input name="payoutMethod" placeholder="Zelle 555-555-5555" /></label>' +
-      '<label>Their clients get<select name="perk">' + options(PERKS, state.ambassadors.defaultPerk) + '</select></label></div>' +
+      '<label>Their clients get<select name="perk">' + options(PERKS, state.applications.defaultPerk) + '</select></label></div>' +
       '<div class="p-actions"><button type="submit" class="p-btn p-btn--gold p-btn--sm">Approve and get setup link</button></div></form>' +
       '</article>';
   }
 
   function commissionRange() {
-    const d = state.ambassadors || {};
+    const d = state.applications || state.ambassadors || {};
     return (d.minCommission || 5) + '–' + (d.maxCommission || 10);
   }
 
@@ -540,6 +565,8 @@
     const t = e.target;
     const filter = t.closest('[data-filter]');
     if (filter) { resFilter = filter.dataset.filter; return renderReservations(); }
+    const afilter = t.closest('[data-afilter]');
+    if (afilter) { appFilter = afilter.dataset.afilter; return renderApplications(); }
     const rfilter = t.closest('[data-rfilter]');
     if (rfilter) { refFilter = rfilter.dataset.rfilter; return renderReferrals(); }
 
@@ -593,8 +620,9 @@
       if (!window.confirm('Decline ' + card.dataset.name + '? They won\'t be notified automatically.')) return;
       try {
         await post('declineApplication', { row: +card.dataset.appRow, email: card.dataset.email });
-        state.ambassadors = await get('ambassadors');
-        renderAmbassadors();
+        state.applications = await get('applications');
+        updateAppCount();
+        renderApplications();
         toast('Application declined');
       } catch (err) { toast(err.message, true); }
       return;
@@ -631,9 +659,10 @@
     if (appCardEl) {
       try {
         const out = await post('approveApplication', { row: +appCardEl.dataset.appRow, email: appCardEl.dataset.email, code: form.code.value, commission: form.commission.value, payoutMethod: form.payoutMethod.value, perk: form.perk.value });
-        state.ambassadors = await get('ambassadors');
-        renderAmbassadors({ name: out.name, link: out.setupLink });
-        toast('Approved with code ' + out.code);
+        state.applications = await get('applications');
+        updateAppCount();
+        renderApplications({ name: out.name, link: out.setupLink });
+        toast('Approved with code ' + out.code + '. Send them the setup link.');
       } catch (err) { toast(err.message, true); }
       return;
     }
