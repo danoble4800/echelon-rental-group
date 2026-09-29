@@ -359,6 +359,7 @@ FOOTER_TEMPLATE = """  <!-- ───────────── FOOTER ─�
         <a href="service-areas.html">Service Areas</a>
         <a href="exotics.html#reviews">Client Reviews</a>
         <a href="exotics.html#stories">Echelon Stories</a>
+        <a href="/portal">Team &amp; Ambassador Login</a>
       </div>
       <div class="footer-links">
         <h4>Resources</h4>

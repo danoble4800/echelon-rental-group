@@ -23,7 +23,8 @@ function submitInquiry(e) {
     pickupDate:       form.pickupDate.value,
     returnDate:       form.returnDate.value,
     vehicleInterest:  form.vehicleInterest.value,
-    deliveryLocation: form.deliveryLocation.value
+    deliveryLocation: form.deliveryLocation.value,
+    ref:              (savedReferral() || {}).code || ''
   };
 
   // /api/lead saves the reservation to the Google Sheet and emails the team.
@@ -50,3 +51,16 @@ function submitInquiry(e) {
     selectForSchedule(vehicle);
   }
 })();
+
+/* Ambassador referral (saved by brand-pages.js): show the customer's perk above the
+   form so they know it's applied. */
+function showReferralOnForm(ref) {
+  const form = document.querySelector('#schedule form');
+  if (!ref || !form || form.querySelector('.ref-banner')) return;
+  const banner = document.createElement('p');
+  banner.className = 'ref-banner';
+  banner.innerHTML = '<span class="ref-pill-mark">✦</span><span></span>';
+  banner.lastChild.textContent = 'Referred by ' + ref.name + ': ' + ref.perk + '. Applied automatically.';
+  form.prepend(banner);
+}
+showReferralOnForm(savedReferral());

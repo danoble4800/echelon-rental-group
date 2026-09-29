@@ -2942,3 +2942,36 @@ body.page-home #why-echelon { border-top: none; }  /* no divider under Our Brand
   .ch-occasion-list li { grid-template-columns: 1fr; gap: 6px; }
   .ch-form { padding: 24px 18px; }
 }
+
+/* ── Ambassador referral perk (brand-pages.js / exotics-form.js) ── */
+.ref-pill {
+  position: fixed; left: 16px; bottom: 16px; z-index: 900;
+  display: flex; align-items: center; gap: 10px;
+  max-width: min(460px, calc(100vw - 104px));
+  padding: 10px 10px 10px 16px;
+  background: rgba(10, 10, 10, 0.92); color: var(--white);
+  border: 1px solid var(--gold-glow); border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+  font: 500 13px/1.35 var(--font);
+  backdrop-filter: blur(8px);
+  animation: ref-in .4s ease both;
+}
+@keyframes ref-in { from { opacity: 0; transform: translateY(12px); } }
+.ref-pill-mark { color: var(--gold); flex: none; }
+.ref-pill-text { flex: 1; min-width: 0; display: grid; gap: 1px; }
+.ref-pill-text small { color: var(--gold); font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.ref-pill-cta {
+  flex: none; padding: 7px 14px; border-radius: 999px;
+  background: var(--gold); color: var(--black); font-weight: 700; text-decoration: none;
+}
+.ref-pill-close {
+  flex: none; width: 28px; height: 28px; border: 0; border-radius: 50%;
+  background: transparent; color: var(--dark-text-2); font-size: 20px; line-height: 1; cursor: pointer;
+}
+.ref-pill-close:hover { color: var(--white); }
+.ref-banner {
+  display: flex; gap: 10px; align-items: flex-start;
+  margin: 0 0 20px; padding: 12px 16px;
+  background: var(--gold-dim); border: 1px solid var(--gold-glow); border-radius: var(--radius-sm);
+  color: var(--white); font: 500 14px/1.45 var(--font);
+}

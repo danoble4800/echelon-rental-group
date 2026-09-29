@@ -113,3 +113,71 @@ function submitInquiry(e) {
   showToast();
   form.reset();
 }
+
+/* Ambassador referral links. /r/<code> redirects to /?ref=<code>; a valid code is kept
+   in this browser for 60 days (the most recent link wins) and exotics-form.js sends it
+   with the reservation. One click per code per day is logged for the ambassador's
+   dashboard in the Echelon Portal (/portal). */
+const REF_KEY  = 'echelonRef';
+const REF_DAYS = 60;
+
+function savedReferral() {
+  try {
+    const ref = JSON.parse(localStorage.getItem(REF_KEY) || 'null');
+    return ref && Date.now() - ref.at < REF_DAYS * 864e5 ? ref : null;
+  } catch (e) { return null; }
+}
+
+function showReferralPerk(ref) {
+  if (!ref || document.getElementById('schedule')) return;   // the reserve page shows it on the form
+  const pill = document.createElement('div');
+  pill.className = 'ref-pill';
+  pill.setAttribute('role', 'status');
+  pill.innerHTML = '<span class="ref-pill-mark">✦</span><span class="ref-pill-text"></span>' +
+    '<a class="ref-pill-cta" href="reserve.html">Reserve</a>' +
+    '<button type="button" class="ref-pill-close" aria-label="Dismiss">×</button>';
+  const text = pill.querySelector('.ref-pill-text');
+  text.innerHTML = '<small></small><span></span>';
+  text.firstChild.textContent = 'Referred by ' + ref.name;
+  text.lastChild.textContent = ref.perk;
+  pill.querySelector('.ref-pill-close').addEventListener('click', () => pill.remove());
+  document.body.appendChild(pill);
+}
+
+(function captureReferral() {
+  const params = new URLSearchParams(window.location.search);
+  const code = (params.get('ref') || '').trim().toUpperCase();
+  if (!/^[A-Z0-9-]{2,24}$/.test(code)) return;
+  // Drop ?ref= from the address bar so a shared copy of this URL doesn't carry the code.
+  params.delete('ref');
+  history.replaceState(null, '', location.pathname + (params.toString() ? '?' + params : '') + location.hash);
+
+  fetch('/api/ref?code=' + encodeURIComponent(code))
+    .then(res => (res.ok ? res.json() : null))
+    .then(info => {
+      if (!info || !info.ok) return;
+      const ref = { code: info.code, name: info.name, perk: info.perk, at: Date.now() };
+      try {
+        localStorage.setItem(REF_KEY, JSON.stringify(ref));
+        let visitor = localStorage.getItem('echelonVisitor');
+        if (!visitor) {
+          visitor = Math.random().toString(36).slice(2) + Date.now().toString(36);
+          localStorage.setItem('echelonVisitor', visitor);
+        }
+        const clickKey = 'echelonRefClick:' + ref.code;
+        const today = new Date().toDateString();
+        if (localStorage.getItem(clickKey) !== today) {
+          localStorage.setItem(clickKey, today);
+          fetch('/api/ref', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ code: ref.code, page: location.pathname, visitor: visitor }),
+            keepalive: true
+          }).catch(() => {});
+        }
+      } catch (e) { /* storage blocked (private mode): the perk still shows for this visit */ }
+      showReferralPerk(ref);
+      if (typeof showReferralOnForm === 'function') showReferralOnForm(ref);
+    })
+    .catch(() => {});
+})();

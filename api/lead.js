@@ -1,6 +1,7 @@
 // POST /api/lead — reservation forms backend (Vercel serverless function).
 //
 // Reservation forms post here as JSON: { form: "exotics" | "economy" | "chauffeur", ...fields }.
+// Exotics bookings may also carry ref (an ambassador code), logged by logReferral() below.
 // Exotics and Economy leads are saved by forwarding them to that form's Google Apps Script
 // (which appends to the matching Google Sheet). Chauffeur leads are appended straight to
 // their sheet through the Sheets API as a service account (GOOGLE_SERVICE_ACCOUNT_EMAIL +
@@ -10,7 +11,8 @@
 // in production, .env.local for the local preview). Without them the lead is still
 // saved — only the email is skipped.
 
-import { createSign } from "node:crypto";
+import { appendRows, sheetSafe } from "./_google.js";
+import { activeAmbassador, appendRow, DEFAULT_PERK, EXOTIC_SHEET_ID, firstName } from "./_crm.js";
 
 const FORMS = {
   exotics: {
@@ -56,12 +58,6 @@ function sendJson(res, status, body) {
   res.end(JSON.stringify(body));
 }
 
-// Google Sheets treats text starting with + = or - as a formula (a "+1 (508) ..." phone
-// number turns into #ERROR!). A leading apostrophe makes Sheets store it as plain text.
-function sheetSafe(val) {
-  return /^[+=-]/.test(val) ? `'${val}` : val;
-}
-
 function escapeHtml(val) {
   return val.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 }
@@ -81,28 +77,6 @@ function formatTime(val) {
   return `${h % 12 || 12}:${m[2]} ${h < 12 ? "AM" : "PM"}`;
 }
 
-// Service-account access token for the Sheets API (signed JWT, no extra dependency).
-async function googleAccessToken() {
-  const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-  const key = (process.env.GOOGLE_PRIVATE_KEY || "").replace(/\\n/g, "\n");
-  if (!email || !key) throw new Error("GOOGLE_SERVICE_ACCOUNT_EMAIL / GOOGLE_PRIVATE_KEY not set");
-  const b64 = (obj) => Buffer.from(JSON.stringify(obj)).toString("base64url");
-  const now = Math.floor(Date.now() / 1000);
-  const unsigned = `${b64({ alg: "RS256", typ: "JWT" })}.${b64({
-    iss: email, scope: "https://www.googleapis.com/auth/spreadsheets",
-    aud: "https://oauth2.googleapis.com/token", iat: now, exp: now + 3600,
-  })}`;
-  const signature = createSign("RSA-SHA256").update(unsigned).sign(key, "base64url");
-  const res = await fetch("https://oauth2.googleapis.com/token", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({ grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer", assertion: `${unsigned}.${signature}` }),
-  });
-  const body = await res.json();
-  if (!res.ok) throw new Error(`Google token error ${res.status}: ${body.error || ""}`);
-  return body.access_token;
-}
-
 // Writes [submitted time, ...fields] into the next empty row of the first tab. OVERWRITE
 // (not INSERT_ROWS) keeps the pre-formatted rows and the Summary formulas in place.
 // USER_ENTERED lets Sheets read the time, dates, and passenger count as real values;
@@ -110,17 +84,32 @@ async function googleAccessToken() {
 async function appendToSheet(cfg, lead) {
   const submitted = new Date().toLocaleString("en-US", { timeZone: "America/New_York" }).replace(",", "");
   const row = [submitted, ...cfg.fields.map((k) => sheetSafe(lead[k]))];
-  const token = await googleAccessToken();
-  const url = `https://sheets.googleapis.com/v4/spreadsheets/${cfg.sheetId}/values/A:L:append?valueInputOption=USER_ENTERED&insertDataOption=OVERWRITE`;
-  const res = await fetch(url, {
-    method: "POST",
-    headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
-    body: JSON.stringify({ values: [row] }),
-  });
-  if (!res.ok) throw new Error(`Sheets append HTTP ${res.status}: ${await res.text()}`);
+  await appendRows(cfg.sheetId, "A:L", [row]);
 }
 
-async function sendLeadAlert(form, lead) {
+// Exotics bookings that came through an ambassador's link (brand-pages.js sends the
+// saved ?ref= code) get a row on the CRM's Referrals tab. Never blocks the booking.
+async function logReferral(code, lead) {
+  if (!code || !process.env.ECHELON_CRM_SHEET_ID) return null;
+  try {
+    const person = await activeAmbassador(code);
+    if (!person) return null;
+    const selfReferral = person.email === lead.email.toLowerCase();
+    await appendRow("Referrals", [
+      new Date().toLocaleString("en-US", { timeZone: "America/New_York" }).replace(",", ""),
+      person.code, lead.firstName, lead.lastName, lead.email, lead.phone, lead.vehicleInterest,
+      lead.pickupDate, lead.returnDate, selfReferral ? "Not Eligible" : "New", "", "", "",
+      selfReferral ? "Ambassador booked with their own code" : "",
+    ]);
+    return { code: person.code, name: firstName(person.name), perk: person.perk || DEFAULT_PERK };
+  } catch (err) {
+    console.error("Referral log failed:", err);
+    return null;
+  }
+}
+
+async function sendLeadAlert(form, lead, referral) {
+  if (globalThis.__SHEETS_DEMO) return;
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.LEAD_ALERT_EMAIL;
   if (!apiKey || !to) {
@@ -155,12 +144,15 @@ async function sendLeadAlert(form, lead) {
     ${row("Vehicle", e(vehicle))}
     ${row(form === "chauffeur" ? "When" : "Dates", e(dates))}
     ${row(extraLabel, e(extra))}
+    ${referral ? row("Referred by", `${e(referral.name)} (${e(referral.code)}) · perk: ${e(referral.perk)}`) : ""}
   </table>
   <p style="margin:20px 0 0"><a href="${sheetUrl}" style="background:#0e0e10;color:#fff;padding:10px 16px;text-decoration:none;font-weight:600">Open Reservations Sheet</a></p>
 </div>`;
   const text = [
     `${label}: ${vehicle}`, `${form === "chauffeur" ? "When" : "Dates"}: ${dates}`, `Name: ${name}`, `Phone: ${lead.phone}`,
-    `Email: ${lead.email}`, `${extraLabel}: ${extra}`, `Sheet: ${sheetUrl}`,
+    `Email: ${lead.email}`, `${extraLabel}: ${extra}`,
+    ...(referral ? [`Referred by: ${referral.name} (${referral.code}) · perk: ${referral.perk}`] : []),
+    `Sheet: ${sheetUrl}`,
   ].join("\n");
 
   try {
@@ -206,7 +198,10 @@ export default async function handler(req, res) {
   // Save the lead — this must succeed, otherwise the visitor is told to call instead.
   const forSheet = Object.fromEntries(Object.entries(lead).map(([k, v]) => [k, sheetSafe(v)]));
   try {
-    if (FORMS[form].sheetId) {
+    if (globalThis.__SHEETS_DEMO) {
+      // Local portal demo (scripts/preview-server.js): never touch the real sheets.
+      await appendToSheet({ ...FORMS[form], sheetId: form === "exotics" ? EXOTIC_SHEET_ID : "demo-other" }, lead);
+    } else if (FORMS[form].sheetId) {
       await appendToSheet(FORMS[form], lead);
     } else {
       const saved = await fetch(FORMS[form].endpoint, {
@@ -222,6 +217,7 @@ export default async function handler(req, res) {
     return sendJson(res, 502, { error: "Could not save reservation" });
   }
 
-  await sendLeadAlert(form, lead);
+  const referral = form === "exotics" ? await logReferral(body.ref, lead) : null;
+  await sendLeadAlert(form, lead, referral);
   return sendJson(res, 200, { success: true });
 }
