@@ -3,8 +3,9 @@
 //
 // Everything lives in Google Sheets (no database):
 //   • "Echelon CRM" spreadsheet (ECHELON_CRM_SHEET_ID) — tabs Team, Referrals, Clicks,
-//     Payouts. Missing tabs and header rows are created on first use, and when Team is
-//     empty the LEAD_ALERT_EMAIL address is added as the first owner.
+//     Payouts, Applications (the public /ambassadors form). Missing tabs and header rows
+//     are created on first use, and when Team is empty the LEAD_ALERT_EMAIL address is
+//     added as the first owner.
 //   • "Echelon Exotic Rental Reservations" — read for the Reservations list; the portal
 //     only ever writes its Status / Follow-up / Notes columns.
 //
@@ -29,8 +30,9 @@ export const TABS = {
   Referrals: ["Submitted", "Code", "First Name", "Last Name", "Email", "Phone", "Vehicle", "Pickup", "Return", "Status", "Rental Total", "Commission", "Paid On", "Notes"],
   Clicks: ["Time", "Code", "Page", "Visitor"],
   Payouts: ["Date", "Code", "Amount", "Method", "Note", "Recorded By"],
+  Applications: ["Submitted", "First Name", "Last Name", "Email", "Phone", "Instagram", "City", "Birthdate", "Followers", "How They'd Promote", "Status", "Reviewed", "Notes"],
 };
-const LAST_COL = { Team: "M", Referrals: "N", Clicks: "D", Payouts: "F" };
+const LAST_COL = { Team: "M", Referrals: "N", Clicks: "D", Payouts: "F", Applications: "M" };
 
 export const nowEastern = () =>
   new Date().toLocaleString("en-US", { timeZone: "America/New_York" }).replace(",", "");
@@ -91,6 +93,11 @@ const PARSERS = {
     status: v[9] || "New", rentalTotal: v[10] || "", commission: v[11] || "", paidOn: v[12] || "", notes: v[13] || "",
   }),
   Clicks: (v) => ({ time: v[0] || "", code: (v[1] || "").toUpperCase(), page: v[2] || "", visitor: v[3] || "" }),
+  Applications: (v) => ({
+    submitted: v[0] || "", firstName: v[1] || "", lastName: v[2] || "", email: (v[3] || "").trim().toLowerCase(),
+    phone: v[4] || "", instagram: v[5] || "", city: v[6] || "", birthdate: v[7] || "", followers: v[8] || "",
+    pitch: v[9] || "", status: v[10] || "New", reviewed: v[11] || "", notes: v[12] || "",
+  }),
   Payouts: (v) => ({ date: v[0] || "", code: (v[1] || "").toUpperCase(), amount: money(v[2]), method: v[3] || "", note: v[4] || "", by: v[5] || "" }),
 };
 

@@ -357,6 +357,7 @@
       stat('Referred bookings', sum('referred'), sum('completed') + ' completed') + stat('Owed to ambassadors', usd(sum('balance')), usd(sum('paid')) + ' paid so far', true) +
       '</div>' +
       (newLink ? setupBox(newLink.name, newLink.link) : '') +
+      applicationsSection(data) +
       '<form class="p-card p-form" id="addAmbForm" hidden>' +
       '<h3 class="p-card-title">New ambassador</h3>' +
       '<div class="p-grid-2">' +
@@ -384,6 +385,53 @@
         toast('Added with code ' + out.code);
       } catch (err) { toast(err.message, true); }
     });
+  }
+
+  // Applications from the public /ambassadors page ─
+  function applicationsSection(data) {
+    const apps = data.applications || [];
+    const open = apps.filter((a) => /^new$/i.test(a.status));
+    const done = apps.filter((a) => !/^new$/i.test(a.status));
+    if (!apps.length) return '';
+    return '<div class="p-apps"><h3 class="p-h3">Applications' + (open.length ? ' ' + chip(open.length + ' waiting', 'gold') : '') + '</h3>' +
+      (open.length ? '<div class="p-list">' + open.map(appCard).join('') + '</div>' : '<div class="p-empty">No applications waiting. New ones from echelonrentalgroup.com/ambassadors show up here.</div>') +
+      (done.length ? '<details class="p-apps-done"><summary>Recently reviewed (' + done.length + ')</summary><div class="p-list">' +
+        done.map((a) => '<div class="p-card p-card--flat"><div class="p-card-head"><div><h3 class="p-card-title">' + esc(a.firstName + ' ' + a.lastName) + '</h3>' +
+          '<p class="p-card-sub">' + esc(a.instagram) + ' · ' + esc(a.reviewed) + '</p></div>' + chip(a.status, statusTone(a.status === 'Approved' ? 'complete' : 'cancel')) + '</div></div>').join('') +
+        '</div></details>' : '') +
+      '</div>';
+  }
+
+  function ageOf(v) {
+    const d = parseDate(v);
+    if (!d) return '';
+    const now = new Date();
+    let age = now.getFullYear() - d.getFullYear();
+    if (now.getMonth() < d.getMonth() || (now.getMonth() === d.getMonth() && now.getDate() < d.getDate())) age--;
+    return age;
+  }
+
+  function appCard(a) {
+    const handle = String(a.instagram || '').replace(/^@/, '');
+    const name = a.firstName + ' ' + a.lastName;
+    return '<article class="p-card" data-app-row="' + a.row + '" data-email="' + esc(a.email) + '" data-name="' + esc(name) + '">' +
+      '<div class="p-card-head"><div><h3 class="p-card-title">' + esc(name) + '</h3>' +
+      '<p class="p-card-sub">' + esc(a.email) + ' · ' + esc(a.phone) + '</p></div>' +
+      '<div class="p-actions">' + chip('Applied ' + ago(a.submitted)) + '</div></div>' +
+      '<div class="p-mini">' +
+      '<span>Instagram <b><a href="https://instagram.com/' + encodeURIComponent(handle) + '" target="_blank" rel="noopener">@' + esc(handle) + '</a></b></span>' +
+      '<span>Followers <b>' + esc(a.followers) + '</b></span><span>City <b>' + esc(a.city) + '</b></span><span>Age <b>' + esc(ageOf(a.birthdate)) + '</b></span></div>' +
+      (a.pitch ? '<p class="p-quote">' + esc(a.pitch) + '</p>' : '') +
+      '<div class="p-actions">' +
+      '<button type="button" class="p-btn p-btn--sm p-btn--gold" data-toggle="approve">Approve</button>' +
+      '<button type="button" class="p-btn p-btn--sm p-btn--ghost" data-decline-app>Decline</button></div>' +
+      '<form class="p-form" data-form="approve" hidden><div class="p-grid-2">' +
+      '<label>Link code (optional)<input name="code" placeholder="Made from first name" /></label>' +
+      '<label>Commission %<input type="text" inputmode="decimal" name="commission" value="' + esc(state.ambassadors.defaultCommission) + '" /></label>' +
+      '<label>Payout method<input name="payoutMethod" placeholder="Zelle 555-555-5555" /></label>' +
+      '<label>Their clients get<select name="perk">' + options(PERKS, state.ambassadors.defaultPerk) + '</select></label></div>' +
+      '<div class="p-actions"><button type="submit" class="p-btn p-btn--gold p-btn--sm">Approve and get setup link</button></div></form>' +
+      '</article>';
   }
 
   function stat(label, value, note, gold) {
@@ -533,6 +581,19 @@
       return;
     }
 
+    const decline = t.closest('[data-decline-app]');
+    if (decline) {
+      const card = decline.closest('[data-app-row]');
+      if (!window.confirm('Decline ' + card.dataset.name + '? They won\'t be notified automatically.')) return;
+      try {
+        await post('declineApplication', { row: +card.dataset.appRow, email: card.dataset.email });
+        state.ambassadors = await get('ambassadors');
+        renderAmbassadors();
+        toast('Application declined');
+      } catch (err) { toast(err.message, true); }
+      return;
+    }
+
     const toggle = t.closest('[data-toggle]');
     if (toggle) {
       const form = $('[data-form="' + toggle.dataset.toggle + '"]', toggle.closest('.p-card'));
@@ -560,6 +621,16 @@
     const form = e.target.closest('[data-form]');
     if (!form) return;
     e.preventDefault();
+    const appCardEl = form.closest('[data-app-row]');
+    if (appCardEl) {
+      try {
+        const out = await post('approveApplication', { row: +appCardEl.dataset.appRow, email: appCardEl.dataset.email, code: form.code.value, commission: form.commission.value, payoutMethod: form.payoutMethod.value, perk: form.perk.value });
+        state.ambassadors = await get('ambassadors');
+        renderAmbassadors({ name: out.name, link: out.setupLink });
+        toast('Approved with code ' + out.code);
+      } catch (err) { toast(err.message, true); }
+      return;
+    }
     const email = form.closest('[data-amb]').dataset.amb;
     const a = state.ambassadors.ambassadors.find((x) => x.email === email);
     try {
