@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0A0A0A" />
+  <title>Echelon Portal</title>
+  <link rel="icon" href="apple-touch-icon.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="portal.css" />
+</head>
+<body>
+  <header class="p-top">
+    <a href="/" class="p-logo" aria-label="Echelon Exotic Rentals home">
+      <span class="p-logo-mark">ECHELON</span>
+      <span class="p-logo-sub">Portal</span>
+    </a>
+    <div class="p-user" id="userBar" hidden>
+      <span class="p-user-name" id="userName"></span>
+      <span class="p-chip" id="userRole"></span>
+      <button type="button" class="p-link" id="signOut">Sign out</button>
+    </div>
+  </header>
+
+  <main class="p-main">
+    <!-- Sign in / set password -->
+    <section class="p-auth" id="authView" hidden>
+      <div class="p-auth-card">
+        <p class="p-eyebrow">Team &amp; Ambassadors</p>
+        <h1 class="p-title" id="authTitle">Sign in</h1>
+        <p class="p-muted" id="authLead">Owners and staff see the Echelon CRM. Ambassadors see their own dashboard.</p>
+
+        <form id="loginForm" class="p-form" novalidate>
+          <label>Email<input type="email" name="email" autocomplete="username" required /></label>
+          <label>Password<input type="password" name="password" autocomplete="current-password" required /></label>
+          <button type="submit" class="p-btn p-btn--gold">Sign in</button>
+          <button type="button" class="p-link" data-auth="forgot">First time here or forgot your password?</button>
+        </form>
+
+        <form id="forgotForm" class="p-form" novalidate hidden>
+          <label>Email<input type="email" name="email" autocomplete="username" required /></label>
+          <button type="submit" class="p-btn p-btn--gold">Email me a link</button>
+          <p class="p-muted p-small">No email? Ask an Echelon owner to text you a setup link.</p>
+          <button type="button" class="p-link" data-auth="login">Back to sign in</button>
+        </form>
+
+        <form id="setupForm" class="p-form" novalidate hidden>
+          <label>New password<input type="password" name="password" autocomplete="new-password" minlength="10" required /></label>
+          <label>Confirm password<input type="password" name="confirm" autocomplete="new-password" minlength="10" required /></label>
+          <button type="submit" class="p-btn p-btn--gold">Save and sign in</button>
+        </form>
+
+        <p class="p-error" id="authError" role="alert"></p>
+      </div>
+    </section>
+
+    <!-- Echelon CRM (owners + employees) -->
+    <section id="staffView" hidden>
+      <nav class="p-tabs" id="staffTabs" role="tablist">
+        <button type="button" role="tab" data-tab="reservations">Reservations</button>
+        <button type="button" role="tab" data-tab="referrals">Referrals</button>
+        <button type="button" role="tab" data-tab="ambassadors" data-owner>Ambassadors</button>
+        <button type="button" role="tab" data-tab="team" data-owner>Team</button>
+      </nav>
+      <div id="staffPanel" class="p-panel"></div>
+    </section>
+
+    <!-- Ambassador dashboard (ambassadors; owners can preview anyone's) -->
+    <section id="ambView" hidden>
+      <div class="p-preview-bar" id="previewBar" hidden>
+        <span>Previewing <strong id="previewName"></strong>'s dashboard (what they see)</span>
+        <button type="button" class="p-btn p-btn--ghost p-btn--sm" id="previewBack">Back to Ambassadors</button>
+      </div>
+      <div id="ambPanel" class="p-panel"></div>
+    </section>
+
+    <div class="p-loading" id="loading" hidden><span></span></div>
+  </main>
+
+  <div class="p-toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="portal-app.js"></script>
+</body>
+</html>

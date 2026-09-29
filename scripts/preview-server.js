@@ -5,8 +5,11 @@
  *   npm run preview        then open http://localhost:3000
  *
  * Serves the static pages the same way Vercel does ("/" -> exotics.html) and
- * runs api/chat.js for /api/chat and api/lead.js for /api/lead. Reads
- * ANTHROPIC_API_KEY (and optional RESEND_API_KEY / LEAD_ALERT_EMAIL) from .env.local.
+ * runs the api/ functions. Reads ANTHROPIC_API_KEY (and optional RESEND_API_KEY /
+ * LEAD_ALERT_EMAIL / Google service account / ECHELON_CRM_SHEET_ID) from .env.local.
+ *
+ *   PORTAL_DEMO=1 npm run preview   runs the Echelon Portal (/portal) against sample
+ *   sheets in memory (scripts/portal-demo-data.js), no Google access needed.
  */
 import http from "node:http";
 import fs from "node:fs";
@@ -25,8 +28,18 @@ if (fs.existsSync(envFile)) {
   }
 }
 
+if (process.env.PORTAL_DEMO) {
+  const { demoSheets } = await import("./portal-demo-data.js");
+  globalThis.__SHEETS_DEMO = demoSheets();
+  process.env.ECHELON_CRM_SHEET_ID ||= "demo-crm";
+  process.env.AUTH_SECRET ||= "local-demo-secret";
+}
+
 const { default: chatHandler } = await import("../api/chat.js");
 const { default: leadHandler } = await import("../api/lead.js");
+const { default: authHandler } = await import("../api/auth.js");
+const { default: portalHandler } = await import("../api/portal.js");
+const { default: refHandler } = await import("../api/ref.js");
 
 const TYPES = {
   ".html": "text/html; charset=utf-8", ".css": "text/css", ".js": "text/javascript",
@@ -38,6 +51,9 @@ const TYPES = {
 function serveStatic(req, res) {
   let pathname = decodeURIComponent(new URL(req.url, "http://localhost").pathname);
   if (pathname === "/") pathname = "/exotics.html";
+  if (/^\/portal\/?$/.test(pathname)) pathname = "/portal.html";
+  const shortLink = /^\/r\/([A-Za-z0-9-]{2,24})\/?$/.exec(pathname);
+  if (shortLink) return res.writeHead(302, { Location: `/?ref=${shortLink[1]}` }).end();
   const file = path.join(ROOT, path.normalize(pathname));
   if (!file.startsWith(ROOT) || /(^|[\\/])\.|node_modules/.test(path.relative(ROOT, file))) {
     res.writeHead(404).end("Not found");
@@ -61,7 +77,10 @@ function serveStatic(req, res) {
 
 http
   .createServer((req, res) => {
-    const apiHandler = { "/api/chat": chatHandler, "/api/lead": leadHandler }[new URL(req.url, "http://localhost").pathname];
+    const apiHandler = {
+      "/api/chat": chatHandler, "/api/lead": leadHandler, "/api/auth": authHandler,
+      "/api/portal": portalHandler, "/api/ref": refHandler,
+    }[new URL(req.url, "http://localhost").pathname];
     if (apiHandler) {
       apiHandler(req, res).catch((err) => {
         console.error(err);
@@ -74,6 +93,7 @@ http
   })
   .listen(PORT, () => {
     console.log(`Echelon preview running at http://localhost:${PORT}`);
+    if (process.env.PORTAL_DEMO) console.log("Portal demo: sample sheets in memory, see scripts/portal-demo-data.js for logins");
     console.log(process.env.ANTHROPIC_API_KEY
       ? "Chatbot: API key found"
       : "Chatbot: no API key yet. Add ANTHROPIC_API_KEY to .env.local and restart.");
