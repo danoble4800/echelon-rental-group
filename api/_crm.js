@@ -21,6 +21,8 @@ export const EXOTIC_SHEET_ID = "1S-r52l5vyU1qSWeHTf0ADD8sJ-kIF1S8v3uUejctug8";
 export const crmSheetId = () => process.env.ECHELON_CRM_SHEET_ID || "";
 
 export const DEFAULT_COMMISSION = 10;            // % of the rental price, paid after the rental
+export const MIN_COMMISSION = 5;                // allowed range for an ambassador's rate
+export const MAX_COMMISSION = 10;
 export const DEFAULT_PERK = "Complimentary delivery on your first rental";
 export const REFERRAL_STATUSES = ["New", "Booked", "Completed", "Canceled", "Not Eligible"];
 export const ROLES = ["owner", "employee", "ambassador"];

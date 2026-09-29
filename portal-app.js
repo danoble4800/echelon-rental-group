@@ -366,7 +366,7 @@
       '<label>Email<input type="email" name="email" required /></label>' +
       '<label>Phone<input type="tel" name="phone" /></label>' +
       '<label>Link code (optional)<input name="code" placeholder="Made from first name" /></label>' +
-      '<label>Commission %<input type="text" inputmode="decimal" name="commission" value="' + esc(data.defaultCommission) + '" /></label>' +
+      '<label>Commission % (' + commissionRange() + ')<input type="text" inputmode="decimal" name="commission" value="' + esc(data.defaultCommission) + '" /></label>' +
       '<label>Payout method<input name="payoutMethod" placeholder="Zelle 555-555-5555" /></label>' +
       '</div>' +
       '<label>Their clients get<select name="perk">' + options(PERKS, data.defaultPerk) + '</select></label>' +
@@ -428,11 +428,16 @@
       '<button type="button" class="p-btn p-btn--sm p-btn--ghost" data-decline-app>Decline</button></div>' +
       '<form class="p-form" data-form="approve" hidden><div class="p-grid-2">' +
       '<label>Link code (optional)<input name="code" placeholder="Made from first name" /></label>' +
-      '<label>Commission %<input type="text" inputmode="decimal" name="commission" value="' + esc(state.ambassadors.defaultCommission) + '" /></label>' +
+      '<label>Commission % (' + commissionRange() + ')<input type="text" inputmode="decimal" name="commission" value="' + esc(state.ambassadors.defaultCommission) + '" /></label>' +
       '<label>Payout method<input name="payoutMethod" placeholder="Zelle 555-555-5555" /></label>' +
       '<label>Their clients get<select name="perk">' + options(PERKS, state.ambassadors.defaultPerk) + '</select></label></div>' +
       '<div class="p-actions"><button type="submit" class="p-btn p-btn--gold p-btn--sm">Approve and get setup link</button></div></form>' +
       '</article>';
+  }
+
+  function commissionRange() {
+    const d = state.ambassadors || {};
+    return (d.minCommission || 5) + '–' + (d.maxCommission || 10);
   }
 
   function stat(label, value, note, gold) {
@@ -475,7 +480,7 @@
       '<label>Name<input name="name" value="' + esc(a.name) + '" /></label>' +
       '<label>Phone<input name="phone" value="' + esc(a.phone) + '" /></label>' +
       '<label>Link code<input name="code" value="' + esc(a.code) + '" /></label>' +
-      '<label>Commission %<input name="commission" inputmode="decimal" value="' + esc(a.commission) + '" /></label>' +
+      '<label>Commission % (' + commissionRange() + ')<input name="commission" inputmode="decimal" value="' + esc(a.commission) + '" /></label>' +
       '<label>Payout method<input name="payoutMethod" value="' + esc(a.payoutMethod) + '" /></label>' +
       '<label>Status<select name="status">' + options(['Active', 'Paused'], active ? 'Active' : 'Paused') + '</select></label></div>' +
       '<label>Their clients get<select name="perk">' + options(PERKS.indexOf(a.perk) >= 0 || !a.perk ? PERKS : [a.perk].concat(PERKS), a.perk || state.ambassadors.defaultPerk) + '</select></label>' +

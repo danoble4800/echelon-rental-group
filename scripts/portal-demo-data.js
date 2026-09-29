@@ -50,7 +50,7 @@ export function demoSheets() {
             ["owner@demo.test", "Demo Owner", "owner", "", "Active", "", "", "", "", dateIn(-30), pw, "", ""],
             ["staff@demo.test", "Demo Staff", "employee", "", "Active", "", "", "", "", dateIn(-20), pw, "", ""],
             ["marcus@demo.test", "Marcus Hale", "ambassador", "MARCUS", "Active", "10", "Complimentary delivery on your first rental", "(555) 010-1000", "Zelle (555) 010-1000", dateIn(-15), pw, "", ""],
-            ["lena@demo.test", "Lena Park", "ambassador", "LENA", "Active", "12", "Free extra hour on your first rental", "", "PayPal lena@demo.test", dateIn(-5), "", "", ""],
+            ["lena@demo.test", "Lena Park", "ambassador", "LENA", "Active", "8", "Free extra hour on your first rental", "", "PayPal lena@demo.test", dateIn(-5), "", "", ""],
           ],
         },
         {

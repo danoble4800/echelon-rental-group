@@ -13,7 +13,7 @@
 
 import { batchGet, dropdownOptions, listTabs, sheetSafe, tabRange, updateRange } from "./_google.js";
 import {
-  appendRow, currentUser, DEFAULT_COMMISSION, DEFAULT_PERK, EXOTIC_SHEET_ID, firstName, isActive, money,
+  appendRow, currentUser, DEFAULT_COMMISSION, DEFAULT_PERK, MAX_COMMISSION, MIN_COMMISSION, EXOTIC_SHEET_ID, firstName, isActive, money,
   nowEastern, readCrm, readJson, REFERRAL_STATUSES, ROLES, sameOrigin, sendJson, setupToken, siteOrigin,
   todayEastern, writeCells,
 } from "./_crm.js";
@@ -148,6 +148,7 @@ function ambassadorsView(req, crm) {
       };
     }),
     defaultPerk: DEFAULT_PERK, defaultCommission: DEFAULT_COMMISSION,
+    minCommission: MIN_COMMISSION, maxCommission: MAX_COMMISSION,
   };
 }
 
@@ -195,6 +196,15 @@ function makeCode(name, team) {
   for (let n = 2; ; n++) if (!taken.has(`${base}${n}`)) return `${base}${n}`;
 }
 
+// Blank → the default rate; anything outside the program's range is refused.
+function cleanCommission(val) {
+  const rate = money(val) || DEFAULT_COMMISSION;
+  if (rate < MIN_COMMISSION || rate > MAX_COMMISSION) {
+    throw new HttpError(400, `Commission must be between ${MIN_COMMISSION}% and ${MAX_COMMISSION}%.`);
+  }
+  return rate;
+}
+
 function cleanCode(code) {
   const clean = String(code || "").trim().toUpperCase();
   if (clean && !/^[A-Z0-9-]{2,24}$/.test(clean)) throw new HttpError(400, "Codes use 2–24 letters, numbers or dashes.");
@@ -215,7 +225,7 @@ async function addPerson(req, body, team) {
   }
   const person = {
     email, name, role, code, status: "Active",
-    commission: role === "ambassador" ? money(body.commission) || DEFAULT_COMMISSION : "",
+    commission: role === "ambassador" ? cleanCommission(body.commission) : "",
     perk: role === "ambassador" ? String(body.perk || "").slice(0, 120) : "",
     phone: String(body.phone || "").slice(0, 40), payoutMethod: String(body.payoutMethod || "").slice(0, 100), password: "",
   };
@@ -231,7 +241,7 @@ async function updatePerson(user, body) {
   if (body.name != null) next.name = String(body.name).trim().slice(0, 80) || person.name;
   if (body.role != null) next.role = ROLES.includes(body.role) ? body.role : person.role;
   if (body.status != null) next.status = /^active$/i.test(body.status) ? "Active" : "Paused";
-  if (body.commission != null) next.commission = money(body.commission) || DEFAULT_COMMISSION;
+  if (body.commission != null && next.role === "ambassador") next.commission = cleanCommission(body.commission);
   if (body.perk != null) next.perk = String(body.perk).slice(0, 120);
   if (body.phone != null) next.phone = String(body.phone).slice(0, 40);
   if (body.payoutMethod != null) next.payoutMethod = String(body.payoutMethod).slice(0, 100);
