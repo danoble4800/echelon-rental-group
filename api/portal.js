@@ -1,7 +1,7 @@
 // /api/portal — data for the Echelon Portal (/portal). Every request needs a session from
 // /api/auth, and the caller's role (Team tab) decides what they can see:
 //
-//   owner       Reservations, Referrals, Ambassadors, Applications, Team, payouts, any
+//   owner       Reservations (Exotics, Economy, Chauffeur), Referrals, Ambassadors, Applications, Team, payouts, any
 //               ambassador's dashboard
 //   employee    Reservations, Referrals
 //   ambassador  their own dashboard only (customers shown as "Jane D.", no contact details)
@@ -28,63 +28,104 @@ class HttpError extends Error {
 }
 const need = (ok, message = "You don't have access to this.") => { if (!ok) throw new HttpError(403, message); };
 
-// ── Exotic reservations sheet ──
+// ── Reservation sheets (Exotics, Economy, Chauffeur) ──
+//
+// Each brand's form keeps writing to its own sheet (api/lead.js). The portal reads the
+// first tab of each and only ever writes the Status / Follow-up / Notes columns.
 
-// Finds each field's column from the header row, so the portal keeps working if the
-// Apps Script's columns are renamed. Falls back to the original A:L layout.
-function mapColumns(headers) {
-  const find = (re, fallback) => {
+const RES_SHEETS = {
+  exotics: { label: "Exotics", id: EXOTIC_SHEET_ID },
+  economy: { label: "Economy", id: "1yLtkutu_BCfYvo9a32T6U7CilrZ6cFkTgoQvq8XAUaA" },
+  chauffeur: { label: "Chauffeur", id: "1zDNYG4I4GnKNGQWWE4l5xobWg5_ZxsqpV01pmL-EMyc" },
+};
+
+// Finds each field's column from the header row, so the portal keeps working if columns
+// are renamed or moved. Exotics falls back to its original A:L layout.
+const COMMON_COLS = {
+  submitted: /time|submitted|created/i, firstName: /first/i, lastName: /last/i, phone: /phone/i,
+  email: /e-?mail/i, status: /status/i, followUp: /follow/i, notes: /note/i,
+};
+const BRAND_COLS = {
+  exotics: { pickup: /pick/i, returnDate: /return/i, vehicle: /vehicle|car/i, delivery: /deliver|location|address/i },
+  economy: { pickup: /pick/i, returnDate: /return/i, vehicle: /^car|vehicle/i, useCase: /use/i },
+  chauffeur: {
+    pickup: /ride date/i, pickupTime: /pickup time/i, serviceType: /service/i, passengers: /passenger/i,
+    vehicle: /vehicle/i, delivery: /pickup address/i, dropoff: /drop/i,
+  },
+};
+const EXOTIC_FALLBACK = {
+  submitted: 0, firstName: 1, lastName: 2, phone: 3, email: 4, pickup: 5, returnDate: 6,
+  vehicle: 7, delivery: 8, status: 9, followUp: 10, notes: 11,
+};
+
+function mapColumns(brand, headers) {
+  const cols = {};
+  for (const [key, re] of Object.entries({ ...COMMON_COLS, ...BRAND_COLS[brand] })) {
     const i = headers.findIndex((h) => re.test(h || ""));
-    return i >= 0 ? i : fallback;
-  };
-  return {
-    submitted: find(/time|submitted|created/i, 0), firstName: find(/first/i, 1), lastName: find(/last/i, 2),
-    phone: find(/phone/i, 3), email: find(/e-?mail/i, 4), pickup: find(/pick/i, 5), returnDate: find(/return/i, 6),
-    vehicle: find(/vehicle|car/i, 7), delivery: find(/deliver|location|address/i, 8),
-    status: find(/status/i, 9), followUp: find(/follow/i, 10), notes: find(/note/i, 11),
-  };
+    cols[key] = i >= 0 ? i : brand === "exotics" ? EXOTIC_FALLBACK[key] ?? -1 : -1;
+  }
+  return cols;
 }
 
-async function exoticSheet() {
-  const tab = (await listTabs(EXOTIC_SHEET_ID))[0].title;   // the Apps Script writes to the first tab
-  const [head, rows] = await batchGet(EXOTIC_SHEET_ID, [tabRange(tab, "A1:Z1"), tabRange(tab, "A2:Z")]);
-  return { tab, cols: mapColumns(head[0] || []), rows };
+async function reservationSheet(brand) {
+  const { id } = RES_SHEETS[brand];
+  const tab = (await listTabs(id))[0].title;   // the forms write to the first tab
+  const [head, rows] = await batchGet(id, [tabRange(tab, "A1:Z1"), tabRange(tab, "A2:Z")]);
+  return { id, tab, cols: mapColumns(brand, head[0] || []), rows };
 }
 
-async function reservations() {
-  const [{ tab, cols, rows }, crm] = await Promise.all([exoticSheet(), readCrm(["Referrals", "Team"])]);
-  const statusCell = tabRange(tab, `${colLetter(cols.status)}2`);
-  const options = (await dropdownOptions(EXOTIC_SHEET_ID, statusCell).catch(() => [])) || [];
-  const refByEmail = new Map(crm.Referrals.map((r) => [r.email, r.code]));
-  const names = new Map(crm.Team.map((p) => [p.code, p.name]));
+async function brandReservations(brand, refByEmail, names) {
+  const { id, tab, cols, rows } = await reservationSheet(brand);
+  const options = cols.status >= 0
+    ? (await dropdownOptions(id, tabRange(tab, `${colLetter(cols.status)}2`)).catch(() => [])) || []
+    : [];
   const list = rows
     .map((v, i) => {
-      const get = (k) => (v[cols[k]] || "").trim();
-      const email = get("email").toLowerCase();
-      const code = refByEmail.get(email) || "";
-      return {
-        row: i + 2, submitted: get("submitted"), firstName: get("firstName"), lastName: get("lastName"),
-        phone: get("phone"), email, pickup: get("pickup"), returnDate: get("returnDate"), vehicle: get("vehicle"),
-        delivery: get("delivery"), status: get("status"), followUp: get("followUp"), notes: get("notes"),
-        referral: code ? { code, name: names.get(code) || code } : null,
-      };
+      const r = { brand, row: i + 2 };
+      for (const [key, col] of Object.entries(cols)) r[key] = col >= 0 ? String(v[col] ?? "").trim() : "";
+      r.email = r.email.toLowerCase();
+      // Only Exotics bookings carry ambassador referrals.
+      const code = brand === "exotics" ? refByEmail.get(r.email) : "";
+      r.referral = code ? { code, name: names.get(code) || code } : null;
+      return r;
     })
     .filter((r) => r.firstName || r.lastName || r.email || r.phone)
     .reverse();                                                // newest first
-  return { reservations: list, statusOptions: options.length ? options : FALLBACK_STATUSES };
+  return { label: RES_SHEETS[brand].label, reservations: list, statusOptions: options.length ? options : FALLBACK_STATUSES };
 }
 
-async function updateReservation({ row, email, status, followUp, notes }) {
-  const { tab, cols, rows } = await exoticSheet();
+// All three brands at once. A sheet that can't be read is reported on its own instead
+// of hiding the other two.
+async function reservations() {
+  const crm = await readCrm(["Referrals", "Team"]);
+  const refByEmail = new Map(crm.Referrals.map((r) => [r.email, r.code]));
+  const names = new Map(crm.Team.map((p) => [p.code, p.name]));
+  const brands = Object.keys(RES_SHEETS);
+  const results = await Promise.allSettled(brands.map((b) => brandReservations(b, refByEmail, names)));
+  const out = {};
+  results.forEach((res, i) => {
+    if (res.status === "fulfilled") out[brands[i]] = res.value;
+    else {
+      console.error(`Reservations read failed (${brands[i]}):`, res.reason);
+      out[brands[i]] = { label: RES_SHEETS[brands[i]].label, reservations: [], statusOptions: FALLBACK_STATUSES, error: "Couldn't load this sheet." };
+    }
+  });
+  return { brands: out };
+}
+
+async function updateReservation({ brand = "exotics", row, email, status, followUp, notes }) {
+  if (!RES_SHEETS[brand]) throw new HttpError(400, "Unknown brand");
+  const { id, tab, cols, rows } = await reservationSheet(brand);
   const current = rows[Number(row) - 2];
   // The row must still hold the same customer (rows can shift if someone sorts the sheet).
-  if (!current || (current[cols.email] || "").trim().toLowerCase() !== String(email || "").toLowerCase()) {
+  if (!current || String(current[cols.email] || "").trim().toLowerCase() !== String(email || "").toLowerCase()) {
     throw new HttpError(409, "This reservation moved in the sheet. Refresh and try again.");
   }
   const writes = { status, followUp, notes };
   for (const [key, val] of Object.entries(writes)) {
     if (typeof val !== "string") continue;
-    await updateRange(EXOTIC_SHEET_ID, tabRange(tab, `${colLetter(cols[key])}${row}`), [[sheetSafe(val.slice(0, 1000))]]);
+    if (cols[key] < 0) throw new HttpError(500, `The ${RES_SHEETS[brand].label} sheet has no ${key} column.`);
+    await updateRange(id, tabRange(tab, `${colLetter(cols[key])}${row}`), [[sheetSafe(val.slice(0, 1000))]]);
   }
   return { ok: true };
 }

@@ -251,3 +251,8 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--gold-line);
 .p-tab-count { display: inline-block; min-width: 18px; margin-left: 6px; padding: 0 5px; border-radius: 999px; background: var(--gold); color: #0A0A0A; font-size: 11px; font-weight: 700; line-height: 18px; text-align: center; }
 .p-mini a { color: var(--gold-light); text-decoration: none; }
 .p-quote { margin: 0; padding: 10px 14px; border-left: 2px solid var(--gold-line); color: var(--text-2); font-size: 14px; white-space: pre-line; }
+
+/* Reservations: brand switcher (Exotics / Economy / Chauffeur) */
+.p-brands .p-filter b { font-weight: 500; color: var(--text-2); }
+.p-brands .p-filter[aria-pressed="true"] b { color: var(--gold-light); }
+.p-chip--brand { background: transparent; color: var(--text); border-color: var(--line-2); }

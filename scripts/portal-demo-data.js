@@ -41,6 +41,35 @@ export function demoSheets() {
         { title: "Summary", rows: [["Summary"]] },
       ],
     },
+    // Stand-in for "Echelon Economy Rental Reservations".
+    "1yLtkutu_BCfYvo9a32T6U7CilrZ6cFkTgoQvq8XAUaA": {
+      tabs: [
+        {
+          title: "Sheet1",
+          statusOptions: ["New", "Contacted", "Booked", "Completed", "Not a Fit"],
+          rows: [
+            ["Timestamp", "First Name", "Last Name", "Phone", "Email", "Pick-Up Date", "Return Date", "Use Case", "Car", "Status", "Follow-up Date", "Notes"],
+            [daysAgo(4), "Chris", "Nolan", "5085550144", "chris.nolan@example.com", dateIn(2), dateIn(9), "DoorDash", "Honda Civic", "Contacted", dateIn(0), "Sent rental agreement"],
+            [daysAgo(0, 8), "Dana", "Ruiz", "7745550190", "dana.ruiz@example.com", dateIn(5), dateIn(6), "Personal Use", "Toyota Camry", "", "", ""],
+          ],
+        },
+        { title: "Summary", rows: [["Summary"]] },
+      ],
+    },
+    // Stand-in for "Echelon Chauffeur Reservations".
+    "1zDNYG4I4GnKNGQWWE4l5xobWg5_ZxsqpV01pmL-EMyc": {
+      tabs: [
+        {
+          title: "Reservations",
+          statusOptions: ["New", "Contacted", "Booked", "Completed", "Not a Fit"],
+          rows: [
+            ["Submitted", "First Name", "Last Name", "Phone", "Email", "Ride Date", "Pickup Time", "Service Type", "Passengers", "Vehicle", "Pickup Address", "Drop-off Address", "Status", "Follow-up Date", "Notes"],
+            [daysAgo(1, 13), "Morgan", "Wells", "(555) 010-6620", "morgan.wells@example.com", dateIn(8), "18:30", "Wedding / Event", "4", "Rolls-Royce Cullinan", "The Langham, Boston", "Castle Hill, Ipswich", "New", "", ""],
+          ],
+        },
+        { title: "Summary", rows: [["Summary"]] },
+      ],
+    },
     "demo-crm": {
       tabs: [
         {

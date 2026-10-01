@@ -241,6 +241,7 @@
 
   // Reservations ─────────────────────────────
   let resFilter = 'Open';
+  let resBrand = sessionStorageGet('portalResBrand') || 'all';
   let resQuery = '';
 
   function loadReservations() { return load('reservations', renderReservations); }
@@ -252,25 +253,43 @@
     return diff < 0 ? 'overdue' : diff === 0 ? 'today' : null;
   }
 
+  // Every brand's reservations, tagged with the brand key.
+  function allReservations() {
+    const brands = state.reservations.brands;
+    return Object.keys(brands).reduce((list, b) => list.concat(brands[b].reservations), [])
+      .sort((a, b) => (Date.parse(b.submitted) || 0) - (Date.parse(a.submitted) || 0));
+  }
+
   function renderReservations() {
-    const data = state.reservations;
-    const all = data.reservations;
+    const brands = state.reservations.brands;
     const closed = /complete|fit|cancel|lost/i;
-    const groups = [['Open', (r) => !closed.test(r.status)], ['Follow-up due', (r) => !!followState(r)]]
-      .concat(data.statusOptions.map((s) => [s, (r) => r.status === s]))
+    const isOpen = (r) => !closed.test(r.status);
+    const everything = allReservations();
+    const brandKeys = Object.keys(brands);
+    if (resBrand !== 'all' && !brands[resBrand]) resBrand = 'all';
+    const all = resBrand === 'all' ? everything : brands[resBrand].reservations;
+    const statusOptions = (resBrand === 'all' ? brandKeys : [resBrand]).reduce((list, b) =>
+      list.concat(brands[b].statusOptions.filter((o) => list.indexOf(o) < 0)), []);
+    const groups = [['Open', isOpen], ['Follow-up due', (r) => !!followState(r)]]
+      .concat(statusOptions.map((s) => [s, (r) => r.status === s]))
       .concat([['No status', (r) => !r.status], ['All', () => true]]);
     const test = (groups.find((g) => g[0] === resFilter) || groups[0])[1];
     const q = resQuery.toLowerCase();
-    const list = all.filter(test).filter((r) => !q || [r.firstName, r.lastName, r.email, r.phone, r.vehicle, r.delivery, r.referral && r.referral.name].join(' ').toLowerCase().indexOf(q) >= 0);
+    const list = all.filter(test).filter((r) => !q || [r.firstName, r.lastName, r.email, r.phone, r.vehicle, r.delivery, r.dropoff, r.useCase, r.serviceType, r.referral && r.referral.name].join(' ').toLowerCase().indexOf(q) >= 0);
+    const errors = brandKeys.filter((b) => brands[b].error && (resBrand === 'all' || resBrand === b));
 
     $('#staffPanel').innerHTML =
-      '<div class="p-toolbar"><div><p class="p-eyebrow">Echelon Exotics</p><h2 class="p-h2">Reservations</h2></div>' +
+      '<div class="p-toolbar"><div><p class="p-eyebrow">Echelon Rental Group</p><h2 class="p-h2">Reservations</h2></div>' +
       '<input class="p-search" type="search" placeholder="Search name, car, phone…" value="' + esc(resQuery) + '" id="resSearch" /></div>' +
+      '<div class="p-filters p-brands">' + [['all', 'All brands', everything]].concat(brandKeys.map((b) => [b, brands[b].label, brands[b].reservations]))
+        .map((g) => '<button type="button" class="p-filter" data-brand="' + g[0] + '" aria-pressed="' + (g[0] === resBrand) + '">' + esc(g[1]) +
+          '<b>' + g[2].filter(isOpen).length + ' open</b></button>').join('') + '</div>' +
+      errors.map((b) => '<div class="p-empty">' + esc(brands[b].label) + ': ' + esc(brands[b].error) + '</div>').join('') +
       '<div class="p-filters">' + groups.map((g) => {
         const n = all.filter(g[1]).length;
         return (n || g[0] === 'All' || g[0] === 'Open') ? '<button type="button" class="p-filter" data-filter="' + esc(g[0]) + '" aria-pressed="' + (g[0] === resFilter) + '">' + esc(g[0]) + '<b>' + n + '</b></button>' : '';
       }).join('') + '</div>' +
-      '<div class="p-list">' + (list.length ? list.map((r) => resCard(r, data.statusOptions)).join('') : '<div class="p-empty">Nothing here.</div>') + '</div>';
+      '<div class="p-list">' + (list.length ? list.map((r) => resCard(r, brands[r.brand].statusOptions)).join('') : '<div class="p-empty">Nothing here.</div>') + '</div>';
 
     $('#resSearch').addEventListener('input', (e) => {
       resQuery = e.target.value;
@@ -279,19 +298,40 @@
     });
   }
 
+  // "18:30" or "18:30:00" → "6:30 PM"; anything else (e.g. "6:30:00 PM") is tidied or kept.
+  function clockTime(v) {
+    let m = /^(\d{1,2}):(\d{2})(?::\d{2})?$/.exec(v);
+    if (m) return (+m[1] % 12 || 12) + ':' + m[2] + (+m[1] < 12 ? ' AM' : ' PM');
+    m = /^(\d{1,2}:\d{2}):\d{2}(\s*[AP]M)$/i.exec(v);
+    return m ? m[1] + m[2].toUpperCase() : v;
+  }
+
+  // The brand-specific line under the name: what, when, where.
+  function resMeta(r) {
+    const span = (v) => (v ? '<span>' + esc(v) + '</span>' : '');
+    if (r.brand === 'chauffeur') {
+      return '<span><strong>' + esc(r.vehicle || 'Any vehicle') + '</strong></span>' +
+        span(shortDate(r.pickup) + (r.pickupTime ? ' at ' + clockTime(r.pickupTime) : '')) +
+        span([r.serviceType, r.passengers ? r.passengers + ' passengers' : ''].filter(Boolean).join(' · ')) +
+        span([r.delivery, r.dropoff].filter(Boolean).join(' → '));
+    }
+    return '<span><strong>' + esc(r.vehicle || 'Any vehicle') + '</strong></span>' +
+      '<span>' + esc(shortDate(r.pickup)) + (r.returnDate ? ' → ' + esc(shortDate(r.returnDate)) : '') + '</span>' +
+      span(r.brand === 'economy' ? r.useCase : r.delivery);
+  }
+
   function resCard(r, statuses) {
     const tel = (r.phone || '').replace(/[^\d+]/g, '');
     const fs = followState(r);
     const name = (r.firstName + ' ' + r.lastName).trim() || r.email;
-    return '<article class="p-card' + (fs ? ' p-card--flag' : '') + '" data-row="' + r.row + '" data-email="' + esc(r.email) + '">' +
+    return '<article class="p-card' + (fs ? ' p-card--flag' : '') + '" data-brand-key="' + esc(r.brand) + '" data-row="' + r.row + '" data-email="' + esc(r.email) + '">' +
       '<div class="p-card-head"><div><h3 class="p-card-title">' + esc(name) + '</h3>' +
       '<p class="p-card-sub">Requested ' + esc(ago(r.submitted)) + '</p></div>' +
-      '<div class="p-actions">' + chip(r.status || 'New', statusTone(r.status)) +
+      '<div class="p-actions">' + (resBrand === 'all' ? chip(state.reservations.brands[r.brand].label, 'brand') : '') +
+      chip(r.status || 'New', statusTone(r.status)) +
       (r.referral ? chip('✦ via ' + r.referral.name, 'gold') : '') +
       (fs ? chip(fs === 'today' ? 'Follow up today' : 'Follow-up overdue', 'warn') : '') + '</div></div>' +
-      '<div class="p-meta"><span><strong>' + esc(r.vehicle || 'Any vehicle') + '</strong></span>' +
-      '<span>' + esc(shortDate(r.pickup)) + (r.returnDate ? ' → ' + esc(shortDate(r.returnDate)) : '') + '</span>' +
-      (r.delivery ? '<span>' + esc(r.delivery) + '</span>' : '') + '</div>' +
+      '<div class="p-meta">' + resMeta(r) + '</div>' +
       '<div class="p-actions">' +
       (tel ? '<a class="p-btn p-btn--sm" href="tel:' + esc(tel) + '">Call</a><a class="p-btn p-btn--sm" href="sms:' + esc(tel) + '">Text</a>' : '') +
       (r.email ? '<a class="p-btn p-btn--sm" href="mailto:' + esc(r.email) + '">Email</a>' : '') +
@@ -565,6 +605,8 @@
     const t = e.target;
     const filter = t.closest('[data-filter]');
     if (filter) { resFilter = filter.dataset.filter; return renderReservations(); }
+    const brandBtn = t.closest('[data-brand]');
+    if (brandBtn) { resBrand = brandBtn.dataset.brand; sessionStorageSet('portalResBrand', resBrand); return renderReservations(); }
     const afilter = t.closest('[data-afilter]');
     if (afilter) { appFilter = afilter.dataset.afilter; return renderApplications(); }
     const rfilter = t.closest('[data-rfilter]');
@@ -579,8 +621,8 @@
       saveRes.disabled = true;
       const fields = { status: $('[name=status]', card).value, followUp: $('[name=followUp]', card).value, notes: $('[name=notes]', card).value };
       try {
-        await post('updateReservation', Object.assign({ row: +card.dataset.row, email: card.dataset.email }, fields));
-        const r = state.reservations.reservations.find((x) => x.row === +card.dataset.row);
+        await post('updateReservation', Object.assign({ brand: card.dataset.brandKey, row: +card.dataset.row, email: card.dataset.email }, fields));
+        const r = state.reservations.brands[card.dataset.brandKey].reservations.find((x) => x.row === +card.dataset.row);
         Object.assign(r, fields);
         $('.p-saved', card).textContent = 'Saved';
       } catch (err) { saveRes.disabled = false; toast(err.message, true); }
