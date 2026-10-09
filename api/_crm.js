@@ -243,5 +243,8 @@ export function sameOrigin(req) {
   }
 }
 
+// Links we hand out (setup, password reset, referral) always use the real domain,
+// even when the portal was opened on a *.vercel.app address. Local preview keeps localhost.
+const PUBLIC_ORIGIN = "https://www.echelonrentalgroup.com";
 export const siteOrigin = (req) =>
-  `${/^(localhost|127\.0\.0\.1)(:|$)/.test(req.headers.host || "") ? "http" : "https"}://${req.headers.host}`;
+  /^(localhost|127\.0\.0\.1)(:|$)/.test(req.headers.host || "") ? `http://${req.headers.host}` : PUBLIC_ORIGIN;
