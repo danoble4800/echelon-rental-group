@@ -720,6 +720,10 @@ ul { list-style: none; }
   scrollbar-width: none;
   -ms-overflow-style: none;
   padding: 4px 2px;
+  /* Match the 2px side padding so the first card's snap point is scrollLeft 0.
+     Without it Chrome snap-scrolls the track on load, which ends LCP tracking
+     before first paint (PageSpeed then reports NO_LCP). */
+  scroll-padding-inline: 2px;
 }
 .fleet-carousel-track::-webkit-scrollbar { display: none; }
 .fleet-carousel-track .car-card {

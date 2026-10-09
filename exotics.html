@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Echelon Exotics | Luxury &amp; Exotic Car Rentals</title>
+  <link rel="preload" as="image" href="images/hero-fleet-boston.jpg" fetchpriority="high" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="1024x1024" href="/app-icon-1024.png" />
@@ -15,7 +16,10 @@
   <meta property="og:description" content="Lamborghini, Ferrari, Rolls-Royce, and Porsche — by the day, weekend, or week. White-glove delivery available." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Fonts load without blocking first paint; text shows in the fallback font until they arrive. -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;600;700;800;900&display=swap" /></noscript>
   <!-- Vercel Web Analytics: cookie-free page views (enable under the Vercel project's Analytics tab) -->
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script defer src="/_vercel/insights/script.js"></script>
@@ -378,27 +382,27 @@
     </div>
     <div class="brands-track-wrap">
       <div class="brands-track">
-        <div class="brand-logo-item"><img src="images/brands/ferrari.png" alt="Ferrari" class="brand-logo" /></div>
-        <div class="brand-logo-item"><img src="images/brands/lamborghini.png" alt="Lamborghini" class="brand-logo" /></div>
-        <div class="brand-logo-item"><img src="images/brands/porsche.png" alt="Porsche" class="brand-logo" /></div>
-        <div class="brand-logo-item"><img src="images/brands/rolls-royce.png" alt="Rolls-Royce" class="brand-logo" /></div>
-        <div class="brand-logo-item"><img src="images/brands/mercedes-benz.png" alt="Mercedes-Benz" class="brand-logo brand-logo--invert" /></div>
-        <div class="brand-logo-item"><img src="images/brands/amg.png" alt="Mercedes-AMG" class="brand-logo brand-logo--invert" /></div>
-        <div class="brand-logo-item"><img src="images/brands/bmw.png" alt="BMW" class="brand-logo" /></div>
-        <div class="brand-logo-item"><img src="images/brands/audi.png" alt="Audi" class="brand-logo" /></div>
-        <div class="brand-logo-item"><img src="images/brands/cadillac.png" alt="Cadillac" class="brand-logo" /></div>
-        <div class="brand-logo-item"><img src="images/brands/maybach.png" alt="Maybach" class="brand-logo" /></div>
+        <div class="brand-logo-item"><img src="images/brands/ferrari.png" alt="Ferrari" class="brand-logo" loading="lazy" decoding="async" /></div>
+        <div class="brand-logo-item"><img src="images/brands/lamborghini.png" alt="Lamborghini" class="brand-logo" loading="lazy" decoding="async" /></div>
+        <div class="brand-logo-item"><img src="images/brands/porsche.png" alt="Porsche" class="brand-logo" loading="lazy" decoding="async" /></div>
+        <div class="brand-logo-item"><img src="images/brands/rolls-royce.png" alt="Rolls-Royce" class="brand-logo" loading="lazy" decoding="async" /></div>
+        <div class="brand-logo-item"><img src="images/brands/mercedes-benz.png" alt="Mercedes-Benz" class="brand-logo brand-logo--invert" loading="lazy" decoding="async" /></div>
+        <div class="brand-logo-item"><img src="images/brands/amg.png" alt="Mercedes-AMG" class="brand-logo brand-logo--invert" loading="lazy" decoding="async" /></div>
+        <div class="brand-logo-item"><img src="images/brands/bmw.png" alt="BMW" class="brand-logo" loading="lazy" decoding="async" /></div>
+        <div class="brand-logo-item"><img src="images/brands/audi.png" alt="Audi" class="brand-logo" loading="lazy" decoding="async" /></div>
+        <div class="brand-logo-item"><img src="images/brands/cadillac.png" alt="Cadillac" class="brand-logo" loading="lazy" decoding="async" /></div>
+        <div class="brand-logo-item"><img src="images/brands/maybach.png" alt="Maybach" class="brand-logo" loading="lazy" decoding="async" /></div>
         <!-- duplicate set for seamless infinite loop -->
-        <div class="brand-logo-item" aria-hidden="true"><img src="images/brands/ferrari.png" alt="" class="brand-logo" /></div>
-        <div class="brand-logo-item" aria-hidden="true"><img src="images/brands/lamborghini.png" alt="" class="brand-logo" /></div>
-        <div class="brand-logo-item" aria-hidden="true"><img src="images/brands/porsche.png" alt="" class="brand-logo" /></div>
-        <div class="brand-logo-item" aria-hidden="true"><img src="images/brands/rolls-royce.png" alt="" class="brand-logo" /></div>
-        <div class="brand-logo-item" aria-hidden="true"><img src="images/brands/mercedes-benz.png" alt="" class="brand-logo brand-logo--invert" /></div>
-        <div class="brand-logo-item" aria-hidden="true"><img src="images/brands/amg.png" alt="" class="brand-logo brand-logo--invert" /></div>
-        <div class="brand-logo-item" aria-hidden="true"><img src="images/brands/bmw.png" alt="" class="brand-logo" /></div>
-        <div class="brand-logo-item" aria-hidden="true"><img src="images/brands/audi.png" alt="" class="brand-logo" /></div>
-        <div class="brand-logo-item" aria-hidden="true"><img src="images/brands/cadillac.png" alt="" class="brand-logo" /></div>
-        <div class="brand-logo-item" aria-hidden="true"><img src="images/brands/maybach.png" alt="" class="brand-logo" /></div>
+        <div class="brand-logo-item" aria-hidden="true"><img src="images/brands/ferrari.png" alt="" class="brand-logo" loading="lazy" decoding="async" /></div>
+        <div class="brand-logo-item" aria-hidden="true"><img src="images/brands/lamborghini.png" alt="" class="brand-logo" loading="lazy" decoding="async" /></div>
+        <div class="brand-logo-item" aria-hidden="true"><img src="images/brands/porsche.png" alt="" class="brand-logo" loading="lazy" decoding="async" /></div>
+        <div class="brand-logo-item" aria-hidden="true"><img src="images/brands/rolls-royce.png" alt="" class="brand-logo" loading="lazy" decoding="async" /></div>
+        <div class="brand-logo-item" aria-hidden="true"><img src="images/brands/mercedes-benz.png" alt="" class="brand-logo brand-logo--invert" loading="lazy" decoding="async" /></div>
+        <div class="brand-logo-item" aria-hidden="true"><img src="images/brands/amg.png" alt="" class="brand-logo brand-logo--invert" loading="lazy" decoding="async" /></div>
+        <div class="brand-logo-item" aria-hidden="true"><img src="images/brands/bmw.png" alt="" class="brand-logo" loading="lazy" decoding="async" /></div>
+        <div class="brand-logo-item" aria-hidden="true"><img src="images/brands/audi.png" alt="" class="brand-logo" loading="lazy" decoding="async" /></div>
+        <div class="brand-logo-item" aria-hidden="true"><img src="images/brands/cadillac.png" alt="" class="brand-logo" loading="lazy" decoding="async" /></div>
+        <div class="brand-logo-item" aria-hidden="true"><img src="images/brands/maybach.png" alt="" class="brand-logo" loading="lazy" decoding="async" /></div>
       </div>
     </div>
   </section>
