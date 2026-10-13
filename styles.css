@@ -2191,9 +2191,9 @@ body.theme-experiences {
 }
 body.theme-experiences .hero-gradient {
   background:
-    radial-gradient(ellipse at 25% 0%, rgba(232,118,60,0.24) 0%, transparent 55%),
-    radial-gradient(ellipse at 80% 90%, rgba(155,64,175,0.16) 0%, transparent 55%),
-    linear-gradient(165deg, #201107 0%, #180d07 60%, #0d0705 100%);
+    linear-gradient(180deg, rgba(24,13,7,0.68) 0%, rgba(24,13,7,0.5) 40%, rgba(24,13,7,0.92) 100%),
+    radial-gradient(ellipse at 25% 0%, rgba(232,118,60,0.2) 0%, transparent 55%),
+    url('images/hero-experiences.jpg') center 50% / cover no-repeat;
 }
 body.theme-experiences .hero-badge,
 body.theme-experiences .section-tag,
@@ -2203,6 +2203,69 @@ body.theme-experiences .pricing-popular-tag,
 body.theme-experiences .car-popular-badge { background: var(--brand-accent); color: var(--black); }
 body.theme-experiences .car-available.limited { background: var(--brand-accent-dim); border-color: rgba(232,118,60,0.3); color: var(--brand-accent-light); }
 body.theme-experiences .author-avatar { background: linear-gradient(135deg, #B5541F, var(--brand-accent-light)); }
+
+/* Experiences: centered hero */
+body.theme-experiences .hero-content { text-align: center; min-width: 0; }
+body.theme-experiences .hero-subtitle { max-width: 600px; margin-left: auto; margin-right: auto; }
+body.theme-experiences .hero-platforms,
+body.theme-experiences .hero-content .cta-actions { justify-content: center; }
+
+/* Experiences: "Everything, Handled" grid */
+.xp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.xp-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 26px; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; }
+.xp-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: rgba(232,118,60,0.35); }
+.xp-icon { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 14px; background: rgba(232,118,60,0.1); font-size: 1.6rem; margin-bottom: 18px; }
+.xp-card h3 { font-size: 1.08rem; font-weight: 700; letter-spacing: -0.02em; color: var(--black); margin-bottom: 8px; }
+.xp-card p { font-size: 0.9rem; line-height: 1.7; color: var(--gray-500); }
+.xp-card a { color: #B5541F; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Experiences: partner spotlights */
+.xp-partners { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.xp-partner { position: relative; display: flex; flex-direction: column; padding: 40px 36px 34px; border-radius: var(--radius-lg); background: linear-gradient(160deg, var(--dark-card) 0%, var(--dark-bg-2) 100%); border: 1px solid rgba(232,118,60,0.18); overflow: hidden; }
+.xp-partner::before { content: ''; position: absolute; top: -40%; right: -30%; width: 70%; height: 90%; background: radial-gradient(circle, rgba(232,118,60,0.16) 0%, transparent 70%); pointer-events: none; }
+.xp-partner-kicker { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brand-accent-light); }
+.xp-partner-name { font-family: var(--font-serif); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700; color: var(--white); margin: 10px 0 16px; letter-spacing: 0.01em; }
+.xp-partner p { color: rgba(255,255,255,0.68); font-size: 0.95rem; line-height: 1.75; margin-bottom: 22px; }
+.xp-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0 0 26px; }
+.xp-chips li { padding: 6px 13px; border-radius: 999px; font-size: 0.76rem; font-weight: 600; color: var(--white); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); }
+.xp-partner-stat { margin-top: auto; padding-top: 18px; border-top: 1px solid var(--dark-border); font-size: 0.8rem; font-weight: 600; color: var(--brand-accent-light); }
+
+/* Experiences: sample itineraries */
+.xp-itin-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.xp-itin .car-card-body { padding: 26px 26px 24px; display: flex; flex-direction: column; height: 100%; }
+.xp-itin .car-type-badge { align-self: flex-start; margin-bottom: 10px; }
+.xp-itin .car-name { font-size: 1.3rem; margin-bottom: 16px; }
+.xp-itin .btn-book { margin-top: auto; }
+body.theme-experiences .car-card.featured { border-color: rgba(232,118,60,0.35); box-shadow: 0 0 0 1px rgba(232,118,60,0.12); }
+body.theme-experiences .btn-book:hover { background: var(--brand-accent); border-color: var(--brand-accent); }
+.xp-timeline { list-style: none; padding: 0; margin: 0 0 22px; }
+.xp-timeline li { position: relative; padding: 0 0 14px 26px; font-size: 0.9rem; line-height: 1.55; color: var(--gray-600); }
+.xp-timeline li::before { content: ''; position: absolute; left: 4px; top: 6px; width: 9px; height: 9px; border-radius: 50%; background: var(--brand-accent); box-shadow: 0 0 0 3px rgba(232,118,60,0.16); }
+.xp-timeline li:not(:last-child)::after { content: ''; position: absolute; left: 8px; top: 18px; bottom: 2px; width: 1px; background: rgba(232,118,60,0.3); }
+.xp-timeline li:last-child { padding-bottom: 0; }
+
+/* Experiences: custom pricing callout */
+.xp-pricing { max-width: 820px; margin: 24px auto 0; padding: 32px 36px; text-align: center; border-radius: var(--radius-lg); border: 1px solid rgba(232,118,60,0.25); background: var(--brand-accent-dim); }
+.xp-pricing h3 { font-family: var(--font-serif); font-size: 1.5rem; color: var(--white); margin-bottom: 10px; }
+.xp-pricing p { color: rgba(255,255,255,0.68); font-size: 0.95rem; line-height: 1.75; max-width: 620px; margin: 0 auto; }
+
+/* Experiences: itinerary form extras */
+.xp-picks { border: 0; padding: 0; margin: 0; min-width: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; }
+.xp-picks legend { grid-column: 1 / -1; font-size: 0.72rem; font-weight: 700; color: var(--gray-500); letter-spacing: 0.03em; margin-bottom: 8px; padding: 0; }
+.xp-picks label { display: flex; align-items: center; gap: 8px; font-size: 0.84rem; color: var(--dark-text-2); cursor: pointer; }
+.xp-picks input { accent-color: var(--brand-accent); flex-shrink: 0; }
+.xp-notes { padding: 10px 13px; background: var(--off-white); border: 1.5px solid var(--border); border-radius: var(--radius-sm); color: var(--black); font: inherit; font-size: 0.88rem; outline: none; resize: vertical; transition: border-color 0.2s; }
+.xp-notes:focus { border-color: var(--brand-accent); background: var(--white); }
+
+@media (max-width: 960px) {
+  .xp-grid { grid-template-columns: 1fr 1fr; }
+  .xp-partners, .xp-itin-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .xp-grid, .xp-picks { grid-template-columns: 1fr; }
+  .xp-partner { padding: 32px 24px 28px; }
+  .xp-pricing { padding: 26px 22px; }
+}
 
 /* Generic inventory placeholder icon (used in place of photography until real images are provided) */
 .inv-icon {

@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Echelon Experiences | Curated Adventures</title>
+  <title>Echelon Experiences | Custom VIP Itineraries in Boston</title>
+  <meta name="description" content="Custom VIP itineraries in Boston and New England — exotic car or chauffeured pickups, private jets, partner stays, Celtics, Bruins and Patriots suites, guest list, VIP tables and dinner, all planned in one place." />
   <link rel="stylesheet" href="styles.css" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="1024x1024" href="/app-icon-1024.png" />
@@ -12,7 +13,7 @@
   <meta property="og:type"        content="website" />
   <meta property="og:site_name"   content="Echelon Rental Group" />
   <meta property="og:title"       content="Echelon Experiences" />
-  <meta property="og:description" content="Curated adventures pairing exotic cars, boats, and jets with guided itineraries — coastal drives, sunset cruises, and milestone celebrations." />
+  <meta property="og:description" content="One itinerary, everything handled — exotic car or chauffeured pickups, private jets, partner stays, courtside seats and suites, VIP tables and dinner across Boston." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -34,10 +35,10 @@
         <span class="logo-sub">EXPERIENCES</span>
       </a>
       <ul class="nav-links">
-        <li><a href="#inventory">Packages</a></li>
-        <li><a href="#schedule">Plan Yours</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#included" data-i18n="navIncluded">What's Included</a></li>
+        <li><a href="#partners" data-i18n="navPartners">Partners</a></li>
+        <li><a href="#itineraries" data-i18n="navItineraries">Itineraries</a></li>
+        <li><a href="#schedule" data-i18n="navPlan">Plan Yours</a></li>
       </ul>
       <div class="nav-actions">
         <a href="tel:+15084442276" class="nav-social" aria-label="Call Echelon">📞</a>
@@ -66,7 +67,7 @@
             </a>
             <a class="brand-option active" href="experiences.html">
               <span class="brand-option-name">Experiences</span>
-              <span class="brand-option-desc">Curated adventures</span>
+              <span class="brand-option-desc">Custom VIP itineraries</span>
             </a>
           </div>
         </div>
@@ -82,18 +83,18 @@
             <button class="lang-option" data-lang="pt">🇧🇷 Português</button>
           </div>
         </div>
-        <a href="#schedule" class="btn btn-primary">Plan My Experience</a>
+        <a href="#schedule" class="btn btn-primary" data-i18n="navBtn">Build My Itinerary</a>
       </div>
       <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
     </div>
     <div class="mobile-menu" id="mobileMenu">
-      <a href="#inventory">Packages</a>
-      <a href="#schedule">Plan Yours</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#reviews">Reviews</a>
-      <a href="#schedule" class="btn btn-primary">Plan My Experience</a>
+      <a href="#included" data-i18n="navIncluded">What's Included</a>
+      <a href="#partners" data-i18n="navPartners">Partners</a>
+      <a href="#itineraries" data-i18n="navItineraries">Itineraries</a>
+      <a href="#schedule" data-i18n="navPlan">Plan Yours</a>
+      <a href="#schedule" class="btn btn-primary" data-i18n="navBtn">Build My Itinerary</a>
       <div class="mobile-brand">
         <span class="mobile-brand-label">Echelon Brands</span>
         <a class="mobile-brand-option" href="index.html">Economic Rentals</a>
@@ -118,317 +119,270 @@
       <div class="hero-content">
         <div class="hero-badge">
           <span class="badge-dot"></span>
-          Curated Adventures · Guided or Self-Drive
+          <span data-i18n="heroBadge">Custom VIP Itineraries · Boston &amp; New England</span>
         </div>
-        <h1 class="hero-title">
-          Don't Just Rent It.<br /><span class="accent">Experience It.</span>
+        <h1 class="hero-title" data-i18n="heroTitle">
+          From Wheels Up<br /><span class="accent">to Last Call.</span>
         </h1>
-        <p class="hero-subtitle">
-          <strong>Echelon Experiences</strong> pairs our exotic cars, boats, and jets with guided
-          itineraries — coastal drives, island-hopping days, and once-in-a-lifetime celebrations,
-          planned for you.
+        <p class="hero-subtitle" data-i18n="heroSubtitle">
+          <strong>Echelon Experiences</strong> brings everything we do into one seamless itinerary —
+          your pickup, your ride, your stay, the best seats in the house, VIP tables and dinner
+          reservations. One call, and every detail is handled.
         </p>
         <div class="hero-platforms">
-          <span class="platform-tag everyday">Fully Planned</span>
-          <span class="platform-tag everyday">Photography Add-On</span>
-          <span class="platform-tag everyday">Custom Itineraries</span>
+          <span class="platform-tag everyday" data-i18n="tag1">Custom Itineraries</span>
+          <span class="platform-tag everyday" data-i18n="tag2">Exotic or Chauffeured</span>
+          <span class="platform-tag everyday" data-i18n="tag3">Suites &amp; VIP Tables</span>
         </div>
         <div class="cta-actions">
-          <a href="#inventory" class="btn btn-primary btn-lg">View Packages</a>
-          <a href="#schedule" class="btn btn-outline-light btn-lg">Plan My Experience</a>
+          <a href="#schedule" class="btn btn-primary btn-lg" data-i18n="ctaPlan">Build My Itinerary</a>
+          <a href="#included" class="btn btn-outline-light btn-lg" data-i18n="ctaIncluded">See What's Included</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ───────────── INVENTORY / PACKAGES ───────────── -->
-  <section class="fleet" id="inventory">
+  <!-- ───────────── WHAT'S INCLUDED ───────────── -->
+  <section class="fleet" id="included">
     <div class="section-inner">
       <div class="section-header">
-        <div class="section-tag">Signature Packages</div>
-        <h2>Available Right Now</h2>
-        <p>Every experience is planned end-to-end — the vehicle, the route, and the reservations are handled for you.</p>
+        <div class="section-tag" data-i18n="incTag">One Itinerary</div>
+        <h2 data-i18n="incH2">Everything, Handled</h2>
+        <p data-i18n="incDesc">Pick the pieces you want and we'll put them together — door to door, start to finish, with one planner and one point of contact.</p>
       </div>
 
-      <div class="car-grid inventory-grid">
-        <div class="car-card inventory-card">
-          <div class="car-card-img" style="background: linear-gradient(135deg, #241407 0%, #3a2410 50%, #180d07 100%); justify-content:center;">
-            <div class="car-available">Available</div>
-            <span class="inv-icon">🏎️</span>
-          </div>
-          <div class="car-card-body">
-            <div class="car-top">
-              <div>
-                <span class="car-type-badge">Half-Day</span>
-                <h3 class="car-name">Coastal Supercar Drive</h3>
-                <p class="car-year">Guided Drive · Lunch Stop Included · Up to 2 Guests/Car</p>
-              </div>
-              <div class="car-price-box">
-                <span class="car-price">$1,800</span>
-                <span class="car-price-unit">/experience</span>
-              </div>
-            </div>
-            <div class="car-specs">
-              <span>🏎️ Rotating Exotic</span>
-              <span>🍽️ Lunch Included</span>
-            </div>
-            <button class="btn btn-book" onclick="selectForSchedule('Coastal Supercar Drive')">Plan This Experience</button>
-          </div>
-        </div>
-
-        <div class="car-card inventory-card featured">
-          <div class="car-card-img" style="background: linear-gradient(135deg, #2a1608 0%, #3d270f 50%, #180d07 100%); justify-content:center;">
-            <div class="car-popular-badge">Most Requested</div>
-            <span class="inv-icon">🛥️</span>
-          </div>
-          <div class="car-card-body">
-            <div class="car-top">
-              <div>
-                <span class="car-type-badge">Evening</span>
-                <h3 class="car-name">Sunset Yacht &amp; Dinner</h3>
-                <p class="car-year">4-Hour Private Cruise · Catered Dinner · Up to 10 Guests</p>
-              </div>
-              <div class="car-price-box">
-                <span class="car-price">$3,200</span>
-                <span class="car-price-unit">/experience</span>
-              </div>
-            </div>
-            <div class="car-specs">
-              <span>🥂 Catered Dinner</span>
-              <span>🌅 Sunset Timing</span>
-            </div>
-            <button class="btn btn-book" onclick="selectForSchedule('Sunset Yacht &amp; Dinner')">Plan This Experience</button>
-          </div>
-        </div>
-
-        <div class="car-card inventory-card">
-          <div class="car-card-img" style="background: linear-gradient(135deg, #211208 0%, #331e0d 50%, #180d07 100%); justify-content:center;">
-            <div class="car-available">Available</div>
-            <span class="inv-icon">🚁</span>
-          </div>
-          <div class="car-card-body">
-            <div class="car-top">
-              <div>
-                <span class="car-type-badge">Evening</span>
-                <h3 class="car-name">Skyline Helicopter + Dinner</h3>
-                <p class="car-year">30-Min Scenic Flight · Reserved Dinner · Up to 4 Guests</p>
-              </div>
-              <div class="car-price-box">
-                <span class="car-price">$2,100</span>
-                <span class="car-price-unit">/experience</span>
-              </div>
-            </div>
-            <div class="car-specs">
-              <span>🚁 Partner Aircraft</span>
-              <span>🍽️ Reserved Table</span>
-            </div>
-            <button class="btn btn-book" onclick="selectForSchedule('Skyline Helicopter + Dinner')">Plan This Experience</button>
-          </div>
-        </div>
-
-        <div class="car-card inventory-card">
-          <div class="car-card-img" style="background: linear-gradient(135deg, #1e1006 0%, #2e1c0c 50%, #180d07 100%); justify-content:center;">
-            <div class="car-available limited">Limited</div>
-            <span class="inv-icon">🥂</span>
-          </div>
-          <div class="car-card-body">
-            <div class="car-top">
-              <div>
-                <span class="car-type-badge">Multi-Day</span>
-                <h3 class="car-name">Milestone Celebration Package</h3>
-                <p class="car-year">Exotic Car + Charter + Photography · Fully Customizable</p>
-              </div>
-              <div class="car-price-box">
-                <span class="car-price">$5,000</span>
-                <span class="car-price-unit">/from</span>
-              </div>
-            </div>
-            <div class="car-specs">
-              <span>📸 Photography</span>
-              <span>🎉 Fully Custom</span>
-            </div>
-            <button class="btn btn-book" onclick="selectForSchedule('Milestone Celebration Package')">Plan This Experience</button>
-          </div>
-        </div>
+      <div class="xp-grid">
+        <article class="xp-card">
+          <span class="xp-icon" aria-hidden="true">🛬</span>
+          <h3 data-i18n="inc1H">Arrival &amp; Pickup</h3>
+          <p data-i18n="inc1P">We meet you wherever you land — the private jet terminal, Logan Airport, your hotel or your front door — and get you where you're going.</p>
+        </article>
+        <article class="xp-card">
+          <span class="xp-icon" aria-hidden="true">🏎️</span>
+          <h3 data-i18n="inc2H">Exotic Car or Chauffeur</h3>
+          <p data-i18n="inc2P">Take the wheel of one of our exotics, or sit back while a professional chauffeur handles every drop-off for the night.</p>
+        </article>
+        <article class="xp-card">
+          <span class="xp-icon" aria-hidden="true">🏡</span>
+          <h3 data-i18n="inc3H">Where You Stay</h3>
+          <p data-i18n="inc3P">We book you into hand-picked partner Airbnbs and luxury stays, so the whole trip is taken care of — not just the night out.</p>
+        </article>
+        <article class="xp-card">
+          <span class="xp-icon" aria-hidden="true">🏟️</span>
+          <h3 data-i18n="inc4H">Games &amp; Concerts</h3>
+          <p data-i18n="inc4P">Premium seats and private suites at TD Garden, Gillette Stadium and more — Celtics, Bruins, Patriots and the biggest concerts.</p>
+        </article>
+        <article class="xp-card">
+          <span class="xp-icon" aria-hidden="true">🍾</span>
+          <h3 data-i18n="inc5H">Nightlife &amp; Dining</h3>
+          <p data-i18n="inc5P">Guest list at Boston's biggest clubs, VIP table service, the biggest shows and events, and dinner at some of the city's best restaurants.</p>
+        </article>
+        <article class="xp-card">
+          <span class="xp-icon" aria-hidden="true">✈️</span>
+          <h3 data-i18n="inc6H">Jets &amp; Yachts</h3>
+          <p data-i18n="inc6P">Add a <a href="jets.html">private jet</a> or a <a href="boats.html">yacht charter</a> from the Echelon family to take the trip even further.</p>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ───────────── SCHEDULING ───────────── -->
+  <!-- ───────────── PARTNERS ───────────── -->
+  <section class="dark-section" id="partners">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-tag" data-i18n="partTag">Our Partners</div>
+        <h2 data-i18n="partH2">The Access Behind the Experience</h2>
+        <p data-i18n="partDesc">We've teamed up with New England's best in sports and nightlife hospitality, so you get in where others can't.</p>
+      </div>
+
+      <div class="xp-partners">
+        <article class="xp-partner">
+          <span class="xp-partner-kicker" data-i18n="p1Kicker">Games &amp; Concerts</span>
+          <h3 class="xp-partner-name">Seats to Suites</h3>
+          <p data-i18n="p1P">Exclusive seats and suites at TD Garden, Gillette Stadium and more. With over 20 years in VIP event hospitality, Seats to Suites puts you in the best spot in the building for the Celtics, Bruins, Patriots and the biggest concerts.</p>
+          <ul class="xp-chips">
+            <li>Celtics</li><li>Bruins</li><li>Patriots</li><li data-i18n="chipConcerts">Concerts</li>
+          </ul>
+          <span class="xp-partner-stat" data-i18n="p1Stat">20+ years in VIP event hospitality</span>
+        </article>
+        <article class="xp-partner">
+          <span class="xp-partner-kicker" data-i18n="p2Kicker">Nightlife &amp; Dining</span>
+          <h3 class="xp-partner-name">Big Night</h3>
+          <p data-i18n="p2P">New England's premier hospitality, nightlife and entertainment company. Through Big Night, we get you on the guest list at Boston's biggest clubs, set you up with VIP table service, and book dinner at some of Boston's best restaurants.</p>
+          <ul class="xp-chips">
+            <li data-i18n="chipGuest">Guest List</li><li data-i18n="chipTables">VIP Tables</li><li data-i18n="chipShows">Shows &amp; Events</li><li data-i18n="chipDinner">Dinner</li>
+          </ul>
+          <span class="xp-partner-stat" data-i18n="p2Stat">New England's premier nightlife company</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── SAMPLE ITINERARIES ───────────── -->
+  <section class="xp-itins" id="itineraries">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-tag" data-i18n="itinTag">Sample Itineraries</div>
+        <h2 data-i18n="itinH2">A Few Ways to Do It</h2>
+        <p data-i18n="itinDesc">Every itinerary is built from scratch around you. Here are a few favorites to get the ideas going.</p>
+      </div>
+
+      <div class="xp-itin-grid">
+        <article class="car-card inventory-card xp-itin">
+          <div class="car-card-body">
+            <span class="car-type-badge" data-i18n="it1Type">Game Night</span>
+            <h3 class="car-name" data-i18n="it1Name">Courtside &amp; Suites</h3>
+            <ol class="xp-timeline">
+              <li data-i18n="it1a">Chauffeured pickup from your door or hotel</li>
+              <li data-i18n="it1b">Pre-game dinner at a top Boston restaurant</li>
+              <li data-i18n="it1c">Seats or a private suite for the Celtics or Bruins at TD Garden</li>
+              <li data-i18n="it1d">Ride home — or on to the after-party</li>
+            </ol>
+            <button class="btn btn-book" data-i18n="planThis" onclick="selectForSchedule('Game Night')">Plan Something Like This</button>
+          </div>
+        </article>
+
+        <article class="car-card inventory-card xp-itin featured">
+          <div class="car-card-body">
+            <span class="car-type-badge" data-i18n="it2Type">Night Out</span>
+            <h3 class="car-name" data-i18n="it2Name">The Big Night</h3>
+            <ol class="xp-timeline">
+              <li data-i18n="it2a">Arrive in one of our exotics — or let a chauffeur drive</li>
+              <li data-i18n="it2b">Dinner reservations at one of Boston's best restaurants</li>
+              <li data-i18n="it2c">Guest list and VIP table service at the city's biggest club</li>
+              <li data-i18n="it2d">Safe ride back, whenever the night ends</li>
+            </ol>
+            <button class="btn btn-book" data-i18n="planThis" onclick="selectForSchedule('Night Out')">Plan Something Like This</button>
+          </div>
+        </article>
+
+        <article class="car-card inventory-card xp-itin">
+          <div class="car-card-body">
+            <span class="car-type-badge" data-i18n="it3Type">Weekend</span>
+            <h3 class="car-name" data-i18n="it3Name">Fly-In Game Weekend</h3>
+            <ol class="xp-timeline">
+              <li data-i18n="it3a">Pickup at the private jet terminal or Logan</li>
+              <li data-i18n="it3b">Check in to a hand-picked partner Airbnb</li>
+              <li data-i18n="it3c">A suite at Gillette Stadium for the Patriots</li>
+              <li data-i18n="it3d">Dinner, nightlife and every ride in between</li>
+            </ol>
+            <button class="btn btn-book" data-i18n="planThis" onclick="selectForSchedule('Weekend Trip')">Plan Something Like This</button>
+          </div>
+        </article>
+
+        <article class="car-card inventory-card xp-itin">
+          <div class="car-card-body">
+            <span class="car-type-badge" data-i18n="it4Type">Concert Night</span>
+            <h3 class="car-name" data-i18n="it4Name">Front Row to After-Party</h3>
+            <ol class="xp-timeline">
+              <li data-i18n="it4a">Pull up to the show in an exotic</li>
+              <li data-i18n="it4b">Premium seats or a suite for the concert</li>
+              <li data-i18n="it4c">VIP table at the after-party</li>
+              <li data-i18n="it4d">Chauffeur on call until you're home</li>
+            </ol>
+            <button class="btn btn-book" data-i18n="planThis" onclick="selectForSchedule('Concert Night')">Plan Something Like This</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── HOW IT WORKS + PRICING ───────────── -->
+  <section class="dark-section" id="how">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-tag" data-i18n="howTag">How It Works</div>
+        <h2 data-i18n="howH2">Built Around You</h2>
+        <p data-i18n="howDesc">For VIP clients, Echelon members, corporate groups and anyone with something worth celebrating.</p>
+      </div>
+      <ol class="step-list">
+        <li><div><h3 data-i18n="s1H">Tell us the occasion</h3><p data-i18n="s1P">The date, the group, and what you have in mind — a game, a big night out, a full weekend, or all of it.</p></div></li>
+        <li><div><h3 data-i18n="s2H">We build your itinerary</h3><p data-i18n="s2P">Your planner puts together the rides, the stay, the seats, the tables and the reservations, and sends you a custom quote.</p></div></li>
+        <li><div><h3 data-i18n="s3H">You show up</h3><p data-i18n="s3P">Once you confirm, we handle every booking and stay on call the whole time. All you have to do is enjoy it.</p></div></li>
+      </ol>
+      <div class="xp-pricing">
+        <h3 data-i18n="priceH">Priced to Your Plan</h3>
+        <p data-i18n="priceP">Because every itinerary is custom, there's no set price list. Tell us what you want and your planner will send a quote built around your date, your group and the experiences you choose.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── PLAN YOURS ───────────── -->
   <section class="gig-section dark-section" id="schedule">
     <div class="section-inner">
       <div class="section-header">
-        <div class="section-tag">Plan</div>
-        <h2>Plan Your Experience</h2>
-        <p>Tell us what you're celebrating and when — an experience planner will build your itinerary within the hour.</p>
+        <div class="section-tag" data-i18n="schedTag">Plan</div>
+        <h2 data-i18n="schedH2">Build Your Itinerary</h2>
+        <p data-i18n="schedDesc">Tell us what you're planning and when — an experience planner will reach out within the hour.</p>
       </div>
 
-      <form class="modal-form" style="max-width:560px;margin:0 auto;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:var(--radius-lg);padding:32px;" onsubmit="submitInquiry(event)">
+      <form class="modal-form" style="max-width:600px;margin:0 auto;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:var(--radius-lg);padding:32px;" onsubmit="submitInquiry(event)">
         <div class="form-row">
           <div class="form-group">
-            <label>First Name</label>
+            <label data-i18n="fFirst">First Name</label>
             <input type="text" name="firstName" placeholder="John" required />
           </div>
           <div class="form-group">
-            <label>Last Name</label>
+            <label data-i18n="fLast">Last Name</label>
             <input type="text" name="lastName" placeholder="Smith" required />
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label>Phone Number</label>
+            <label data-i18n="fPhone">Phone Number</label>
             <input type="tel" name="phone" placeholder="(555) 000-0000" required />
           </div>
           <div class="form-group">
-            <label>Email Address</label>
+            <label data-i18n="fEmail">Email Address</label>
             <input type="email" name="email" placeholder="you@example.com" required />
           </div>
         </div>
         <div class="form-group">
-          <label>Experience</label>
+          <label data-i18n="fOccasion">What are you planning?</label>
           <select id="interestField" name="experienceType">
-            <option>Coastal Supercar Drive</option>
-            <option>Sunset Yacht &amp; Dinner</option>
-            <option>Skyline Helicopter + Dinner</option>
-            <option>Milestone Celebration Package</option>
-            <option>Not Sure Yet</option>
+            <option value="Game Night" data-i18n="optGame">Game Night</option>
+            <option value="Night Out" data-i18n="optNight">Night Out</option>
+            <option value="Concert Night" data-i18n="optConcert">Concert Night</option>
+            <option value="Weekend Trip" data-i18n="optWeekend">Weekend Trip</option>
+            <option value="Celebration" data-i18n="optCelebration">Celebration</option>
+            <option value="Corporate / Client Event" data-i18n="optCorporate">Corporate / Client Event</option>
+            <option value="Not Sure Yet" data-i18n="optNotSure">Not Sure Yet</option>
           </select>
         </div>
+        <fieldset class="form-group xp-picks">
+          <legend data-i18n="fPicks">What should we include?</legend>
+          <label><input type="checkbox" name="include" value="Pickup / Drop-off" /> <span data-i18n="pk1">Pickup &amp; drop-off</span></label>
+          <label><input type="checkbox" name="include" value="Exotic Car" /> <span data-i18n="pk2">Exotic car</span></label>
+          <label><input type="checkbox" name="include" value="Chauffeur" /> <span data-i18n="pk3">Chauffeur</span></label>
+          <label><input type="checkbox" name="include" value="Stay" /> <span data-i18n="pk4">Place to stay</span></label>
+          <label><input type="checkbox" name="include" value="Game or Concert" /> <span data-i18n="pk5">Game or concert seats</span></label>
+          <label><input type="checkbox" name="include" value="Guest List / VIP Table" /> <span data-i18n="pk6">Guest list / VIP table</span></label>
+          <label><input type="checkbox" name="include" value="Dinner" /> <span data-i18n="pk7">Dinner reservations</span></label>
+          <label><input type="checkbox" name="include" value="Jet or Yacht" /> <span data-i18n="pk8">Private jet or yacht</span></label>
+        </fieldset>
         <div class="form-row">
           <div class="form-group">
-            <label>Date</label>
+            <label data-i18n="fDate">Date</label>
             <input type="date" name="date" required />
           </div>
           <div class="form-group">
-            <label>Party Size</label>
-            <input type="number" name="partySize" min="1" max="12" placeholder="e.g. 2" required />
+            <label data-i18n="fParty">Group Size</label>
+            <input type="number" name="partySize" min="1" max="200" placeholder="e.g. 4" required />
           </div>
+        </div>
+        <div class="form-group">
+          <label data-i18n="fNotes">Anything else we should know?</label>
+          <textarea name="notes" rows="3" class="xp-notes" data-i18n-placeholder="fNotesPh" placeholder="Arriving by private jet Friday, want Celtics tickets and a table after…"></textarea>
         </div>
         <div class="form-group checkbox-group">
           <label class="checkbox-label" style="color:var(--dark-text-2);">
             <input type="checkbox" required />
-            I understand pricing and availability are confirmed by an experience planner before booking.
+            <span data-i18n="fCheck">I understand every itinerary is custom, and pricing and availability are confirmed by an experience planner before booking.</span>
           </label>
         </div>
-        <button type="submit" class="btn btn-primary btn-full">Request This Experience</button>
-        <p class="modal-note" style="color:var(--dark-text-3);">An experience planner will call within 1 hour to confirm.</p>
+        <button type="submit" class="btn btn-primary btn-full" data-i18n="fSubmit">Request My Itinerary</button>
+        <p class="modal-note" style="color:var(--dark-text-3);" data-i18n="fNote">An experience planner will reach out within 1 hour.</p>
       </form>
-    </div>
-  </section>
-
-  <!-- ───────────── PRICING ───────────── -->
-  <section class="pricing" id="pricing">
-    <div class="section-inner">
-      <div class="section-header">
-        <div class="section-tag">Package Pricing</div>
-        <h2>Pick Your Tier</h2>
-        <p>Every tier includes full planning and coordination — you show up, we handle the rest.</p>
-      </div>
-
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <div class="pricing-card-header">
-            <h3>Essentials</h3>
-            <p>One signature experience</p>
-          </div>
-          <div class="pricing-amount">
-            <span class="p-from">from</span>
-            <span class="p-price">$1,800</span>
-            <span class="p-unit">/experience</span>
-          </div>
-          <ul class="pricing-features">
-            <li>✓ One signature experience</li>
-            <li>✓ Standard scheduling window</li>
-            <li>✓ Dedicated day-of coordinator</li>
-            <li>✓ Free rescheduling (72hr notice)</li>
-          </ul>
-          <a href="#schedule" class="btn btn-outline">Get Started</a>
-        </div>
-
-        <div class="pricing-card featured">
-          <div class="pricing-popular-tag">Most Popular</div>
-          <div class="pricing-card-header">
-            <h3>Signature</h3>
-            <p>Priority dates &amp; photography</p>
-          </div>
-          <div class="pricing-amount">
-            <span class="p-from">from</span>
-            <span class="p-price">$3,200</span>
-            <span class="p-unit">/experience</span>
-          </div>
-          <ul class="pricing-features">
-            <li>✓ Priority date selection</li>
-            <li>✓ Complimentary photography add-on</li>
-            <li>✓ Custom itinerary tweaks</li>
-            <li>✓ Dedicated experience planner</li>
-          </ul>
-          <a href="#schedule" class="btn btn-primary">Get Started</a>
-        </div>
-
-        <div class="pricing-card">
-          <div class="pricing-card-header">
-            <h3>Bespoke</h3>
-            <p>Fully custom, multi-day</p>
-          </div>
-          <div class="pricing-amount">
-            <span class="p-from">custom</span>
-            <span class="p-price">Pricing</span>
-          </div>
-          <ul class="pricing-features">
-            <li>✓ Fully custom multi-day itinerary</li>
-            <li>✓ Combines cars, boats &amp; jets</li>
-            <li>✓ Dedicated experience planner</li>
-            <li>✓ On-site coordination team</li>
-          </ul>
-          <a href="#schedule" class="btn btn-outline">Get Started</a>
-        </div>
-      </div>
-      <p class="pricing-note">All prices shown are starting rates. Final price depends on package selected and customizations.</p>
-    </div>
-  </section>
-
-  <!-- ───────────── REVIEWS ───────────── -->
-  <section class="testimonials" id="reviews">
-    <div class="section-inner">
-      <div class="section-header">
-        <div class="section-tag">Our Clients</div>
-        <h2>What Guests Say</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p>"Booked the Coastal Supercar Drive for our anniversary — the planning, the car, the lunch spot, all handled. Best gift I've ever given my husband."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">NF</div>
-            <div>
-              <strong>Nicole F.</strong>
-              <span>Anniversary Gift</span>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p>"The Milestone Package for my son's graduation was seamless — Echelon coordinated everything so we just showed up and enjoyed it."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">RH</div>
-            <div>
-              <strong>Robert H.</strong>
-              <span>Graduation Celebration</span>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p>"Sunset Yacht &amp; Dinner exceeded expectations — the catering alone was restaurant-quality."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">AC</div>
-            <div>
-              <strong>Ana C.</strong>
-              <span>Sunset Yacht &amp; Dinner</span>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -440,33 +394,34 @@
           <span class="logo-main">ECHELON</span>
           <span class="logo-sub">EXPERIENCES</span>
         </a>
-        <p>Curated adventures pairing our exotic cars, boats, and jets with fully planned itineraries, part of the Echelon Rental Group family.</p>
+        <p data-i18n="footerBlurb">Custom VIP itineraries bringing together our cars, chauffeurs, jets and yachts with our partners at Seats to Suites and Big Night. Part of the Echelon Rental Group family.</p>
         <div class="footer-socials">
           <a href="https://www.instagram.com/echelonrentalgroup" target="_blank" rel="noopener" class="social-link social-instagram">@EchelonRentalGroup</a>
         </div>
       </div>
       <div class="footer-links">
-        <h4>Packages</h4>
-        <a href="#inventory">Coastal Drives</a>
-        <a href="#inventory">Celebrations</a>
-        <a href="#pricing">View Pricing</a>
+        <h4 data-i18n="footerExpH">Experiences</h4>
+        <a href="#included" data-i18n="navIncluded">What's Included</a>
+        <a href="#partners" data-i18n="navPartners">Partners</a>
+        <a href="#itineraries" data-i18n="navItineraries">Itineraries</a>
       </div>
       <div class="footer-links">
-        <h4>Echelon Brands</h4>
+        <h4 data-i18n="footerBrandsH">Echelon Brands</h4>
         <a href="index.html">Economic Rentals</a>
         <a href="exotics.html">Exotics</a>
+        <a href="chauffeur.html">Chauffeur</a>
         <a href="boats.html">Boat Charters</a>
         <a href="jets.html">Jet Charters</a>
       </div>
       <div class="footer-links">
-        <h4>Contact</h4>
+        <h4 data-i18n="footerContactH">Contact</h4>
         <a href="tel:+15084442276">508-444-2276</a>
         <a href="mailto:info@echelonrentalgroup.com">info@echelonrentalgroup.com</a>
-        <p class="footer-hours">Open 24 Hours, 7 Days a Week</p>
+        <p class="footer-hours" data-i18n="footerHours">Open 24 Hours, 7 Days a Week</p>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 Echelon Rental Group. All rights reserved.</p>
+      <p data-i18n="footerCopy">© 2026 Echelon Rental Group. All rights reserved.</p>
     </div>
   </footer>
 
@@ -474,8 +429,8 @@
   <div class="toast" id="toast">
     <span class="toast-icon">✓</span>
     <div>
-      <strong>Experience Requested!</strong>
-      <p>An experience planner will call within 1 hour.</p>
+      <strong data-i18n="toastTitle">Itinerary Requested!</strong>
+      <p data-i18n="toastBody">An experience planner will reach out within 1 hour.</p>
     </div>
   </div>
 
