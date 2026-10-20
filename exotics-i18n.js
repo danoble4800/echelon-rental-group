@@ -9,7 +9,7 @@ const exoticsI18n = {
   en: {
     navFleet: 'Collection', navChauffeur: 'Chauffeur', navHow: 'How It Works', navAbout: 'About', navFaq: 'FAQ', navBtn: 'Request Access',
     heroTitle: '<span class="kicker">Welcome to the</span>Upper<span class="accent">Echelon.</span>',
-    heroSubtitle: 'Echelon Exotics puts <strong>Lamborghini, Ferrari, Porsche, and Rolls-Royce</strong> within reach — hourly, daily, or for the weekend. White-glove delivery available anywhere in the region.',
+    heroSubtitle: "Whether it's a weekend in a Huracán, a wedding exit in a Cullinan, an airport run in a Maybach, or VIP access to Boston's best seats and tables, consider it handled — all arranged by your Echelon concierge.",
     tag1: 'Delivered to Your Door', tag2: 'Discretion Assured', tag3: 'Concierge on Call',
     ctaFleet: 'The Collection', ctaReserve: 'Request Access',
     invTag: 'Featured Collection', invH2: "The Cars Everyone's Asking For",
@@ -65,7 +65,7 @@ const exoticsI18n = {
   es: {
     navFleet: 'Colección', navChauffeur: 'Chofer', navHow: 'Cómo Funciona', navAbout: 'Nosotros', navFaq: 'FAQ', navBtn: 'Solicitar Acceso',
     heroTitle: '<span class="kicker">Bienvenido al</span>Más Alto<span class="accent">Echelon.</span>',
-    heroSubtitle: 'Echelon Exotics pone a tu alcance <strong>Lamborghini, Ferrari, Porsche y Rolls-Royce</strong> — por hora, por día o el fin de semana. Entrega de lujo disponible en toda la región.',
+    heroSubtitle: 'Ya sea un fin de semana en un Huracán, una salida de boda en un Cullinan, un traslado al aeropuerto en un Maybach o acceso VIP a los mejores asientos y mesas de Boston, considéralo resuelto — todo organizado por tu conserje de Echelon.',
     tag1: 'Entrega a Tu Puerta', tag2: 'Discreción Garantizada', tag3: 'Conserjería a Tu Disposición',
     ctaFleet: 'La Colección', ctaReserve: 'Solicitar Acceso',
     invTag: 'Colección Destacada', invH2: 'Los Autos Que Todos Piden',
@@ -121,7 +121,7 @@ const exoticsI18n = {
   pt: {
     navFleet: 'Coleção', navChauffeur: 'Motorista', navHow: 'Como Funciona', navAbout: 'Sobre', navFaq: 'FAQ', navBtn: 'Solicitar Acesso',
     heroTitle: '<span class="kicker">Bem-vindo ao</span>Mais Alto<span class="accent">Echelon.</span>',
-    heroSubtitle: 'A Echelon Exotics coloca ao seu alcance <strong>Lamborghini, Ferrari, Porsche e Rolls-Royce</strong> — por hora, por dia ou no fim de semana. Entrega de luxo disponível em toda a região.',
+    heroSubtitle: 'Seja um fim de semana em um Huracán, uma saída de casamento em um Cullinan, um transfer para o aeroporto em um Maybach ou acesso VIP aos melhores lugares e mesas de Boston, considere resolvido — tudo organizado pelo seu concierge Echelon.',
     tag1: 'Entrega na Sua Porta', tag2: 'Discrição Garantida', tag3: 'Concierge à Disposição',
     ctaFleet: 'A Coleção', ctaReserve: 'Solicitar Acesso',
     invTag: 'Coleção em Destaque', invH2: 'Os Carros Que Todos Pedem',
