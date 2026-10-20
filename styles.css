@@ -1133,6 +1133,21 @@ ul { list-style: none; }
 .faq-item[open] summary::after { transform: rotate(45deg); }
 .faq-answer { padding: 0 24px 22px; margin: 0; color: var(--dark-text-2); font-size: 0.9rem; line-height: 1.7; }
 
+/* Exotics "The Fine Print" — a quieter, compact FAQ that closes the page */
+.faq--fine-print .section-inner { padding-top: 64px; padding-bottom: 64px; }
+.faq--fine-print .section-header { margin-bottom: 28px; }
+.faq--fine-print .section-header h2 { font-size: clamp(1.25rem, 2.2vw, 1.5rem); font-weight: 600; letter-spacing: 0.02em; }
+.faq--fine-print .section-header p { font-size: 0.85rem; }
+.faq--fine-print .faq-list { max-width: 620px; gap: 0; }
+.faq--fine-print .faq-item { background: transparent; border: 0; border-bottom: 1px solid var(--dark-border); border-radius: 0; }
+.faq--fine-print .faq-item:first-child { border-top: 1px solid var(--dark-border); }
+.faq--fine-print .faq-item summary { padding: 14px 4px; font-size: 0.85rem; font-weight: 500; color: var(--dark-text-2); }
+.faq--fine-print .faq-item[open] summary,
+.faq--fine-print .faq-item summary:hover { color: var(--white); }
+.faq--fine-print .faq-item summary::after { font-size: 1.1rem; }
+.faq--fine-print .faq-answer { padding: 0 4px 16px; font-size: 0.82rem; }
+.faq--fine-print .explore-cta .btn { font-size: 0.8rem; padding: 10px 22px; }
+
 
 /* ════════════════════════════════
    VEHICLE DETAIL PAGE  (dark)
