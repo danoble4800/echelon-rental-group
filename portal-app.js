@@ -753,9 +753,9 @@
     const a = d.ambassador, s = d.stats;
     const first = (a.name || '').split(' ')[0];
     const captions = [
-      'Planning something unforgettable? Book an exotic with Echelon Exotic Rentals through my link and get ' + lowerFirst(a.perk) + ': ' + a.link,
+      'Planning something unforgettable? Book an exotic with Echelon Exotic & Luxury through my link and get ' + lowerFirst(a.perk) + ': ' + a.link,
       'Lamborghini, Rolls-Royce, G-Wagon, delivered to your door. Use my Echelon link for ' + lowerFirst(a.perk) + ' → ' + a.link,
-      'Wedding, birthday or just because. Echelon Exotic Rentals makes the entrance. My link gets you ' + lowerFirst(a.perk) + ': ' + a.link,
+      'Wedding, birthday or just because. Echelon Exotic & Luxury makes the entrance. My link gets you ' + lowerFirst(a.perk) + ': ' + a.link,
     ];
 
     $('#ambPanel').innerHTML =
@@ -799,7 +799,7 @@
         '</div></section>' : '');
 
     const share = $('#shareLink');
-    if (share) share.addEventListener('click', () => navigator.share({ title: 'Echelon Exotic Rentals', text: 'Book an exotic with Echelon through my link and get ' + lowerFirst(a.perk) + '.', url: a.link }).catch(() => {}));
+    if (share) share.addEventListener('click', () => navigator.share({ title: 'Echelon Exotic & Luxury', text: 'Book an exotic with Echelon through my link and get ' + lowerFirst(a.perk) + '.', url: a.link }).catch(() => {}));
   }
 
   function row(left, right) {
