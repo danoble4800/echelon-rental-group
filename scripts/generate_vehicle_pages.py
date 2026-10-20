@@ -268,7 +268,7 @@ NAV_TEMPLATE = """  <!-- CUSTOM CURSOR RING -->
     <div class="nav-inner">
       <a href="exotics.html" class="logo">
         <span class="logo-main">ECHELON</span>
-        <span class="logo-sub">EXOTIC RENTALS</span>
+        <span class="logo-sub">EXOTIC &amp; LUXURY</span>
       </a>
       <ul class="nav-links">
         <li><a href="fleet.html">Fleet</a></li>
@@ -340,7 +340,7 @@ FOOTER_TEMPLATE = """  <!-- ───────────── FOOTER ─�
       <div class="footer-brand">
         <a href="exotics.html" class="logo footer-logo">
           <span class="logo-main">ECHELON</span>
-          <span class="logo-sub">EXOTIC RENTALS</span>
+          <span class="logo-sub">EXOTIC &amp; LUXURY</span>
         </a>
         <p>Luxury and exotic car rentals with white-glove delivery, part of the Echelon Rental Group family.</p>
         <div class="footer-socials">
