@@ -8,7 +8,6 @@
 const exoticsI18n = {
   en: {
     navFleet: 'Collection', navChauffeur: 'Chauffeur', navHow: 'How It Works', navAbout: 'About', navFaq: 'FAQ', navBtn: 'Request Access',
-    heroBadge: 'Exotic &amp; Luxury Collection · By Appointment or Instant Book',
     heroTitle: '<span class="kicker">Welcome to the</span>Upper<span class="accent">Echelon.</span>',
     heroSubtitle: 'Echelon Exotics puts <strong>Lamborghini, Ferrari, Porsche, and Rolls-Royce</strong> within reach — hourly, daily, or for the weekend. White-glove delivery available anywhere in the region.',
     tag1: 'Delivered to Your Door', tag2: 'Discretion Assured', tag3: 'Concierge on Call',
@@ -65,7 +64,6 @@ const exoticsI18n = {
   },
   es: {
     navFleet: 'Colección', navChauffeur: 'Chofer', navHow: 'Cómo Funciona', navAbout: 'Nosotros', navFaq: 'FAQ', navBtn: 'Solicitar Acceso',
-    heroBadge: 'Colección Exótica y de Lujo · Con Cita o Reserva Instantánea',
     heroTitle: '<span class="kicker">Bienvenido al</span>Más Alto<span class="accent">Echelon.</span>',
     heroSubtitle: 'Echelon Exotics pone a tu alcance <strong>Lamborghini, Ferrari, Porsche y Rolls-Royce</strong> — por hora, por día o el fin de semana. Entrega de lujo disponible en toda la región.',
     tag1: 'Entrega a Tu Puerta', tag2: 'Discreción Garantizada', tag3: 'Conserjería a Tu Disposición',
@@ -122,7 +120,6 @@ const exoticsI18n = {
   },
   pt: {
     navFleet: 'Coleção', navChauffeur: 'Motorista', navHow: 'Como Funciona', navAbout: 'Sobre', navFaq: 'FAQ', navBtn: 'Solicitar Acesso',
-    heroBadge: 'Coleção Exótica e de Luxo · Com Agendamento ou Reserva Instantânea',
     heroTitle: '<span class="kicker">Bem-vindo ao</span>Mais Alto<span class="accent">Echelon.</span>',
     heroSubtitle: 'A Echelon Exotics coloca ao seu alcance <strong>Lamborghini, Ferrari, Porsche e Rolls-Royce</strong> — por hora, por dia ou no fim de semana. Entrega de luxo disponível em toda a região.',
     tag1: 'Entrega na Sua Porta', tag2: 'Discrição Garantida', tag3: 'Concierge à Disposição',
@@ -200,7 +197,6 @@ function applyLang(lang) {
   document.querySelectorAll('.mobile-menu > a:not(.btn)').forEach((el, i) => { if (navLabels[i]) el.textContent = navLabels[i]; });
   document.querySelectorAll('.nav-actions .btn-primary, .mobile-menu .btn-primary').forEach(el => el.textContent = t.navBtn);
 
-  setHTML('.hero-badge', `<span class="badge-dot"></span>${t.heroBadge}`);
   setHTML('.hero-title', t.heroTitle);
   setHTML('.hero-subtitle', t.heroSubtitle);
   const tags = $$('.hero-platforms .platform-tag');
