@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Echelon Exotics | Luxury &amp; Exotic Car Rentals</title>
-  <link rel="preload" as="image" href="images/hero-fleet-boston.jpg" fetchpriority="high" />
+  <link rel="preload" as="image" href="videos/reels/reel-2-poster.jpg" fetchpriority="high" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="1024x1024" href="/app-icon-1024.png" />
@@ -120,8 +120,8 @@
   </nav>
 
   <!-- ───────────── HERO ───────────── -->
-  <section class="hero dark-section">
-    <div class="hero-bg"><div class="hero-gradient"></div></div>
+  <section class="hero film-hero dark-section">
+    <div class="film-ambient" id="filmAmbient" aria-hidden="true"></div>
     <div class="hero-inner">
       <div class="hero-content">
         <div class="hero-badge">
@@ -129,7 +129,7 @@
           Exotic &amp; Luxury Fleet · By Appointment or Instant Book
         </div>
         <h1 class="hero-title">
-          Welcome to the<br /><span class="accent">Upper Echelon.</span>
+          <span class="kicker">Welcome to the</span>Upper<span class="accent">Echelon.</span>
         </h1>
         <p class="hero-subtitle">
           Echelon Exotics puts <strong>Lamborghini, Ferrari, Porsche, and Rolls-Royce</strong>
@@ -144,6 +144,17 @@
         <div class="cta-actions">
           <a href="fleet.html" class="btn btn-primary btn-lg">The Collection</a>
           <a href="reserve.html" class="btn btn-outline-light btn-lg">Request Access</a>
+        </div>
+      </div>
+      <div class="film-frame" id="filmFrame" aria-hidden="true">
+        <div class="film-frame-shade"></div>
+        <div class="film-frame-caption">
+          <div class="film-scene">
+            <span class="film-scene-num" id="filmSceneNum">SCENE 01</span>
+            <span class="film-scene-title" id="filmSceneTitle">Night at Encore</span>
+            <span class="film-scene-sub" id="filmSceneSub">Maybach GLS</span>
+          </div>
+          <div class="film-ticks" id="filmTicks"></div>
         </div>
       </div>
     </div>
@@ -630,6 +641,7 @@
   <script src="brand-pages.js"></script>
   <script src="fleet-carousel.js"></script>
   <script src="reels.js"></script>
+  <script src="film-hero.js"></script>
   <script src="cursor-ring.js"></script>
   <script src="chat-widget.js"></script>
 </body>

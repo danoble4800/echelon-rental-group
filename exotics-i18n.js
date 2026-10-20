@@ -9,7 +9,7 @@ const exoticsI18n = {
   en: {
     navFleet: 'Fleet', navChauffeur: 'Chauffeur', navHow: 'How It Works', navAbout: 'About', navFaq: 'FAQ', navBtn: 'Request Access',
     heroBadge: 'Exotic &amp; Luxury Fleet · By Appointment or Instant Book',
-    heroTitle: 'Welcome to the<br /><span class="accent">Upper Echelon.</span>',
+    heroTitle: '<span class="kicker">Welcome to the</span>Upper<span class="accent">Echelon.</span>',
     heroSubtitle: 'Echelon Exotics puts <strong>Lamborghini, Ferrari, Porsche, and Rolls-Royce</strong> within reach — hourly, daily, or for the weekend. White-glove delivery available anywhere in the region.',
     tag1: 'Delivered to Your Door', tag2: 'Discretion Assured', tag3: 'Concierge on Call',
     ctaFleet: 'The Collection', ctaReserve: 'Request Access',
@@ -66,7 +66,7 @@ const exoticsI18n = {
   es: {
     navFleet: 'Flota', navChauffeur: 'Chofer', navHow: 'Cómo Funciona', navAbout: 'Nosotros', navFaq: 'FAQ', navBtn: 'Solicitar Acceso',
     heroBadge: 'Flota Exótica y de Lujo · Con Cita o Reserva Instantánea',
-    heroTitle: 'Bienvenido al<br /><span class="accent">Más Alto Echelon.</span>',
+    heroTitle: '<span class="kicker">Bienvenido al</span>Más Alto<span class="accent">Echelon.</span>',
     heroSubtitle: 'Echelon Exotics pone a tu alcance <strong>Lamborghini, Ferrari, Porsche y Rolls-Royce</strong> — por hora, por día o el fin de semana. Entrega de lujo disponible en toda la región.',
     tag1: 'Entrega a Tu Puerta', tag2: 'Discreción Garantizada', tag3: 'Conserjería a Tu Disposición',
     ctaFleet: 'La Colección', ctaReserve: 'Solicitar Acceso',
@@ -123,7 +123,7 @@ const exoticsI18n = {
   pt: {
     navFleet: 'Frota', navChauffeur: 'Motorista', navHow: 'Como Funciona', navAbout: 'Sobre', navFaq: 'FAQ', navBtn: 'Solicitar Acesso',
     heroBadge: 'Frota Exótica e de Luxo · Com Agendamento ou Reserva Instantânea',
-    heroTitle: 'Bem-vindo ao<br /><span class="accent">Mais Alto Echelon.</span>',
+    heroTitle: '<span class="kicker">Bem-vindo ao</span>Mais Alto<span class="accent">Echelon.</span>',
     heroSubtitle: 'A Echelon Exotics coloca ao seu alcance <strong>Lamborghini, Ferrari, Porsche e Rolls-Royce</strong> — por hora, por dia ou no fim de semana. Entrega de luxo disponível em toda a região.',
     tag1: 'Entrega na Sua Porta', tag2: 'Discrição Garantida', tag3: 'Concierge à Disposição',
     ctaFleet: 'A Coleção', ctaReserve: 'Solicitar Acesso',
