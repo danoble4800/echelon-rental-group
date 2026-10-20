@@ -35,11 +35,35 @@ function submitInquiry(e) {
   })
     .then(res => {
       if (!res.ok) throw new Error('HTTP ' + res.status);
-      showToast();
       form.reset();
+      showConciergeConfirm(form);
     })
     .catch(() => alert("Sorry, we couldn't send your reservation. Please call or text us at 508-444-2276 and we'll book it for you."))
     .finally(() => { button.disabled = false; });
+}
+
+/* Swap the submitted form for a personal concierge confirmation (reserve.html has no
+   toast, so this is the only success signal the guest sees). */
+function showConciergeConfirm(form) {
+  const panel = document.createElement('div');
+  panel.className = 'concierge-confirm';
+  panel.setAttribute('role', 'status');
+  panel.tabIndex = -1;
+  panel.innerHTML =
+    '<span class="concierge-confirm-mark" aria-hidden="true">✦</span>' +
+    '<h3>Your request has been received.</h3>' +
+    '<span class="concierge-confirm-rule" aria-hidden="true"></span>' +
+    '<p>A member of our concierge team will be in touch personally.</p>' +
+    '<button type="button">Submit another request</button>';
+  panel.querySelector('button').addEventListener('click', () => {
+    panel.remove();
+    form.style.display = '';
+    form.querySelector('input').focus();
+  });
+  form.style.display = 'none';
+  form.after(panel);
+  panel.focus({ preventScroll: true });
+  panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 /* A vehicle detail page's "Book Now" / "Reserve Now" links point here

@@ -3158,3 +3158,31 @@ body.page-home #why-echelon { border-top: none; }  /* no divider under Our Brand
   .ch-form { padding: 24px 18px; }
   .amb-done { padding: 44px 20px; }
 }
+
+/* ── Exotics landing: film grain + gold hairline dividers ── */
+.page-exotics > section:not(.hero),
+.page-exotics > .footer {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.055 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  border-top: 1px solid transparent;
+  border-image: linear-gradient(90deg, transparent 12%, rgba(201,168,106,0.55) 50%, transparent 88%) 1;
+}
+
+/* "Pair it with" — ties each car to Chauffeur and the Experiences partners */
+.car-pair { margin: 0 0 12px; font-size: 0.76rem; letter-spacing: 0.02em; color: var(--dark-text-2); text-shadow: 0 1px 6px rgba(0,0,0,0.85); }
+.car-pair-label { text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.66rem; margin-right: 4px; }
+.car-pair a { color: var(--champagne, #C9A86A); border-bottom: 1px solid rgba(201,168,106,0.35); transition: color 0.2s, border-color 0.2s; }
+.car-pair a:hover { color: var(--brand-accent-light); border-color: currentColor; }
+
+/* Exotics reservation: concierge confirmation that replaces the form */
+.concierge-confirm {
+  background: var(--dark-card); border: 1px solid rgba(201,168,106,0.35); border-radius: var(--radius-lg);
+  padding: 56px 32px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+}
+.concierge-confirm:focus { outline: none; }
+.concierge-confirm-mark { color: var(--champagne, #C9A86A); font-size: 1.4rem; }
+.concierge-confirm h3 { font-family: var(--font-serif); font-size: clamp(1.05rem, 2.2vw, 1.45rem); line-height: 1.4; font-weight: 500; color: var(--white); margin: 0; }
+.concierge-confirm p { color: var(--dark-text-2); max-width: 380px; margin: 0; line-height: 1.7; }
+.concierge-confirm-rule { width: 64px; height: 1px; background: rgba(201,168,106,0.6); }
+.concierge-confirm button { background: none; border: 0; color: var(--dark-text-2); font-size: 0.8rem; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; margin-top: 8px; }
+.concierge-confirm button:hover { color: var(--white); }

@@ -19,7 +19,7 @@ const exoticsI18n = {
     types: ['Supercar', 'Ultra-Luxury SUV', 'Ultra-Luxury SUV', 'Sports Car', 'Luxury SUV', 'Super SUV'],
     specs: ['630 hp · 0–60 in 2.9s · 2 Seats', '612 hp · 5 Seats · Chauffeur Available', '563 hp · 5 Seats · Chauffeur Available', '502 hp · 0–60 in 3.2s · 2 Seats', '577 hp · 5 Seats · AWD', '641 hp · 0–60 in 3.1s · 5 Seats'],
     pills: [['AWD', 'V10', 'Delivery'], ['Chauffeur Option', 'Delivery'], ['Chauffeur Option', 'Delivery'], ['RWD', 'Delivery'], ['AWD', 'Delivery'], ['AWD', 'Delivery']],
-    perDay: '/day', reserveCar: 'Reserve This Car',
+    perDay: '/day', reserveCar: 'Reserve This Car', pairWith: 'Pair it with', pairChauffeur: 'Chauffeur',
     reelsTag: 'Echelon Stories', reelsH2: 'Seen on the Road',
     reelsDesc: 'Real moments from our clients and our own shoots. Tag @EchelonRentalGroup on Instagram for a chance to be featured.',
     reelsKicker: 'Join the Ride', reelsFollow: 'Follow Us on Instagram', reelsFollowBtn: 'Follow',
@@ -61,7 +61,7 @@ const exoticsI18n = {
     ],
     footerLegal: ['Privacy', 'Terms', 'Accessibility'], footerHours: 'Open 24 Hours, 7 Days a Week',
     footerCopy: '© 2026 Echelon Rental Group. All rights reserved.',
-    toastTitle: 'Reservation Requested!', toastBody: "We'll call you within 1 hour to confirm.",
+    toastTitle: 'Your request has been received.', toastBody: 'A member of our concierge team will be in touch personally.',
   },
   es: {
     navFleet: 'Flota', navChauffeur: 'Chofer', navHow: 'Cómo Funciona', navAbout: 'Nosotros', navFaq: 'FAQ', navBtn: 'Solicitar Acceso',
@@ -76,7 +76,7 @@ const exoticsI18n = {
     types: ['Superdeportivo', 'SUV Ultra de Lujo', 'SUV Ultra de Lujo', 'Auto Deportivo', 'SUV de Lujo', 'Super SUV'],
     specs: ['630 hp · 0–100 en 2.9s · 2 Asientos', '612 hp · 5 Asientos · Chofer Disponible', '563 hp · 5 Asientos · Chofer Disponible', '502 hp · 0–100 en 3.2s · 2 Asientos', '577 hp · 5 Asientos · Tracción AWD', '641 hp · 0–100 en 3.1s · 5 Asientos'],
     pills: [['Tracción AWD', 'V10', 'Entrega'], ['Opción de Chofer', 'Entrega'], ['Opción de Chofer', 'Entrega'], ['Tracción Trasera', 'Entrega'], ['Tracción AWD', 'Entrega'], ['Tracción AWD', 'Entrega']],
-    perDay: '/día', reserveCar: 'Reservar Este Auto',
+    perDay: '/día', reserveCar: 'Reservar Este Auto', pairWith: 'Combínalo con', pairChauffeur: 'Chofer',
     reelsTag: 'Historias Echelon', reelsH2: 'Visto en el Camino',
     reelsDesc: 'Momentos reales de nuestros clientes y nuestras propias sesiones. Etiqueta a @EchelonRentalGroup en Instagram para aparecer aquí.',
     reelsKicker: 'Únete al Viaje', reelsFollow: 'Síguenos en Instagram', reelsFollowBtn: 'Seguir',
@@ -118,7 +118,7 @@ const exoticsI18n = {
     ],
     footerLegal: ['Privacidad', 'Términos', 'Accesibilidad'], footerHours: 'Abierto las 24 Horas, los 7 Días de la Semana',
     footerCopy: '© 2026 Echelon Rental Group. Todos los derechos reservados.',
-    toastTitle: '¡Reservación Solicitada!', toastBody: 'Te llamaremos dentro de 1 hora para confirmar.',
+    toastTitle: 'Hemos recibido tu solicitud.', toastBody: 'Un miembro de nuestro equipo de conserjería se pondrá en contacto contigo personalmente.',
   },
   pt: {
     navFleet: 'Frota', navChauffeur: 'Motorista', navHow: 'Como Funciona', navAbout: 'Sobre', navFaq: 'FAQ', navBtn: 'Solicitar Acesso',
@@ -133,7 +133,7 @@ const exoticsI18n = {
     types: ['Superesportivo', 'SUV Ultra de Luxo', 'SUV Ultra de Luxo', 'Carro Esportivo', 'SUV de Luxo', 'Super SUV'],
     specs: ['630 cv · 0–100 em 2.9s · 2 Lugares', '612 cv · 5 Lugares · Motorista Disponível', '563 cv · 5 Lugares · Motorista Disponível', '502 cv · 0–100 em 3.2s · 2 Lugares', '577 cv · 5 Lugares · Tração AWD', '641 cv · 0–100 em 3.1s · 5 Lugares'],
     pills: [['Tração AWD', 'V10', 'Entrega'], ['Opção de Motorista', 'Entrega'], ['Opção de Motorista', 'Entrega'], ['Tração Traseira', 'Entrega'], ['Tração AWD', 'Entrega'], ['Tração AWD', 'Entrega']],
-    perDay: '/dia', reserveCar: 'Reservar Este Carro',
+    perDay: '/dia', reserveCar: 'Reservar Este Carro', pairWith: 'Combine com', pairChauffeur: 'Motorista',
     reelsTag: 'Histórias Echelon', reelsH2: 'Visto na Estrada',
     reelsDesc: 'Momentos reais dos nossos clientes e das nossas próprias gravações. Marque @EchelonRentalGroup no Instagram para aparecer aqui.',
     reelsKicker: 'Venha Junto', reelsFollow: 'Siga-nos no Instagram', reelsFollowBtn: 'Seguir',
@@ -175,7 +175,7 @@ const exoticsI18n = {
     ],
     footerLegal: ['Privacidade', 'Termos', 'Acessibilidade'], footerHours: 'Aberto 24 Horas, 7 Dias por Semana',
     footerCopy: '© 2026 Echelon Rental Group. Todos os direitos reservados.',
-    toastTitle: 'Reserva Solicitada!', toastBody: 'Ligaremos em até 1 hora para confirmar.',
+    toastTitle: 'Recebemos sua solicitação.', toastBody: 'Um membro da nossa equipe de concierge entrará em contato pessoalmente.',
   },
 };
 
@@ -227,6 +227,10 @@ function applyLang(lang) {
     (t.pills[i] || []).forEach((txt, j) => { if (pillEls[j]) pillEls[j].textContent = txt; });
     const btnEl = card.querySelector('.btn-book');
     if (btnEl) btnEl.textContent = t.reserveCar;
+    const pairLabel = card.querySelector('.car-pair-label');
+    if (pairLabel && t.pairWith) pairLabel.textContent = t.pairWith;
+    const pairChauffeur = card.querySelector('.pair-chauffeur');
+    if (pairChauffeur && t.pairChauffeur) pairChauffeur.textContent = t.pairChauffeur;
   });
 
   setText('#stories .section-tag', t.reelsTag || 'Echelon Stories');
