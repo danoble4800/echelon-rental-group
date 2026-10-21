@@ -977,6 +977,16 @@ document.addEventListener('click', () => {
 });
 
 
+/* Desktop top-bar language label follows the saved language. */
+function syncTopLang() {
+  let lang = 'en';
+  try { lang = localStorage.getItem('echelon-lang') || 'en'; } catch (e) {}
+  document.querySelectorAll('.nav-top-lang-current').forEach(el => { el.textContent = lang.toUpperCase(); });
+  if (document.activeElement && document.activeElement.closest('.nav-top-lang')) document.activeElement.blur();
+}
+document.querySelectorAll('.lang-option').forEach(btn => btn.addEventListener('click', syncTopLang));
+syncTopLang();
+
 /* ──────────────────────────────────────────
    STICKY NAV
 ────────────────────────────────────────── */

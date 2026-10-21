@@ -7,7 +7,7 @@
 ────────────────────────────────────────── */
 const exoticsI18n = {
   en: {
-    navFleet: 'Collection', navChauffeur: 'Chauffeur', navHow: 'How It Works', navAbout: 'About', navFaq: 'FAQ', navMembers: 'Members', navBtn: 'Reserve a Car',
+    navFleet: 'Collection', navChauffeur: 'Chauffeur', navHow: 'How It Works', navAbout: 'About', navFaq: 'FAQ', navMembers: 'Members', navMore: 'More', navBtn: 'Reserve a Car',
     heroTitle: '<span class="kicker">Welcome to the</span>Upper<span class="accent">Echelon.</span>',
     heroSubtitle: "Whether it's a weekend in a Huracán, a wedding exit in a Cullinan, an airport run in a Maybach, or VIP access to Boston's best seats and tables, consider it handled — all arranged by your Echelon concierge.",
     tag1: 'Delivered to Your Door', tag2: 'Discretion Assured', tag3: 'Concierge on Call',
@@ -63,7 +63,7 @@ const exoticsI18n = {
     toastTitle: 'Your request has been received.', toastBody: 'A member of our concierge team will be in touch personally.',
   },
   es: {
-    navFleet: 'Colección', navChauffeur: 'Chofer', navHow: 'Cómo Funciona', navAbout: 'Nosotros', navFaq: 'FAQ', navMembers: 'Miembros', navBtn: 'Reservar un Auto',
+    navFleet: 'Colección', navChauffeur: 'Chofer', navHow: 'Cómo Funciona', navAbout: 'Nosotros', navFaq: 'FAQ', navMembers: 'Miembros', navMore: 'Más', navBtn: 'Reservar un Auto',
     heroTitle: '<span class="kicker">Bienvenido al</span>Más Alto<span class="accent">Echelon.</span>',
     heroSubtitle: 'Ya sea un fin de semana en un Huracán, una salida de boda en un Cullinan, un traslado al aeropuerto en un Maybach o acceso VIP a los mejores asientos y mesas de Boston, considéralo resuelto — todo organizado por tu conserje de Echelon.',
     tag1: 'Entrega a Tu Puerta', tag2: 'Discreción Garantizada', tag3: 'Conserjería a Tu Disposición',
@@ -119,7 +119,7 @@ const exoticsI18n = {
     toastTitle: 'Hemos recibido tu solicitud.', toastBody: 'Un miembro de nuestro equipo de conserjería se pondrá en contacto contigo personalmente.',
   },
   pt: {
-    navFleet: 'Coleção', navChauffeur: 'Motorista', navHow: 'Como Funciona', navAbout: 'Sobre', navFaq: 'FAQ', navMembers: 'Membros', navBtn: 'Reservar um Carro',
+    navFleet: 'Coleção', navChauffeur: 'Motorista', navHow: 'Como Funciona', navAbout: 'Sobre', navFaq: 'FAQ', navMembers: 'Membros', navMore: 'Mais', navBtn: 'Reservar um Carro',
     heroTitle: '<span class="kicker">Bem-vindo ao</span>Mais Alto<span class="accent">Echelon.</span>',
     heroSubtitle: 'Seja um fim de semana em um Huracán, uma saída de casamento em um Cullinan, um transfer para o aeroporto em um Maybach ou acesso VIP aos melhores lugares e mesas de Boston, considere resolvido — tudo organizado pelo seu concierge Echelon.',
     tag1: 'Entrega na Sua Porta', tag2: 'Discrição Garantida', tag3: 'Concierge à Disposição',
@@ -194,6 +194,7 @@ function applyLang(lang) {
   const navLinks = $$('.nav-links a, .mobile-menu > a:not(.btn)');
   const navLabels = [t.navFleet, t.navChauffeur, t.navHow, t.navAbout, t.navFaq, t.navMembers];
   document.querySelectorAll('.nav-links li a').forEach((el, i) => { if (navLabels[i]) el.textContent = navLabels[i]; });
+  document.querySelectorAll('.nav-more-label').forEach(el => el.textContent = t.navMore || 'More');
   document.querySelectorAll('.mobile-menu > a:not(.btn)').forEach((el, i) => { if (navLabels[i]) el.textContent = navLabels[i]; });
   document.querySelectorAll('.nav-actions .btn-primary, .mobile-menu .btn-primary').forEach(el => el.textContent = t.navBtn);
 
