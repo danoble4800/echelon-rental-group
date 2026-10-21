@@ -39,15 +39,26 @@ export async function googleAccessToken() {
   return body.access_token;
 }
 
+// Google allows 60 reads (and 60 writes) a minute for the service account, shared with the
+// Number 1 site. A burst (several portal loads at once) can trip it, so a 429 or 503 is
+// retried twice with a short wait before giving up, which keeps a booking from failing.
+const RETRY_WAITS = [1000, 2500];
+
 async function api(path, { method = "GET", body } = {}) {
   const token = await googleAccessToken();
-  const res = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${path}`, {
-    method,
-    headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
-    body: body ? JSON.stringify(body) : undefined,
-  });
-  if (!res.ok) throw new Error(`Sheets ${method} ${path.split("?")[0]} HTTP ${res.status}: ${await res.text()}`);
-  return res.json();
+  for (let attempt = 0; ; attempt++) {
+    const res = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${path}`, {
+      method,
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+      body: body ? JSON.stringify(body) : undefined,
+    });
+    if (res.ok) return res.json();
+    if ((res.status === 429 || res.status === 503) && attempt < RETRY_WAITS.length) {
+      await new Promise((r) => setTimeout(r, RETRY_WAITS[attempt]));
+      continue;
+    }
+    throw new Error(`Sheets ${method} ${path.split("?")[0]} HTTP ${res.status}: ${await res.text()}`);
+  }
 }
 
 const q = (range) => encodeURIComponent(range);
