@@ -39,6 +39,10 @@
       "dest": "/ambassadors.html"
     },
     {
+      "src": "^/members/?$",
+      "dest": "/members.html"
+    },
+    {
       "src": "^/r/([A-Za-z0-9-]{2,24})/?$",
       "status": 302,
       "headers": {

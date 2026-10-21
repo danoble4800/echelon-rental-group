@@ -3,7 +3,8 @@
 //
 // Everything lives in Google Sheets (no database):
 //   • "Echelon CRM" spreadsheet (ECHELON_CRM_SHEET_ID) — tabs Team, Referrals, Clicks,
-//     Payouts, Applications (the public /ambassadors form). Missing tabs and header rows
+//     Payouts, Applications (the public /ambassadors form), Members (the public /members
+//     form; Nº stays blank until a member's first booking is complete). Missing tabs and header rows
 //     are created on first use, and when Team is empty the LEAD_ALERT_EMAIL address is
 //     added as the first owner.
 //   • "Echelon Exotic Rental Reservations" — read for the Reservations list; the portal
@@ -33,8 +34,9 @@ export const TABS = {
   Clicks: ["Time", "Code", "Page", "Visitor"],
   Payouts: ["Date", "Code", "Amount", "Method", "Note", "Recorded By"],
   Applications: ["Submitted", "First Name", "Last Name", "Email", "Phone", "Instagram", "City", "Birthdate", "Followers", "How They'd Promote", "Status", "Reviewed", "Notes"],
+  Members: ["Nº", "Joined", "First Name", "Last Name", "Email", "Phone", "Birthdate", "City", "Interests", "Heard From", "Referral Code", "SMS Opt-in", "Language", "Tier", "Status", "First Booking", "Bookings", "12-Mo Spend", "Full Echelon", "Concierge", "Wallet ID", "Notes"],
 };
-const LAST_COL = { Team: "M", Referrals: "N", Clicks: "D", Payouts: "F", Applications: "M" };
+const LAST_COL = { Team: "M", Referrals: "N", Clicks: "D", Payouts: "F", Applications: "M", Members: "V" };
 
 export const nowEastern = () =>
   new Date().toLocaleString("en-US", { timeZone: "America/New_York" }).replace(",", "");
@@ -99,6 +101,12 @@ const PARSERS = {
     submitted: v[0] || "", firstName: v[1] || "", lastName: v[2] || "", email: (v[3] || "").trim().toLowerCase(),
     phone: v[4] || "", instagram: v[5] || "", city: v[6] || "", birthdate: v[7] || "", followers: v[8] || "",
     pitch: v[9] || "", status: v[10] || "New", reviewed: v[11] || "", notes: v[12] || "",
+  }),
+  Members: (v) => ({
+    no: v[0] || "", joined: v[1] || "", firstName: v[2] || "", lastName: v[3] || "", email: (v[4] || "").trim().toLowerCase(),
+    phone: v[5] || "", birthdate: v[6] || "", city: v[7] || "", interests: v[8] || "", heard: v[9] || "", code: (v[10] || "").toUpperCase(),
+    sms: v[11] || "", lang: v[12] || "", tier: v[13] || "Member", status: v[14] || "Active", firstBooking: v[15] || "",
+    bookings: Number(v[16]) || 0, spend: money(v[17]), fullEchelon: v[18] || "", concierge: v[19] || "", walletId: v[20] || "", notes: v[21] || "",
   }),
   Payouts: (v) => ({ date: v[0] || "", code: (v[1] || "").toUpperCase(), amount: money(v[2]), method: v[3] || "", note: v[4] || "", by: v[5] || "" }),
 };

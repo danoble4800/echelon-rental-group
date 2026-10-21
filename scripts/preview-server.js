@@ -41,6 +41,7 @@ const { default: authHandler } = await import("../api/auth.js");
 const { default: portalHandler } = await import("../api/portal.js");
 const { default: refHandler } = await import("../api/ref.js");
 const { default: applyHandler } = await import("../api/apply.js");
+const { default: joinHandler } = await import("../api/join.js");
 
 const TYPES = {
   ".html": "text/html; charset=utf-8", ".css": "text/css", ".js": "text/javascript",
@@ -54,6 +55,7 @@ function serveStatic(req, res) {
   if (pathname === "/") pathname = "/exotics.html";
   if (/^\/portal\/?$/.test(pathname)) pathname = "/portal.html";
   if (/^\/ambassadors\/?$/.test(pathname)) pathname = "/ambassadors.html";
+  if (/^\/members\/?$/.test(pathname)) pathname = "/members.html";
   const shortLink = /^\/r\/([A-Za-z0-9-]{2,24})\/?$/.exec(pathname);
   if (shortLink) return res.writeHead(302, { Location: `/?ref=${shortLink[1]}` }).end();
   const file = path.join(ROOT, path.normalize(pathname));
@@ -82,6 +84,7 @@ http
     const apiHandler = {
       "/api/chat": chatHandler, "/api/lead": leadHandler, "/api/auth": authHandler,
       "/api/portal": portalHandler, "/api/ref": refHandler, "/api/apply": applyHandler,
+      "/api/join": joinHandler,
     }[new URL(req.url, "http://localhost").pathname];
     if (apiHandler) {
       apiHandler(req, res).catch((err) => {
