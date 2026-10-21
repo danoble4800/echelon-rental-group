@@ -2,10 +2,9 @@
    ECHELON EXOTICS — RESERVATION FORM SUBMIT
    Page-scoped: posts to /api/lead, which saves to the
    "Echelon Exotic Rental Reservations" Google Sheet. Loaded after
-   brand-pages.js so this overrides that file's shared, visual-only
-   submitInquiry() for this page only — Boat Charters, Jet Charters,
-   and Experiences keep the placeholder until they get their own
-   endpoint wired up the same way.
+   brand-pages.js so this overrides that file's shared
+   submitInquiry() for this page only (the Exotics form adds the
+   ambassador code and a concierge confirmation panel).
 ────────────────────────────────────────── */
 function submitInquiry(e) {
   e.preventDefault();

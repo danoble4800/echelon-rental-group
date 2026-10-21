@@ -127,7 +127,7 @@
       $$('#staffTabs [data-owner]').forEach((b) => { b.hidden = me.role !== 'owner'; });
       if (me.role === 'owner') get('applications').then((d) => { state.applications = d; updateAppCount(); }).catch(() => {});
       const saved = sessionStorageGet('portalTab');
-      selectTab(saved && (me.role === 'owner' || ['reservations', 'referrals'].indexOf(saved) >= 0) ? saved : 'reservations');
+      selectTab(saved && (me.role === 'owner' || ['reservations', 'members', 'referrals'].indexOf(saved) >= 0) ? saved : 'reservations');
     }
   }
 
@@ -224,7 +224,7 @@
     tab = name;
     sessionStorageSet('portalTab', name);
     $$('#staffTabs [data-tab]').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tab === name)));
-    ({ reservations: loadReservations, referrals: loadReferrals, ambassadors: loadAmbassadors, applications: loadApplications, team: loadTeam })[name]();
+    ({ reservations: loadReservations, members: loadMembers, referrals: loadReferrals, ambassadors: loadAmbassadors, applications: loadApplications, team: loadTeam })[name]();
   }
 
   async function load(view, fn) {
@@ -275,7 +275,7 @@
       .concat([['No status', (r) => !r.status], ['All', () => true]]);
     const test = (groups.find((g) => g[0] === resFilter) || groups[0])[1];
     const q = resQuery.toLowerCase();
-    const list = all.filter(test).filter((r) => !q || [r.firstName, r.lastName, r.email, r.phone, r.vehicle, r.delivery, r.dropoff, r.useCase, r.serviceType, r.referral && r.referral.name].join(' ').toLowerCase().indexOf(q) >= 0);
+    const list = all.filter(test).filter((r) => !q || [r.firstName, r.lastName, r.email, r.phone, r.vehicle, r.delivery, r.dropoff, r.useCase, r.serviceType, r.include, r.details, r.referral && r.referral.name].join(' ').toLowerCase().indexOf(q) >= 0);
     const errors = brandKeys.filter((b) => brands[b].error && (resBrand === 'all' || resBrand === b));
 
     $('#staffPanel').innerHTML =
@@ -309,6 +309,20 @@
   // The brand-specific line under the name: what, when, where.
   function resMeta(r) {
     const span = (v) => (v ? '<span>' + esc(v) + '</span>' : '');
+    if (r.brand === 'boats') {
+      return '<span><strong>' + esc(r.vehicle || 'Any boat') + '</strong></span>' +
+        span([shortDate(r.pickup), r.duration].filter(Boolean).join(' · ')) +
+        span(r.passengers ? r.passengers + ' guests' : '') + span(r.delivery);
+    }
+    if (r.brand === 'jets') {
+      return '<span><strong>' + esc([r.delivery, r.dropoff].filter(Boolean).join(' → ') || 'Route not given') + '</strong></span>' +
+        span(shortDate(r.pickup)) + span(r.passengers ? r.passengers + ' passengers' : '') + span(r.vehicle);
+    }
+    if (r.brand === 'experiences') {
+      return '<span><strong>' + esc(r.vehicle || 'Custom experience') + '</strong></span>' +
+        span(shortDate(r.pickup)) + span(r.passengers ? r.passengers + ' guests' : '') + span(r.include) +
+        (r.details ? '<span class="p-muted">“' + esc(r.details) + '”</span>' : '');
+    }
     if (r.brand === 'chauffeur') {
       return '<span><strong>' + esc(r.vehicle || 'Any vehicle') + '</strong></span>' +
         span(shortDate(r.pickup) + (r.pickupTime ? ' at ' + clockTime(r.pickupTime) : '')) +
@@ -342,6 +356,61 @@
       '<label class="p-field">Follow-up<input type="date" name="followUp" value="' + esc(isoDate(r.followUp)) + '" /></label>' +
       '<label class="p-field p-field--wide">Notes<textarea name="notes" rows="2">' + esc(r.notes) + '</textarea></label>' +
       '<div class="p-save-row"><button type="button" class="p-btn p-btn--gold p-btn--sm" data-save-res disabled>Save</button><span class="p-saved"></span></div>' +
+      '</div></article>';
+  }
+
+  // Members ─────────────────────────────
+  let memFilter = 'All';
+  let memQuery = '';
+
+  function loadMembers() { return load('members', renderMembers); }
+
+  function renderMembers() {
+    const data = state.members;
+    const all = data.members;
+    const groups = [['All', () => true], ['No Nº yet', (m) => !m.no]]
+      .concat(data.tiers.map((t) => [t, (m) => m.tier === t]))
+      .concat(data.statuses.filter((s) => s !== 'Active').map((s) => [s, (m) => m.status === s]));
+    const test = (groups.find((g) => g[0] === memFilter) || groups[0])[1];
+    const q = memQuery.toLowerCase();
+    const list = all.filter(test).filter((m) => !q || [m.firstName, m.lastName, m.email, m.phone, m.city, m.interests, m.no].join(' ').toLowerCase().indexOf(q) >= 0);
+    $('#staffPanel').innerHTML =
+      '<div class="p-toolbar"><div><p class="p-eyebrow">Echelon Members</p><h2 class="p-h2">Members</h2></div>' +
+      '<input class="p-search" type="search" placeholder="Search name, Nº, city…" value="' + esc(memQuery) + '" id="memSearch" /></div>' +
+      '<p class="p-muted p-small">Everyone who joined at /members. Give a member their Nº after their first completed booking (Nº 0001–0099 are the founding numbers).</p>' +
+      '<div class="p-filters">' + groups.map((g) => {
+        const n = all.filter(g[1]).length;
+        return (n || g[0] === 'All') ? '<button type="button" class="p-filter" data-mfilter="' + esc(g[0]) + '" aria-pressed="' + (g[0] === memFilter) + '">' + esc(g[0]) + '<b>' + n + '</b></button>' : '';
+      }).join('') + '</div>' +
+      '<div class="p-list">' + (list.length ? list.map((m) => memCard(m, data)).join('') : '<div class="p-empty">' + (all.length ? 'Nothing here.' : 'No members yet. They show up here when someone joins at /members.') + '</div>') + '</div>';
+    $('#memSearch').addEventListener('input', (e) => {
+      memQuery = e.target.value;
+      clearTimeout(renderMembers.t);
+      renderMembers.t = setTimeout(() => { renderMembers(); const s = $('#memSearch'); s.focus(); s.setSelectionRange(s.value.length, s.value.length); }, 250);
+    });
+  }
+
+  function memCard(m, data) {
+    const tel = (m.phone || '').replace(/[^\d+]/g, '');
+    return '<article class="p-card" data-mem-row="' + m.row + '" data-email="' + esc(m.email) + '">' +
+      '<div class="p-card-head"><div><h3 class="p-card-title">' + esc(m.firstName + ' ' + m.lastName) + '</h3>' +
+      '<p class="p-card-sub">Joined ' + esc(ago(m.joined)) + (m.city ? ' · ' + esc(m.city) : '') + '</p></div>' +
+      '<div class="p-actions">' + (m.no ? chip('Nº ' + m.no, 'gold') : '') + chip(m.tier || 'Member', m.tier && m.tier !== 'Member' ? 'gold' : '') +
+      (m.status && m.status !== 'Active' ? chip(m.status, 'bad') : '') + (m.code ? chip('✦ via ' + m.code, 'gold') : '') + '</div></div>' +
+      '<div class="p-meta">' + (m.interests ? '<span><strong>' + esc(m.interests) + '</strong></span>' : '') +
+      '<span>Heard from ' + esc(m.heard || '—') + '</span>' + (m.sms === 'Yes' ? '<span>OK to text</span>' : '') +
+      (m.bookings ? '<span>' + m.bookings + ' bookings</span>' : '') + '</div>' +
+      '<div class="p-actions">' +
+      (tel ? '<a class="p-btn p-btn--sm" href="tel:' + esc(tel) + '">Call</a><a class="p-btn p-btn--sm" href="sms:' + esc(tel) + '">Text</a>' : '') +
+      (m.email ? '<a class="p-btn p-btn--sm" href="mailto:' + esc(m.email) + '">Email</a>' : '') +
+      '<span class="p-muted p-small" style="align-self:center">' + esc(m.phone) + (m.email ? ' · ' + esc(m.email) : '') + '</span></div>' +
+      '<div class="p-divider"></div>' +
+      '<div class="p-edit">' +
+      '<label class="p-field">Nº<input type="text" inputmode="numeric" name="no" value="' + esc(m.no) + '" placeholder="e.g. 0042" maxlength="4" /></label>' +
+      '<label class="p-field">Tier<select name="tier">' + options(data.tiers, m.tier || 'Member') + '</select></label>' +
+      '<label class="p-field">Status<select name="mstatus">' + options(data.statuses, m.status || 'Active') + '</select></label>' +
+      '<label class="p-field p-field--wide">Notes<textarea name="notes" rows="2">' + esc(m.notes) + '</textarea></label>' +
+      '<div class="p-save-row"><button type="button" class="p-btn p-btn--gold p-btn--sm" data-save-mem disabled>Save</button><span class="p-saved"></span></div>' +
       '</div></article>';
   }
 
@@ -597,7 +666,7 @@
   // ── Shared click / change handling in the staff panel ──
   $('#staffPanel').addEventListener('input', (e) => {
     const card = e.target.closest('.p-card');
-    const btn = card && $('[data-save-res], [data-save-ref]', card);
+    const btn = card && $('[data-save-res], [data-save-ref], [data-save-mem]', card);
     if (btn) { btn.disabled = false; $('.p-saved', card).textContent = ''; }
   });
 
@@ -609,6 +678,8 @@
     if (brandBtn) { resBrand = brandBtn.dataset.brand; sessionStorageSet('portalResBrand', resBrand); return renderReservations(); }
     const afilter = t.closest('[data-afilter]');
     if (afilter) { appFilter = afilter.dataset.afilter; return renderApplications(); }
+    const mfilter = t.closest('[data-mfilter]');
+    if (mfilter) { memFilter = mfilter.dataset.mfilter; return renderMembers(); }
     const rfilter = t.closest('[data-rfilter]');
     if (rfilter) { refFilter = rfilter.dataset.rfilter; return renderReferrals(); }
 
@@ -626,6 +697,21 @@
         Object.assign(r, fields);
         $('.p-saved', card).textContent = 'Saved';
       } catch (err) { saveRes.disabled = false; toast(err.message, true); }
+      return;
+    }
+
+    const saveMem = t.closest('[data-save-mem]');
+    if (saveMem) {
+      const card = saveMem.closest('.p-card');
+      saveMem.disabled = true;
+      const fields = { no: $('[name=no]', card).value, tier: $('[name=tier]', card).value, status: $('[name=mstatus]', card).value, notes: $('[name=notes]', card).value };
+      try {
+        const out = await post('updateMember', Object.assign({ row: +card.dataset.memRow, email: card.dataset.email }, fields));
+        const m = state.members.members.find((x) => x.row === +card.dataset.memRow);
+        Object.assign(m, fields, { no: out.no });
+        $('[name=no]', card).value = out.no;
+        $('.p-saved', card).textContent = 'Saved';
+      } catch (err) { saveMem.disabled = false; toast(err.message, true); }
       return;
     }
 

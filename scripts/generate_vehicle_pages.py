@@ -505,6 +505,8 @@ def build_page(car):
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{car['name']} | Echelon Exotics</title>
+  <meta name="description" content="Reserve the {car['name']} from Echelon Exotics — ${car['price']}/day, white-glove delivery available." />
+  <link rel="canonical" href="https://www.echelonrentalgroup.com/{car['file']}" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="1024x1024" href="/app-icon-1024.png" />

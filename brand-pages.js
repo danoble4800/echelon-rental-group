@@ -114,14 +114,44 @@ function showToast() {
   setTimeout(() => toast.classList.remove('show'), 4500);
 }
 
-/* Visual-only submit: this preview round intentionally does not persist
-   anywhere (see plan) — validates, shows the same success toast pattern
-   as the economy site, then resets the form. */
+/* Boat, Jet and Experience request forms (<form data-form="boats|jets|experiences">).
+   Posts every named field to /api/lead, which saves it to that division's Google Sheet
+   and emails the team; ticked checkboxes that share a name are sent as one list.
+   Reserve and Chauffeur load their own submitInquiry() after this file. */
+const FORM_ERROR = {
+  en: "Sorry, we couldn't send your request. Please call or text us at 508-444-2276 and we'll book it for you.",
+  es: 'Lo sentimos, no pudimos enviar tu solicitud. Llámanos o escríbenos al 508-444-2276 y la reservamos por ti.',
+  pt: 'Desculpe, não conseguimos enviar sua solicitação. Ligue ou mande mensagem para 508-444-2276 e reservamos para você.'
+};
+
 function submitInquiry(e) {
   e.preventDefault();
   const form = e.target;
-  showToast();
-  form.reset();
+  const button = form.querySelector('button[type="submit"]');
+  if (button.disabled) return;           // ignore double taps while sending
+  button.disabled = true;
+
+  const payload = { form: form.dataset.form };
+  new FormData(form).forEach((value, key) => {
+    payload[key] = payload[key] ? payload[key] + ', ' + value : value;
+  });
+
+  fetch('/api/lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+    .then(res => {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      showToast();
+      form.reset();
+    })
+    .catch(() => {
+      let lang = 'en';
+      try { lang = localStorage.getItem('echelon-lang') || 'en'; } catch (err) { /* storage blocked */ }
+      alert(FORM_ERROR[lang] || FORM_ERROR.en);
+    })
+    .finally(() => { button.disabled = false; });
 }
 
 /* Ambassador referral links. /r/<code> redirects to /?ref=<code>; a valid code is kept

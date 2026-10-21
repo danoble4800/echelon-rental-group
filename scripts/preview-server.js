@@ -33,6 +33,7 @@ if (process.env.PORTAL_DEMO) {
   globalThis.__SHEETS_DEMO = demoSheets();
   process.env.ECHELON_CRM_SHEET_ID ||= "demo-crm";
   process.env.AUTH_SECRET ||= "local-demo-secret";
+  process.env.CRON_SECRET ||= "local-demo-cron";
 }
 
 const { default: chatHandler } = await import("../api/chat.js");
@@ -42,6 +43,7 @@ const { default: portalHandler } = await import("../api/portal.js");
 const { default: refHandler } = await import("../api/ref.js");
 const { default: applyHandler } = await import("../api/apply.js");
 const { default: joinHandler } = await import("../api/join.js");
+const { default: digestHandler } = await import("../api/digest.js");
 
 const TYPES = {
   ".html": "text/html; charset=utf-8", ".css": "text/css", ".js": "text/javascript",
@@ -64,7 +66,11 @@ function serveStatic(req, res) {
     return;
   }
   fs.stat(file, (err, stat) => {
-    if (err || !stat.isFile()) return res.writeHead(404).end("Not found");
+    if (err || !stat.isFile()) {
+      // Same as Vercel: unknown pages get the branded 404 page.
+      res.writeHead(404, { "Content-Type": TYPES[".html"] });
+      return fs.createReadStream(path.join(ROOT, "404.html")).pipe(res);
+    }
     const type = TYPES[path.extname(file).toLowerCase()] || "application/octet-stream";
     const range = req.headers.range && /^bytes=(\d*)-(\d*)$/.exec(req.headers.range);
     if (range) {
@@ -84,7 +90,7 @@ http
     const apiHandler = {
       "/api/chat": chatHandler, "/api/lead": leadHandler, "/api/auth": authHandler,
       "/api/portal": portalHandler, "/api/ref": refHandler, "/api/apply": applyHandler,
-      "/api/join": joinHandler,
+      "/api/join": joinHandler, "/api/digest": digestHandler,
     }[new URL(req.url, "http://localhost").pathname];
     if (apiHandler) {
       apiHandler(req, res).catch((err) => {

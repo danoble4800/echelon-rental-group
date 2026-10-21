@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Echelon Boat Charters | Yacht &amp; Boat Charters</title>
+  <meta name="description" content="Captained and bareboat charters from Boston, Quincy, Newport and Cape Cod — half-day, full-day and multi-day, from center consoles to luxury yachts." />
+  <link rel="canonical" href="https://www.echelonrentalgroup.com/boats.html" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="1024x1024" href="/app-icon-1024.png" />
@@ -287,7 +289,7 @@
         <p>Tell us your dates and how many guests are joining — we'll confirm the right boat and captain within the hour.</p>
       </div>
 
-      <form class="modal-form" style="max-width:560px;margin:0 auto;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:var(--radius-lg);padding:32px;" onsubmit="submitInquiry(event)">
+      <form class="modal-form" data-form="boats" style="max-width:560px;margin:0 auto;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:var(--radius-lg);padding:32px;" onsubmit="submitInquiry(event)">
         <div class="form-row">
           <div class="form-group">
             <label>First Name</label>
@@ -312,10 +314,10 @@
           <div class="form-group">
             <label>Departure Location</label>
             <select name="departureLocation">
-              <option>Boston Harbor Marina</option>
-              <option>Quincy Marina</option>
-              <option>Newport Marina</option>
-              <option>Cape Cod Marina</option>
+              <option value="Boston Harbor Marina">Boston Harbor Marina</option>
+              <option value="Quincy Marina">Quincy Marina</option>
+              <option value="Newport Marina">Newport Marina</option>
+              <option value="Cape Cod Marina">Cape Cod Marina</option>
             </select>
           </div>
           <div class="form-group">
@@ -327,9 +329,9 @@
           <div class="form-group">
             <label>Duration</label>
             <select name="duration">
-              <option>Half-Day (4 hrs)</option>
-              <option>Full-Day (8 hrs)</option>
-              <option>Multi-Day / Weekend</option>
+              <option value="Half-Day (4 hrs)">Half-Day (4 hrs)</option>
+              <option value="Full-Day (8 hrs)">Full-Day (8 hrs)</option>
+              <option value="Multi-Day / Weekend">Multi-Day / Weekend</option>
             </select>
           </div>
           <div class="form-group">
@@ -340,11 +342,11 @@
         <div class="form-group">
           <label>Boat of Interest</label>
           <select id="interestField" name="boatInterest">
-            <option>32' Center Console</option>
-            <option>45' Motor Yacht</option>
-            <option>28' Bowrider</option>
-            <option>24' Pontoon</option>
-            <option>Not Sure Yet</option>
+            <option value="32' Center Console">32' Center Console</option>
+            <option value="45' Motor Yacht">45' Motor Yacht</option>
+            <option value="28' Bowrider">28' Bowrider</option>
+            <option value="24' Pontoon">24' Pontoon</option>
+            <option value="Not Sure Yet">Not Sure Yet</option>
           </select>
         </div>
         <div class="form-group checkbox-group">

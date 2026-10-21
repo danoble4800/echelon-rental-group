@@ -1,19 +1,20 @@
 // /api/portal — data for the Echelon Portal (/portal). Every request needs a session from
 // /api/auth, and the caller's role (Team tab) decides what they can see:
 //
-//   owner       Reservations (Exotics, Economy, Chauffeur), Referrals, Ambassadors, Applications, Team, payouts, any
-//               ambassador's dashboard
-//   employee    Reservations, Referrals
+//   owner       Reservations (all six divisions), Members, Referrals, Ambassadors, Applications, Team,
+//               payouts, any ambassador's dashboard
+//   employee    Reservations, Members, Referrals
 //   ambassador  their own dashboard only (customers shown as "Jane D.", no contact details)
 //
-//   GET  ?view=reservations | referrals | ambassadors | applications | team | dashboard[&code=XYZ]
+//   GET  ?view=reservations | members | referrals | ambassadors | applications | team | dashboard[&code=XYZ]
 //   POST { action: "updateReservation" | "updateReferral" | "addPerson" | "updatePerson"
 //                  | "setupLink" | "recordPayout" | "approveApplication"
-//                  | "declineApplication", ... }
+//                  | "declineApplication" | "updateMember", ... }
 
-import { batchGet, dropdownOptions, listTabs, sheetSafe, tabRange, updateRange } from "./_google.js";
+import { dropdownOptions, sheetSafe, tabRange, updateRange } from "./_google.js";
+import { colLetter, readReservations, reservationSheet, RES_SHEETS } from "./_reservations.js";
 import {
-  appendRow, currentUser, DEFAULT_COMMISSION, DEFAULT_PERK, MAX_COMMISSION, MIN_COMMISSION, EXOTIC_SHEET_ID, firstName, isActive, money,
+  appendRow, currentUser, DEFAULT_COMMISSION, DEFAULT_PERK, MAX_COMMISSION, MIN_COMMISSION, firstName, isActive, money,
   nowEastern, readCrm, readJson, REFERRAL_STATUSES, ROLES, sameOrigin, sendJson, setupToken, siteOrigin,
   todayEastern, writeCells,
 } from "./_crm.js";
@@ -21,81 +22,31 @@ import {
 const STAFF = ["owner", "employee"];
 const FALLBACK_STATUSES = ["New", "Contacted", "Booked", "Completed", "Not a Fit"];
 const round2 = (n) => Math.round(n * 100) / 100;
-const colLetter = (i) => (i >= 26 ? colLetter(Math.floor(i / 26) - 1) : "") + String.fromCharCode(65 + (i % 26));
 
 class HttpError extends Error {
   constructor(status, message) { super(message); this.status = status; }
 }
 const need = (ok, message = "You don't have access to this.") => { if (!ok) throw new HttpError(403, message); };
 
-// ── Reservation sheets (Exotics, Economy, Chauffeur) ──
+// ── Reservation sheets (every division, see api/_reservations.js) ──
 //
-// Each brand's form keeps writing to its own sheet (api/lead.js). The portal reads the
-// first tab of each and only ever writes the Status / Follow-up / Notes columns.
-
-const RES_SHEETS = {
-  exotics: { label: "Exotics", id: EXOTIC_SHEET_ID },
-  economy: { label: "Economy", id: "1yLtkutu_BCfYvo9a32T6U7CilrZ6cFkTgoQvq8XAUaA" },
-  chauffeur: { label: "Chauffeur", id: "1zDNYG4I4GnKNGQWWE4l5xobWg5_ZxsqpV01pmL-EMyc" },
-};
-
-// Finds each field's column from the header row, so the portal keeps working if columns
-// are renamed or moved. Exotics falls back to its original A:L layout.
-const COMMON_COLS = {
-  submitted: /time|submitted|created/i, firstName: /first/i, lastName: /last/i, phone: /phone/i,
-  email: /e-?mail/i, status: /status/i, followUp: /follow/i, notes: /note/i,
-};
-const BRAND_COLS = {
-  exotics: { pickup: /pick/i, returnDate: /return/i, vehicle: /vehicle|car/i, delivery: /deliver|location|address/i },
-  economy: { pickup: /pick/i, returnDate: /return/i, vehicle: /^car|vehicle/i, useCase: /use/i },
-  chauffeur: {
-    pickup: /ride date/i, pickupTime: /pickup time/i, serviceType: /service/i, passengers: /passenger/i,
-    vehicle: /vehicle/i, delivery: /pickup address/i, dropoff: /drop/i,
-  },
-};
-const EXOTIC_FALLBACK = {
-  submitted: 0, firstName: 1, lastName: 2, phone: 3, email: 4, pickup: 5, returnDate: 6,
-  vehicle: 7, delivery: 8, status: 9, followUp: 10, notes: 11,
-};
-
-function mapColumns(brand, headers) {
-  const cols = {};
-  for (const [key, re] of Object.entries({ ...COMMON_COLS, ...BRAND_COLS[brand] })) {
-    const i = headers.findIndex((h) => re.test(h || ""));
-    cols[key] = i >= 0 ? i : brand === "exotics" ? EXOTIC_FALLBACK[key] ?? -1 : -1;
-  }
-  return cols;
-}
-
-async function reservationSheet(brand) {
-  const { id } = RES_SHEETS[brand];
-  const tab = (await listTabs(id))[0].title;   // the forms write to the first tab
-  const [head, rows] = await batchGet(id, [tabRange(tab, "A1:Z1"), tabRange(tab, "A2:Z")]);
-  return { id, tab, cols: mapColumns(brand, head[0] || []), rows };
-}
+// The portal only ever writes the Status / Follow-up / Notes columns.
 
 async function brandReservations(brand, refByEmail, names) {
-  const { id, tab, cols, rows } = await reservationSheet(brand);
+  const { id, tab, cols, list } = await readReservations(brand);
   const options = cols.status >= 0
     ? (await dropdownOptions(id, tabRange(tab, `${colLetter(cols.status)}2`)).catch(() => [])) || []
     : [];
-  const list = rows
-    .map((v, i) => {
-      const r = { brand, row: i + 2 };
-      for (const [key, col] of Object.entries(cols)) r[key] = col >= 0 ? String(v[col] ?? "").trim() : "";
-      r.email = r.email.toLowerCase();
-      // Only Exotics bookings carry ambassador referrals.
-      const code = brand === "exotics" ? refByEmail.get(r.email) : "";
-      r.referral = code ? { code, name: names.get(code) || code } : null;
-      return r;
-    })
-    .filter((r) => r.firstName || r.lastName || r.email || r.phone)
-    .reverse();                                                // newest first
-  return { label: RES_SHEETS[brand].label, reservations: list, statusOptions: options.length ? options : FALLBACK_STATUSES };
+  for (const r of list) {
+    // Only Exotics bookings carry ambassador referrals.
+    const code = brand === "exotics" ? refByEmail.get(r.email) : "";
+    r.referral = code ? { code, name: names.get(code) || code } : null;
+  }
+  return { label: RES_SHEETS[brand].label, reservations: list.reverse(), statusOptions: options.length ? options : FALLBACK_STATUSES };
 }
 
-// All three brands at once. A sheet that can't be read is reported on its own instead
-// of hiding the other two.
+// Every division at once. A sheet that can't be read is reported on its own instead
+// of hiding the others.
 async function reservations() {
   const crm = await readCrm(["Referrals", "Team"]);
   const refByEmail = new Map(crm.Referrals.map((r) => [r.email, r.code]));
@@ -322,6 +273,36 @@ async function declineApplication(user, body) {
   return { ok: true };
 }
 
+// ── Members (/members sign-ups, CRM Members tab) ──
+
+export const MEMBER_TIERS = ["Member", "Silver", "Black", "Upper Echelon"];
+export const MEMBER_STATUSES = ["Active", "Paused", "Closed"];
+
+async function membersView() {
+  const { Members } = await readCrm(["Members"]);
+  return { members: Members.reverse(), tiers: MEMBER_TIERS, statuses: MEMBER_STATUSES };
+}
+
+// Nº (4 digits, unique), Tier, Status and Notes are the only member fields the portal edits.
+async function updateMember(user, { row, email, no, tier, status, notes }) {
+  const { Members } = await readCrm(["Members"]);
+  const member = Members.find((m) => m.row === Number(row));
+  if (!member || member.email !== String(email || "").toLowerCase()) throw new HttpError(409, "This member moved in the sheet. Refresh and try again.");
+  let number = String(no ?? member.no).replace(/\D/g, "");
+  if (number) {
+    if (number.length > 4 || Number(number) < 1) throw new HttpError(400, "Member numbers run from 0001 to 9999.");
+    number = number.padStart(4, "0");
+    const taken = Members.find((m) => m.row !== member.row && String(m.no).replace(/\D/g, "").padStart(4, "0") === number);
+    if (taken) throw new HttpError(409, `Nº ${number} already belongs to ${taken.firstName} ${taken.lastName}.`);
+  }
+  const nextTier = MEMBER_TIERS.includes(tier) ? tier : member.tier;
+  const nextStatus = MEMBER_STATUSES.includes(status) ? status : member.status;
+  await writeCells("Members", `A${member.row}`, [number ? `'${number}` : ""]);
+  await writeCells("Members", `N${member.row}:O${member.row}`, [nextTier, nextStatus]);
+  if (typeof notes === "string") await writeCells("Members", `V${member.row}`, [notes.slice(0, 1000)]);
+  return { ok: true, no: number };
+}
+
 // ── Router ──
 
 export default async function handler(req, res) {
@@ -337,6 +318,9 @@ export default async function handler(req, res) {
         case "reservations":
           need(isStaff);
           return sendJson(res, 200, await reservations());
+        case "members":
+          need(isStaff);
+          return sendJson(res, 200, await membersView());
         case "referrals": {
           need(isStaff);
           const crm = await readCrm(["Referrals", "Team"]);
@@ -392,6 +376,9 @@ export default async function handler(req, res) {
       case "updateReservation":
         need(isStaff);
         return sendJson(res, 200, await updateReservation(body));
+      case "updateMember":
+        need(isStaff);
+        return sendJson(res, 200, await updateMember(user, body));
       case "updateReferral":
         need(isStaff);
         return sendJson(res, 200, await updateReferral(body));

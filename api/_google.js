@@ -96,6 +96,13 @@ export async function addTabs(spreadsheetId, titles) {
   });
 }
 
+// Raw spreadsheets.batchUpdate (formatting, validation, new tabs). The local demo only
+// models tab renames and new tabs; other requests are ignored there.
+export async function batchUpdate(spreadsheetId, requests) {
+  if (demo()) return demo().batchUpdate(spreadsheetId, requests);
+  return api(`${spreadsheetId}:batchUpdate`, { method: "POST", body: { requests } });
+}
+
 // Dropdown choices on one cell (e.g. the Status column's validation), or [] if none.
 export async function dropdownOptions(spreadsheetId, cell) {
   if (demo()) return demo().dropdown(spreadsheetId, cell);
@@ -164,6 +171,16 @@ const demoApi = {
   },
   addTabs(id, titles) {
     for (const title of titles) this.book(id).tabs.push({ title, rows: [] });
+  },
+  batchUpdate(id, requests) {
+    const book = this.book(id);
+    for (const r of requests) {
+      if (r.addSheet) book.tabs.push({ title: r.addSheet.properties.title, rows: [] });
+      const props = r.updateSheetProperties?.properties;
+      if (props?.title && book.tabs[props.sheetId]) book.tabs[props.sheetId].title = props.title;
+      const rule = r.setDataValidation?.rule?.condition;
+      if (rule?.type === "ONE_OF_LIST") book.tabs[r.setDataValidation.range.sheetId].statusOptions = rule.values.map((v) => v.userEnteredValue);
+    }
   },
   dropdown(id, cell) {
     return this.tab(id, parseRange(cell).tab).statusOptions || [];

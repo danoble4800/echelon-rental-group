@@ -1,11 +1,13 @@
 // POST /api/lead — reservation forms backend (Vercel serverless function).
 //
-// Reservation forms post here as JSON: { form: "exotics" | "economy" | "chauffeur", ...fields }.
+// Reservation forms post here as JSON:
+//   { form: "exotics" | "economy" | "chauffeur" | "boats" | "jets" | "experiences", ...fields }.
 // Exotics bookings may also carry ref (an ambassador code), logged by logReferral() below.
 // Exotics and Economy leads are saved by forwarding them to that form's Google Apps Script
-// (which appends to the matching Google Sheet). Chauffeur leads are appended straight to
-// their sheet through the Sheets API as a service account (GOOGLE_SERVICE_ACCOUNT_EMAIL +
-// GOOGLE_PRIVATE_KEY, shared as an editor on the sheet). Then an alert email is sent via Resend.
+// (which appends to the matching Google Sheet). Every other form is appended straight to
+// its sheet (api/_reservations.js) through the Sheets API as a service account
+// (GOOGLE_SERVICE_ACCOUNT_EMAIL + GOOGLE_PRIVATE_KEY, shared as an editor on the sheet).
+// Then an alert email is sent via Resend.
 //
 // Alert email requires RESEND_API_KEY and LEAD_ALERT_EMAIL (Vercel project settings
 // in production, .env.local for the local preview). Without them the lead is still
@@ -13,33 +15,77 @@
 
 import { appendRows, sheetSafe } from "./_google.js";
 import { activeAmbassador, appendRow, DEFAULT_PERK, EXOTIC_SHEET_ID, firstName } from "./_crm.js";
+import { colLetter, ensureSheet, RES_SHEETS } from "./_reservations.js";
 
+const sheetUrl = (id) => `https://docs.google.com/spreadsheets/d/${id}/edit`;
+const pax = (n, word) => (n ? `${n} ${word}` : "");
+
+// fields: what the form sends, in sheet column order (B onward; A is the submitted time).
+// summary(lead): headline, when, and the detail rows for the alert email.
+// newStatus: write "New" into the Status column right after the form columns.
 const FORMS = {
   exotics: {
-    label: "Exotic Reservation",
+    label: "Exotic Reservation", emoji: "🚗",
     endpoint:
       "https://script.google.com/macros/s/AKfycbztTb8TSdAMHOy-nq-csXu4FRjcKk8NGO_srQsZlbytJEMkFDY7MqKcd-bs0vDm7rPn/exec",
     fields: ["firstName", "lastName", "phone", "email", "pickupDate", "returnDate", "vehicleInterest", "deliveryLocation"],
-    sheetUrl: "https://docs.google.com/spreadsheets/d/1S-r52l5vyU1qSWeHTf0ADD8sJ-kIF1S8v3uUejctug8/edit",
+    summary: (l) => ({
+      title: l.vehicleInterest || "Any vehicle", when: `${formatDate(l.pickupDate) || "?"} → ${formatDate(l.returnDate) || "?"}`,
+      details: [["Vehicle", l.vehicleInterest], ["Dates", null], ["Delivery", l.deliveryLocation]],
+    }),
   },
   economy: {
-    label: "Economy Reservation",
+    label: "Economy Reservation", emoji: "🚗",
     endpoint:
       "https://script.google.com/macros/s/AKfycbwGxR_0jnB79jV918XK2q088lHf8b6J8el0IqKURr6XQ0yLd1yeWdH1VkkSofSSF4ehQA/exec",
     fields: ["firstName", "lastName", "phone", "email", "pickupDate", "returnDate", "useCase", "car"],
-    sheetUrl: "https://docs.google.com/spreadsheets/d/1yLtkutu_BCfYvo9a32T6U7CilrZ6cFkTgoQvq8XAUaA/edit",
+    summary: (l) => ({
+      title: l.car || "Any car", when: `${formatDate(l.pickupDate) || "?"} → ${formatDate(l.returnDate) || "?"}`,
+      details: [["Car", l.car], ["Dates", null], ["Use", l.useCase]],
+    }),
   },
   chauffeur: {
-    label: "Chauffeur Request",
-    sheetId: "1zDNYG4I4GnKNGQWWE4l5xobWg5_ZxsqpV01pmL-EMyc",
-    // Order matches the sheet's columns B:L (A is the submitted time).
+    label: "Chauffeur Request", emoji: "🚗",
     fields: ["firstName", "lastName", "phone", "email", "rideDate", "pickupTime", "serviceType", "passengers", "vehicle", "pickup", "dropoff"],
-    sheetUrl: "https://docs.google.com/spreadsheets/d/1zDNYG4I4GnKNGQWWE4l5xobWg5_ZxsqpV01pmL-EMyc/edit",
+    summary: (l) => ({
+      title: l.vehicle || "Any vehicle", when: `${formatDate(l.rideDate) || "?"} at ${formatTime(l.pickupTime) || "?"}`,
+      details: [["Vehicle", l.vehicle], ["When", null], ["Ride", [l.serviceType, pax(l.passengers, "pax"), `${l.pickup}${l.dropoff ? ` → ${l.dropoff}` : ""}`].filter(Boolean).join(" · ")]],
+    }),
+  },
+  boats: {
+    label: "Boat Charter Request", emoji: "⚓", newStatus: true,
+    fields: ["firstName", "lastName", "phone", "email", "charterDate", "duration", "partySize", "boatInterest", "departureLocation"],
+    summary: (l) => ({
+      title: l.boatInterest || "Any boat", when: [formatDate(l.charterDate) || "?", l.duration].filter(Boolean).join(" · "),
+      details: [["Boat", l.boatInterest], ["When", null], ["Party", pax(l.partySize, "guests")], ["Marina", l.departureLocation]],
+    }),
+  },
+  jets: {
+    label: "Jet Charter Request", emoji: "✈️", newStatus: true,
+    fields: ["firstName", "lastName", "phone", "email", "flightDate", "passengers", "aircraftInterest", "departureCity", "destinationCity"],
+    summary: (l) => ({
+      title: `${l.departureCity || "?"} → ${l.destinationCity || "?"}`, when: formatDate(l.flightDate) || "?",
+      details: [["Route", `${l.departureCity} → ${l.destinationCity}`], ["Date", null], ["Passengers", l.passengers], ["Aircraft", l.aircraftInterest]],
+    }),
+  },
+  experiences: {
+    label: "Experience Request", emoji: "✦", newStatus: true,
+    fields: ["firstName", "lastName", "phone", "email", "date", "partySize", "experienceType", "include", "notes"],
+    long: ["include", "notes"],
+    summary: (l) => ({
+      title: l.experienceType || "Custom experience", when: formatDate(l.date) || "?",
+      details: [["Occasion", l.experienceType], ["Date", null], ["Group", pax(l.partySize, "guests")], ["Include", l.include], ["Details", l.notes]],
+    }),
   },
 };
+for (const [key, cfg] of Object.entries(FORMS)) {
+  cfg.sheetId = RES_SHEETS[key].id;
+  cfg.sheetUrl = sheetUrl(cfg.sheetId);
+}
 
 const REQUIRED = ["firstName", "lastName", "phone", "email"];
 const MAX_CHARS = 300;
+const MAX_LONG = 1500;   // free-text fields (Experiences "include" and "notes")
 
 async function readJson(req) {
   if (req.body && typeof req.body === "object") return req.body;
@@ -83,8 +129,8 @@ function formatTime(val) {
 // sheetSafe() keeps user text from being treated as a formula.
 async function appendToSheet(cfg, lead) {
   const submitted = new Date().toLocaleString("en-US", { timeZone: "America/New_York" }).replace(",", "");
-  const row = [submitted, ...cfg.fields.map((k) => sheetSafe(lead[k]))];
-  await appendRows(cfg.sheetId, "A:L", [row]);
+  const row = [submitted, ...cfg.fields.map((k) => sheetSafe(lead[k])), ...(cfg.newStatus ? ["New"] : [])];
+  await appendRows(cfg.sheetId, `A:${colLetter(row.length - 1)}`, [row]);
 }
 
 // Exotics bookings that came through an ambassador's link (brand-pages.js sends the
@@ -120,37 +166,29 @@ async function sendLeadAlert(form, lead, referral) {
   const e = escapeHtml;
   const name = `${lead.firstName} ${lead.lastName}`.trim();
   const tel = lead.phone.replace(/[^\d+]/g, "");
-  const vehicle = lead.vehicleInterest || lead.car || lead.vehicle || "Not specified";
-  const dates = form === "chauffeur"
-    ? `${formatDate(lead.rideDate) || "?"} at ${formatTime(lead.pickupTime) || "?"}`
-    : `${formatDate(lead.pickupDate) || "?"} → ${formatDate(lead.returnDate) || "?"}`;
-  const extraLabel = { exotics: "Delivery", economy: "Use", chauffeur: "Ride" }[form];
-  const extra = (form === "chauffeur"
-    ? `${lead.serviceType} · ${lead.passengers || "?"} pax · ${lead.pickup}${lead.dropoff ? ` → ${lead.dropoff}` : ""}`
-    : form === "exotics" ? lead.deliveryLocation : lead.useCase) || "—";
-  const { label, sheetUrl } = FORMS[form];
-
+  const { label, emoji, sheetUrl } = FORMS[form];
+  const { title, when, details } = FORMS[form].summary(lead);
+  // A null value in details stands for the "when" line.
+  const extras = details.map(([k, v]) => [k, v === null ? when : v || "—"]);
   const row = (k, v) =>
     `<tr><td style="padding:6px 12px 6px 0;color:#6b6b6b;white-space:nowrap;vertical-align:top">${k}</td><td style="padding:6px 0;color:#111">${v}</td></tr>`;
   const html = `
 <div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;max-width:520px">
   <p style="margin:0 0 4px;color:#b08d57;font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:12px">${e(label)}</p>
-  <h2 style="margin:0 0 4px">${e(vehicle)}</h2>
-  <p style="margin:0 0 16px;color:#6b6b6b">${e(dates)}</p>
+  <h2 style="margin:0 0 4px">${e(title)}</h2>
+  <p style="margin:0 0 16px;color:#6b6b6b">${e(when)}</p>
   <table style="border-collapse:collapse;font-size:15px">
     ${row("Name", e(name))}
     ${row("Phone", `<a href="tel:${e(tel)}">${e(lead.phone)}</a>`)}
     ${row("Email", `<a href="mailto:${e(lead.email)}">${e(lead.email)}</a>`)}
-    ${row("Vehicle", e(vehicle))}
-    ${row(form === "chauffeur" ? "When" : "Dates", e(dates))}
-    ${row(extraLabel, e(extra))}
+    ${extras.map(([k, v]) => row(e(k), e(v))).join("\n    ")}
     ${referral ? row("Referred by", `${e(referral.name)} (${e(referral.code)}) · perk: ${e(referral.perk)}`) : ""}
   </table>
   <p style="margin:20px 0 0"><a href="${sheetUrl}" style="background:#0e0e10;color:#fff;padding:10px 16px;text-decoration:none;font-weight:600">Open Reservations Sheet</a></p>
 </div>`;
   const text = [
-    `${label}: ${vehicle}`, `${form === "chauffeur" ? "When" : "Dates"}: ${dates}`, `Name: ${name}`, `Phone: ${lead.phone}`,
-    `Email: ${lead.email}`, `${extraLabel}: ${extra}`,
+    `${label}: ${title}`, `When: ${when}`, `Name: ${name}`, `Phone: ${lead.phone}`, `Email: ${lead.email}`,
+    ...extras.map(([k, v]) => `${k}: ${v}`),
     ...(referral ? [`Referred by: ${referral.name} (${referral.code}) · perk: ${referral.perk}`] : []),
     `Sheet: ${sheetUrl}`,
   ].join("\n");
@@ -163,7 +201,7 @@ async function sendLeadAlert(form, lead, referral) {
         from: process.env.LEAD_ALERT_FROM || "Echelon Leads <onboarding@resend.dev>",
         to,
         reply_to: lead.email,
-        subject: `🚗 New ${label.toLowerCase()}: ${vehicle} — ${name}`,
+        subject: `${emoji} New ${label.toLowerCase()}: ${title} — ${name}`,
         html,
         text,
       }),
@@ -191,17 +229,20 @@ export default async function handler(req, res) {
 
   const lead = {};
   for (const key of FORMS[form].fields) {
-    lead[key] = typeof body[key] === "string" ? body[key].trim().slice(0, MAX_CHARS) : "";
+    const max = FORMS[form].long?.includes(key) ? MAX_LONG : MAX_CHARS;
+    lead[key] = typeof body[key] === "string" ? body[key].trim().slice(0, max) : "";
   }
   if (REQUIRED.some((key) => !lead[key])) return sendJson(res, 400, { error: "Missing required fields" });
 
   // Save the lead — this must succeed, otherwise the visitor is told to call instead.
   const forSheet = Object.fromEntries(Object.entries(lead).map(([k, v]) => [k, sheetSafe(v)]));
   try {
-    if (globalThis.__SHEETS_DEMO) {
-      // Local portal demo (scripts/preview-server.js): never touch the real sheets.
-      await appendToSheet({ ...FORMS[form], sheetId: form === "exotics" ? EXOTIC_SHEET_ID : "demo-other" }, lead);
-    } else if (FORMS[form].sheetId) {
+    if (globalThis.__SHEETS_DEMO && FORMS[form].endpoint) {
+      // Local portal demo (scripts/preview-server.js): never touch the real sheets. The demo
+      // has stand-ins for every sheet id, so the other forms fall through to appendToSheet.
+      await appendToSheet({ ...FORMS[form], sheetId: form === "exotics" ? EXOTIC_SHEET_ID : RES_SHEETS.economy.id }, lead);
+    } else if (!FORMS[form].endpoint) {
+      await ensureSheet(form);
       await appendToSheet(FORMS[form], lead);
     } else {
       const saved = await fetch(FORMS[form].endpoint, {

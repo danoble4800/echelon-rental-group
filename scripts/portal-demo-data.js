@@ -112,5 +112,10 @@ export function demoSheets() {
       ],
     },
     "demo-other": { tabs: [{ title: "Sheet1", rows: [] }] },
+    // Blank stand-ins for the Boats / Jets / Experiences sheets: the first request lays
+    // them out (api/_reservations.js → ensureSheet), the same as on the real sheets.
+    "1Ql7Lzpe-4mLwTnAvnGlY28TRM_vrWQ69TmorYNbWXFc": { tabs: [{ title: "Sheet1", rows: [] }] },
+    "1_AQfYacZ2VqO-7-cg_fX02wg9FS1WpF24-m3S4jIk3g": { tabs: [{ title: "Sheet1", rows: [] }] },
+    "1s2EW8gJPHFiWLy0CSUePSHKacPA9dMOe-ekym9W3kWo": { tabs: [{ title: "Sheet1", rows: [] }] },
   };
 }

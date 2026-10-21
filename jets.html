@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Echelon Jet Charters | Private Aviation</title>
+  <meta name="description" content="Private jet charters from Boston — light jets to super-midsize cabins, wheels-up in hours, not days." />
+  <link rel="canonical" href="https://www.echelonrentalgroup.com/jets.html" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="1024x1024" href="/app-icon-1024.png" />
@@ -291,7 +293,7 @@
         <p>Tell us your route and passenger count — a flight coordinator will confirm aircraft and pricing within the hour.</p>
       </div>
 
-      <form class="modal-form" style="max-width:560px;margin:0 auto;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:var(--radius-lg);padding:32px;" onsubmit="submitInquiry(event)">
+      <form class="modal-form" data-form="jets" style="max-width:560px;margin:0 auto;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:var(--radius-lg);padding:32px;" onsubmit="submitInquiry(event)">
         <div class="form-row">
           <div class="form-group">
             <label>First Name</label>
@@ -335,11 +337,11 @@
         <div class="form-group">
           <label>Aircraft of Interest</label>
           <select id="interestField" name="aircraftInterest">
-            <option>Cessna Citation CJ3</option>
-            <option>Embraer Phenom 300</option>
-            <option>Hawker 800XP</option>
-            <option>Gulfstream G200</option>
-            <option>Not Sure Yet</option>
+            <option value="Cessna Citation CJ3">Cessna Citation CJ3</option>
+            <option value="Embraer Phenom 300">Embraer Phenom 300</option>
+            <option value="Hawker 800XP">Hawker 800XP</option>
+            <option value="Gulfstream G200">Gulfstream G200</option>
+            <option value="Not Sure Yet">Not Sure Yet</option>
           </select>
         </div>
         <div class="form-group checkbox-group">
