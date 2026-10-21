@@ -6,7 +6,7 @@
 ────────────────────────────────────────── */
 const jetsI18n = {
   en: {
-    navFleet: 'Aircraft', navReserve: 'Charter', navPricing: 'Pricing', navReviews: 'Reviews', navBtn: 'Request Flight',
+    navFleet: 'Aircraft', navReserve: 'Charter', navPricing: 'Pricing', navReviews: 'Reviews', navMembers: 'Members', navBtn: 'Request Flight',
     heroBadge: 'On-Demand Private Aviation · Nationwide Network',
     heroTitle: 'Skip the Terminal,<br /><span class="accent">Fly on Your Time.</span>',
     heroSubtitle: '<strong>Echelon Jet Charters</strong> arranges private flights for business, family travel, and special occasions — light jets to midsize cabins, wheels-up in hours, not days.',
@@ -49,7 +49,7 @@ const jetsI18n = {
     toastTitle: 'Flight Requested!', toastBody: 'A flight coordinator will call within 1 hour.',
   },
   es: {
-    navFleet: 'Aeronaves', navReserve: 'Charter', navPricing: 'Precios', navReviews: 'Reseñas', navBtn: 'Solicitar Vuelo',
+    navFleet: 'Aeronaves', navReserve: 'Charter', navPricing: 'Precios', navReviews: 'Reseñas', navMembers: 'Miembros', navBtn: 'Solicitar Vuelo',
     heroBadge: 'Aviación Privada Bajo Demanda · Red Nacional',
     heroTitle: 'Olvídate de la Terminal,<br /><span class="accent">Vuela Cuando Quieras.</span>',
     heroSubtitle: '<strong>Echelon Jet Charters</strong> organiza vuelos privados para negocios, viajes familiares y ocasiones especiales — desde jets ligeros hasta cabinas midsize, listos para despegar en horas, no días.',
@@ -92,7 +92,7 @@ const jetsI18n = {
     toastTitle: '¡Vuelo Solicitado!', toastBody: 'Un coordinador de vuelo te llamará dentro de 1 hora.',
   },
   pt: {
-    navFleet: 'Aeronaves', navReserve: 'Charter', navPricing: 'Preços', navReviews: 'Avaliações', navBtn: 'Solicitar Voo',
+    navFleet: 'Aeronaves', navReserve: 'Charter', navPricing: 'Preços', navReviews: 'Avaliações', navMembers: 'Membros', navBtn: 'Solicitar Voo',
     heroBadge: 'Aviação Privada Sob Demanda · Rede Nacional',
     heroTitle: 'Esqueça o Terminal,<br /><span class="accent">Voe no Seu Horário.</span>',
     heroSubtitle: 'A <strong>Echelon Jet Charters</strong> organiza voos privados para negócios, viagens em família e ocasiões especiais — de jatos leves a cabines midsize, prontos para decolar em horas, não dias.',
@@ -151,7 +151,7 @@ function applyLang(lang) {
   document.querySelectorAll('#langLabel').forEach(el => el.textContent = lang.toUpperCase());
   document.querySelectorAll('.lang-option').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
 
-  const navLabels = [t.navFleet, t.navReserve, t.navPricing, t.navReviews];
+  const navLabels = [t.navFleet, t.navReserve, t.navPricing, t.navReviews, t.navMembers];
   document.querySelectorAll('.nav-links li a').forEach((el, i) => { if (navLabels[i]) el.textContent = navLabels[i]; });
   document.querySelectorAll('.mobile-menu > a:not(.btn)').forEach((el, i) => { if (navLabels[i]) el.textContent = navLabels[i]; });
   document.querySelectorAll('.nav-actions .btn-primary, .mobile-menu .btn-primary').forEach(el => el.textContent = t.navBtn);

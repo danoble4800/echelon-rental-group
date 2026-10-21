@@ -7,7 +7,7 @@
 ────────────────────────────────────────── */
 const experiencesI18n = {
   en: {
-    navIncluded: "What's Included", navPartners: 'Partners', navItineraries: 'Itineraries', navPlan: 'Plan Yours', navBtn: 'Build My Itinerary',
+    navIncluded: "What's Included", navPartners: 'Partners', navItineraries: 'Itineraries', navPlan: 'Plan Yours', navMembers: 'Members', navBtn: 'Build My Itinerary',
     heroBadge: 'Custom VIP Itineraries · Boston &amp; New England',
     heroTitle: 'From Wheels Up<br /><span class="accent">to Last Call.</span>',
     heroSubtitle: '<strong>Echelon Experiences</strong> brings everything we do into one seamless itinerary — your pickup, your ride, your stay, the best seats in the house, VIP tables and dinner reservations. One call, and every detail is handled.',
@@ -72,7 +72,7 @@ const experiencesI18n = {
     toastTitle: 'Itinerary Requested!', toastBody: 'An experience planner will reach out within 1 hour.',
   },
   es: {
-    navIncluded: 'Qué Incluye', navPartners: 'Socios', navItineraries: 'Itinerarios', navPlan: 'Planifica', navBtn: 'Crear Mi Itinerario',
+    navIncluded: 'Qué Incluye', navPartners: 'Socios', navItineraries: 'Itinerarios', navPlan: 'Planifica', navMembers: 'Miembros', navBtn: 'Crear Mi Itinerario',
     heroBadge: 'Itinerarios VIP a Medida · Boston y Nueva Inglaterra',
     heroTitle: 'Del Despegue<br /><span class="accent">a la Última Copa.</span>',
     heroSubtitle: '<strong>Echelon Experiences</strong> reúne todo lo que hacemos en un solo itinerario — tu recogida, tu auto, tu estadía, los mejores asientos, mesas VIP y reservaciones para cenar. Una llamada y cada detalle queda resuelto.',
@@ -137,7 +137,7 @@ const experiencesI18n = {
     toastTitle: '¡Itinerario Solicitado!', toastBody: 'Un planificador de experiencias te contactará dentro de 1 hora.',
   },
   pt: {
-    navIncluded: 'O Que Inclui', navPartners: 'Parceiros', navItineraries: 'Roteiros', navPlan: 'Planeje', navBtn: 'Montar Meu Roteiro',
+    navIncluded: 'O Que Inclui', navPartners: 'Parceiros', navItineraries: 'Roteiros', navPlan: 'Planeje', navMembers: 'Membros', navBtn: 'Montar Meu Roteiro',
     heroBadge: 'Roteiros VIP Personalizados · Boston e Nova Inglaterra',
     heroTitle: 'Da Decolagem<br /><span class="accent">à Última Dose.</span>',
     heroSubtitle: 'A <strong>Echelon Experiences</strong> reúne tudo o que fazemos em um único roteiro — sua busca, seu carro, sua hospedagem, os melhores lugares da casa, mesas VIP e reservas para jantar. Uma ligação e cada detalhe está resolvido.',

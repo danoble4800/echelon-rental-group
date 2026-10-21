@@ -6,7 +6,7 @@
 ────────────────────────────────────────── */
 const boatsI18n = {
   en: {
-    navFleet: 'Fleet', navReserve: 'Charter', navPricing: 'Pricing', navReviews: 'Reviews', navBtn: 'Book Charter',
+    navFleet: 'Fleet', navReserve: 'Charter', navPricing: 'Pricing', navReviews: 'Reviews', navMembers: 'Members', navBtn: 'Book Charter',
     heroBadge: 'Private Charters · Captained &amp; Bareboat Available',
     heroTitle: 'Your Day on the Water,<br /><span class="accent">Perfected.</span>',
     heroSubtitle: 'From half-day sunset cruises to full-day offshore charters, <strong>Echelon Boat Charters</strong> connects you with well-maintained boats and experienced captains up and down the coast.',
@@ -50,7 +50,7 @@ const boatsI18n = {
     toastTitle: 'Charter Requested!', toastBody: "We'll call you within 1 hour to confirm.",
   },
   es: {
-    navFleet: 'Flota', navReserve: 'Reservar', navPricing: 'Precios', navReviews: 'Reseñas', navBtn: 'Reservar Charter',
+    navFleet: 'Flota', navReserve: 'Reservar', navPricing: 'Precios', navReviews: 'Reseñas', navMembers: 'Miembros', navBtn: 'Reservar Charter',
     heroBadge: 'Charters Privados · Con Capitán o Sin Capitán',
     heroTitle: 'Tu Día en el Agua,<br /><span class="accent">Perfeccionado.</span>',
     heroSubtitle: 'Desde cruceros de medio día al atardecer hasta charters de día completo mar adentro, <strong>Echelon Boat Charters</strong> te conecta con embarcaciones bien mantenidas y capitanes experimentados a lo largo de la costa.',
@@ -94,7 +94,7 @@ const boatsI18n = {
     toastTitle: '¡Charter Solicitado!', toastBody: 'Te llamaremos dentro de 1 hora para confirmar.',
   },
   pt: {
-    navFleet: 'Frota', navReserve: 'Reservar', navPricing: 'Preços', navReviews: 'Avaliações', navBtn: 'Reservar Charter',
+    navFleet: 'Frota', navReserve: 'Reservar', navPricing: 'Preços', navReviews: 'Avaliações', navMembers: 'Membros', navBtn: 'Reservar Charter',
     heroBadge: 'Charters Privados · Com ou Sem Capitão',
     heroTitle: 'Seu Dia na Água,<br /><span class="accent">Aperfeiçoado.</span>',
     heroSubtitle: 'De cruzeiros de meio dia ao pôr do sol a charters de dia inteiro em alto-mar, a <strong>Echelon Boat Charters</strong> conecta você a barcos bem cuidados e capitães experientes por toda a costa.',
@@ -154,7 +154,7 @@ function applyLang(lang) {
   document.querySelectorAll('#langLabel').forEach(el => el.textContent = lang.toUpperCase());
   document.querySelectorAll('.lang-option').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
 
-  const navLabels = [t.navFleet, t.navReserve, t.navPricing, t.navReviews];
+  const navLabels = [t.navFleet, t.navReserve, t.navPricing, t.navReviews, t.navMembers];
   document.querySelectorAll('.nav-links li a').forEach((el, i) => { if (navLabels[i]) el.textContent = navLabels[i]; });
   document.querySelectorAll('.mobile-menu > a:not(.btn)').forEach((el, i) => { if (navLabels[i]) el.textContent = navLabels[i]; });
   document.querySelectorAll('.nav-actions .btn-primary, .mobile-menu .btn-primary').forEach(el => el.textContent = t.navBtn);

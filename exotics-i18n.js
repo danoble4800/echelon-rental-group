@@ -7,11 +7,11 @@
 ────────────────────────────────────────── */
 const exoticsI18n = {
   en: {
-    navFleet: 'Collection', navChauffeur: 'Chauffeur', navHow: 'How It Works', navAbout: 'About', navFaq: 'FAQ', navBtn: 'Request Access',
+    navFleet: 'Collection', navChauffeur: 'Chauffeur', navHow: 'How It Works', navAbout: 'About', navFaq: 'FAQ', navMembers: 'Members', navBtn: 'Reserve a Car',
     heroTitle: '<span class="kicker">Welcome to the</span>Upper<span class="accent">Echelon.</span>',
     heroSubtitle: "Whether it's a weekend in a Huracán, a wedding exit in a Cullinan, an airport run in a Maybach, or VIP access to Boston's best seats and tables, consider it handled — all arranged by your Echelon concierge.",
     tag1: 'Delivered to Your Door', tag2: 'Discretion Assured', tag3: 'Concierge on Call',
-    ctaFleet: 'The Collection', ctaReserve: 'Request Access',
+    ctaFleet: 'The Collection', ctaReserve: 'Reserve a Car',
     invTag: 'Featured Collection', invH2: "The Cars Everyone's Asking For",
     invDesc: 'Every car is detailed, inspected, and delivered exactly as pictured — no surprises, no substitutions without your approval.',
     badges: ['Available', 'Most Requested', 'Available', 'Limited', 'Available', 'Available'],
@@ -52,8 +52,8 @@ const exoticsI18n = {
     ],
     footerBlurb: 'Luxury and exotic car rentals with white-glove delivery, part of the Echelon Rental Group family.',
     footerCols: [
-      { h: 'Quick Links', links: ['Home', 'View Full Collection', 'Request Access', 'How It Works', 'FAQs'] },
-      { h: 'Company', links: ['About Us', 'Service Areas', 'From Our Members', 'Echelon Stories'] },
+      { h: 'Quick Links', links: ['Home', 'View Full Collection', 'Reserve a Car', 'How It Works', 'FAQs'] },
+      { h: 'Company', links: ['About Us', 'Service Areas', 'From Our Members', 'Echelon Stories', 'Echelon Members'] },
       { h: 'Resources', links: ['Rental Policies', 'Cancellation & Refunds', 'Terms of Service', 'Privacy Policy', 'Accessibility'] },
       { h: 'Echelon Brands' },
       { h: 'Contact' },
@@ -63,11 +63,11 @@ const exoticsI18n = {
     toastTitle: 'Your request has been received.', toastBody: 'A member of our concierge team will be in touch personally.',
   },
   es: {
-    navFleet: 'Colección', navChauffeur: 'Chofer', navHow: 'Cómo Funciona', navAbout: 'Nosotros', navFaq: 'FAQ', navBtn: 'Solicitar Acceso',
+    navFleet: 'Colección', navChauffeur: 'Chofer', navHow: 'Cómo Funciona', navAbout: 'Nosotros', navFaq: 'FAQ', navMembers: 'Miembros', navBtn: 'Reservar un Auto',
     heroTitle: '<span class="kicker">Bienvenido al</span>Más Alto<span class="accent">Echelon.</span>',
     heroSubtitle: 'Ya sea un fin de semana en un Huracán, una salida de boda en un Cullinan, un traslado al aeropuerto en un Maybach o acceso VIP a los mejores asientos y mesas de Boston, considéralo resuelto — todo organizado por tu conserje de Echelon.',
     tag1: 'Entrega a Tu Puerta', tag2: 'Discreción Garantizada', tag3: 'Conserjería a Tu Disposición',
-    ctaFleet: 'La Colección', ctaReserve: 'Solicitar Acceso',
+    ctaFleet: 'La Colección', ctaReserve: 'Reservar un Auto',
     invTag: 'Colección Destacada', invH2: 'Los Autos Que Todos Piden',
     invDesc: 'Cada auto es detallado, inspeccionado y entregado exactamente como se muestra — sin sorpresas ni sustituciones sin tu aprobación.',
     badges: ['Disponible', 'Más Solicitado', 'Disponible', 'Limitado', 'Disponible', 'Disponible'],
@@ -108,8 +108,8 @@ const exoticsI18n = {
     ],
     footerBlurb: 'Alquiler de autos exóticos y de lujo con entrega de conserjería, parte de la familia Echelon Rental Group.',
     footerCols: [
-      { h: 'Enlaces Rápidos', links: ['Inicio', 'Ver Toda la Colección', 'Solicitar Acceso', 'Cómo Funciona', 'Preguntas Frecuentes'] },
-      { h: 'Empresa', links: ['Sobre Nosotros', 'Áreas de Servicio', 'De Nuestros Miembros', 'Historias Echelon'] },
+      { h: 'Enlaces Rápidos', links: ['Inicio', 'Ver Toda la Colección', 'Reservar un Auto', 'Cómo Funciona', 'Preguntas Frecuentes'] },
+      { h: 'Empresa', links: ['Sobre Nosotros', 'Áreas de Servicio', 'De Nuestros Miembros', 'Historias Echelon', 'Miembros Echelon'] },
       { h: 'Recursos', links: ['Políticas de Alquiler', 'Cancelaciones y Reembolsos', 'Términos de Servicio', 'Política de Privacidad', 'Accesibilidad'] },
       { h: 'Marcas Echelon' },
       { h: 'Contacto' },
@@ -119,11 +119,11 @@ const exoticsI18n = {
     toastTitle: 'Hemos recibido tu solicitud.', toastBody: 'Un miembro de nuestro equipo de conserjería se pondrá en contacto contigo personalmente.',
   },
   pt: {
-    navFleet: 'Coleção', navChauffeur: 'Motorista', navHow: 'Como Funciona', navAbout: 'Sobre', navFaq: 'FAQ', navBtn: 'Solicitar Acesso',
+    navFleet: 'Coleção', navChauffeur: 'Motorista', navHow: 'Como Funciona', navAbout: 'Sobre', navFaq: 'FAQ', navMembers: 'Membros', navBtn: 'Reservar um Carro',
     heroTitle: '<span class="kicker">Bem-vindo ao</span>Mais Alto<span class="accent">Echelon.</span>',
     heroSubtitle: 'Seja um fim de semana em um Huracán, uma saída de casamento em um Cullinan, um transfer para o aeroporto em um Maybach ou acesso VIP aos melhores lugares e mesas de Boston, considere resolvido — tudo organizado pelo seu concierge Echelon.',
     tag1: 'Entrega na Sua Porta', tag2: 'Discrição Garantida', tag3: 'Concierge à Disposição',
-    ctaFleet: 'A Coleção', ctaReserve: 'Solicitar Acesso',
+    ctaFleet: 'A Coleção', ctaReserve: 'Reservar um Carro',
     invTag: 'Coleção em Destaque', invH2: 'Os Carros Que Todos Pedem',
     invDesc: 'Cada carro é detalhado, inspecionado e entregue exatamente como mostrado — sem surpresas, sem substituições sem sua aprovação.',
     badges: ['Disponível', 'Mais Procurado', 'Disponível', 'Limitado', 'Disponível', 'Disponível'],
@@ -164,8 +164,8 @@ const exoticsI18n = {
     ],
     footerBlurb: 'Aluguel de carros exóticos e de luxo com entrega concierge, parte da família Echelon Rental Group.',
     footerCols: [
-      { h: 'Links Rápidos', links: ['Início', 'Ver Toda a Coleção', 'Solicitar Acesso', 'Como Funciona', 'Perguntas Frequentes'] },
-      { h: 'Empresa', links: ['Sobre Nós', 'Áreas de Atendimento', 'De Nossos Membros', 'Histórias Echelon'] },
+      { h: 'Links Rápidos', links: ['Início', 'Ver Toda a Coleção', 'Reservar um Carro', 'Como Funciona', 'Perguntas Frequentes'] },
+      { h: 'Empresa', links: ['Sobre Nós', 'Áreas de Atendimento', 'De Nossos Membros', 'Histórias Echelon', 'Membros Echelon'] },
       { h: 'Recursos', links: ['Políticas de Aluguel', 'Cancelamentos e Reembolsos', 'Termos de Serviço', 'Política de Privacidade', 'Acessibilidade'] },
       { h: 'Marcas Echelon' },
       { h: 'Contato' },
@@ -192,7 +192,7 @@ function applyLang(lang) {
   document.querySelectorAll('.lang-option').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
 
   const navLinks = $$('.nav-links a, .mobile-menu > a:not(.btn)');
-  const navLabels = [t.navFleet, t.navChauffeur, t.navHow, t.navAbout, t.navFaq];
+  const navLabels = [t.navFleet, t.navChauffeur, t.navHow, t.navAbout, t.navFaq, t.navMembers];
   document.querySelectorAll('.nav-links li a').forEach((el, i) => { if (navLabels[i]) el.textContent = navLabels[i]; });
   document.querySelectorAll('.mobile-menu > a:not(.btn)').forEach((el, i) => { if (navLabels[i]) el.textContent = navLabels[i]; });
   document.querySelectorAll('.nav-actions .btn-primary, .mobile-menu .btn-primary').forEach(el => el.textContent = t.navBtn);
