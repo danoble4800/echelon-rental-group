@@ -89,7 +89,15 @@ export async function reservationSheet(brand) {
   return { id, tab, cols: mapColumns(brand, head[0] || []), rows };
 }
 
-// Every reservation in a division as plain objects (sheet row number included), oldest first.
+// Setup and QA submissions: first name "TEST" plus a test email or surname. They stay in
+// the Exotic and Economy sheets (deleting rows there breaks the Zapier text alerts, which
+// track rows by position) but never show in the portal or the morning digest.
+export const isTestRow = (r) =>
+  /^test$/i.test(String(r.firstName || "").trim()) &&
+  (/@example\.com$/i.test(r.email || "") || /^test$|delete me|claude check/i.test(String(r.lastName || "").trim()));
+
+// Every real reservation in a division as plain objects (sheet row number included),
+// oldest first. Test rows are left out.
 export async function readReservations(brand) {
   const sheet = await reservationSheet(brand);
   const list = sheet.rows
@@ -99,7 +107,7 @@ export async function readReservations(brand) {
       r.email = r.email.toLowerCase();
       return r;
     })
-    .filter((r) => r.firstName || r.lastName || r.email || r.phone);
+    .filter((r) => (r.firstName || r.lastName || r.email || r.phone) && !isTestRow(r));
   return { ...sheet, list };
 }
 

@@ -64,8 +64,6 @@ export async function buildDigest() {
     }
     for (const r of res.value.list) {
       if (CLOSED.test(r.status)) continue;
-      // Test rows from setup checks never belong on the list.
-      if (/^test\b/i.test(r.firstName) || /@example\.com$/i.test(r.email)) continue;
       const item = { ...r, label };
       const follow = parseDay(r.followUp, today);
       if (follow && follow < today) overdue.push({ ...item, late: daysBetween(today, follow) });
