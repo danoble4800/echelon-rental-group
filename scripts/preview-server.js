@@ -43,6 +43,7 @@ const { default: portalHandler } = await import("../api/portal.js");
 const { default: refHandler } = await import("../api/ref.js");
 const { default: applyHandler } = await import("../api/apply.js");
 const { default: joinHandler } = await import("../api/join.js");
+const { default: memberHandler } = await import("../api/member.js");
 const { default: digestHandler } = await import("../api/digest.js");
 
 const TYPES = {
@@ -55,7 +56,7 @@ const TYPES = {
 function serveStatic(req, res) {
   let pathname = decodeURIComponent(new URL(req.url, "http://localhost").pathname);
   if (pathname === "/") pathname = "/exotics.html";
-  if (/^\/portal\/?$/.test(pathname)) pathname = "/portal.html";
+  if (/^\/(portal|member)\/?$/.test(pathname)) pathname = "/portal.html";
   if (/^\/ambassadors\/?$/.test(pathname)) pathname = "/ambassadors.html";
   if (/^\/members\/?$/.test(pathname)) pathname = "/members.html";
   const shortLink = /^\/r\/([A-Za-z0-9-]{2,24})\/?$/.exec(pathname);
@@ -90,7 +91,7 @@ http
     const apiHandler = {
       "/api/chat": chatHandler, "/api/lead": leadHandler, "/api/auth": authHandler,
       "/api/portal": portalHandler, "/api/ref": refHandler, "/api/apply": applyHandler,
-      "/api/join": joinHandler, "/api/digest": digestHandler,
+      "/api/join": joinHandler, "/api/digest": digestHandler, "/api/member": memberHandler,
     }[new URL(req.url, "http://localhost").pathname];
     if (apiHandler) {
       apiHandler(req, res).catch((err) => {

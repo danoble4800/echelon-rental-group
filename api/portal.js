@@ -3,20 +3,20 @@
 //
 //   owner       Reservations (all six divisions), Members, Referrals, Ambassadors, Applications, Team,
 //               payouts, any ambassador's dashboard
-//   employee    Reservations, Members, Referrals
+//   employee    Reservations, Members, Requests, Referrals
 //   ambassador  their own dashboard only (customers shown as "Jane D.", no contact details)
 //
-//   GET  ?view=reservations | members | referrals | ambassadors | applications | team | dashboard[&code=XYZ]
+//   GET  ?view=reservations | members | requests | referrals | ambassadors | applications | team | dashboard[&code=XYZ]
 //   POST { action: "updateReservation" | "updateReferral" | "addPerson" | "updatePerson"
 //                  | "setupLink" | "recordPayout" | "approveApplication"
-//                  | "declineApplication" | "updateMember", ... }
+//                  | "declineApplication" | "updateMember" | "memberSetupLink" | "updateRequest", ... }
 
 import { dropdownOptions, sheetSafe, tabRange, updateRange } from "./_google.js";
 import { colLetter, readReservations, reservationSheet, RES_SHEETS } from "./_reservations.js";
 import {
   appendRow, currentUser, DEFAULT_COMMISSION, DEFAULT_PERK, MAX_COMMISSION, MIN_COMMISSION, firstName, isActive, money,
-  nowEastern, readCrm, readJson, REFERRAL_STATUSES, ROLES, sameOrigin, sendJson, setupToken, siteOrigin,
-  todayEastern, writeCells,
+  nowEastern, readCrm, readJson, REFERRAL_STATUSES, REQUEST_STATUSES, ROLES, sameOrigin, sendJson, setupLink, setupToken,
+  siteOrigin, todayEastern, writeCells,
 } from "./_crm.js";
 
 const STAFF = ["owner", "employee"];
@@ -279,15 +279,26 @@ export const MEMBER_TIERS = ["Member", "Silver", "Black", "Upper Echelon"];
 export const MEMBER_STATUSES = ["Active", "Paused", "Closed"];
 
 async function membersView() {
-  const { Members } = await readCrm(["Members"]);
-  return { members: Members.reverse(), tiers: MEMBER_TIERS, statuses: MEMBER_STATUSES };
+  const { Members, Requests } = await readCrm(["Members", "Requests"]);
+  const open = new Map();
+  for (const r of Requests) if (/new|progress/i.test(r.status)) open.set(r.email, (open.get(r.email) || 0) + 1);
+  // Password hashes and lockout state never leave the server.
+  const members = Members.reverse().map(({ password, failed, lockedUntil, ...m }) =>
+    ({ ...m, hasPassword: !!password, openRequests: open.get(m.email) || 0 }));
+  return { members, tiers: MEMBER_TIERS, statuses: MEMBER_STATUSES };
 }
 
-// Nº (4 digits, unique), Tier, Status and Notes are the only member fields the portal edits.
-async function updateMember(user, { row, email, no, tier, status, notes }) {
+async function findMember({ row, email }) {
   const { Members } = await readCrm(["Members"]);
   const member = Members.find((m) => m.row === Number(row));
   if (!member || member.email !== String(email || "").toLowerCase()) throw new HttpError(409, "This member moved in the sheet. Refresh and try again.");
+  return { member, Members };
+}
+
+// Nº (4 digits, unique), Tier, Status, Concierge, Notes and Preferences (what the concierge
+// remembers, one per line) are the member fields the portal edits.
+async function updateMember(user, { row, email, no, tier, status, notes, concierge, prefs }) {
+  const { member, Members } = await findMember({ row, email });
   let number = String(no ?? member.no).replace(/\D/g, "");
   if (number) {
     if (number.length > 4 || Number(number) < 1) throw new HttpError(400, "Member numbers run from 0001 to 9999.");
@@ -299,8 +310,49 @@ async function updateMember(user, { row, email, no, tier, status, notes }) {
   const nextStatus = MEMBER_STATUSES.includes(status) ? status : member.status;
   await writeCells("Members", `A${member.row}`, [number ? `'${number}` : ""]);
   await writeCells("Members", `N${member.row}:O${member.row}`, [nextTier, nextStatus]);
+  if (typeof concierge === "string") await writeCells("Members", `T${member.row}`, [concierge.trim().slice(0, 60)]);
   if (typeof notes === "string") await writeCells("Members", `V${member.row}`, [notes.slice(0, 1000)]);
+  if (typeof prefs === "string") {
+    const list = prefs.split("\n").map((p) => p.trim().slice(0, 80)).filter(Boolean).slice(0, 20);
+    await writeCells("Members", `Z${member.row}`, [list.join("\n")]);
+  }
   return { ok: true, no: number };
+}
+
+// A sign-in link for the member area, for the team to text to a member.
+async function memberSetupLink(req, body) {
+  const { member } = await findMember(body);
+  if (!isActive(member)) throw new HttpError(400, "Only active members can get a sign-in link.");
+  return { setupLink: setupLink(req, member, "member") };
+}
+
+// ── Requests (what members asked the concierge to arrange) ──
+
+async function requestsView() {
+  const { Requests, Members } = await readCrm(["Requests", "Members"]);
+  const byEmail = new Map(Members.map((m) => [m.email, m]));
+  return {
+    requests: Requests.reverse().map((r) => {
+      const m = byEmail.get(r.email);
+      return { ...r, phone: m?.phone || "", no: m?.no || "", tier: m?.tier || r.tier };
+    }),
+    statuses: REQUEST_STATUSES,
+  };
+}
+
+// Status / Reply / Team Notes. Sending a reply stamps who handled it and when; the member
+// sees the reply in their Requests and concierge chat.
+async function updateRequest(user, { row, ref, status, reply, notes }) {
+  const { Requests } = await readCrm(["Requests"]);
+  const r = Requests.find((x) => x.row === Number(row));
+  if (!r || r.ref !== String(ref || "")) throw new HttpError(409, "This request moved in the sheet. Refresh and try again.");
+  const nextStatus = REQUEST_STATUSES.includes(status) ? status : r.status;
+  const handler = r.handler || user.name || user.email;
+  const newReply = typeof reply === "string" && reply.trim() && reply.trim() !== r.reply ? reply.trim().slice(0, 1000) : null;
+  await writeCells("Requests", `K${r.row}:L${r.row}`, [nextStatus, nextStatus !== "New" || newReply ? handler : r.handler]);
+  if (newReply) await writeCells("Requests", `M${r.row}:N${r.row}`, [newReply, nowEastern()]);
+  if (typeof notes === "string") await writeCells("Requests", `O${r.row}`, [notes.slice(0, 1000)]);
+  return { ok: true };
 }
 
 // ── Router ──
@@ -321,6 +373,9 @@ export default async function handler(req, res) {
         case "members":
           need(isStaff);
           return sendJson(res, 200, await membersView());
+        case "requests":
+          need(isStaff);
+          return sendJson(res, 200, await requestsView());
         case "referrals": {
           need(isStaff);
           const crm = await readCrm(["Referrals", "Team"]);
@@ -379,6 +434,12 @@ export default async function handler(req, res) {
       case "updateMember":
         need(isStaff);
         return sendJson(res, 200, await updateMember(user, body));
+      case "memberSetupLink":
+        need(isStaff);
+        return sendJson(res, 200, await memberSetupLink(req, body));
+      case "updateRequest":
+        need(isStaff);
+        return sendJson(res, 200, await updateRequest(user, body));
       case "updateReferral":
         need(isStaff);
         return sendJson(res, 200, await updateReferral(body));

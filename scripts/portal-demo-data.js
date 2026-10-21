@@ -5,6 +5,8 @@
 //   owner@demo.test       owner      → full CRM
 //   staff@demo.test       employee   → Reservations + Referrals
 //   marcus@demo.test      ambassador → dashboard for code MARCUS (try /r/marcus)
+//   jordan.blake@example.com  member (Silver Nº 0147) → /member
+//   avery.stone@example.com   member (no password yet: get a sign-in link from Members)
 
 import { scryptSync } from "node:crypto";
 
@@ -107,6 +109,15 @@ export function demoSheets() {
           rows: [
             ["Submitted", "First Name", "Last Name", "Email", "Phone", "Instagram", "City", "Birthdate", "Followers", "How They'd Promote", "Status", "Reviewed", "Notes"],
             [daysAgo(2, 14), "Devon", "Price", "devon.price@example.com", "(555) 010-5521", "@devonprice", "Boston, MA", "1998-04-12", "10K–50K", "I shoot car content around Boston and host monthly meetups.", "New", "", ""],
+          ],
+        },
+        {
+          // Older 22-column header on purpose: the CRM adds the Password / Preferences columns.
+          title: "Members",
+          rows: [
+            ["Nº", "Joined", "First Name", "Last Name", "Email", "Phone", "Birthdate", "City", "Interests", "Heard From", "Referral Code", "SMS Opt-in", "Language", "Tier", "Status", "First Booking", "Bookings", "12-Mo Spend", "Full Echelon", "Concierge", "Wallet ID", "Notes"],
+            ["0147", daysAgo(40), "Jordan", "Blake", "jordan.blake@example.com", "(555) 010-8812", "1990-03-02", "Boston, MA", "Exotics, Chauffeur", "Instagram", "MARCUS", "Yes", "EN", "Silver", "Active", "", "1", "", "", "Tony", "", "Likes the car staged with doors open on arrival.", pw, "", "", "Prefers black interiors\nAnniversary in November"],
+            ["", daysAgo(12), "Avery", "Stone", "avery.stone@example.com", "(555) 010-2231", "1993-07-19", "Cambridge, MA", "Exotics, Boats", "A friend or ambassador", "", "No", "EN", "Member", "Active", "", "0", "", "", "", "", ""],
           ],
         },
       ],

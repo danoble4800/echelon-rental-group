@@ -4,15 +4,18 @@
 // Everything lives in Google Sheets (no database):
 //   • "Echelon CRM" spreadsheet (ECHELON_CRM_SHEET_ID) — tabs Team, Referrals, Clicks,
 //     Payouts, Applications (the public /ambassadors form), Members (the public /members
-//     form; Nº stays blank until a member's first booking is complete). Missing tabs and header rows
-//     are created on first use, and when Team is empty the LEAD_ALERT_EMAIL address is
-//     added as the first owner.
+//     form; Nº stays blank until a member's first booking is complete; members sign in to
+//     /member with the Password columns), Requests (what members ask the concierge to
+//     arrange). Missing tabs, header rows and newly added header columns are created on
+//     first use, and when Team is empty the LEAD_ALERT_EMAIL address is added as the first
+//     owner.
 //   • "Echelon Exotic Rental Reservations" — read for the Reservations list; the portal
 //     only ever writes its Status / Follow-up / Notes columns.
 //
 // Roles: owner (everything), employee (reservations + referrals), ambassador (their own
 // dashboard only). The role is looked up from the Team tab on every request, so changing
-// or pausing someone there takes effect immediately.
+// or pausing someone there takes effect immediately. Members are a separate kind of account
+// (Members tab, /member): their session can never reach the team endpoints.
 
 import { createHash, createHmac, randomBytes, scrypt, timingSafeEqual } from "node:crypto";
 import { promisify } from "node:util";
@@ -34,9 +37,11 @@ export const TABS = {
   Clicks: ["Time", "Code", "Page", "Visitor"],
   Payouts: ["Date", "Code", "Amount", "Method", "Note", "Recorded By"],
   Applications: ["Submitted", "First Name", "Last Name", "Email", "Phone", "Instagram", "City", "Birthdate", "Followers", "How They'd Promote", "Status", "Reviewed", "Notes"],
-  Members: ["Nº", "Joined", "First Name", "Last Name", "Email", "Phone", "Birthdate", "City", "Interests", "Heard From", "Referral Code", "SMS Opt-in", "Language", "Tier", "Status", "First Booking", "Bookings", "12-Mo Spend", "Full Echelon", "Concierge", "Wallet ID", "Notes"],
+  Members: ["Nº", "Joined", "First Name", "Last Name", "Email", "Phone", "Birthdate", "City", "Interests", "Heard From", "Referral Code", "SMS Opt-in", "Language", "Tier", "Status", "First Booking", "Bookings", "12-Mo Spend", "Full Echelon", "Concierge", "Wallet ID", "Notes", "Password", "Failed Logins", "Locked Until", "Preferences"],
+  Requests: ["Submitted", "Ref", "Member Email", "Member", "Tier", "Request", "What", "When", "Where", "Extras", "Status", "Handled By", "Reply", "Replied", "Team Notes"],
 };
-const LAST_COL = { Team: "M", Referrals: "N", Clicks: "D", Payouts: "F", Applications: "M", Members: "V" };
+const LAST_COL = { Team: "M", Referrals: "N", Clicks: "D", Payouts: "F", Applications: "M", Members: "Z", Requests: "O" };
+export const REQUEST_STATUSES = ["New", "In Progress", "Confirmed", "Closed"];
 
 export const nowEastern = () =>
   new Date().toLocaleString("en-US", { timeZone: "America/New_York" }).replace(",", "");
@@ -57,9 +62,10 @@ async function ensureCrm() {
   const existing = new Set((await listTabs(id)).map((t) => t.title));
   const missing = Object.keys(TABS).filter((t) => !existing.has(t));
   if (missing.length) await addTabs(id, missing);
-  const heads = await batchGet(id, Object.keys(TABS).map((t) => tabRange(t, "A1:A1")));
+  const heads = await batchGet(id, Object.keys(TABS).map((t) => tabRange(t, "A1:Z1")));
   for (const [i, tab] of Object.keys(TABS).entries()) {
-    if (!heads[i].length) await updateRange(id, tabRange(tab, "A1"), [TABS[tab]]);
+    // A blank tab gets its header row; an older one gets any columns added since.
+    if ((heads[i][0] || []).length < TABS[tab].length) await updateRange(id, tabRange(tab, "A1"), [TABS[tab]]);
   }
   const team = await batchGet(id, [tabRange("Team", "A2:A")]);
   const owner = (process.env.LEAD_ALERT_EMAIL || "").split(",")[0].trim().toLowerCase();
@@ -107,6 +113,13 @@ const PARSERS = {
     phone: v[5] || "", birthdate: v[6] || "", city: v[7] || "", interests: v[8] || "", heard: v[9] || "", code: (v[10] || "").toUpperCase(),
     sms: v[11] || "", lang: v[12] || "", tier: v[13] || "Member", status: v[14] || "Active", firstBooking: v[15] || "",
     bookings: Number(v[16]) || 0, spend: money(v[17]), fullEchelon: v[18] || "", concierge: v[19] || "", walletId: v[20] || "", notes: v[21] || "",
+    password: v[22] || "", failed: Number(v[23]) || 0, lockedUntil: Number(v[24]) || 0,
+    prefs: String(v[25] || "").split("\n").map((p) => p.trim()).filter(Boolean),
+  }),
+  Requests: (v) => ({
+    submitted: v[0] || "", ref: v[1] || "", email: (v[2] || "").trim().toLowerCase(), member: v[3] || "", tier: v[4] || "",
+    ask: v[5] || "", what: v[6] || "", when: v[7] || "", where: v[8] || "", extras: v[9] || "",
+    status: v[10] || "New", handler: v[11] || "", reply: v[12] || "", replied: v[13] || "", notes: v[14] || "",
   }),
   Payouts: (v) => ({ date: v[0] || "", code: (v[1] || "").toUpperCase(), amount: money(v[2]), method: v[3] || "", note: v[4] || "", by: v[5] || "" }),
 };
@@ -191,8 +204,9 @@ export function readToken(token) {
 export const SESSION_COOKIE = "echelon_portal";
 export const SESSION_DAYS = 30;
 
-export function sessionCookie(req, person) {
-  const token = signToken({ t: "session", e: person.email, pv: passwordVersion(person), exp: Date.now() + SESSION_DAYS * 864e5 });
+// kind "member" marks a member session (Members tab); team sessions carry no kind.
+export function sessionCookie(req, person, kind) {
+  const token = signToken({ t: "session", k: kind || undefined, e: person.email, pv: passwordVersion(person), exp: Date.now() + SESSION_DAYS * 864e5 });
   return cookie(req, token, SESSION_DAYS * 86400);
 }
 
@@ -203,20 +217,41 @@ function cookie(req, value, maxAge) {
   return `${SESSION_COOKIE}=${value}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${maxAge}${local ? "" : "; Secure"}`;
 }
 
-// The signed-in, active team member for this request, or null.
-export async function currentUser(req) {
+function sessionPayload(req) {
   const raw = (req.headers.cookie || "").split(/;\s*/).find((c) => c.startsWith(`${SESSION_COOKIE}=`));
   const payload = readToken(raw ? raw.slice(SESSION_COOKIE.length + 1) : "");
-  if (payload?.t !== "session") return null;
+  return payload?.t === "session" ? payload : null;
+}
+
+// The signed-in, active team member for this request, or null.
+export async function currentUser(req) {
+  const payload = sessionPayload(req);
+  if (!payload || payload.k) return null;
   const { Team } = await readCrm(["Team"]);
   const person = Team.find((p) => p.email === payload.e);
   if (!person || !isActive(person) || !ROLES.includes(person.role)) return null;
   return passwordVersion(person) === payload.pv ? person : null;
 }
 
-export function setupToken(person, hours = 72) {
-  return signToken({ t: "setup", e: person.email, pv: passwordVersion(person), exp: Date.now() + hours * 36e5 });
+// The signed-in, active member (Members tab) for this request, or null.
+export async function currentMember(req) {
+  const payload = sessionPayload(req);
+  if (payload?.k !== "member") return null;
+  const { Members } = await readCrm(["Members"]);
+  const member = Members.find((m) => m.email === payload.e);
+  if (!member || !isActive(member)) return null;
+  return passwordVersion(member) === payload.pv ? member : null;
 }
+
+export function setupToken(person, hours = 72, kind) {
+  return signToken({ t: "setup", k: kind || undefined, e: person.email, pv: passwordVersion(person), exp: Date.now() + hours * 36e5 });
+}
+
+// Where a setup link sends people: members to /member, everyone else to /portal.
+export const setupLink = (req, person, kind, hours) =>
+  `${siteOrigin(req)}/${kind === "member" ? "member" : "portal"}?setup=${setupToken(person, hours, kind)}`;
+
+export const memberName = (m) => `${m.firstName} ${m.lastName}`.trim();
 
 // ── Small HTTP helpers shared by the portal endpoints ──
 

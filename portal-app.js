@@ -1,9 +1,10 @@
 /* ──────────────────────────────────────────
-   ECHELON PORTAL (/portal)
-   One sign-in for the team and ambassadors (api/auth.js). What loads next
-   depends on the role the server reports:
+   ECHELON PORTAL (/portal) + MEMBER AREA (/member, same page)
+   Sign-in for the team, ambassadors and Echelon Members (api/auth.js). What
+   loads next depends on the role the server reports:
      owner / employee → Echelon CRM tabs (api/portal.js)
      ambassador       → their own dashboard
+     member           → the member area (member-app.js, api/member.js)
    The server checks the role on every request; hiding tabs here is only
    for tidiness, not security.
 ────────────────────────────────────────── */
@@ -24,6 +25,9 @@
 
   let me = null;
   let tab = 'reservations';
+  // /member signs in against the Members tab; /portal against the Team tab.
+  const memberPath = /^\/member\/?$/.test(location.pathname);
+  let authKind = memberPath ? 'member' : 'team';
   const state = {};
 
   // ── API ──
@@ -98,6 +102,7 @@
     $('#authView').hidden = view !== 'auth';
     $('#staffView').hidden = view !== 'staff';
     $('#ambView').hidden = view !== 'amb';
+    $('#memberView').hidden = view !== 'member';
     $('#userBar').hidden = view === 'auth';
   }
 
@@ -107,6 +112,15 @@
     loading(true);
     try {
       me = (await request('/api/auth')).user;
+      // A team session opened at /member (or a member's at /portal) gets the right sign-in.
+      if (memberPath !== (me.role === 'member')) {
+        const role = me.role;
+        showAuth('login');
+        $('#authError').textContent = role === 'member'
+          ? 'You\'re signed in as a member. Signing in here as team will sign you out of the member area.'
+          : 'You\'re signed in to the team portal. Signing in here as a member will sign you out of it.';
+        return;
+      }
       enter();
     } catch (e) {
       showAuth('login');
@@ -117,17 +131,23 @@
 
   function enter() {
     $('#userName').textContent = me.name || me.email;
-    $('#userRole').textContent = me.role;
-    $('#userRole').className = 'p-chip' + (me.role === 'ambassador' ? ' p-chip--gold' : '');
-    if (me.role === 'ambassador') {
+    $('#logoSub').textContent = me.role === 'member' ? 'Members' : 'Portal';
+    document.title = me.role === 'member' ? 'Echelon Members' : 'Echelon Portal';
+    $('#userRole').textContent = me.role === 'member' ? me.tier : me.role;
+    $('#userRole').className = 'p-chip' + (me.role === 'ambassador' || (me.role === 'member' && me.tier !== 'Member') ? ' p-chip--gold' : '');
+    if (me.role === 'member') {
+      show('member');
+      window.MemberApp.enter(me, { request: request, toast: toast, loading: loading, esc: esc });
+    } else if (me.role === 'ambassador') {
       show('amb');
       loadDashboard();
     } else {
       show('staff');
       $$('#staffTabs [data-owner]').forEach((b) => { b.hidden = me.role !== 'owner'; });
       if (me.role === 'owner') get('applications').then((d) => { state.applications = d; updateAppCount(); }).catch(() => {});
+      get('requests').then((d) => { state.requests = d; updateReqCount(); }).catch(() => {});
       const saved = sessionStorageGet('portalTab');
-      selectTab(saved && (me.role === 'owner' || ['reservations', 'members', 'referrals'].indexOf(saved) >= 0) ? saved : 'reservations');
+      selectTab(saved && (me.role === 'owner' || ['reservations', 'members', 'requests', 'referrals'].indexOf(saved) >= 0) ? saved : 'reservations');
     }
   }
 
@@ -142,8 +162,15 @@
     $('#forgotForm').hidden = mode !== 'forgot';
     $('#setupForm').hidden = mode !== 'setup';
     $('#authError').textContent = '';
-    $('#authTitle').textContent = mode === 'forgot' ? 'Reset your password' : mode === 'setup' ? 'Create your password' : 'Sign in';
-    if (mode === 'login') $('#authLead').textContent = 'Sign in with the email Echelon added you with.';
+    const member = authKind === 'member';
+    document.title = member ? 'Member Sign In | Echelon' : 'Echelon Portal';
+    $('#logoSub').textContent = member ? 'Members' : 'Portal';
+    $('#authEyebrow').textContent = member ? 'Echelon Members' : 'Team & Ambassadors';
+    $('#forgotNote').textContent = member ? 'No email? Text us at 508-444-2276 and we\'ll send you a sign-in link.' : 'No email? Ask an Echelon team member to text you a setup link.';
+    $('#authFoot').hidden = !member || mode === 'setup';
+    $('#authFoot').innerHTML = 'Not a member yet? <a href="/members#join">Request access</a>';
+    $('#authTitle').textContent = mode === 'forgot' ? 'Reset your password' : mode === 'setup' ? 'Create your password' : member ? 'Member sign in' : 'Sign in';
+    if (mode === 'login') $('#authLead').textContent = member ? 'Sign in with the email you joined with.' : 'Sign in with the email Echelon added you with.';
     if (mode === 'forgot') $('#authLead').textContent = "Enter your email and we'll send you a link to reset your password.";
     const first = $('#' + mode + 'Form input');
     if (first) setTimeout(() => first.focus(), 50);
@@ -154,6 +181,7 @@
     $('#authLead').textContent = 'Checking your link…';
     try {
       const who = await auth('checkSetup', { token: token });
+      if (who.kind === 'member' && authKind !== 'member') { authKind = 'member'; showAuth('setup'); }
       $('#authLead').textContent = 'Welcome' + (who.name ? ', ' + who.name.split(' ')[0] : '') + '. Choose a password for ' + who.email + ' (at least 10 characters).';
       $('#setupForm').dataset.token = token;
     } catch (e) {
@@ -169,7 +197,7 @@
     btn.disabled = true;
     $('#authError').textContent = '';
     try {
-      me = (await auth('login', { email: f.email.value, password: f.password.value })).user;
+      me = (await auth('login', { email: f.email.value, password: f.password.value, kind: authKind })).user;
       f.reset();
       enter();
     } catch (err) {
@@ -182,8 +210,10 @@
     const f = e.target, btn = $('button[type=submit]', f);
     btn.disabled = true;
     try {
-      await auth('forgot', { email: f.email.value });
-      $('#authLead').textContent = "If that email is on the team, a link is on its way. It works for 2 hours. Didn't get it? Ask an Echelon team member to text you one.";
+      await auth('forgot', { email: f.email.value, kind: authKind });
+      $('#authLead').textContent = authKind === 'member'
+        ? "If that email belongs to a member, a link is on its way. It works for 2 hours. Didn't get it? Text us at 508-444-2276."
+        : "If that email is on the team, a link is on its way. It works for 2 hours. Didn't get it? Ask an Echelon team member to text you one.";
     } catch (err) {
       $('#authError').textContent = err.message;
     } finally { btn.disabled = false; }
@@ -196,7 +226,7 @@
     if (f.password.value !== f.confirm.value) { $('#authError').textContent = "Those passwords don't match."; return; }
     try {
       me = (await auth('setup', { token: f.dataset.token, password: f.password.value })).user;
-      history.replaceState(null, '', '/portal');
+      history.replaceState(null, '', me.role === 'member' ? '/member' : '/portal');
       f.reset();
       enter();
     } catch (err) {
@@ -224,7 +254,7 @@
     tab = name;
     sessionStorageSet('portalTab', name);
     $$('#staffTabs [data-tab]').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tab === name)));
-    ({ reservations: loadReservations, members: loadMembers, referrals: loadReferrals, ambassadors: loadAmbassadors, applications: loadApplications, team: loadTeam })[name]();
+    ({ reservations: loadReservations, members: loadMembers, requests: loadRequests, referrals: loadReferrals, ambassadors: loadAmbassadors, applications: loadApplications, team: loadTeam })[name]();
   }
 
   async function load(view, fn) {
@@ -396,21 +426,89 @@
       '<div class="p-card-head"><div><h3 class="p-card-title">' + esc(m.firstName + ' ' + m.lastName) + '</h3>' +
       '<p class="p-card-sub">Joined ' + esc(ago(m.joined)) + (m.city ? ' · ' + esc(m.city) : '') + '</p></div>' +
       '<div class="p-actions">' + (m.no ? chip('Nº ' + m.no, 'gold') : '') + chip(m.tier || 'Member', m.tier && m.tier !== 'Member' ? 'gold' : '') +
-      (m.status && m.status !== 'Active' ? chip(m.status, 'bad') : '') + (m.code ? chip('✦ via ' + m.code, 'gold') : '') + '</div></div>' +
+      (m.status && m.status !== 'Active' ? chip(m.status, 'bad') : '') + (m.code ? chip('✦ via ' + m.code, 'gold') : '') +
+      (m.openRequests ? chip(m.openRequests + ' open request' + (m.openRequests > 1 ? 's' : ''), 'info') : '') + '</div></div>' +
       '<div class="p-meta">' + (m.interests ? '<span><strong>' + esc(m.interests) + '</strong></span>' : '') +
       '<span>Heard from ' + esc(m.heard || '—') + '</span>' + (m.sms === 'Yes' ? '<span>OK to text</span>' : '') +
-      (m.bookings ? '<span>' + m.bookings + ' bookings</span>' : '') + '</div>' +
+      (m.bookings ? '<span>' + m.bookings + ' bookings</span>' : '') +
+      '<span>' + (m.hasPassword ? 'Member area set up' : 'Hasn\'t signed in yet') + '</span></div>' +
       '<div class="p-actions">' +
       (tel ? '<a class="p-btn p-btn--sm" href="tel:' + esc(tel) + '">Call</a><a class="p-btn p-btn--sm" href="sms:' + esc(tel) + '">Text</a>' : '') +
       (m.email ? '<a class="p-btn p-btn--sm" href="mailto:' + esc(m.email) + '">Email</a>' : '') +
+      '<button type="button" class="p-btn p-btn--sm" data-mem-link>' + (m.hasPassword ? 'Sign-in reset link' : 'Member sign-in link') + '</button>' +
       '<span class="p-muted p-small" style="align-self:center">' + esc(m.phone) + (m.email ? ' · ' + esc(m.email) : '') + '</span></div>' +
+      '<div class="p-slot"></div>' +
       '<div class="p-divider"></div>' +
-      '<div class="p-edit">' +
+      '<div class="p-edit p-edit--member">' +
       '<label class="p-field">Nº<input type="text" inputmode="numeric" name="no" value="' + esc(m.no) + '" placeholder="e.g. 0042" maxlength="4" /></label>' +
       '<label class="p-field">Tier<select name="tier">' + options(data.tiers, m.tier || 'Member') + '</select></label>' +
       '<label class="p-field">Status<select name="mstatus">' + options(data.statuses, m.status || 'Active') + '</select></label>' +
-      '<label class="p-field p-field--wide">Notes<textarea name="notes" rows="2">' + esc(m.notes) + '</textarea></label>' +
+      '<label class="p-field">Concierge<input type="text" name="concierge" value="' + esc(m.concierge) + '" placeholder="e.g. Tony" maxlength="60" /></label>' +
+      '<label class="p-field p-field--wide"><span>What the concierge remembers <span class="p-hint">one per line · the member sees these</span></span><textarea name="prefs" rows="3">' + esc((m.prefs || []).join('\n')) + '</textarea></label>' +
+      '<label class="p-field p-field--wide"><span>Team notes <span class="p-hint">private · never shown to the member or the concierge</span></span><textarea name="notes" rows="2">' + esc(m.notes) + '</textarea></label>' +
       '<div class="p-save-row"><button type="button" class="p-btn p-btn--gold p-btn--sm" data-save-mem disabled>Save</button><span class="p-saved"></span></div>' +
+      '</div></article>';
+  }
+
+  function memberLinkBox(name, link) {
+    const text = 'Hi ' + String(name).split(' ')[0] + ', here is your link to the Echelon member area, where your concierge is on hand: ' + link;
+    return '<div class="p-setup-link"><strong>Sign-in link for ' + esc(name) + '</strong>' +
+      '<span class="p-muted p-small">Text this to the number on file. It works once, for 3 days. They choose their own password.</span>' +
+      '<code>' + esc(link) + '</code><div class="p-actions">' +
+      '<button type="button" class="p-btn p-btn--sm p-btn--gold" data-copy="' + esc(link) + '" data-copy-label="Sign-in link">Copy link</button>' +
+      '<a class="p-btn p-btn--sm" href="sms:?&body=' + encodeURIComponent(text) + '">Text it</a></div></div>';
+  }
+
+  // Requests (from the members' concierge) ─────────────────────────────
+  let reqFilter = 'Open';
+
+  function loadRequests() { return load('requests', () => { updateReqCount(); renderRequests(); }); }
+
+  function updateReqCount() {
+    const n = state.requests ? state.requests.requests.filter((r) => r.status === 'New').length : 0;
+    $('#reqCount').textContent = n;
+    $('#reqCount').hidden = !n;
+  }
+
+  function reqTone(s) { return s === 'New' ? 'gold' : s === 'In Progress' ? 'info' : s === 'Confirmed' ? 'good' : ''; }
+
+  function renderRequests() {
+    const data = state.requests;
+    const all = data.requests;
+    const groups = [['Open', (r) => r.status === 'New' || r.status === 'In Progress']]
+      .concat(data.statuses.map((s) => [s, (r) => r.status === s])).concat([['All', () => true]]);
+    const test = (groups.find((g) => g[0] === reqFilter) || groups[0])[1];
+    const list = all.filter(test);
+    $('#staffPanel').innerHTML =
+      '<div class="p-toolbar"><div><p class="p-eyebrow">Echelon Members</p><h2 class="p-h2">Concierge requests</h2></div></div>' +
+      '<p class="p-muted p-small">What members asked their concierge to arrange, already summarized. Reply and set the status; the member sees your reply in their member area right away. Each new request is also emailed to the team.</p>' +
+      '<div class="p-filters">' + groups.map((g) => {
+        const n = all.filter(g[1]).length;
+        return '<button type="button" class="p-filter" data-qfilter="' + esc(g[0]) + '" aria-pressed="' + (g[0] === reqFilter) + '">' + esc(g[0]) + '<b>' + n + '</b></button>';
+      }).join('') + '</div>' +
+      '<div class="p-list">' + (list.length ? list.map((r) => reqCard(r, data.statuses)).join('') : '<div class="p-empty">' + (all.length ? 'Nothing here.' : 'No requests yet. They show up here when a member sends one from their concierge.') + '</div>') + '</div>';
+  }
+
+  function reqCard(r, statuses) {
+    const tel = (r.phone || '').replace(/[^\d+]/g, '');
+    const item = (k, v) => '<div class="p-req-item"><span>' + k + '</span><b>' + esc(v || '—') + '</b></div>';
+    return '<article class="p-card' + (r.status === 'New' ? ' p-card--new' : '') + '" data-req-row="' + r.row + '" data-ref="' + esc(r.ref) + '">' +
+      '<div class="p-card-head"><div><h3 class="p-card-title">' + esc(r.member) + '</h3>' +
+      '<p class="p-card-sub">' + esc(ago(r.submitted)) + (r.handler ? ' · ' + esc(r.handler) : '') + '</p></div>' +
+      '<div class="p-actions">' + (r.no ? chip('Nº ' + r.no, 'gold') : '') + chip(r.tier || 'Member', r.tier && r.tier !== 'Member' ? 'gold' : '') + chip(r.status, reqTone(r.status)) + '</div></div>' +
+      '<p class="p-quote">' + esc(r.ask) + '</p>' +
+      '<div class="p-req-grid">' + item('What', r.what) + item('When', r.when) + item('Where', r.where) + item('Extras', r.extras) + '</div>' +
+      '<div class="p-actions">' +
+      (tel ? '<a class="p-btn p-btn--sm" href="tel:' + esc(tel) + '">Call</a><a class="p-btn p-btn--sm" href="sms:' + esc(tel) + '">Text</a>' : '') +
+      '<a class="p-btn p-btn--sm" href="mailto:' + esc(r.email) + '">Email</a>' +
+      '<span class="p-muted p-small" style="align-self:center">' + esc(r.phone) + ' · ' + esc(r.email) + '</span></div>' +
+      (r.reply ? '<p class="p-reply"><b>Reply sent' + (r.replied ? ' ' + esc(ago(r.replied)) : '') + ':</b> ' + esc(r.reply) + '</p>' : '') +
+      '<div class="p-divider"></div>' +
+      '<div class="p-edit p-edit--req">' +
+      '<label class="p-field">Status<select name="status">' + options(statuses, r.status) + '</select></label>' +
+      '<label class="p-field p-field--wide">' + (r.reply ? 'Send another reply' : 'Reply to ' + esc(String(r.member).split(' ')[0])) + '<textarea name="reply" rows="2" placeholder="e.g. Confirmed. The Urus is yours Saturday, delivered at 10am."></textarea></label>' +
+      '<label class="p-field p-field--wide"><span>Team notes <span class="p-hint">private</span></span><textarea name="notes" rows="1">' + esc(r.notes) + '</textarea></label>' +
+      '<div class="p-save-row"><button type="button" class="p-btn p-btn--gold p-btn--sm" data-save-req disabled>Save</button><span class="p-saved"></span></div>' +
       '</div></article>';
   }
 
@@ -666,7 +764,7 @@
   // ── Shared click / change handling in the staff panel ──
   $('#staffPanel').addEventListener('input', (e) => {
     const card = e.target.closest('.p-card');
-    const btn = card && $('[data-save-res], [data-save-ref], [data-save-mem]', card);
+    const btn = card && $('[data-save-res], [data-save-ref], [data-save-mem], [data-save-req]', card);
     if (btn) { btn.disabled = false; $('.p-saved', card).textContent = ''; }
   });
 
@@ -682,6 +780,8 @@
     if (mfilter) { memFilter = mfilter.dataset.mfilter; return renderMembers(); }
     const rfilter = t.closest('[data-rfilter]');
     if (rfilter) { refFilter = rfilter.dataset.rfilter; return renderReferrals(); }
+    const qfilter = t.closest('[data-qfilter]');
+    if (qfilter) { reqFilter = qfilter.dataset.qfilter; return renderRequests(); }
 
     const copyBtn = t.closest('[data-copy]');
     if (copyBtn) return copy(copyBtn.dataset.copy, copyBtn.dataset.copyLabel);
@@ -704,14 +804,40 @@
     if (saveMem) {
       const card = saveMem.closest('.p-card');
       saveMem.disabled = true;
-      const fields = { no: $('[name=no]', card).value, tier: $('[name=tier]', card).value, status: $('[name=mstatus]', card).value, notes: $('[name=notes]', card).value };
+      const fields = { no: $('[name=no]', card).value, tier: $('[name=tier]', card).value, status: $('[name=mstatus]', card).value, notes: $('[name=notes]', card).value, concierge: $('[name=concierge]', card).value, prefs: $('[name=prefs]', card).value };
       try {
         const out = await post('updateMember', Object.assign({ row: +card.dataset.memRow, email: card.dataset.email }, fields));
         const m = state.members.members.find((x) => x.row === +card.dataset.memRow);
-        Object.assign(m, fields, { no: out.no });
+        Object.assign(m, fields, { no: out.no, prefs: fields.prefs.split('\n').map((p) => p.trim()).filter(Boolean) });
         $('[name=no]', card).value = out.no;
         $('.p-saved', card).textContent = 'Saved';
       } catch (err) { saveMem.disabled = false; toast(err.message, true); }
+      return;
+    }
+
+    const memLink = t.closest('[data-mem-link]');
+    if (memLink) {
+      const card = memLink.closest('.p-card');
+      const m = state.members.members.find((x) => x.row === +card.dataset.memRow);
+      try {
+        const out = await post('memberSetupLink', { row: m.row, email: m.email });
+        $('.p-slot', card).innerHTML = memberLinkBox(m.firstName + ' ' + m.lastName, out.setupLink);
+      } catch (err) { toast(err.message, true); }
+      return;
+    }
+
+    const saveReq = t.closest('[data-save-req]');
+    if (saveReq) {
+      const card = saveReq.closest('.p-card');
+      saveReq.disabled = true;
+      const fields = { status: $('[name=status]', card).value, reply: $('[name=reply]', card).value, notes: $('[name=notes]', card).value };
+      try {
+        await post('updateRequest', Object.assign({ row: +card.dataset.reqRow, ref: card.dataset.ref }, fields));
+        state.requests = await get('requests');
+        updateReqCount();
+        renderRequests();
+        toast(fields.reply.trim() ? 'Reply sent to the member' : 'Saved');
+      } catch (err) { saveReq.disabled = false; toast(err.message, true); }
       return;
     }
 

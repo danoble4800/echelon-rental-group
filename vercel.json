@@ -35,6 +35,10 @@
       "dest": "/portal.html"
     },
     {
+      "src": "^/member/?$",
+      "dest": "/portal.html"
+    },
+    {
       "src": "^/ambassadors/?$",
       "dest": "/ambassadors.html"
     },

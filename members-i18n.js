@@ -10,6 +10,7 @@ const membersI18n = {
   en: {
     navExotics: 'Exotics', navBoats: 'Boats', navJets: 'Jets', navExperiences: 'Experiences', navMembers: 'Members',
     navSignin: 'Team &amp; Ambassador Sign In',
+    navMemberSignin: 'Member Sign In',
     heroEyebrow: 'Echelon Members',
     heroTitle: 'Membership is by request.',
     heroLede: 'One number opens every door: on the road, on the water, in the air. Join free today. Your Member Nº is issued with your first booking.',
@@ -110,6 +111,7 @@ const membersI18n = {
   es: {
     navExotics: 'Exóticos', navBoats: 'Barcos', navJets: 'Jets', navExperiences: 'Experiencias', navMembers: 'Miembros',
     navSignin: 'Acceso para Equipo y Embajadores',
+    navMemberSignin: 'Acceso de Miembros',
     heroEyebrow: 'Miembros Echelon',
     heroTitle: 'La membresía es por solicitud.',
     heroLede: 'Un número abre todas las puertas: en la carretera, en el agua, en el aire. Únete gratis hoy. Tu Nº de Miembro se emite con tu primera reserva.',
@@ -210,6 +212,7 @@ const membersI18n = {
   pt: {
     navExotics: 'Exóticos', navBoats: 'Barcos', navJets: 'Jatos', navExperiences: 'Experiências', navMembers: 'Membros',
     navSignin: 'Acesso da Equipe e Embaixadores',
+    navMemberSignin: 'Acesso de Membros',
     heroEyebrow: 'Membros Echelon',
     heroTitle: 'A associação é por solicitação.',
     heroLede: 'Um número abre todas as portas: na estrada, na água, no ar. Associe-se grátis hoje. Seu Nº de Membro é emitido com sua primeira reserva.',

@@ -6,18 +6,18 @@
   <meta name="robots" content="noindex, nofollow" />
   <meta name="theme-color" content="#0A0A0A" />
   <title>Echelon Portal</title>
-  <meta name="description" content="Sign-in for the Echelon team and ambassadors." />
-  <link rel="icon" href="apple-touch-icon.png" />
-  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <meta name="description" content="Sign-in for Echelon Members, the Echelon team and ambassadors." />
+  <link rel="icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="portal.css" />
+  <link rel="stylesheet" href="/portal.css" />
 </head>
 <body>
   <header class="p-top">
     <a href="/" class="p-logo" aria-label="Echelon Exotic &amp; Luxury home">
       <span class="p-logo-mark">ECHELON</span>
-      <span class="p-logo-sub">Portal</span>
+      <span class="p-logo-sub" id="logoSub">Portal</span>
     </a>
     <div class="p-user" id="userBar" hidden>
       <span class="p-user-name" id="userName"></span>
@@ -30,7 +30,7 @@
     <!-- Sign in / set password -->
     <section class="p-auth" id="authView" hidden>
       <div class="p-auth-card">
-        <p class="p-eyebrow">Team &amp; Ambassadors</p>
+        <p class="p-eyebrow" id="authEyebrow">Team &amp; Ambassadors</p>
         <h1 class="p-title" id="authTitle">Sign in</h1>
         <p class="p-muted" id="authLead">Sign in with the email Echelon added you with.</p>
 
@@ -44,7 +44,7 @@
         <form id="forgotForm" class="p-form" novalidate hidden>
           <label>Email<input type="email" name="email" autocomplete="username" required /></label>
           <button type="submit" class="p-btn p-btn--gold">Email me a link</button>
-          <p class="p-muted p-small">No email? Ask an Echelon team member to text you a setup link.</p>
+          <p class="p-muted p-small" id="forgotNote">No email? Ask an Echelon team member to text you a setup link.</p>
           <button type="button" class="p-link" data-auth="login">Back to sign in</button>
         </form>
 
@@ -55,6 +55,7 @@
         </form>
 
         <p class="p-error" id="authError" role="alert"></p>
+        <p class="p-muted p-small p-auth-foot" id="authFoot" hidden></p>
       </div>
     </section>
 
@@ -63,6 +64,7 @@
       <nav class="p-tabs" id="staffTabs" role="tablist">
         <button type="button" role="tab" data-tab="reservations">Reservations</button>
         <button type="button" role="tab" data-tab="members">Members</button>
+        <button type="button" role="tab" data-tab="requests">Requests<span class="p-tab-count" id="reqCount" hidden></span></button>
         <button type="button" role="tab" data-tab="referrals">Referrals</button>
         <button type="button" role="tab" data-tab="ambassadors" data-owner>Ambassadors</button>
         <button type="button" role="tab" data-tab="applications" data-owner>Applications<span class="p-tab-count" id="appCount" hidden></span></button>
@@ -80,11 +82,15 @@
       <div id="ambPanel" class="p-panel"></div>
     </section>
 
+    <!-- Member area (/member): card, drives, concierge, requests (member-app.js) -->
+    <section id="memberView" hidden></section>
+
     <div class="p-loading" id="loading" hidden><span></span></div>
   </main>
 
   <div class="p-toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="portal-app.js"></script>
+  <script src="/member-app.js"></script>
+  <script src="/portal-app.js"></script>
 </body>
 </html>
