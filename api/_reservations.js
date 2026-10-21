@@ -123,6 +123,11 @@ export async function ensureSheet(brand) {
       console.error(`Sheet layout failed (${brand}):`, err);
     }
   }
+  // New Google Sheets default to the creator's account time zone, which made the
+  // "waiting over 1 hr" flag fire early. Timestamps are written in Eastern time, so the
+  // sheet's NOW() must be too. Cheap and idempotent, so it runs once per server start.
+  await batchUpdate(cfg.id, [{ updateSpreadsheetProperties: { properties: { timeZone: "America/New_York" }, fields: "timeZone" } }])
+    .catch((err) => console.error(`Sheet time zone update failed (${brand}):`, err));
   laidOut.add(brand);
 }
 
